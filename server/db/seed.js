@@ -4,6 +4,7 @@ const OrderDetail = require('./models/shopping');
 const syncAndSeed = async () => {
   try {
     await db.sync({ force: true });
+
   }
     catch (error) {
       console.log('error seeding database!', error);
