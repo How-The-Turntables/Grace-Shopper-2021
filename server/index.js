@@ -2,6 +2,8 @@ const express = require('express');
 
 const app = express();
 
+app.use('/api', require('./api/router')); // path to router for the back-end links
+
 const init = () => {
   try {
     const port = process.env.PORT || 3000;
