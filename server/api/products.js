@@ -11,3 +11,5 @@ productsRouter.get('/', async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = productsRouter;
