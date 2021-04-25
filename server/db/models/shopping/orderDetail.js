@@ -10,7 +10,8 @@ OrderDetail.init({
     allowNull: false
   },
   total: {
-    type: DataTypes.DECIMAL(10, 2)
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false
   }
 }, { sequelize: db, modelName: 'OrderDetail' }
 );
