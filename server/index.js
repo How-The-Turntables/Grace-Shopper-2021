@@ -1,8 +1,9 @@
 const express = require('express');
+const router = require('./api/router');
 
 const app = express();
 
-app.use('/api', require('./api/router')); // path to router for the back-end links
+app.use('/api', router); // path to router for the back-end links
 
 const init = () => {
   try {
