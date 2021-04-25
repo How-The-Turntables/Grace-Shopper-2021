@@ -3,17 +3,20 @@ const db = require('../../db');
 
 class OrderDetail extends Model {}
 
-OrderDetail.init({
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false
+OrderDetail.init(
+  {
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+    },
+    total: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
   },
-  total: {
-    type: DataTypes.DECIMAL(10, 2),
-    allowNull: false
-  }
-}, { sequelize: db, modelName: 'OrderDetail' }
+  { sequelize: db, modelName: 'OrderDetail' }
 );
 
 module.exports = OrderDetail;
