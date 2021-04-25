@@ -1,4 +1,4 @@
-const { OrderDetail } = require('./models/shopping');
+const OrderDetail = require('./models/shopping');
 
 // OrderDetail.belongsTo( Product );
 
