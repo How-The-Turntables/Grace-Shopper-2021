@@ -7,6 +7,7 @@ OrderDetail.init(
   {
     id: {
       type: DataTypes.UUID,
+      primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
       //allowNull: true // changed to true to trigger defaultValue when seeding data
     },

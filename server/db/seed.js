@@ -1,5 +1,5 @@
 const db = require('./db');
-const OrderDetail = require('./models/shopping');
+const OrderDetail = require('./models/shopping/orderDetail');
 
 const syncAndSeed = async () => {
   try {
