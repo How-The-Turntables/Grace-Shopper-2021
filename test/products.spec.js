@@ -26,17 +26,15 @@ describe('Album', () => {
         await album.validate();
         throw Error('title cannot be an empty string');
       } catch (error) {
-        expect(error.message).to.contain('cannot be empty');
+        expect(error.message).to.contain('Validation error');
       }
     });
-    it('it has a title', async () => {
-      const album = await Album.build();
-      try {
-        await album.validate();
-        throw Error('title should be required');
-      } catch (error) {
-        expect(error.message).to.contain('cannot be null');
-      }
+    it('it has a description', async () => {
+      const album = await Album.build({
+        title: 'Americana',
+        description: 'Pretty Awesome',
+      });
+      expect(album.description).to.equal('Pretty Awesome');
     });
   });
 });
