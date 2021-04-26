@@ -70,14 +70,14 @@ describe('Album', async () => {
     it('it has a price', () => {
       expect(typeof albumMaster.price).to.equal('number');
     });
-    it('it has an photo url', () => {
+    it('it has a photo url', () => {
       expect(typeof albumMaster.photoUrl).to.equal('string');
       expect(albumMaster.photoUrl).to.equal(
         'https://blog.masterappliance.com/wp-content/uploads/2014/03/vinyl-record-bowl-with-heat-gun.jpg'
       );
     });
 
-    it('give a blank string in the photoUrl, the default value should be used', async () => {
+    it('given a blank string in the photoUrl, the default value should be used', async () => {
       albumMaster.photoUrl = '';
       await albumMaster.save();
       expect(albumMaster.photoUrl).to.equal(

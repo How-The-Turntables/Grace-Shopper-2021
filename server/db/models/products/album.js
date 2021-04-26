@@ -52,7 +52,9 @@ Album.init(
     },
     photoUrl: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false, // do we need this?
+      defaultValue:
+        'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg',
       validate: {
         isUrl: true,
       },
@@ -71,11 +73,10 @@ Album.init(
   }
 );
 
-Album.addHook('beforeValidate', (album) => {
+Album.addHook('beforeValidate', async (album) => {
   if (album.photoUrl === null || album.photoUrl === '') {
-    album.photoUrl =
-      'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg';
-  }
+    album.photoUrl = await album.photoUrl.default;
+  } else album.photoUrl;
 });
 
 module.exports = Album;
