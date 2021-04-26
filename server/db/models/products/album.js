@@ -52,10 +52,10 @@ Album.init(
     },
     photoUrl: {
       type: DataTypes.STRING,
-      allowNull: false,
       validate: {
         isUrl: true,
       },
+      defaultValue: 'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg'
     },
 
     quantity: {
@@ -70,12 +70,5 @@ Album.init(
     modelName: 'album',
   }
 );
-
-Album.addHook('beforeValidate', (album) => {
-  if (album.photoUrl === null || album.photoUrl === '') {
-    album.photoUrl =
-      'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg';
-  }
-});
 
 module.exports = Album;
