@@ -3,11 +3,23 @@ const productsRouter = require('express').Router();
 
 productsRouter.get('/', async (req, res, next) => {
   try {
-    // const products = Products.findAll();
+    // const products = await Products.findAll();
     const testHTML = `<html><body><p1>Hello World</p1></body></html>`;
     res.send(testHTML); // enter correct
   } catch (error) {
-    console.log('error has occured in the /api/Products');
+    console.log('error has occured in the /api/products');
+    next(error);
+  }
+});
+
+productsRouter.get('/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    // const singleProduct = await productsRouter.findByPk(id)
+    const testHTML = `<html><body><p1>Hello World: details for single product id: ${id}</p1></body></html>`;
+    res.send(testHTML);
+  } catch (error) {
+    console.log('error occured in the /api/products/:id');
     next(error);
   }
 });
