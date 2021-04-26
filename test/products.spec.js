@@ -7,7 +7,17 @@ describe('Mocha/Chai Test', function () {
   });
 });
 
-describe('Album', () => {
+describe('Album', async () => {
+  const albumMaster = await Album.build({
+    title: 'Americana',
+    description: 'Pretty Fly',
+    genre: 'MATH ROCK',
+    year: 1999,
+    price: 199.99,
+    quantity: 8,
+    photoUrl:
+      'https://blog.masterappliance.com/wp-content/uploads/2014/03/vinyl-record-bowl-with-heat-gun.jpg',
+  });
   describe('can create a new album', () => {
     it('it has a title', async () => {
       const album = await Album.build();
@@ -30,11 +40,54 @@ describe('Album', () => {
       }
     });
     it('it has a description', async () => {
-      const album = await Album.build({
+      expect(albumMaster.description).to.equal('Pretty Fly');
+    });
+    it('it has a price, which is a number', async () => {
+      expect(typeof albumMaster.price).to.equal('number');
+    });
+    it('it has a genre, which is one of ENUM choices', async () => {
+      const albumWeird = await Album.build({
         title: 'Americana',
-        description: 'Pretty Awesome',
+        description: 'Pretty Fly',
+        genre: 'DISCO ROCK',
+        year: 1999,
+        price: 199.99,
+        quantity: 8,
+        photoUrl:
+          'https://blog.masterappliance.com/wp-content/uploads/2014/03/vinyl-record-bowl-with-heat-gun.jpg',
       });
-      expect(album.description).to.equal('Pretty Awesome');
+      try {
+        await albumWeird.validate();
+        throw Error('genre cannot be outside of what is specified');
+      } catch (error) {
+        console.log(error.message);
+        expect(error.message).to.contain('Validation error');
+      }
+    });
+    it('it has a year', () => {
+      expect(typeof albumMaster.year).to.equal('number');
+    });
+    it('it has a price', () => {
+      expect(typeof albumMaster.price).to.equal('number');
+    });
+    it('it has an photo url', () => {
+      expect(typeof albumMaster.photoUrl).to.equal('string');
+    });
+    it('when no photo url is specified, it should be assigned default', async () => {
+      const albumWeird = await Album.build({
+        title: 'Americana',
+        description: 'Pretty Fly',
+        genre: 'DISCO ROCK',
+        year: 1999,
+        price: 199.99,
+        quantity: 8,
+        photoUrl: null,
+      });
+      expect(albumWeird.photoUrl).to.equal('/public/img/defaultAlbum.png');
+    });
+    it('it has a quantity', () => {
+      expect(typeof albumMaster.quantity).to.equal('number');
+      expect(albumMaster.quantity).to.equal(8);
     });
   });
 });
