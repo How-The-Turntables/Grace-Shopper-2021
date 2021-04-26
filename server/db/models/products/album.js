@@ -33,7 +33,7 @@ Album.init({
     }
   },
   price: {
-    type: DataTypes.DECIMAL,
+    type: DataTypes.DECIMAL(10,2),
     allowNull: false,
     validate: {
       notEmpty: true
@@ -49,7 +49,8 @@ Album.init({
   },
   quantity: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 0
   }
 },{
   sequelize: db,
