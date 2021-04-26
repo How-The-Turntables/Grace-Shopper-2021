@@ -72,6 +72,9 @@ describe('Album', async () => {
     });
     it('it has an photo url', () => {
       expect(typeof albumMaster.photoUrl).to.equal('string');
+      expect(albumMaster.photoUrl).to.equal(
+        'https://blog.masterappliance.com/wp-content/uploads/2014/03/vinyl-record-bowl-with-heat-gun.jpg'
+      );
     });
 
     it('give a blank string in the photoUrl, the default value should be used', async () => {

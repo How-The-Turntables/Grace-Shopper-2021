@@ -56,8 +56,6 @@ Album.init(
       validate: {
         isUrl: true,
       },
-      defaultValue:
-        'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg',
     },
 
     quantity: {
