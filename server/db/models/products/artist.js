@@ -7,19 +7,19 @@ Artist.init({
   id: {
     primaryKey: true,
     type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4
+    defaultValue: DataTypes.UUIDV4,
   },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
+      notEmpty: true,
     },
-    unique: true
+    unique: true,
   },
   decription: {
-    type: DataTypes.TEXT
-  }
+    type: DataTypes.TEXT,
+  },
 });
 
 module.exports = Artist;

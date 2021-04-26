@@ -9,7 +9,6 @@ Review.init(
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
-      //allowNull: true // changed to true to trigger defaultValue when seeding data
     },
     comment: {
       type: DataTypes.TEXT,
@@ -24,7 +23,10 @@ Review.init(
       allowNull: false,
     },
   },
-  { sequelize: db, modelName: 'Review' }
+  {
+    sequelize: db,
+    modelName: 'review',
+  }
 );
 
 module.exports = Review;

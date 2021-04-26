@@ -4,6 +4,7 @@ const syncAndSeed = require('./db/seed');
 
 const app = express();
 
+app.use(express.json());
 app.use('/api', router); // path to router for the back-end links
 
 const init = async () => {
