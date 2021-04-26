@@ -1,5 +1,6 @@
 const db = require('./db');
 const OrderDetail = require('./models/shopping/orderDetail');
+const User = require('./models/users/user');
 
 const syncAndSeed = async () => {
   try {
