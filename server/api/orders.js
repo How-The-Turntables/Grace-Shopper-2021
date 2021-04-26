@@ -1,9 +1,9 @@
 const ordersRouter = require('express').Router();
-const Order = require('../db/models/shopping/orderDetail');
+const Orders = require('../db/models/shopping/orderDetail');
 
 ordersRouter.get('/', async (req, res, next) => {
   try {
-    const orders = await Order.findAll({
+    const orders = await Orders.findAll({
       // noting that we could include User to have some basic order details display in all orders view
     });
     res.status(200).send(orders);
@@ -15,7 +15,7 @@ ordersRouter.get('/', async (req, res, next) => {
 
 ordersRouter.get('/:id', async (req, res, next) => {
   try {
-    const order = await Order.findAll({
+    const order = await Orders.findAll({
       where: {
         id: req.params.id,
       },
