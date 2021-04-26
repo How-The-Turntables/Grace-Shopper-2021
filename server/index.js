@@ -13,11 +13,9 @@ app.use(morgan('tiny'));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '/public/index.html')));
-
-
-
 app.use('/api', router); // path to router for the back-end links
+
+app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '/public/index.html')));
 
 app.use(function (req, res, next) {
   res.status(404).send("Are you lost? That page doesn't seem to exist.")
