@@ -20,6 +20,9 @@ Artist.init({
   decription: {
     type: DataTypes.TEXT
   }
+},{
+  sequelize: db,
+  modelName: 'artist'
 });
 
 module.exports = Artist;
