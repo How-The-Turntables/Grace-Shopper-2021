@@ -4,7 +4,7 @@ const productsRouter = require('express').Router();
 productsRouter.get('/', async (req, res, next) => {
   try {
     // const products = await Products.findAll();
-    const testHTML = `<html><body><p1>Hello World</p1></body></html>`;
+    const testHTML = `<html><body><p1>Hello World: details for all products</p1></body></html>`;
     res.send(testHTML); // enter correct
   } catch (error) {
     console.log('error has occured in the /api/products');
