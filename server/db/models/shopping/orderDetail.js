@@ -9,7 +9,7 @@ OrderDetail.init(
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
+      //allowNull: true // changed to true to trigger defaultValue when seeding data
     },
     total: {
       type: DataTypes.DECIMAL(10, 2),
