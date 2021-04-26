@@ -1,7 +1,6 @@
 const albumsRouter = require('express').Router();
-// const { Album } = require('../db/models'); /// enter the correct model name and address here
+const Album = require('../db/models/products/album'); /// enter the correct model name and address here
 const Review = require('../db/models/products/review');
-
 
 albumsRouter.get('/', async (req, res, next) => {
   try {
@@ -22,6 +21,21 @@ albumsRouter.get('/:id', async (req, res, next) => {
     res.send(testHTML);
   } catch (error) {
     console.log('error occured in the /api/products/:id');
+    next(error);
+  }
+});
+
+albumsRouter.get('/:id/reviews', async (req, res, next) => {
+  try {
+    const reviews = await Review.findAll({
+      where: {
+        albumId: req.params.id,
+      },
+      include: [Album],
+    });
+    res.send(reviews);
+  } catch (error) {
+    console.log('error occured in the /api/products/:id/reviews route');
     next(error);
   }
 });
