@@ -9,13 +9,13 @@ describe('This is a blank test', () => {
 });
 
 describe('Testing the Route', () => {
-  describe('/api/albums exists', () => {
+  describe('/api/albums', () => {
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/albums');
       expect(response.status).to.equal(200);
     });
   });
-  describe('/api/albums/:id exists', () => {
+  describe('/api/albums/:id', () => {
     it('expects the route with id 3 to be accessible', async () => {
       const response = await app.get('/api/albums/3');
       expect(response.status).to.equal(200);
@@ -26,6 +26,13 @@ describe('Testing the Route', () => {
     });
     it('expects the route with id 18 to be accessible', async () => {
       const response = await app.get('/api/albums/18');
+      expect(response.status).to.equal(200);
+    });
+  });
+
+  describe('/api/artists', () => {
+    it('expects the route to be accessible', async () => {
+      const response = await app.get('/api/artists');
       expect(response.status).to.equal(200);
     });
   });
