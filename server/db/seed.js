@@ -6,7 +6,7 @@ const Review = require('./models/products/review');
 const syncAndSeed = async () => {
   try {
     await db.sync({ force: true });
-    const order = await OrderDetail.create({ total: '19.99' });
+    const order = await OrderDetail.create({ total: 19.99 });
     const review = await Review.create({
       comment: 'This album has all my favorite jams.',
       stars: 5,
@@ -19,5 +19,5 @@ const syncAndSeed = async () => {
     console.log('error seeding database!', error);
   }
 };
-
+// hello this is a comment
 module.exports = syncAndSeed;
