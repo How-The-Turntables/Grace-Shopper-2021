@@ -5,10 +5,9 @@ const { expect } = require('chai');
 
 describe('user model', () => {
   describe('seeding user data', () => {
-    it('should have 1 user', async () => {
+    it('should create an anonymous user', async () => {
       const user = User.build();
-      console.log(user);
-      expect(1).to.equal(1);
+      expect(user.first_name).to.equal('Anonymous');
     });
   });
 });
