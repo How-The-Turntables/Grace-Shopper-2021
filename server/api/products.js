@@ -1,10 +1,10 @@
-const productsRouter = require('express').Router();
-// const { Products } = require('../db/models'); /// enter the correct model name and address here
+const albumsRouter = require('express').Router();
+// const { Album } = require('../db/models'); /// enter the correct model name and address here
 
-productsRouter.get('/', async (req, res, next) => {
+albumsRouter.get('/', async (req, res, next) => {
   try {
-    // const products = await Products.findAll();
-    const testHTML = `<html><body><p1>Hello World: details for all products</p1></body></html>`;
+    // const products = await Album.findAll();
+    const testHTML = `<html><body><p1>Hello World: details for all albums</p1></body></html>`;
     res.send(testHTML); // enter correct
   } catch (error) {
     console.log('error has occured in the /api/products');
@@ -12,11 +12,11 @@ productsRouter.get('/', async (req, res, next) => {
   }
 });
 
-productsRouter.get('/:id', async (req, res, next) => {
+albumsRouter.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    // const singleProduct = await productsRouter.findByPk(id)
-    const testHTML = `<html><body><p1>Hello World: details for single product id: ${id}</p1></body></html>`;
+    // const singleProduct = await Album.findByPk(id)
+    const testHTML = `<html><body><p1>Hello World: details for single album id: ${id}</p1></body></html>`;
     res.send(testHTML);
   } catch (error) {
     console.log('error occured in the /api/products/:id');
@@ -24,4 +24,4 @@ productsRouter.get('/:id', async (req, res, next) => {
   }
 });
 
-module.exports = productsRouter;
+module.exports = albumsRouter;
