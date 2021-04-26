@@ -18,8 +18,11 @@ Artist.init({
     unique: true,
   },
   decription: {
-    type: DataTypes.TEXT,
-  },
+    type: DataTypes.TEXT
+  }
+},{
+  sequelize: db,
+  modelName: 'artist'
 });
 
 module.exports = Artist;
