@@ -56,7 +56,7 @@ UserAddress.init({
   }
 },{
   sequelize: db,
-  modelName: 'userAddress'
+  modelName: 'user_address'
 });
 
 module.exports = UserAddress;
