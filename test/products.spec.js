@@ -49,7 +49,7 @@ describe('Album', async () => {
       const albumWeird = await Album.build({
         title: 'Americana',
         description: 'Pretty Fly',
-        genre: 'DISCO ROCK',
+        genre: 'PUNK ROCK',
         year: 1999,
         price: 199.99,
         quantity: 8,
@@ -57,11 +57,11 @@ describe('Album', async () => {
           'https://blog.masterappliance.com/wp-content/uploads/2014/03/vinyl-record-bowl-with-heat-gun.jpg',
       });
       try {
-        await albumWeird.validate();
+        albumWeird.genre = 'DISCO ROCK';
+        await albumWeird.save();
         throw Error('genre cannot be outside of what is specified');
       } catch (error) {
-        console.log(error.message);
-        expect(error.message).to.contain('Validation error');
+        expect(error.message).to.contain('invalid input value');
       }
     });
     it('it has a year', () => {
@@ -73,17 +73,26 @@ describe('Album', async () => {
     it('it has an photo url', () => {
       expect(typeof albumMaster.photoUrl).to.equal('string');
     });
-    it('when no photo url is specified, it should be assigned default', async () => {
+    it('does not allow for blank photo url', async () => {
       const albumWeird = await Album.build({
         title: 'Americana',
         description: 'Pretty Fly',
-        genre: 'DISCO ROCK',
+        genre: 'MATH ROCK',
         year: 1999,
         price: 199.99,
         quantity: 8,
-        photoUrl: null,
+        photoUrl: '',
       });
-      expect(albumWeird.photoUrl).to.equal('/public/img/defaultAlbum.png');
+      try {
+        await albumWeird.validate();
+        throw Error(
+          'Should not be able to create a new album with out photoUrl'
+        );
+      } catch (error) {
+        expect(error.message).to.contain(
+          'Validation error: Validation isUrl on photoUrl failed'
+        );
+      }
     });
     it('it has a quantity', () => {
       expect(typeof albumMaster.quantity).to.equal('number');
