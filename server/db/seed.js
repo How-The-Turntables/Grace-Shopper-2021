@@ -19,5 +19,5 @@ const syncAndSeed = async () => {
     console.log('error seeding database!', error);
   }
 };
-// hello this is a comment
+
 module.exports = syncAndSeed;
