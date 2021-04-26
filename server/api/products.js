@@ -1,5 +1,7 @@
 const albumsRouter = require('express').Router();
 // const { Album } = require('../db/models'); /// enter the correct model name and address here
+const Review = require('../db/models/products/review');
+
 
 albumsRouter.get('/', async (req, res, next) => {
   try {
