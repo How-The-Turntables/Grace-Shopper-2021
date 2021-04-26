@@ -57,4 +57,4 @@ Album.init({
   modelName: 'album'
 });
 
-module.exports = Album
+module.exports = Album;
