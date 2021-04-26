@@ -1,5 +1,6 @@
 const productsRouter = require('express').Router();
 // const { Products } = require('../db/models'); /// enter the correct model name and address here
+const Review = require('../db/models/products/review');
 
 productsRouter.get('/', async (req, res, next) => {
   try {
