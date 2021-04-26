@@ -8,7 +8,7 @@ describe('Mocha/Chai Test', function () {
 });
 
 describe('Album', async () => {
-  const albumMaster = await Album.build({
+  let albumMaster = await Album.build({
     title: 'Americana',
     description: 'Pretty Fly',
     genre: 'MATH ROCK',
@@ -73,26 +73,13 @@ describe('Album', async () => {
     it('it has an photo url', () => {
       expect(typeof albumMaster.photoUrl).to.equal('string');
     });
-    it('does not allow for blank photo url', async () => {
-      const albumWeird = await Album.build({
-        title: 'Americana',
-        description: 'Pretty Fly',
-        genre: 'MATH ROCK',
-        year: 1999,
-        price: 199.99,
-        quantity: 8,
-        photoUrl: '',
-      });
-      try {
-        await albumWeird.validate();
-        throw Error(
-          'Should not be able to create a new album with out photoUrl'
-        );
-      } catch (error) {
-        expect(error.message).to.contain(
-          'Validation error: Validation isUrl on photoUrl failed'
-        );
-      }
+
+    it('give a blank string in the photoUrl, the default value should be used', async () => {
+      albumMaster.photoUrl = '';
+      await albumMaster.save();
+      expect(albumMaster.photoUrl).to.equal(
+        'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg'
+      );
     });
     it('it has a quantity', () => {
       expect(typeof albumMaster.quantity).to.equal('number');
