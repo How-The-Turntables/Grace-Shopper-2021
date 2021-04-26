@@ -8,7 +8,7 @@ describe('This is a blank test', () => {
   });
 });
 
-describe('Testing the Route', () => {
+describe('Testing the Routes', () => {
   describe('/api/albums', () => {
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/albums');
@@ -34,6 +34,13 @@ describe('Testing the Route', () => {
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/artists');
       expect(response.status).to.equal(404);
+    });
+  });
+
+  describe('/api/orders exists', () => {
+    it('should get all orders', async () => {
+      const response = await app.get('/api/orders');
+      expect(response.status).to.equal(200);
     });
   });
 });
