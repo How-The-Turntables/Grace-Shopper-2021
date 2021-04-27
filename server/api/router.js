@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const albumsRouter = require('./products');
+const albumsRouter = require('./albums');
 const ordersRouter = require('./orders');
 const artistRouter = require('./artists');
 
