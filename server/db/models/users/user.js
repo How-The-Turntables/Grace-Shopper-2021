@@ -9,7 +9,8 @@ User.init(
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
+      // allowNull: false,
+      unique: true
     },
     first_name: {
       type: DataTypes.STRING,
