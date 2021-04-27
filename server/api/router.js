@@ -6,6 +6,7 @@ const artistRouter = require('./artists');
 const usersRouter = require('./users');
 
 router.use('/albums', albumsRouter);
+router.use('/artists', artistRouter);
 router.use('/orders', ordersRouter);
 router.use('/users', usersRouter);
 
