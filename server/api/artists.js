@@ -1,5 +1,5 @@
 const artistRouter = require('express').Router();
-// const { Artist } = require('../db/models/products/artist'); // enter the correct model name and address here
+// const {Artist} = require('../db/models/index.js')  // enter the correct model name and address here
 
 artistRouter.get('/', async (req, res, next) => {
   try {
