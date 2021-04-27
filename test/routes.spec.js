@@ -1,5 +1,9 @@
 const { expect } = require('chai');
+
 const Artist = require('../server/db/models/products/artist');
+
+const db = require("./../server/db/db");
+
 
 const app = require('supertest')(require('../server/index'));
 
