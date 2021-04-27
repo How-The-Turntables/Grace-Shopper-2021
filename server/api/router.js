@@ -8,7 +8,6 @@ const usersRouter = require('./users');
 router.use('/albums', albumsRouter);
 router.use('/orders', ordersRouter);
 router.use('/users', usersRouter);
-
-
+router.use('/artists', artistRouter);
 
 module.exports = router;
