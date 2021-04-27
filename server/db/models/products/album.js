@@ -24,7 +24,6 @@ Album.init(
     genre: {
       type: DataTypes.ENUM,
       values: ['METAL', 'JAZZ', 'ROCK', 'POP', 'OTHER'],
-      allowNull: false,
       defaultValue: 'OTHER',
     },
     year: {
