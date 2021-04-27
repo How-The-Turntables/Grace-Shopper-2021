@@ -1,8 +1,7 @@
 const { expect } = require('chai');
-
 const Artist = require('../server/db/models/products/artist');
-
 const db = require('./../server/db/db');
+const syncAndSeed = require('./../server/db/seed')
 
 const app = require('supertest')(require('../server/index'));
 
@@ -12,7 +11,9 @@ describe('This is a blank test', () => {
   });
 });
 
-describe('Testing the Route', () => {
+describe('Testing the Route', async () => {
+  await db.sync({ force: true });
+  syncAndSeed()
   describe('/api/albums', () => {
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/albums');
