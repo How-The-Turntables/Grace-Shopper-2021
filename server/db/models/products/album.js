@@ -52,18 +52,19 @@ Album.init(
     },
     photoUrl: {
       type: DataTypes.STRING,
-      allowNull: false,
       validate: {
         isUrl: true,
       },
-      defaultValue: '/public/img/defaultAlbum.png',
+      defaultValue: 'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg'
     },
+
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0,
     },
   },
+
   {
     sequelize: db,
     modelName: 'album',
