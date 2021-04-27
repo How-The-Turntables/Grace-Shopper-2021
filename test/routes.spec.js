@@ -2,8 +2,7 @@ const { expect } = require('chai');
 
 const Artist = require('../server/db/models/products/artist');
 
-const db = require("./../server/db/db");
-
+const db = require('./../server/db/db');
 
 const app = require('supertest')(require('../server/index'));
 
@@ -39,7 +38,7 @@ describe('Testing the Route', () => {
     const artist = await Artist.build({ name: 'David Bonie' });
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/artists');
-      console.log(response);
+      // console.log(response);
       expect(response.status).to.equal(200);
       // expect(response.length).to.equal(1);
     });
