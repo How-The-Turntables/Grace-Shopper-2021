@@ -1,7 +1,7 @@
-const OrderDetail = require('./models/shopping');
+const OrderDetail = require('./models/shopping/orderDetail');
 const User = require('./models/users/user');
-const Album = require('./models/products/album');
-const Artist = require('.models/products/album');
+const Album = require('./models/products/album.js');
+const Artist = require('./models/products/album');
 const Review = require('./models/products/review');
 
 Album.belongsTo(Artist);
@@ -18,3 +18,11 @@ OrderDetail.belongsToMany(Album, {
   foreignKey: 'order_detailsId',
   otherKey: 'albumId',
 });
+
+module.exports = {
+  OrderDetail,
+  Artist,
+  Album,
+  Review,
+  User,
+};

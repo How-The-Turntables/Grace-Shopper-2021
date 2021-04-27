@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const db = require('../../db');
 
 class Album extends Model {}
-
+// rock, metal, pop, jazz, and make the genre strings
 Album.init(
   {
     id: {
@@ -55,7 +55,8 @@ Album.init(
       validate: {
         isUrl: true,
       },
-      defaultValue: 'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg'
+      defaultValue:
+        'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg',
     },
 
     quantity: {

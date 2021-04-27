@@ -1,8 +1,5 @@
 const db = require('./db');
-const OrderDetail = require('./models/shopping/orderDetail');
-const User = require('./models/users/user');
-const Review = require('./models/products/review');
-const Album = require('./models/products/album');
+const { OrderDetail, Artist, Album, Review, User } = require('./index');
 
 const syncAndSeed = async () => {
   try {

@@ -4,7 +4,9 @@ const Review = require('../db/models/products/review');
 
 albumsRouter.get('/', async (req, res, next) => {
   try {
+    console.log('hi');
     const albums = await Album.findAll();
+    console.log(albums);
     res.status(200).send(albums);
   } catch (error) {
     console.log('error has occured in the /api/products');
