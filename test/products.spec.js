@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 const Album = require('../server/db/models/products/album');
+const db = require("./../server/db/db");
 
 describe('Mocha/Chai Test', function () {
   it('should show a passing test', function () {
@@ -8,6 +9,9 @@ describe('Mocha/Chai Test', function () {
 });
 
 describe('Album', async () => {
+  beforeEach(async () => {
+    await db.sync({ force: true });
+  });
   let albumMaster = await Album.build({
     title: 'Americana',
     description: 'Pretty Fly',
