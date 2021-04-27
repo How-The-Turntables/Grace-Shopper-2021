@@ -12,4 +12,12 @@ artistRouter.get('/', async (req, res, next) => {
   }
 });
 
+artistRouter.get('/', async (req, res, next) => {
+  try {
+  } catch (error) {
+    console.log('error occured in /api/artists/:id');
+    next(error);
+  }
+});
+
 module.exports = artistRouter;
