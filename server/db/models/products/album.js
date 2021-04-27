@@ -9,6 +9,7 @@ Album.init(
       primaryKey: true,
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
+      unique: true,
     },
     title: {
       type: DataTypes.STRING,
