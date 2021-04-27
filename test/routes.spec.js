@@ -34,13 +34,15 @@ describe('Testing the Route', () => {
     });
   });
 
-  describe('/api/artists', async () => {
-    const artist = await Artist.build({ name: 'David Bonie' });
-    it('expects the route to be accessible', async () => {
-      const response = await app.get('/api/artists');
-      // console.log(response);
-      expect(response.status).to.equal(200);
-      // expect(response.length).to.equal(1);
+  describe('Artists', () => {
+    describe('/api/artists', async () => {
+      // const artist = await Artist.create({ name: 'David Bonie' });
+      it('expects the route to be accessible', async () => {
+        const response = await app.get('/api/artists');
+        // console.log(artist);
+        expect(response.status).to.equal(200);
+        // expect(response.body).to.have.length(1);
+      });
     });
   });
 });
