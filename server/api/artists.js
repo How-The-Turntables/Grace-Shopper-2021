@@ -1,3 +1,5 @@
+const Artist = require('../db/models/products/artist');
+
 const artistRouter = require('express').Router();
 // const {Artist} = require('../db/models/index.js')  // enter the correct model name and address here
 
@@ -12,8 +14,12 @@ artistRouter.get('/', async (req, res, next) => {
   }
 });
 
-artistRouter.get('/', async (req, res, next) => {
+artistRouter.get('/:id', async (req, res, next) => {
   try {
+    const id = req.params.id;
+    // const artist = await Artist.findByPk(id, { include: [{ Album }] });
+    const testHTML = `<html><body><p1>Hello World: details for single artist with id of ${id}</p1></body></html>`;
+    res.send(testHTML);
   } catch (error) {
     console.log('error occured in /api/artists/:id');
     next(error);
