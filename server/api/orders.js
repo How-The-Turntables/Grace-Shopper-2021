@@ -1,15 +1,16 @@
 const ordersRouter = require('express').Router();
 const Order = require('../db/models/shopping/orderDetail');
 
-
 ordersRouter.get('/:id', async (req, res, next) => {
   try {
-    const order = await Order.findAll({
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.send(order);
+    // const order = await Order.findAll({
+    //   where: {
+    //     id: req.params.id,
+    //   },
+    // });
+    const testHTML = `<html><body><p1>Hello World: details for all orders</p1></body></html>`;
+
+    res.send(testHTML);
   } catch (error) {
     console.log('problem with your /:id order route');
     next(error);
