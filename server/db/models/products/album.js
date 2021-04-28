@@ -22,18 +22,9 @@ Album.init(
       type: DataTypes.TEXT,
     },
     genre: {
-      type: DataTypes.ENUM([
-        'HEAVY METAL',
-        'LIGHT JAZZ',
-        'GLAM ROCK',
-        'GOSPEL',
-        'ELEVATOR',
-        'DISCO',
-        'HIP-HOP',
-        'HAIR BANDS',
-        'MATH ROCK',
-      ]),
-      allowNull: false,
+      type: DataTypes.ENUM,
+      values: ['METAL', 'JAZZ', 'ROCK', 'POP', 'OTHER'],
+      defaultValue: 'OTHER',
     },
     year: {
       type: DataTypes.INTEGER,
@@ -56,7 +47,8 @@ Album.init(
       validate: {
         isUrl: true,
       },
-      defaultValue: 'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg'
+      defaultValue:
+        'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg',
     },
 
     quantity: {
