@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha --exit",
     "test:dev": "npm run test -- --watch",
-    "start:dev": "nodemon server/index"
+    "start:dev": "nodemon server/index",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
