@@ -27,10 +27,7 @@ UserAddress.init(
     },
     addressLine2: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+      // removed this as a required field since apartment number / suite / floor info aren't always applicable
     },
     city: {
       type: DataTypes.STRING,

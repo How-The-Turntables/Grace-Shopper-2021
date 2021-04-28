@@ -1,6 +1,5 @@
 const OrderDetail = require('./models/shopping/orderDetail');
 const OrderItem = require('./models/shopping/orderItem');
-
 const User = require('./models/users/user');
 const UserAddress = require('./models/users/userAddress');
 const Album = require('./models/products/album.js');

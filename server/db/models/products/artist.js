@@ -13,8 +13,9 @@ Artist.init(
       },
       unique: true,
     },
-    decription: {
+    description: {
       type: DataTypes.TEXT,
+      allowNull: false,
     },
   },
   {

@@ -16,7 +16,9 @@ OrderDetail.init(
       allowNull: false,
     },
     status: {
+
       type: DataTypes.ENUM('IN PROGRESS', 'COMPLETED', 'CANCELLED'),
+
       allowNull: false,
     },
   },
