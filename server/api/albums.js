@@ -1,14 +1,12 @@
 const albumsRouter = require('express').Router();
-// const { Album } = require('../db/models'); /// enter the correct model name and address here
-const Review = require('../db/models/products/review');
+const { Album, Review } = require('../db/index');
 
 albumsRouter.get('/', async (req, res, next) => {
   try {
-    // const products = await Album.findAll();
-    const testHTML = `<html><body><p1>Hello World: details for all albums</p1></body></html>`;
-    res.send(testHTML); // enter correct
+    const albums = await Album.findAll();
+    res.send(albums);
   } catch (error) {
-    console.log('error has occured in the /api/products');
+    console.log('error has occured in the /api/albums: ', error);
     next(error);
   }
 });
@@ -16,13 +14,48 @@ albumsRouter.get('/', async (req, res, next) => {
 albumsRouter.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    // const singleProduct = await Album.findByPk(id)
-    const testHTML = `<html><body><p1>Hello World: details for single album id: ${id}</p1></body></html>`;
-    res.send(testHTML);
+    const album = await Album.findByPk(id);
+    res.send(album);
   } catch (error) {
-    console.log('error occured in the /api/products/:id');
+    console.log('error occured in the /api/albums/:id');
     next(error);
   }
 });
 
+albumsRouter.get('/:id/reviews', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const reviews = await Review.findAll({
+      where: {
+        albumId: id,
+      },
+      include: Album,
+    });
+    res.send(reviews);
+  } catch (error) {
+    console.log(
+      'error occured in the /api/albums/:id/reviews get route: ',
+      error
+    );
+    next(error);
+  }
+});
+
+albumsRouter.post('/:id/reviews', async (req, res, next) => {
+  try {
+    const review = await Review.create({
+      where: {
+        comment: req.body.comment,
+        stars: req.body.stars,
+        albumId: req.body.albumId,
+      },
+    });
+
+    res.status(201).send(review);
+    review.save();
+  } catch (error) {
+    console.log('Post Error: Error posting new review: ', error);
+    next(error);
+  }
+});
 module.exports = albumsRouter;

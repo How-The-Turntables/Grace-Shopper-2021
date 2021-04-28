@@ -10,10 +10,15 @@ OrderDetail.init(
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
       unique: true,
-      //allowNull: true // changed to true to trigger defaultValue when seeding data
     },
     total: {
       type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
+    status: {
+
+      type: DataTypes.ENUM('IN PROGRESS', 'COMPLETED', 'CANCELLED'),
+
       allowNull: false,
     },
   },
