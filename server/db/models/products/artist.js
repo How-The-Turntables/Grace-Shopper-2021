@@ -3,30 +3,26 @@ const db = require('../../db');
 
 class Artist extends Model {}
 
-Artist.init(
-  {
-    id: {
-      primaryKey: true,
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      unique: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-      unique: true,
-    },
-    decription: {
-      type: DataTypes.TEXT,
-    },
+Artist.init({
+  id: {
+    primaryKey: true,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4
   },
-  {
-    sequelize: db,
-    modelName: 'artist',
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+    unique: true
+  },
+  decription: {
+    type: DataTypes.TEXT
   }
-);
+},{
+  sequelize: db,
+  modelName: 'artist'
+});
 
 module.exports = Artist;
