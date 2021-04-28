@@ -80,6 +80,7 @@ usersRouter.delete('/:id', async (req, res, next) => {
     res.sendStatus(204);
   } catch (error) {
     console.log('error occured during deleting in /api/users/:id');
+
     next(error);
   }
 });
