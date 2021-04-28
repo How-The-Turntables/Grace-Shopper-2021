@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-// const db = require('./../server/db/db');
-// const syncAndSeed = require('./../server/db/seed');
+const db = require("./../server/db/db");
+
 
 const app = require('supertest')(require('../server/index'));
 
@@ -11,9 +11,6 @@ describe('This is a blank test', () => {
 });
 
 describe('Testing the Route', () => {
-  // await db.sync({ force: true });
-  // await syncAndSeed();
-  // if you are trying to add these back in, dont forget to add the async to above function declaration
   describe('/api/albums', () => {
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/albums');
@@ -35,6 +32,7 @@ describe('Testing the Route', () => {
     });
   });
 
+
   describe('Artists', () => {
 
     describe('/api/artists', () => {
@@ -49,6 +47,7 @@ describe('Testing the Route', () => {
         expect(response.status).to.equal(200);
 
       });
+
     });
   });
 });
