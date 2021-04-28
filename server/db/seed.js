@@ -14,7 +14,7 @@ const syncAndSeed = async () => {
     await db.sync({ force: true });
     const order = await OrderDetail.create({
       total: 19.99,
-      status: 'in progress',
+      status: 'IN PROGRESS',
     });
     const review = await Review.create({
       comment: 'This album has all my favorite jams.',
