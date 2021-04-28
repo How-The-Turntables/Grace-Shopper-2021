@@ -24,6 +24,10 @@ const syncAndSeed = async () => {
       email_address: 'test@gmail.com',
       password: 'supersecret',
     });
+    const artist = await Artist.create({
+      name: 'Pinkk Flloyd',
+      description: 'One of those boy bands from the 70s.',
+    });
     const album = await Album.create({
       title: 'The Wall',
       description: 'A good record',
@@ -31,11 +35,20 @@ const syncAndSeed = async () => {
       year: 1973,
       price: 19.99,
       quantity: 20,
+      photoUrl:
+        'https://www.thestudentplaylist.com/wp-content/uploads/2019/11/pink_floyd_the_wall.jpg',
     });
-    const artist = await Artist.create({
-      name: 'Pinkk Flloyd',
-      description: 'One of those boy bands from the 70s.',
+
+    const item = await OrderItem.create({
+      quantity: 2,
+      albumId: album.id,
+      order_detailId: order.id,
     });
+
+    await album.setArtist(artist);
+    await review.setAlbum(album);
+    await review.setUser(user);
+    await order.setUser(user);
   } catch (error) {
     console.log('error seeding database!', error);
   }

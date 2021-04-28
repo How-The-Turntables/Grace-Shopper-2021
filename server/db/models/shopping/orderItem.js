@@ -6,9 +6,11 @@ class OrderItem extends Model {}
 OrderItem.init(
   {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      autoIncrement: true,
+      unique: true,
     },
     quantity: {
       type: DataTypes.INTEGER,

@@ -3,7 +3,7 @@ const OrderItem = require('./models/shopping/orderItem');
 const User = require('./models/users/user');
 const UserAddress = require('./models/users/userAddress');
 const Album = require('./models/products/album.js');
-const Artist = require('./models/products/album');
+const Artist = require('./models/products/artist');
 const Review = require('./models/products/review');
 
 UserAddress.belongsTo(User);
@@ -22,14 +22,14 @@ Review.belongsTo(Album);
 Album.hasMany(Review);
 
 Album.belongsToMany(OrderDetail, {
-  through: 'order_items',
+  through: 'order_item',
   foreignKey: 'albumId',
-  otherKey: 'order_detailsId',
+  otherKey: 'order_detailId',
 });
 
 OrderDetail.belongsToMany(Album, {
-  through: 'order_items',
-  foreignKey: 'order_detailsId',
+  through: 'order_item',
+  foreignKey: 'order_detailId',
   otherKey: 'albumId',
 });
 

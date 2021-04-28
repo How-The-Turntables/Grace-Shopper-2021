@@ -5,17 +5,12 @@ class Album extends Model {}
 
 Album.init(
   {
-    id: {
-      primaryKey: true,
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-    },
     title: {
       type: DataTypes.STRING,
-      // allowNull: false,
-      // validate: {
-      //   notEmpty: true,
-      // },
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
     description: {
       type: DataTypes.TEXT,
@@ -27,7 +22,7 @@ Album.init(
     },
     year: {
       type: DataTypes.INTEGER,
-      // allowNull: false,
+      allowNull: false,
       validate: {
         min: 1700,
         max: 2021,
@@ -36,7 +31,7 @@ Album.init(
     },
     price: {
       type: DataTypes.DECIMAL(10, 2),
-      // allowNull: false,
+      allowNull: false,
       validate: {
         notEmpty: true,
       },
