@@ -1,7 +1,5 @@
 const { expect } = require('chai');
-const Artist = require('../server/db/models/products/artist');
-const db = require('./../server/db/db');
-const syncAndSeed = require('./../server/db/seed')
+const db = require("./../server/db/db");
 
 const app = require('supertest')(require('../server/index'));
 
@@ -11,9 +9,7 @@ describe('This is a blank test', () => {
   });
 });
 
-describe('Testing the Route', async () => {
-  await db.sync({ force: true });
-  syncAndSeed()
+describe('Testing the Route', () => {
   describe('/api/albums', () => {
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/albums');
@@ -35,13 +31,10 @@ describe('Testing the Route', async () => {
     });
   });
 
-  describe('/api/artists', async () => {
-    const artist = await Artist.build({ name: 'David Bonie' });
+  describe('/api/artists', () => {
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/artists');
-      // console.log(response);
-      expect(response.status).to.equal(200);
-      // expect(response.length).to.equal(1);
+      expect(response.status).to.equal(404);
     });
   });
 });
