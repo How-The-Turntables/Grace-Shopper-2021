@@ -6,11 +6,13 @@
   "scripts": {
     "test": "mocha --exit",
     "test:dev": "npm run test -- --watch",
+
     "build": "webpack",
     "build:dev": "webpack -w",
     "start:dev": "nodemon server/index --ignore server/public & npm run build:dev",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
+
   },
   "repository": {
     "type": "git",
@@ -28,9 +30,8 @@
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
     "chai": "^4.3.4",
-    "eslint": "^7.25.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "mocha": "^8.3.2",
     "morgan": "^1.10.0",
@@ -42,7 +43,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "express": "^4.17.1",
-    "g": "^2.0.1",
     "pg": "^8.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
