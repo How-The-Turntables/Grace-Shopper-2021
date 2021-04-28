@@ -9,7 +9,7 @@ const app = express();
 module.exports = app;
 
 app.use(express.json());
-app.use(morgan('tiny'));
+// app.use(morgan('tiny'));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
