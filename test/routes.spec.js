@@ -39,6 +39,7 @@ describe('Testing the Route', async () => {
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/artists');
       expect(response.status).to.equal(200);
+
     });
   });
 });
