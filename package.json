@@ -6,9 +6,7 @@
   "scripts": {
     "test": "mocha --exit",
     "test:dev": "npm run test -- --watch",
-    "start:dev": "nodemon server/index",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "start:dev": "nodemon server/index"
   },
   "repository": {
     "type": "git",
@@ -23,9 +21,8 @@
   "homepage": "https://github.com/How-The-Turntables/Grace-Shopper-2021#readme",
   "devDependencies": {
     "chai": "^4.3.4",
-    "eslint": "^7.25.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "mocha": "^8.3.2",
     "morgan": "^1.10.0",
@@ -35,7 +32,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "express": "^4.17.1",
-    "g": "^2.0.1",
     "pg": "^8.6.0",
     "sequelize": "^6.6.2"
   }
