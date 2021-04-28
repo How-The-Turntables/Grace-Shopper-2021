@@ -5,12 +5,6 @@ class Album extends Model {}
 
 Album.init(
   {
-    id: {
-      primaryKey: true,
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      unique: true,
-    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -22,18 +16,9 @@ Album.init(
       type: DataTypes.TEXT,
     },
     genre: {
-      type: DataTypes.ENUM([
-        'HEAVY METAL',
-        'LIGHT JAZZ',
-        'GLAM ROCK',
-        'GOSPEL',
-        'ELEVATOR',
-        'DISCO',
-        'HIP-HOP',
-        'HAIR BANDS',
-        'MATH ROCK',
-      ]),
+      type: DataTypes.ENUM(['ROCK', 'JAZZ', 'POP', 'METAL', 'OTHER']),
       allowNull: false,
+      defaultValue: 'OTHER',
     },
     year: {
       type: DataTypes.INTEGER,
@@ -56,7 +41,8 @@ Album.init(
       validate: {
         isUrl: true,
       },
-      defaultValue: 'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg'
+      defaultValue:
+        'https://image.shutterstock.com/image-photo/black-vinyl-record-isolated-on-260nw-121247890.jpg',
     },
 
     quantity: {

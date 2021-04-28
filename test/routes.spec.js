@@ -1,6 +1,5 @@
 const { expect } = require('chai');
-const db = require("./../server/db/db");
-
+const db = require('./../server/db/db');
 
 const app = require('supertest')(require('../server/index'));
 
@@ -32,9 +31,7 @@ describe('Testing the Route', () => {
     });
   });
 
-
   describe('Artists', () => {
-
     describe('/api/artists', () => {
       it('expects the route to be accessible', async () => {
         const response = await app.get('/api/artists');
@@ -43,11 +40,9 @@ describe('Testing the Route', () => {
     });
     describe('/api/artists/:id', () => {
       it('expects the route to be accessible', async () => {
-        const response = await app.get('/api/artists/3');
+        const response = await app.get('/api/artists/1');
         expect(response.status).to.equal(200);
-
       });
-
     });
   });
 });
