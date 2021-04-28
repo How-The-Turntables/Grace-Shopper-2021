@@ -6,13 +6,11 @@
   "scripts": {
     "test": "mocha --exit",
     "test:dev": "npm run test -- --watch",
-
     "build": "webpack",
     "build:dev": "webpack -w",
     "start:dev": "nodemon server/index --ignore server/public & npm run build:dev",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
-
   },
   "repository": {
     "type": "git",
