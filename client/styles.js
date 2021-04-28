@@ -28,6 +28,8 @@ export const Box = styled.div`
   border: solid 1px black;
   border-radius: 3rem;
   margin: 3rem;
+  transition-property: width;
+  transition-duration: 1s;
 
   :hover {
     width: 60%;
