@@ -15,7 +15,7 @@ describe('Album', async () => {
   let albumMaster = await Album.build({
     title: 'Americana',
     description: 'Pretty Fly',
-    genre: 'MATH ROCK',
+    genre: 'ROCK',
     year: 1999,
     price: 199.99,
     quantity: 8,

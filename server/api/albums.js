@@ -1,12 +1,11 @@
 const albumsRouter = require('express').Router();
-// const { Album } = require('../db/models'); /// enter the correct model name and address here
-const Review = require('../db/models/products/review');
+const { Album, Review } = require('../db/index');
 
 albumsRouter.get('/', async (req, res, next) => {
   try {
-    // const products = await Album.findAll();
-    const testHTML = `<html><body><p1>Hello World: details for all albums</p1></body></html>`;
-    res.send(testHTML); // enter correct
+    const albums = await Album.findAll();
+    // const testHTML = `<html><body><p1>Hello World: details for all albums</p1></body></html>`;
+    res.send(albums); // enter correct
   } catch (error) {
     console.log('error has occured in the /api/products');
     next(error);
