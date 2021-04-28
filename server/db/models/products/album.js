@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 const db = require('../../db');
 
 class Album extends Model {}
-// rock, metal, pop, jazz, and make the genre strings
+
 Album.init(
   {
     id: {
@@ -12,31 +12,22 @@ Album.init(
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
+      // allowNull: false,
+      // validate: {
+      //   notEmpty: true,
+      // },
     },
     description: {
       type: DataTypes.TEXT,
     },
     genre: {
-      type: DataTypes.ENUM([
-        'HEAVY METAL',
-        'LIGHT JAZZ',
-        'GLAM ROCK',
-        'GOSPEL',
-        'ELEVATOR',
-        'DISCO',
-        'HIP-HOP',
-        'HAIR BANDS',
-        'MATH ROCK',
-      ]),
+      type: DataTypes.ENUM(['ROCK', 'JAZZ', 'POP', 'METAL', 'OTHER']),
       allowNull: false,
+      defaultValue: 'OTHER',
     },
     year: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
       validate: {
         min: 1700,
         max: 2021,
@@ -45,7 +36,7 @@ Album.init(
     },
     price: {
       type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
+      // allowNull: false,
       validate: {
         notEmpty: true,
       },

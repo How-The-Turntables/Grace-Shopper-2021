@@ -14,6 +14,10 @@ OrderDetail.init(
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
+    status: {
+      type: DataTypes.ENUM('in progress', 'completed'),
+      allowNull: false,
+    },
   },
   { sequelize: db, modelName: 'order_detail' }
 );

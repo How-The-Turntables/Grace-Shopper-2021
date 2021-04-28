@@ -1,29 +1,24 @@
 const { DataTypes, Model } = require('sequelize');
 const db = require('../../db');
 
-class Review extends Model {}
+class OrderItem extends Model {}
 
-Review.init(
+OrderItem.init(
   {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
     },
-    comment: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    stars: {
+    quantity: {
       type: DataTypes.INTEGER,
-      validate: {
-        min: 1,
-        max: 5,
-      },
       allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
   },
-  { sequelize: db, modelName: 'review' }
+  { sequelize: db, modelName: 'order_item' }
 );
 
-module.exports = Review;
+module.exports = OrderItem;
