@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const Album = require('../server/db/models/products/album');
-const db = require("./../server/db/db");
+const db = require('./../server/db/db');
 
 describe('Mocha/Chai Test', function () {
   it('should show a passing test', function () {
