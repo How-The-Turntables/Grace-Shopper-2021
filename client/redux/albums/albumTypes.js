@@ -1,0 +1,9 @@
+const LOAD_ALBUMS = 'LOAD_ALBUMS';
+const SINGLE_ALBUM = 'SINGLE_ALBUM';
+const EDIT_ALBUM = 'EDIT_ALBUM';
+
+export default {
+  LOAD_ALBUMS,
+  SINGLE_ALBUM,
+  EDIT_ALBUM,
+};
