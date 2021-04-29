@@ -1,8 +1,10 @@
 import types from './albumTypes';
+
 const initialState = {
   albums: [],
   album: {},
 };
+
 const albumReducer = (state = initialState, action) => {
   if (action.type === types.LOAD_ALBUMS) {
     state = action.students;
