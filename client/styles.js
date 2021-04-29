@@ -53,10 +53,9 @@ export const Box = styled.div`
 
   :hover {
     width: 60%;
-    border: solid 4px green;
+    border: solid 1px greenyellow;
     font-weight: bold;
     background-color: greenyellow;
-    transform: rotate(360deg);
     box-shadow: none;
   }
 
@@ -70,5 +69,19 @@ export const Box = styled.div`
 export const Background = styled.div`
   background-color: #222629;
 `;
+const rotationAnimation = keyframes`
+  from {rotate 0deg};
+  to{rotate 360deg};
+`;
+export const Record = styled.div`
+  animation: ${rotationAnimation} 4s infinite;
+  :hover {
+    animation: ${neonGlow} 3s infinite;
+  }
+  & img {
+    width: 60px;
+    height: 60px;
+  }
+`;
 
-export default { Title, Container, Box, Background };
+export default { Title, Container, Box, Background, Record };
