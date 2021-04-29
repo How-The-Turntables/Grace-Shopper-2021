@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Route, Link} from 'react-router-dom';
-import Nav from './Nav';
+import {Nav} from './index';
 
 class App extends Component {
   render() {
