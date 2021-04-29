@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-export const Title = styled.h1`
-  font-size: 3.5em;
+export const Title = styled.h2`
   text-align: center;
   font-weight: bold;
   color: white;
