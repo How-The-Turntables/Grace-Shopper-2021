@@ -15,6 +15,7 @@ const syncAndSeed = async () => {
   try {
     await db.sync({ force: true });
 
+    // --------- creating bands ---------
     const bandNames = Array(20).fill(1).map(album => `${faker.company.bsAdjective()} ${faker.name.firstName()}`);
 
     const bandPromises = [];
@@ -28,8 +29,9 @@ const syncAndSeed = async () => {
 
     await Promise.all(bandPromises);
 
+    // --------- creating albums ---------
     const albumNamesArray = Array(200).fill(1).map(album => `${faker.lorem.words(3)}`);
-    const genres = ['ROCK', 'JAZZ', 'POP', 'METAL', 'OTHER']
+    const genres = ['ROCK', 'JAZZ', 'POP', 'METAL', 'OTHER'];
 
     const albumPromises = [];
 
@@ -50,8 +52,41 @@ const syncAndSeed = async () => {
 
     await Promise.all(albumPromises);
 
+    // --------- creating users ---------
+    const usersArray = Array(20).fill(1).map(user => faker.name.firstName());
 
+    const userPromises = [];
 
+    usersArray.forEach(first_name => {
+      const lastName = faker.name.lastName();
+      userPromises.push(User.create({
+        first_name,
+        last_name: lastName,
+        email_address: `${first_name[0].toLowerCase()}${lastName.replace(/'/g, "").toLowerCase()}@gmail.com`,
+        password: '123',
+        // admin
+      }));
+    });
+
+    await Promise.all(userPromises);
+
+    // --------- creating reviews ---------
+    const reviewsArray = Array(20).fill(1).map(stars => Math.floor(Math.random() * 5) + 1);
+    const usersdata = await User.findAll();
+    const userIds = usersdata.map(user => user.id); // array of user Ids since they're UUID type
+
+    const reviewPromises = [];
+
+    reviewsArray.forEach(stars => {
+      reviewPromises.push(Review.create({
+        stars,
+        comment: faker.lorem.sentence(4),
+        userId: userIds[Math.floor(Math.random() * 20) + 1],
+        albumId: Math.floor(Math.random() * 200) + 1
+      }));
+    });
+
+    await Promise.all(reviewPromises);
 
 
     // const order = await OrderDetail.create({

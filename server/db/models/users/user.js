@@ -1,5 +1,6 @@
 const { DataTypes, Model } = require('sequelize');
 const db = require('../../db');
+const bcrypt = require('bcrypt')
 
 class User extends Model {}
 
@@ -38,5 +39,11 @@ User.init(
   },
   { sequelize: db, modelName: 'user' }
 );
+
+User.addHook('beforeSave', (user) => {
+  if (user._changed.has('password')) {
+    user.password = bcrypt.hash(user.password, 5)
+  }
+})
 
 module.exports = User;
