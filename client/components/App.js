@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div>
         <Route component={Nav}/>
-        <h1>SHIT IS WORKING</h1>
+        <h1>Im from the App file</h1>
       </div>
     );
   }
