@@ -75,8 +75,9 @@ const rotationAnimation = keyframes`
 `;
 export const Record = styled.div`
   animation: ${rotationAnimation} 4s infinite;
+  animation-timing-function: linear;
   :hover {
-    animation: ${neonGlow} 3s infinite;
+    animation: ${neonGlow} 0.25s infinite;
   }
   & img {
     width: 60px;
