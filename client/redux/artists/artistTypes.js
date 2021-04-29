@@ -1,7 +1,0 @@
-const LOAD_ARTISTS = 'LOAD_ARTISTS';
-const SINGLE_ARTIST = 'SINGLE_ARTIST';
-
-export default {
-  LOAD_ARTISTS,
-  SINGLE_ARTIST,
-};
