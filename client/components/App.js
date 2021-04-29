@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import { Route, Link} from 'react-router-dom';
-import Nav from './Nav';
+import {Nav} from './index';
 
 class App extends Component {
   render() {
     return (
       <div>
         <Route component={Nav}/>
-        <h1>SHIT IS WORKING</h1>
+        <h1>Im from the App file</h1>
       </div>
     );
   }
