@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Title = styled.h1`
   font-size: 3.5em;
   text-align: center;
   font-weight: bold;
-  color: green;
+  color: white;
   margin-top: 0;
 `;
 
@@ -18,6 +18,20 @@ export const Container = styled.div`
   margin-right: 0px;
 `;
 
+//neon glow effect for the Box
+
+const neonGlow = keyframes`
+  0% {
+    box-shadow: none;
+  }
+  50% {    
+    box-shadow: 8px 8px 10px greenyellow;
+  }
+  100% {
+    box-shadow: none;
+  }
+`;
+
 // use as boxes inside of the Container
 export const Box = styled.div`
   display: flex;
@@ -28,16 +42,34 @@ export const Box = styled.div`
   border: solid 1px black;
   border-radius: 3rem;
   margin: 3rem;
+  animation: ${neonGlow} 3s infinite;
+
   transition-property: width;
-  transition-duration: 1s;
+  transition: width 0.5s, height 0.5s, transform 0.5s;
+
+  & a {
+    text-decoration: none;
+    color: #86c232;
+  }
 
   :hover {
     width: 60%;
     border: solid 4px green;
     font-weight: bold;
-    color: black;
     background-color: greenyellow;
+    transform: rotate(360deg);
+    box-shadow: none;
+  }
+
+  :hover a {
+    color: black;
   }
 `;
 
-export default { Title, Container, Box };
+// use for the background
+
+export const Background = styled.div`
+  background-color: #222629;
+`;
+
+export default { Title, Container, Box, Background };
