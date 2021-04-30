@@ -27,3 +27,10 @@ export const editArtist = (artist) => {
     artist,
   };
 };
+
+export const deleteArtist = (id) => {
+  return {
+    type: types.DELETE_ARTIST,
+    id,
+  };
+};
