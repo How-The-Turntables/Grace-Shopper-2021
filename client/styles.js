@@ -23,7 +23,7 @@ const neonGlow = keyframes`
   0% {
     box-shadow: none;
   }
-  50% {    
+  50% {
     box-shadow: 8px 8px 10px greenyellow;
   }
   100% {
@@ -85,4 +85,43 @@ export const Record = styled.div`
   }
 `;
 
-export default { Title, Container, Box, Background, Record };
+// All Products view
+export const Products = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: row;
+`;
+export const ProductContainer = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 2%;
+  flex: 1 16%;
+  display: flex;
+`;
+export const ProductInfo = styled.div`
+  margin-top: auto;
+`;
+export const ImageCard = styled.img`
+  max-width: 50%;
+`;
+
+export default {
+  Title,
+  Container,
+  Box,
+  Background,
+  Record,
+  Products,
+  ProductContainer,
+  ProductInfo,
+  ImageCard,
+};
+
+// color: gray;
+//   padding: 10px;
+//   margin: 30px;
+//   border-color: black;
+//   display: flex;
+//   flex-wrap: wrap;
+//   flex-direction: column;
+//   align-items: center;
+//   align-content: space-between;
