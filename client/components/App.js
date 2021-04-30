@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import { Nav, Home, AllAlbums, AllArtists, CartView } from './index';
+import { Nav, Home, AllAlbums, AllArtists, CartView, Checkout } from './index';
 
 class App extends Component {
   render() {
@@ -10,7 +10,8 @@ class App extends Component {
         <Route component={Home} path="/" exact />
         <Route component={AllAlbums} path="/albums" />
         <Route component={AllArtists} path="/artists" />
-        <Route component={CartView} path="/cartview" />
+        <Route component={CartView} path="/cart" />
+        <Route component={Checkout} path="/checkout" />
       </div>
     );
   }
