@@ -5,6 +5,7 @@ const UserAddress = require('./models/users/userAddress');
 const Album = require('./models/products/album.js');
 const Artist = require('./models/products/artist');
 const Review = require('./models/products/review');
+const db = require('./db');
 
 UserAddress.belongsTo(User);
 User.hasMany(UserAddress);
@@ -41,4 +42,5 @@ module.exports = {
   Review,
   User,
   UserAddress,
+  db,
 };

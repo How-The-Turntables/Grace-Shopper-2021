@@ -1,6 +1,5 @@
 const faker = require('faker')
 
-const db = require('./db');
 const {
   OrderDetail,
   OrderItem,
@@ -9,6 +8,7 @@ const {
   Review,
   User,
   UserAddress,
+  db,
 } = require('./index');
 
 const syncAndSeed = async () => {
