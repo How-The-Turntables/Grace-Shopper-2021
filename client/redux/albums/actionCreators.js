@@ -1,4 +1,4 @@
-import types from './albumTypes';
+import types from './actionTypes';
 
 export const loadAlbums = (albums) => {
   return {
