@@ -8,5 +8,6 @@ import LoginView from './LoginView';
 import CartView from './CartView';
 import Checkout from './Checkout';
 import Footer from './Footer';
+import SignUpForm from './SignUpForm'
 
-export { App, Nav, Home, AllArtists, AllAlbums, CartView, Checkout, Footer, LoginForm, LoginView };
+export { App, Nav, Home, AllArtists, AllAlbums, CartView, Checkout, Footer, LoginForm, LoginView, SignUpForm };
