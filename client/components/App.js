@@ -9,6 +9,7 @@ import {
   LoginView,
   AllAlbums,
   AllArtists,
+  SingleArtist,
   CartView,
   Checkout,
   Footer,
@@ -27,7 +28,8 @@ class App extends Component {
         <Route component={LoginView} path="/login" />
         <Route component={SignUpForm} path="/register" />
         <Route component={AllAlbums} path="/albums" />
-        <Route component={AllArtists} path="/artists" />
+        <Route component={SingleArtist} path="/artists/:id" />
+        <Route component={AllArtists} path="/artists" exact />
         <Route component={CartView} path="/cart" />
         <Route component={Checkout} path="/checkout" />
         <Route component={Footer} />
