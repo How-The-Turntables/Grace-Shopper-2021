@@ -43,7 +43,6 @@ class LoginForm extends Component {
             onChange={ this.onChange }
           />
           <button type="submit">Login</button>
-          <p>New user? <Link to='/register'>Sign up</Link></p>
         </form>
       </div>
     );
