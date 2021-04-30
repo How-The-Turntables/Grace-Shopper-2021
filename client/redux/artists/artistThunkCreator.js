@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loadArtists } from './actionCreatorArtist';
+import { loadArtists, loadSingleArtist } from './actionCreatorArtist';
 
 export const renderArtists = () => {
   return async (dispatch) => {
@@ -8,6 +8,17 @@ export const renderArtists = () => {
       dispatch(loadArtists(artistsList));
     } catch (error) {
       console.log('Error rendering all artists in thunk creator: ', error);
+    }
+  };
+};
+
+export const renderSingleArtist = (id) => {
+  return async (dispatch) => {
+    try {
+      const singleArtist = (await axios.get(`/api/artists/${id}`)).data;
+      dispatch(loadSingleArtist(singleArtist));
+    } catch (error) {
+      console.log('Error rendering single artist in thunk creator: ', error);
     }
   };
 };
