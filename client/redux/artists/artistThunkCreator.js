@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { loadArtists, loadSingleArtist } from './artistActionCreator';
+import {
+  loadArtists,
+  loadSingleArtist,
+  createArtist,
+} from './artistActionCreator';
 
 export const renderArtists = () => {
   return async (dispatch) => {
@@ -19,6 +23,20 @@ export const renderSingleArtist = (id) => {
       dispatch(loadSingleArtist(singleArtist));
     } catch (error) {
       console.log('Error rendering single artist in thunk creator: ', error);
+    }
+  };
+};
+
+export const createArtist = (name, description, history) => {
+  return async (dispatch) => {
+    try {
+      const newArtist = (
+        await axios.post('/api/artists', { name, description })
+      ).data;
+      history.push(`/artists/${newArtist.id}`);
+      dispatch(createArtist(newArtist));
+    } catch (error) {
+      console.log('Error creating single artist in thunk creator: ', error);
     }
   };
 };
