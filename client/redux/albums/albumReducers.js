@@ -1,4 +1,4 @@
-import types from './albumTypes';
+import types from '../types/index';
 
 const initialState = {
   albums: [],
