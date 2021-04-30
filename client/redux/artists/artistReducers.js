@@ -16,6 +16,8 @@ const artistReducer = (state = initialState, action) => {
     return state.map((artist) =>
       artist.id !== action.artist.id ? artist : action.artist
     );
+  } else if (action.type === types.DELETE_ARTIST) {
+    return state.filter((artist) => artist.id !== action.id);
   }
   return state;
 };
