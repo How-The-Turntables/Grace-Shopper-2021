@@ -14,23 +14,25 @@ export const loadSingleArtist = (singleArtist) => {
   };
 };
 
-export const createArtist = (newArtist) => {
-  return {
-    type: types.CREATE_ARTIST,
-    newArtist,
-  };
-};
+// extra functionality in case we need it
 
-export const editArtist = (artist) => {
-  return {
-    type: types.EDIT_ARTIST,
-    artist,
-  };
-};
+// export const createArtist = (newArtist) => {
+//   return {
+//     type: types.CREATE_ARTIST,
+//     newArtist,
+//   };
+// };
 
-export const deleteArtist = (id) => {
-  return {
-    type: types.DELETE_ARTIST,
-    id,
-  };
-};
+// export const editArtist = (artist) => {
+//   return {
+//     type: types.EDIT_ARTIST,
+//     artist,
+//   };
+// };
+
+// export const deleteArtist = (id) => {
+//   return {
+//     type: types.DELETE_ARTIST,
+//     id,
+//   };
+// };

@@ -29,4 +29,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(AllArtists);
+export default connect(mapStateToProps)(AllArtists);
