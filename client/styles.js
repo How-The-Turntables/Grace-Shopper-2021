@@ -104,6 +104,18 @@ export const ImageCard = styled.img`
   max-width: 50%;
 `;
 
+export const ProductFilter = styled.div`
+  display: flex;
+`;
+export const SortParent = styled.div`
+  display: flex;
+`;
+export const SortChild = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+`;
+
 export default {
   Title,
   Container,
@@ -114,6 +126,9 @@ export default {
   ProductContainer,
   ProductInfo,
   ImageCard,
+  ProductFilter,
+  SortParent,
+  SortChild,
 };
 
 // color: gray;
