@@ -4,6 +4,7 @@ import {
   loadSingleArtist,
   createArtist,
   editArtist,
+  deleteArtist,
 } from './artistActionCreator';
 
 export const renderArtists = () => {
@@ -52,6 +53,18 @@ export const editArtist = (name, description, id, history) => {
       history.push(`/artists/${id}`);
     } catch (error) {
       console.log('Error updating single artist in thunk creator: ', error);
+    }
+  };
+};
+
+export const deleteArtist = (id, history) => {
+  return async (dispatch) => {
+    try {
+      const artist = (await axios.delete(`api/artists/${id}`)).data;
+      dispatch(deleteArtist(artist));
+      history.push('/artists');
+    } catch (error) {
+      console.log('Error deleting single artist in thunk creator: ', error);
     }
   };
 };
