@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loadArtists, loadSingleArtist } from './actionCreatorArtist';
+import { loadArtists, loadSingleArtist } from './artistActionCreator';
 
 export const renderArtists = () => {
   return async (dispatch) => {
