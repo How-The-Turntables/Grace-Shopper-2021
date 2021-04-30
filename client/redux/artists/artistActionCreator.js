@@ -20,3 +20,10 @@ export const createArtist = (newArtist) => {
     newArtist,
   };
 };
+
+export const editArtist = (artist) => {
+  return {
+    type: types.EDIT_ARTIST,
+    artist,
+  };
+};
