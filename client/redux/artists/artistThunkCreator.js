@@ -3,6 +3,7 @@ import {
   loadArtists,
   loadSingleArtist,
   createArtist,
+  editArtist,
 } from './artistActionCreator';
 
 export const renderArtists = () => {
@@ -37,6 +38,20 @@ export const createArtist = (name, description, history) => {
       dispatch(createArtist(newArtist));
     } catch (error) {
       console.log('Error creating single artist in thunk creator: ', error);
+    }
+  };
+};
+
+export const editArtist = (name, description, id, history) => {
+  return async (dispatch) => {
+    try {
+      const artist = (
+        await axios.put(`/api/artist/${id}`, { name, description, id })
+      ).data;
+      dispatch(editArtist(artist));
+      history.push(`/artists/${id}`);
+    } catch (error) {
+      console.log('Error updating single artist in thunk creator: ', error);
     }
   };
 };
