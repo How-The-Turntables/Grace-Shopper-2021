@@ -11,6 +11,7 @@ export const renderArtists = () => {
   return async (dispatch) => {
     try {
       const artistsList = (await axios.get('/api/artists')).data;
+      console.log(artistsList);
       dispatch(loadArtists(artistsList));
     } catch (error) {
       console.log('Error rendering all artists in thunk creator: ', error);
@@ -29,7 +30,7 @@ export const renderSingleArtist = (id) => {
   };
 };
 
-export const createArtist = (name, description, history) => {
+export const createArtist1 = (name, description, history) => {
   return async (dispatch) => {
     try {
       const newArtist = (
@@ -43,7 +44,7 @@ export const createArtist = (name, description, history) => {
   };
 };
 
-export const editArtist = (name, description, id, history) => {
+export const editArtist1 = (name, description, id, history) => {
   return async (dispatch) => {
     try {
       const artist = (
@@ -57,7 +58,7 @@ export const editArtist = (name, description, id, history) => {
   };
 };
 
-export const deleteArtist = (id, history) => {
+export const deleteArtist1 = (id, history) => {
   return async (dispatch) => {
     try {
       const artist = (await axios.delete(`api/artists/${id}`)).data;
