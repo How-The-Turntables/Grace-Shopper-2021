@@ -59,8 +59,8 @@ class SignUpForm extends Component {
         </form>
       </div>
     );
-  }
-}
+  };
+};
 
 // const mapStateToProps = (state, ownProps) => {
 //   return state
