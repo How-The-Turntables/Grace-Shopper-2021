@@ -9,6 +9,7 @@ import {
   CartView,
   Checkout,
   Footer,
+  SignUpForm
 } from './index';
 
 class App extends Component {
@@ -17,7 +18,8 @@ class App extends Component {
       <div>
         <Route component={Nav} />
         <Route component={Home} path="/" exact />
-        <Route component={ LoginView } path='/login' />
+        <Route component={LoginView} path="/login" />
+        <Route component={SignUpForm} path="/register" />
         <Route component={AllAlbums} path="/albums" />
         <Route component={AllArtists} path="/artists" />
         <Route component={CartView} path="/cart" />

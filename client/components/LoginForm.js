@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import connect from 'react-redux';
 
 class LoginForm extends Component {
@@ -42,6 +43,7 @@ class LoginForm extends Component {
             onChange={ this.onChange }
           />
           <button type="submit">Login</button>
+          <p>New user? <Link to='/register'>Sign up</Link></p>
         </form>
       </div>
     );
