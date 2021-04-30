@@ -5,10 +5,14 @@ const initialState = {
   singleArtist: {},
 };
 
-const artistReducer = (state = initialState, action) => {
+const artistsReducer = (state = [], action) => {
   if (action.type === types.LOAD_ARTISTS) {
     state = action.artists;
-  } else if (action.type === types.SINGLE_ARTIST) {
+  }
+  return state;
+};
+const singleArtistReducer = (state = {}, action) => {
+  if (action.type === types.SINGLE_ARTIST) {
     state = action.singleArtist;
   }
   // extra functionality in case we need it
@@ -24,4 +28,8 @@ const artistReducer = (state = initialState, action) => {
   return state;
 };
 
-export default artistReducer;
+const artistReducers = {
+  artistsReducer,
+  singleArtistReducer,
+};
+export default artistReducers;
