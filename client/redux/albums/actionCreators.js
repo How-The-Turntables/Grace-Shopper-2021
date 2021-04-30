@@ -1,4 +1,4 @@
-import types from './actionTypes';
+import types from '../types/index';
 
 export const loadAlbums = (albums) => {
   return {
