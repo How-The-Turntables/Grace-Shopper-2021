@@ -32,12 +32,6 @@ const neonGlow = keyframes`
   }
 `;
 
-export const DescriptionBox = styled.p`
-  background-color: #222629;
-  color: #86c232;
-  display: none;
-`;
-
 // use as boxes inside of the Container
 export const Box = styled.div`
   display: flex;
@@ -72,8 +66,13 @@ export const Box = styled.div`
   :hover a {
     color: black;
   }
+`;
 
-  ${DescriptionBox}:hover & {
+export const DescriptionBox = styled.p`
+  background-color: #222629;
+  color: blue;
+  display: none;
+  ${Box}:hover & {
     display: flex;
     flex-direction: column;
     align-items: center;
