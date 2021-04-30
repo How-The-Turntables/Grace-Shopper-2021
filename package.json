@@ -1,6 +1,11 @@
 {
   "name": "Grace-Shopper-2021",
   "version": "1.0.0",
+  "babel": {
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -25,6 +30,7 @@
   "homepage": "https://github.com/How-The-Turntables/Grace-Shopper-2021#readme",
   "devDependencies": {
     "@babel/core": "^7.13.16",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
     "eslint-config-prettier": "^8.3.0",

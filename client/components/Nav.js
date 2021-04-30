@@ -7,6 +7,7 @@ class Nav extends Component {
       <div>
         <h1>Navbar component at your service</h1>
         <Link to="/">Home</Link>
+        <Link to='/login'>Login</Link>
       </div>
     );
   }
