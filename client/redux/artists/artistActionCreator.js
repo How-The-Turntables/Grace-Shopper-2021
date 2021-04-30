@@ -13,3 +13,10 @@ export const loadSingleArtist = (singleArtist) => {
     singleArtist,
   };
 };
+
+export const createArtist = (newArtist) => {
+  return {
+    type: types.CREATE_ARTIST,
+    newArtist,
+  };
+};
