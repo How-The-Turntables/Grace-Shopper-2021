@@ -7,7 +7,7 @@ const initialState = {
 
 const albumReducer = (state = initialState, action) => {
   if (action.type === types.LOAD_ALBUMS) {
-    state = action.students;
+    state = action.albums;
   } else if (action.type === types.SINGLE_ALBUM) {
     state = action.album;
   } else if (action.type === types.EDIT_ALBUM) {

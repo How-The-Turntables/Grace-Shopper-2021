@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import albumReducer from './albums/albumReducers';
+import albumReducer from './albums/reducers';
 
 const rootReducer = combineReducers({
   albums: albumReducer,
