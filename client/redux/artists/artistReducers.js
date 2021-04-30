@@ -10,6 +10,8 @@ const artistReducer = (state = initialState, action) => {
     state = action.artists;
   } else if (action.type === types.SINGLE_ARTIST) {
     state = action.singleArtist;
+  } else if (action.type === types.CREATE_ARTIST) {
+    state = [...state, action.newArtist];
   }
   return state;
 };
