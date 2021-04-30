@@ -12,6 +12,10 @@ const artistReducer = (state = initialState, action) => {
     state = action.singleArtist;
   } else if (action.type === types.CREATE_ARTIST) {
     state = [...state, action.newArtist];
+  } else if (action.type === types.EDIT_ARTIST) {
+    return state.map((artist) =>
+      artist.id !== action.artist.id ? artist : action.artist
+    );
   }
   return state;
 };
