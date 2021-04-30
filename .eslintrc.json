@@ -23,6 +23,14 @@
   // Don't lint these things. They're always gonna be messy.
   "ignorePatterns": ["dist", "bundle*", "node_modules"],
   "rules": {
+    "object-curly-spacing": [
+      2,
+      "always",
+      {
+        "objectsInObjects": false,
+        "arraysInObjects": false
+      }
+    ],
     "semi": "off",
     "react/prop-types": "off",
     "no-trailing-spaces": "warn",
