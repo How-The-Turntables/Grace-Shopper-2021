@@ -1,6 +1,8 @@
 const syncAndSeed = require('./db/seed');
 const app = require('./server');
 
+if (!process.env.JWT) require('../env');
+
 const init = async () => {
   try {
     await syncAndSeed();
