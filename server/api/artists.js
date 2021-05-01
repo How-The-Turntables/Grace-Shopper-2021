@@ -23,4 +23,46 @@ artistRouter.get('/:id', async (req, res, next) => {
   }
 });
 
+artistRouter.post('/', async (req, res, next) => {
+  try {
+    const { name, description } = req.body;
+    const newArtist = await Artist.create({
+      name,
+      description,
+    });
+    res.status(201).send(newArtist);
+  } catch (error) {
+    console.log('error occured in /api/artists/ post route: ', error);
+    next(error);
+  }
+});
+
+artistRouter.delete('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const artist = await Artist.findByPk(id);
+    await artist.destroy();
+    res.sendStatus(204);
+  } catch (error) {
+    console.log('error occured in /api/artists/ delete route: ', error);
+    next(error);
+  }
+});
+
+artistRouter.put('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, description } = req.body;
+    const artist = await Artist.findByPk(id);
+    await artist.update({
+      name,
+      description,
+    });
+    res.status(201).send(artist);
+  } catch (error) {
+    console.log('error occured in /api/artists/ delete route: ', error);
+    next(error);
+  }
+});
+
 module.exports = artistRouter;
