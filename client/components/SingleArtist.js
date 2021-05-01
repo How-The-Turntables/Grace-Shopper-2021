@@ -29,7 +29,10 @@ class SingleArtist extends Component {
                 return (
                   <Box key={album.id}>
                     {album.title}
-                    <DescriptionBox>{album.description}</DescriptionBox>
+                    <DescriptionBox>
+                      <p>Description: </p>
+                      {album.description}
+                    </DescriptionBox>
                   </Box>
                 );
               })}

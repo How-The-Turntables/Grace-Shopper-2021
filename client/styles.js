@@ -45,6 +45,7 @@ export const Box = styled.div`
   margin: 3rem;
   animation: ${neonGlow} 3s infinite;
   color: #86c232;
+  padding-top: 1rem;
 
   transition-property: width;
   transition: width 1s, height 1s, transform 1s;
@@ -69,13 +70,13 @@ export const Box = styled.div`
 `;
 
 export const DescriptionBox = styled.p`
-  background-color: #222629;
-  color: blue;
   display: none;
   ${Box}:hover & {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 2rem;
+    height: 100%;
   }
 `;
 
