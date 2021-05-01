@@ -20,6 +20,33 @@ describe('Testing the Route', () => {
   afterAll(async () => {
     await db.close();
   });
+  describe('POST /api/albums/:id', () => {
+    it('responds with status 201', async () => {
+      const response = await app.post('/api/albums').send({
+        title: 'Escalator To Heaven',
+        description: 'This is good.',
+        genre: 'ROCK',
+        year: 1969,
+        price: 69.69,
+        quantity: 8,
+      });
+      expect(response.status).toEqual(201);
+    });
+    it('checks if we can find new album in the db', async () => {
+      const response = await app.post('/api/albums').send({
+        title: 'Escalator To Heaven',
+        description: 'This is good.',
+        genre: 'ROCK',
+        year: 1969,
+        price: 69.69,
+        quantity: 8,
+      });
+      const id = response.body.id;
+      const album = db.models.album;
+      const newAlbum = await album.findByPk(id);
+      expect(newAlbum.title).toEqual('Escalator To Heaven');
+    });
+  });
 
   describe('/api/albums', () => {
     it('expects the route to be accessible', async () => {
@@ -55,5 +82,24 @@ describe('Testing the Route', () => {
         expect(response.status).toEqual(200);
       });
     });
+  });
+  describe('POST /api/artists/:id', () => {
+    it('responds with status 201', async () => {
+      const response = await app.post('/api/artists').send({
+        name: 'Thunder Trouser',
+        description: 'Rock on',
+      });
+      expect(response.status).toEqual(201);
+    });
+  });
+  it('checks if we can find new artist in the db', async () => {
+    const response = await app.post('/api/artists').send({
+      name: 'Thunder Trouser',
+      description: 'Rock on',
+    });
+    const id = response.body.id;
+    const artist = db.models.artist;
+    const newArtist = await artist.findByPk(id);
+    expect(newArtist.name).toEqual('Thunder Trouser');
   });
 });
