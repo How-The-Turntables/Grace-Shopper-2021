@@ -132,6 +132,7 @@ const syncAndSeed = async () => {
       genre: 'ROCK',
       year: 1999,
       price: 19.99,
+      artistId: 2,
     });
 
     const order_detail = await OrderDetail.create({
