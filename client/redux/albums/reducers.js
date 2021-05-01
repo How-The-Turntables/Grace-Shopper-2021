@@ -17,14 +17,11 @@ const albumReducer = (state = initialState, action) => {
       ...state,
       data: { ...state.data, [action.idx]: action.albums }, // action.index key is the page you're rendering
     };
-  }
-  if (action.type === types.SET_COUNT) {
+  } else if (action.type === types.SET_COUNT) {
     state = { ...state, count: action.count };
-  }
-  if (action.type === types.SINGLE_ALBUM) {
+  } else if (action.type === types.SINGLE_ALBUM) {
     state = action.album;
-  }
-  if (action.type === types.EDIT_ALBUM) {
+  } else if (action.type === types.EDIT_ALBUM) {
     const allAlbums = state.albums.map((album) =>
       album.id === action.album.id ? action.album : album
     );
