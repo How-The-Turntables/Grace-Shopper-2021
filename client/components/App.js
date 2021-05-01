@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { renderAlbums } from '../redux/albums/thunkCreators';
 import { renderArtists } from '../redux/artists/artistThunkCreator';
 import {
   Nav,
@@ -17,9 +16,7 @@ import {
 } from './index';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.load();
-  }
+  componentDidMount() {}
   render() {
     return (
       <div>
@@ -27,7 +24,7 @@ class App extends Component {
         <Route component={Home} path="/" exact />
         <Route component={LoginView} path="/login" />
         <Route component={SignUpForm} path="/register" />
-        <Route component={AllAlbums} path="/albums" />
+        <Route component={AllAlbums} path="/albums/:idx" />
         <Route component={SingleArtist} path="/artists/:id" />
         <Route component={AllArtists} path="/artists" exact />
         <Route component={CartView} path="/cart" />
@@ -41,7 +38,6 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     load: () => {
-      dispatch(renderAlbums());
       dispatch(renderArtists());
     },
   };

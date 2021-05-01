@@ -2,6 +2,13 @@
 const LOAD_ALBUMS = 'LOAD_ALBUMS';
 const SINGLE_ALBUM = 'SINGLE_ALBUM';
 const EDIT_ALBUM = 'EDIT_ALBUM';
+const SET_COUNT = 'SET_COUNT';
+// Sort and filter
+const SORT_BY = 'SORT_BY'; // or do I need specific sorts for each option?
+const FILTER_BY = 'FILTER_BY';
+// Pagination
+const LOAD_NEXT_PAGE = 'LOAD_NEXT_PAGE';
+const LOAD_EXACT_PAGE = 'LOAD_EXACT_PAGE';
 // Artists
 const LOAD_ARTISTS = 'LOAD_ARTISTS';
 const SINGLE_ARTIST = 'SINGLE_ARTIST';
@@ -30,6 +37,11 @@ const types = {
   LOAD_ALBUMS,
   SINGLE_ALBUM,
   EDIT_ALBUM,
+  SET_COUNT,
+  SORT_BY,
+  FILTER_BY,
+  LOAD_NEXT_PAGE,
+  LOAD_EXACT_PAGE,
   LOAD_ARTISTS,
   SINGLE_ARTIST,
   CREATE_ARTIST,

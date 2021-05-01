@@ -106,16 +106,24 @@ export const Record = styled.div`
 // All Products view
 export const Products = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: row;
 `;
 export const ProductContainer = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 2%;
   flex: 1 16%;
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+`;
+export const ProductCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
 `;
 export const ProductInfo = styled.div`
+  flex: 0 0 20%;
+  display: flex;
+  flex-direction: column;
   margin-top: auto;
 `;
 export const ImageCard = styled.img`
@@ -143,20 +151,11 @@ export default {
   Record,
   Products,
   ProductContainer,
+  ProductCard,
   ProductInfo,
   ImageCard,
   ProductFilter,
   SortParent,
   SortChild,
 };
-
-// color: gray;
-//   padding: 10px;
-//   margin: 30px;
-//   border-color: black;
-//   display: flex;
-//   flex-wrap: wrap;
-//   flex-direction: column;
-//   align-items: center;
-//   align-content: space-between;
 

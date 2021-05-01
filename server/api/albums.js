@@ -3,10 +3,17 @@ const { Album, Review, Artist } = require('../db/index');
 
 albumsRouter.get('/', async (req, res, next) => {
   try {
-    const albums = await Album.findAll({
-      include: [Artist],
-    });
-    res.send(albums);
+    const idx = req.query.idx ? req.query.idx * 1 : 0;
+    const [albums, count] = await Promise.all([
+      Album.findAll({
+        limit: 10,
+        offset: idx * 10,
+        order: [['title']],
+        include: [Artist],
+      }),
+      Album.count(),
+    ]);
+    res.send({ count, albums });
   } catch (error) {
     console.log('error has occured in the /api/albums: ', error);
     next(error);
