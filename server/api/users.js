@@ -1,6 +1,7 @@
 const { User } = require('../db/index.js');
 const usersRouter = require('express').Router();
 
+// two gets: /auth and /users/userId
 usersRouter.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll();

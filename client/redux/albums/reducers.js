@@ -11,7 +11,7 @@ const initialState = {
   data: {},
 };
 
-export const albumReducer = (state = initialState, action) => {
+const albumReducer = (state = initialState, action) => {
   if (action.type === types.LOAD_ALBUMS) {
     state = {
       ...state,
@@ -33,3 +33,5 @@ export const albumReducer = (state = initialState, action) => {
   // use method to reset state
   return state;
 };
+
+export default albumReducer;
