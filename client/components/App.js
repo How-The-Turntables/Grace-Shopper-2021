@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { renderAlbums } from '../redux/albums/thunkCreators';
 import { renderArtists } from '../redux/artists/artistThunkCreator';
 import {
   Nav,
@@ -16,9 +15,7 @@ import {
 } from './index';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.load();
-  }
+  componentDidMount() {}
   render() {
     return (
       <div>
@@ -39,7 +36,6 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     load: () => {
-      dispatch(renderAlbums());
       dispatch(renderArtists());
     },
   };

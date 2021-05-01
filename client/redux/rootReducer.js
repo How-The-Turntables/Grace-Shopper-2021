@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import albumReducer from './albums/reducers';
+import { albumReducer, filterSort } from './albums/reducers';
 import artistReducer from './artists/artistReducers';
 
 const rootReducer = combineReducers({

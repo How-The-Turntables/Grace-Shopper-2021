@@ -1,12 +1,18 @@
 import types from '../types/index';
 
 const initialState = {
+  // albums: {
+  //   products: [],
+  //   method: '', //{field } could pass in an action creator that changes the method
+  // }, // all data make it an object add key 'method' and when it maps over these things it'll map over some kind of enum or switch case
   albums: [],
   album: {},
 };
+// sortBy: ''
 
-const albumReducer = (state = initialState, action) => {
+export const albumReducer = (state = initialState, action) => {
   if (action.type === types.LOAD_ALBUMS) {
+    // console.log('*******', action.albums);
     state = action.albums;
   } else if (action.type === types.SINGLE_ALBUM) {
     state = action.album;
@@ -16,7 +22,6 @@ const albumReducer = (state = initialState, action) => {
     );
     state = { ...state, albums: [...allAlbums] };
   }
+  // use method to reset state
   return state;
 };
-
-export default albumReducer;

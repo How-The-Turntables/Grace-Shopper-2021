@@ -20,3 +20,17 @@ export const editAlbum = (album) => {
     album,
   };
 };
+
+export const sortAlbums = (sortType) => {
+  return {
+    type: types.SORT_BY,
+    sortType,
+  };
+};
+
+export const filterAlbums = (filterType) => {
+  return {
+    type: types.SORT_BY,
+    filterType,
+  };
+};

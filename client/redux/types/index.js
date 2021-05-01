@@ -2,6 +2,9 @@
 const LOAD_ALBUMS = 'LOAD_ALBUMS';
 const SINGLE_ALBUM = 'SINGLE_ALBUM';
 const EDIT_ALBUM = 'EDIT_ALBUM';
+// Sort and filter
+const SORT_BY = 'SORT_BY'; // or do I need specific sorts for each option?
+const FILTER_BY = 'FILTER_BY';
 // Artists
 const LOAD_ARTISTS = 'LOAD_ARTISTS';
 const SINGLE_ARTIST = 'SINGLE_ARTIST';
@@ -30,6 +33,8 @@ const types = {
   LOAD_ALBUMS,
   SINGLE_ALBUM,
   EDIT_ALBUM,
+  SORT_BY,
+  FILTER_BY,
   LOAD_ARTISTS,
   SINGLE_ARTIST,
   CREATE_ARTIST,
