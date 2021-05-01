@@ -1,9 +1,11 @@
 const albumsRouter = require('express').Router();
-const { Album, Review } = require('../db/index');
+const { Album, Review, Artist } = require('../db/index');
 
 albumsRouter.get('/', async (req, res, next) => {
   try {
-    const albums = await Album.findAll();
+    const albums = await Album.findAll({
+      include: [Artist],
+    });
     res.send(albums);
   } catch (error) {
     console.log('error has occured in the /api/albums: ', error);
