@@ -1,5 +1,5 @@
 const ordersRouter = require('express').Router();
-const { OrderDetail, User, OrderItem } = require('../db/index');
+const { OrderDetail } = require('../db/index');
 
 ordersRouter.get('/', async (req, res, next) => {
   try {
@@ -19,7 +19,10 @@ ordersRouter.get('/:id', async (req, res, next) => {
   try {
     const order = await OrderDetail.findAll({
       where: {
-        id: req.params.id,
+        userId: req.params.id,
+      },
+      include: {
+        all: true,
       },
     });
 
