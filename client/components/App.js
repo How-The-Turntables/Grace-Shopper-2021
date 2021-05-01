@@ -23,7 +23,7 @@ class App extends Component {
         <Route component={Home} path="/" exact />
         <Route component={LoginView} path="/login" />
         <Route component={SignUpForm} path="/register" />
-        <Route component={AllAlbums} path="/albums" />
+        <Route component={AllAlbums} path="/albums/:idx" />
         <Route component={AllArtists} path="/artists" />
         <Route component={CartView} path="/cart" />
         <Route component={Checkout} path="/checkout" />

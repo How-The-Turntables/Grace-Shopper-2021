@@ -3,11 +3,11 @@ const { Album, Review, Artist } = require('../db/index');
 
 albumsRouter.get('/', async (req, res, next) => {
   try {
-    const index = req.query.index ? req.query.index * 1 : 0; // query in the url bar -- add "?index=<some number>"
+    const idx = req.query.idx ? req.query.idx * 1 : 0;
     const [albums, count] = await Promise.all([
       Album.findAll({
-        limit: 10, // limits X number of albums per page
-        offset: index * 10,
+        limit: 10,
+        offset: idx * 10,
         order: [['title']],
         include: [Artist],
       }),

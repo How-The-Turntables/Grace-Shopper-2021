@@ -97,6 +97,11 @@ export const ProductContainer = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
 `;
+export const ProductCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+`;
 export const ProductInfo = styled.div`
   flex: 0 0 20%;
   display: flex;
@@ -127,19 +132,10 @@ export default {
   Record,
   Products,
   ProductContainer,
+  ProductCard,
   ProductInfo,
   ImageCard,
   ProductFilter,
   SortParent,
   SortChild,
 };
-
-// color: gray;
-//   padding: 10px;
-//   margin: 30px;
-//   border-color: black;
-//   display: flex;
-//   flex-wrap: wrap;
-//   flex-direction: column;
-//   align-items: center;
-//   align-content: space-between;

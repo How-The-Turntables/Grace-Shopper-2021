@@ -6,6 +6,7 @@ import { renderAlbums } from '../redux/albums/thunkCreators';
 import {
   Products,
   ProductContainer,
+  ProductCard,
   ProductInfo,
   ImageCard,
   ProductFilter,
@@ -15,32 +16,26 @@ import {
 
 class AllAlbums extends React.Component {
   componentDidMount() {
-    try {
-      this.props.load();
-    } catch (err) {
-      console.log(err);
-    }
+    this.props.load();
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.index !== this.props.match.params.index) {
+    if (prevProps.match.params.idx !== this.props.match.params.idx) {
       this.props.load();
     }
   }
+
   render() {
     const { albums, count } = this.props;
     const pageCount = Math.ceil(count / 10); //Math.ceil rounds up
     const links = new Array(pageCount).fill('filler').map((el, idx) => {
       return {
-        text: idx + 1,
+        num: idx + 1,
         idx,
         selected:
           (!this.props.match.params.idx && idx === 0) ||
           this.props.match.params.idx * 1 === idx,
       };
     });
-    console.log('links ', links);
-
-    // console.log('this.props', typeof albums);
     return (
       <div>
         <h1>Shop all albums</h1>
@@ -68,51 +63,30 @@ class AllAlbums extends React.Component {
               ? `Sorry, we're out of stock. Check back next week!`
               : albums.map((album) => {
                   return (
-                    <ProductInfo key={album.id}>
+                    <ProductCard key={album.id}>
                       <Link to={{ pathname: `/albums/${album.id}` }}>
                         <ImageCard src={album.photoUrl} />
                       </Link>
-                      <h4>Album{album.title}</h4>
-                      <h5>By{album.artist.name}</h5>
-                      <h4>Price{album.price}</h4>
-                    </ProductInfo>
+                      <ProductInfo>
+                        <h4>Album{album.title}</h4>
+                        <h5>By{album.artist.name}</h5>
+                        <h4>Price{album.price}</h4>
+                      </ProductInfo>
+                      <button>Add to Cart</button>
+                    </ProductCard>
                   );
                 })}
           </ProductContainer>
         </Products>
         <div>
-          <nav role="navigation" aria-lable="pagination">
-            <button
-            // className="page-prev"
-            // onClick={() => {
-            //   this.previousPage();
-            // }}
-            >
-              Previous
-            </button>
-            <button
-            // className="page-next"
-            // onClick={() => {
-            //   this.nextPage();
-            // }}
-            >
-              Next
-            </button>
-            <ul className="page-list">
-              {[...Array(this.props.state.filteredPages)].map((val, idx) => (
-                <button
-                  key={idx}
-                  className={`button pagination-link ${
-                    this.props.state.currentPage === idx + 1 ? 'is-current' : ''
-                  }}`}
-                  aria-label="Page 1"
-                  onClick={() => this.goToPage(idx + 1)}
-                  aria-lable="page"
-                >
-                  {idx + 1}
-                </button>
-              ))}
-            </ul>
+          <nav>
+            {links.map(({ idx, num }) => {
+              return (
+                <Link key={idx} to={`/albums/${idx}`}>
+                  {num}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       </div>
@@ -120,17 +94,16 @@ class AllAlbums extends React.Component {
   }
 }
 
-const mapStateToProps = (state, albumsProps) => {
-  console.log('state.albums.data', state.albums.data); // tutorial shows with .data but that returned undefined.
+const mapStateToProps = (state, ownProps) => {
   return {
     count: state.albums.count,
-    albums: state.albums.data[albumsProps.match.params.index] || [],
+    albums: state.albums.data[ownProps.match.params.idx] || [],
   };
 };
 
-const mapDispatchToProps = (dispatch, albumsProps) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    load: () => dispatch(renderAlbums(albumsProps.match.params.index || 0)),
+    load: () => dispatch(renderAlbums(ownProps.match.params.idx || 0)),
   };
 };
 

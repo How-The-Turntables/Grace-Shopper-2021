@@ -1,10 +1,10 @@
 import types from '../types/index';
 
-export const loadAlbums = ({ index, albums }) => {
+export const loadAlbums = ({ idx, albums }) => {
   return {
     type: types.LOAD_ALBUMS,
     albums,
-    index,
+    idx,
   };
 };
 
@@ -26,20 +26,6 @@ export const editAlbum = (album) => {
   return {
     type: types.EDIT_ALBUM,
     album,
-  };
-};
-
-export const loadNextPage = (payload) => {
-  return {
-    type: types.LOAD_NEXT_PAGE,
-    payload,
-  };
-};
-
-export const LOAD_EXACT_PAGE = (payload) => {
-  return {
-    type: types.LOAD_NEXT_PAGE,
-    payload,
   };
 };
 

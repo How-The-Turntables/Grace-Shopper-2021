@@ -1,18 +1,18 @@
 import axios from 'axios';
 import { loadAlbums, setCount } from './actionCreators';
 
-export const renderAlbums = (index) => {
+export const renderAlbums = (idx) => {
   return async (dispatch, getState) => {
     try {
       // passing getState allows for check to see if you're already displaying data
-      const albums = getState().albums.data[index];
+      const albums = getState().albums.data[idx];
       if (albums) {
-        dispatch(loadAlbums({ index, albums }));
+        dispatch(loadAlbums({ idx, albums }));
       } else {
         const {
           data: { albums, count },
-        } = await axios.get('/api/albums');
-        dispatch(loadAlbums({ albums, count }));
+        } = await axios.get(`/api/albums?idx=${idx}`);
+        dispatch(loadAlbums({ albums, idx }));
         dispatch(setCount(count));
       }
     } catch (error) {
