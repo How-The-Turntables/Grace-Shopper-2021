@@ -64,11 +64,12 @@ class AllAlbums extends React.Component {
               : albums.map((album) => {
                   return (
                     <ProductCard key={album.id}>
-                      <Link to={{ pathname: `/albums/${album.id}` }}>
-                        <ImageCard src={album.photoUrl} />
-                      </Link>
+                      <ImageCard src={album.photoUrl} />
+
                       <ProductInfo>
-                        <h4>Album{album.title}</h4>
+                        <Link to={{ pathname: `/albums/${album.id}` }}>
+                          <h4>Album{album.title}</h4>
+                        </Link>
                         <h5>By{album.artist.name}</h5>
                         <h4>Price{album.price}</h4>
                       </ProductInfo>

@@ -9,7 +9,7 @@ const Home = () => {
       <Title>How The Turntables | Bootleg Records For Your Ear Holes</Title>
       <Container>
         <Box>
-          <Link to="/albums">Browse by Albums</Link>
+          <Link to="/albums/0">Browse by Albums</Link>
         </Box>
         <Box>
           <Link to="/artists">Browse by Artists</Link>
