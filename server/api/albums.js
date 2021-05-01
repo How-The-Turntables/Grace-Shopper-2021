@@ -31,6 +31,78 @@ albumsRouter.get('/:id', async (req, res, next) => {
   }
 });
 
+albumsRouter.post('/', async (req, res, next) => {
+  try {
+    const {
+      title,
+      description,
+      genre,
+      year,
+      price,
+      photoURL,
+      quantity,
+    } = req.body;
+    const newAlbum = await Album.create({
+      title,
+      description,
+      genre,
+      year,
+      price,
+      photoURL,
+      quantity,
+    });
+    res.status(201).send(newAlbum);
+  } catch (error) {
+    console.log('error has occured in the api/albums post route: ', error);
+    next(error);
+  }
+});
+
+//ALBUMS EDITING ROUTES FOR ADMINS - ADD, DELETE, EDIT
+
+albumsRouter.delete('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const album = await Album.findByPk(id);
+    await album.destroy();
+    res.sendStatus(204);
+  } catch (error) {
+    console.log('error has occured in the api/albums/delete route: ', error);
+    next(error);
+  }
+});
+
+albumsRouter.put('/:id', async (req, res, next) => {
+  try {
+    const {
+      title,
+      description,
+      genre,
+      year,
+      price,
+      photoURL,
+      quantity,
+    } = req.body;
+    const { id } = req.params;
+    const album = await album.findByPk({ id });
+    await album.update({
+      title,
+      description,
+      genre,
+      year,
+      price,
+      photoURL,
+      quantity,
+    });
+    res.status(201).send(album);
+  } catch (error) {
+    console.log('error has occured in the /api/albums put route: ', error);
+    next(error);
+  }
+});
+
+//THESE ROUTES ARE FOR REVIEWS
+
 albumsRouter.get('/:id/reviews', async (req, res, next) => {
   try {
     const id = req.params.id;
