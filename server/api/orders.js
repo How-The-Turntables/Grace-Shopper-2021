@@ -5,7 +5,7 @@ ordersRouter.get('/', async (req, res, next) => {
   try {
     const orders = await OrderDetail.findAll({
       include: {
-        model: User,
+        all: true,
       },
     });
     res.status(200).send(orders);
