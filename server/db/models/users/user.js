@@ -1,7 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
 const db = require('../../db');
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 class User extends Model {}
 
@@ -41,9 +41,9 @@ User.init(
   { sequelize: db, modelName: 'user' }
 );
 
-User.addHook('beforeSave', (user) => {
+User.addHook('beforeSave', async (user) => {
   if (user._changed.has('password')) {
-    user.password = bcrypt.hash(user.password, 5)
+    user.password = await bcrypt.hash(user.password, 5);
   }
 });
 
@@ -55,12 +55,13 @@ const error = function () {
 };
 
 User.authenticate = async ({ email, password }) => {
+  console.log(email);
   const user = await User.findOne({
-    where: {
-      email,
-    },
+    where: { email },
   });
-  if (user && bcrypt.compare(password, user.password)) {
+  console.log('user', user);
+
+  if (user && (await bcrypt.compare(password, user.password))) {
     return jwt.sign(user.id, process.env.JWT); // token w/ user ID
   }
   throw error();

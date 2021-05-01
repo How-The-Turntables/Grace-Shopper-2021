@@ -10,10 +10,10 @@ class Nav extends Component {
     };
   }
 
-  logout() {
-    window.localStorage.removeItem('token');
-    this.setState({ auth: {} });
-  }
+  // logout() {
+  //   window.localStorage.removeItem('token');
+  //   this.setState({ auth: {}});
+  // }
 
   render() {
     return (
