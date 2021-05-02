@@ -157,7 +157,7 @@ const syncAndSeed = async () => {
       password: 'welcome123',
     });
 
-    const record = await Album.create({
+    const record1 = await Album.create({
       title: 'Greatest Coding Hits',
       description: 'Prety Awesome',
       genre: 'ROCK',
@@ -166,22 +166,64 @@ const syncAndSeed = async () => {
       artistId: 2,
     });
 
+    const record2 = await Album.create({
+      title: 'Greatest Coding Hits 2',
+      description: 'Prety Awesome',
+      genre: 'ROCK',
+      year: 2000,
+      price: 19.99,
+      artistId: 2,
+    });
+
+    const record3 = await Album.create({
+      title: 'Greatest Coding Hits 3',
+      description: 'Prety Awesome',
+      genre: 'ROCK',
+      year: 2000,
+      price: 19.99,
+      artistId: 2,
+    });
+
     const order_detail = await OrderDetail.create({
-      total: 38.98,
+      total: (1*record1.price + 1*record2.price),
       status: 'IN PROGRESS',
     });
 
-    const order_item = await OrderItem.create({
+    const order_detail2 = await OrderDetail.create({
+      total: (1*record3.price),
+      status: 'COMPLETED',
+    });
+
+    const order_item1 = await OrderItem.create({
       quantity: 2,
+    });
+    const order_item2 = await OrderItem.create({
+      quantity: 2,
+    });
+    const order_item3 = await OrderItem.create({
+      quantity: 4,
     });
 
     // await Promise.all([buyer, record, order_detail, order_item]);
 
     order_detail.userId = buyer.id;
-    order_item.albumId = record.id;
-    order_item.order_detailId = order_detail.id;
+    order_detail2.userId = buyer.id;
+    order_item1.albumId = record1.id;
+    order_item2.albumId = record2.id;
+    order_item3.albumId = record3.id;
+
+    order_item1.order_detailId = order_detail.id;
+    order_item2.order_detailId = order_detail.id;
+    order_item3.order_detailId = order_detail2.id;
+
+
     await order_detail.save();
-    await order_item.save();
+    await order_detail2.save();
+    await order_item1.save();
+    await order_item2.save();
+    await order_item3.save();
+
+
 
     // ------------ ^^creating cart data^^ --------------
 

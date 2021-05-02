@@ -11,7 +11,7 @@ describe('This is a blank test', () => {
   });
 });
 
-describe('Testing the Route', () => {
+describe('Testing the Routes', () => {
   beforeEach(async () => {
     await db.sync({ force: true });
     await syncAndSeed();
@@ -48,13 +48,13 @@ describe('Testing the Route', () => {
     });
   });
 
-  describe('/api/albums', () => {
+  describe('GET /api/albums', () => {
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/albums');
       expect(response.status).toEqual(200);
     });
   });
-  describe('/api/albums/:id', () => {
+  describe('GET /api/albums/:id', () => {
     it('expects the route with id 3 to be accessible', async () => {
       const response = await app.get('/api/albums/3');
       expect(response.status).toEqual(200);
@@ -102,4 +102,5 @@ describe('Testing the Route', () => {
     const newArtist = await artist.findByPk(id);
     expect(newArtist.name).toEqual('Thunder Trouser');
   });
+
 });
