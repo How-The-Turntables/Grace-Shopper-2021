@@ -25,7 +25,7 @@ const albumReducer = (state = initialState, action) => {
     const allAlbums = state.albums.map((album) =>
       album.id === action.album.id ? action.album : album
     );
-    state = { ...state, albums: [...allAlbums] };
+    state = { ...state, albums: [...allAlbums]};
   }
   // use method to reset state
   return state;
