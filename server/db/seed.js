@@ -38,7 +38,9 @@ const syncAndSeed = async () => {
     // --------- creating albums ---------
     const albumNamesArray = Array(200)
       .fill(1)
-      .map((album) => `${faker.lorem.words(3)}`);
+
+      .map((album) => `${faker.lorem.words(3).toUpperCase()}`);
+
     const genres = ['ROCK', 'JAZZ', 'POP', 'METAL', 'OTHER'];
 
     const albumPromises = [];
@@ -77,13 +79,44 @@ const syncAndSeed = async () => {
           email: `${firstName[0].toLowerCase()}${lastName
             .replace(/'/g, '')
             .toLowerCase()}@gmail.com`,
-          password: '123',
-          // admin
+          password: '123'
         })
       );
     });
 
     await Promise.all(userPromises);
+
+    // --------- creating admin ---------
+    await Promise.all([
+      User.create({
+        first_name: 'Jonathan',
+        last_name: 'Crider',
+        email: 'jonathan.crider@howtheturntables.com',
+        password: process.env.AMPW,
+        admin: true,
+      }),
+      User.create({
+        first_name: 'Emily',
+        last_name: 'Asaro',
+        email: 'emily.asaro@howtheturntables.com',
+        password: process.env.AMPW,
+        admin: true,
+      }),
+      User.create({
+        first_name: 'Maciej',
+        last_name: 'Piech',
+        email: 'maciej.piech@howtheturntables.com',
+        password: process.env.AMPW,
+        admin: true,
+      }),
+      User.create({
+        first_name: 'Kevin',
+        last_name: 'Gil',
+        email: 'kevin.gil@howtheturntables.com',
+        password: process.env.AMPW,
+        admin: true,
+      }),
+    ]);
 
     // --------- creating reviews ---------
     const reviewsArray = Array(20)
