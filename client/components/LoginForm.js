@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from '../redux/user/thunkCreators';
+import { loginUser } from '../redux/user/userActions';
 
 class LoginForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       password: '',
@@ -49,9 +49,9 @@ class LoginForm extends Component {
   }
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//   return state
-// }
+const mapStateToProps = (state, ownProps) => {
+  return {...state};
+}
 
 const mapDistpatchToProps = (dispatch, { history }) => {
   return {
@@ -59,6 +59,6 @@ const mapDistpatchToProps = (dispatch, { history }) => {
   };
 };
 
-export default connect(null, mapDistpatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDistpatchToProps)(LoginForm);
 
 // export default LoginForm;

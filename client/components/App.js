@@ -15,6 +15,7 @@ import {
   Footer,
   SignUpForm,
 } from './index';
+import LoginForm from './LoginForm';
 
 class App extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class App extends Component {
 
         <Route component={AllAlbums} path="/albums/:idx" />
         <Route component={LoginView} path="/login" />
+        <Route component={LoginForm} path="/loginform" />
         <Route component={SignUpForm} path="/register" />
 
         <Route component={SingleArtist} path="/artists/:id" />
