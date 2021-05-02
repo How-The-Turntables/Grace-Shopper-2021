@@ -7,8 +7,8 @@ class SignUpForm extends Component {
     this.state = {
       email: '',
       password: '',
-      first_name: '',
-      last_name: ''
+      firstName: '',
+      lastName: '',
     };
   };
 
@@ -45,13 +45,13 @@ class SignUpForm extends Component {
           />
           <input
             type="text"
-            name="first_name"
+            name="firstName"
             placeholder="First Name"
             onChange={ this.onChange }
           />
           <input
             type="text"
-            name="last_name"
+            name="lastName"
             placeholder="Last Name"
             onChange={ this.onChange }
           />
