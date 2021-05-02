@@ -29,14 +29,16 @@ class App extends Component {
     // if odre_details exist use it if not create it
     // }
     // this.props.newCart();
+    const { id } = window.localStorage.JWTtoken;
   }
 
   componentDidUpdate(props) {
     const cart = window.localStorage.GScart;
-    const { id } = window.localStorage.JWTtoken;
+    console.log('cart is ', cart);
+    const token = window.localStorage.JWTtoken;
     if (!cart) {
       // we want to create it using thunk
-      props.mountCart(id);
+      props.cartChecker(token);
     }
   }
   render() {
@@ -67,7 +69,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // newCart: (id) => dispatch(createCart(id)), // need this to have userId token
-    mountCart: (id) => dispatch(cartChecker(id)),
+    cartChecker: (token) => dispatch(cartChecker(token)),
   };
 };
 

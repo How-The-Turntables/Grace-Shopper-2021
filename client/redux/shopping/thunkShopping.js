@@ -23,23 +23,21 @@ export const renderCart = (id) => {
   };
 };
 
-export const cartChecker = (id) => {
+export const cartChecker = (token) => {
   return async (dispatch) => {
-    const order = await OrderDetail.findOne({
-      where: {
-        userId: id,
-        status: 'IN PROGRESS',
-      },
-    });
-    console.log(order);
-    if (order) {
-      window.localStorage.setItem('GSorder', order);
-    } else {
-      const order = await OrderDetail.create({
-        status: 'IN PROGRESS',
-        userId: id,
+    try {
+      const { id } = token;
+      const { data: cart } = await axios.get(`/api/orders/${id}/cart`, {
+        headers: {
+          authorization: token,
+        },
       });
-      window.localStorage.setItem('GSorder', order);
+      if (cart) {
+        localStorage.setItem('GScart', cart);
+        dispatch(loadCart(cart));
+      }
+    } catch (error) {
+      console.log('error occured in cartChecker thunk', error);
     }
   };
 };
