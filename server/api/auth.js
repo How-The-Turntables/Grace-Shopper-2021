@@ -1,5 +1,5 @@
 const authRouter = require('express').Router();
-const User = require('../db');
+const { User } = require('../db/index');
 
 // auth middleware, can be used to access content tied to user (like carts or purchase history)
 const requireToken = async (req, res, next) => {
@@ -16,10 +16,10 @@ const requireToken = async (req, res, next) => {
 // create token
 authRouter.post('/', async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-    res.send({
-      token: await User.authenticate({ email, password })
-    });
+    // const { email, password } = req.body;
+    const { token } = await User.authenticate(req.body);
+    console.log('token', token);
+    res.send({ token });
   } catch (error) {
     next(error);
   }
@@ -36,5 +36,5 @@ authRouter.get('/', requireToken, async (req, res, next) => {
 
 module.exports = {
   authRouter,
-  requireToken
+  requireToken,
 };
