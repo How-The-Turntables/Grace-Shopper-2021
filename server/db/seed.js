@@ -36,7 +36,7 @@ const syncAndSeed = async () => {
     await Promise.all(bandPromises);
 
     // --------- creating albums ---------
-    const albumNamesArray = Array(200)
+    const albumNamesArray = Array(1000)
       .fill(1)
       .map((album) => `${faker.lorem.words(3)}`);
     const genres = ['ROCK', 'JAZZ', 'POP', 'METAL', 'OTHER'];
@@ -144,7 +144,7 @@ const syncAndSeed = async () => {
       quantity: 2,
     });
 
-    await Promise.all([buyer, record, order_detail, order_item]);
+    // await Promise.all([buyer, record, order_detail, order_item]);
 
     order_detail.userId = buyer.id;
     order_item.albumId = record.id;
