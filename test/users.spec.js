@@ -13,7 +13,7 @@ describe('user model', () => {
     it('should create an anonymous user', async () => {
       const user = await User.build();
 
-      expect(user.first_name).toEqual('Anonymous');
+      expect(user.firstName).toEqual('Anonymous');
     });
   });
 });

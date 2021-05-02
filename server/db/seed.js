@@ -68,13 +68,13 @@ const syncAndSeed = async () => {
 
     const userPromises = [];
 
-    usersArray.forEach((first_name) => {
+    usersArray.forEach((firstName) => {
       const lastName = faker.name.lastName();
       userPromises.push(
         User.create({
-          first_name,
-          last_name: lastName,
-          email: `${first_name[0].toLowerCase()}${lastName
+          firstName,
+          lastName: lastName,
+          email: `${firstName[0].toLowerCase()}${lastName
             .replace(/'/g, '')
             .toLowerCase()}@gmail.com`,
           password: '123',
@@ -120,8 +120,8 @@ const syncAndSeed = async () => {
     // Product => just the id
 
     const buyer = await User.create({
-      first_name: 'Henry',
-      last_name: 'Bigbottom',
+      firstName: 'Henry',
+      lastName: 'Bigbottom',
       email: 'hbig@gmail.com',
       password: 'welcome123',
     });

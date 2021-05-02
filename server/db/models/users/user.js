@@ -7,18 +7,18 @@ class User extends Model {}
 
 User.init(
   {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
-      unique: true,
-    },
-    first_name: {
+    // id: {
+    //   type: DataTypes.UUID,
+    //   primaryKey: true,
+    //   defaultValue: DataTypes.UUIDV4,
+    //   unique: true,
+    // },
+    firstName: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'Anonymous',
     },
-    last_name: {
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'User',
