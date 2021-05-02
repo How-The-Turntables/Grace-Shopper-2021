@@ -19,7 +19,7 @@ const syncAndSeed = async () => {
     const bandNames = Array(20)
       .fill(1)
       .map(
-        (album) => `${faker.company.bsAdjective()} ${faker.name.firstName()}`
+        album => `${faker.company.bsAdjective()} ${faker.name.firstName()}`
       );
 
     const bandPromises = [];
@@ -38,12 +38,12 @@ const syncAndSeed = async () => {
     // --------- creating albums ---------
     const albumNamesArray = Array(200)
       .fill(1)
-      .map((album) => `${faker.lorem.words(3)}`);
+      .map(album => `${faker.lorem.words(3).toUpperCase()}`);
     const genres = ['ROCK', 'JAZZ', 'POP', 'METAL', 'OTHER'];
 
     const albumPromises = [];
 
-    albumNamesArray.forEach((title) => {
+    albumNamesArray.forEach(title => {
       const bandId = Math.floor(Math.random() * 19) + 1;
 
       albumPromises.push(
@@ -64,7 +64,7 @@ const syncAndSeed = async () => {
     // --------- creating users ---------
     const usersArray = Array(20)
       .fill(1)
-      .map((user) => faker.name.firstName());
+      .map(user => faker.name.firstName());
 
     const userPromises = [];
 
@@ -88,7 +88,7 @@ const syncAndSeed = async () => {
     // --------- creating reviews ---------
     const reviewsArray = Array(20)
       .fill(1)
-      .map((stars) => Math.floor(Math.random() * 5) + 1);
+      .map(stars => Math.floor(Math.random() * 5) + 1);
     const usersdata = await User.findAll();
     const userIds = usersdata.map((user) => user.id); // array of user Ids since they're UUID type
 
@@ -107,7 +107,7 @@ const syncAndSeed = async () => {
 
     await Promise.all(reviewPromises);
 
-    // ------------ createing cart data --------------
+    // ------------ creating cart data --------------
 
     // Order_Details
     // Order_Items
@@ -144,7 +144,7 @@ const syncAndSeed = async () => {
       quantity: 2,
     });
 
-    await Promise.all([buyer, record, order_detail, order_item]);
+    // await Promise.all([buyer, record, order_detail, order_item]);
 
     order_detail.userId = buyer.id;
     order_item.albumId = record.id;
@@ -152,7 +152,7 @@ const syncAndSeed = async () => {
     await order_detail.save();
     await order_item.save();
 
-    // ------------ ^^createing cart data^^ --------------
+    // ------------ ^^creating cart data^^ --------------
 
     // const order = await OrderDetail.create({
     //   total: 19.99,

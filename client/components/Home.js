@@ -3,6 +3,8 @@ import { Title, Container, Box, Background, Record } from '../styles'; //these a
 import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux'
 
+// IDEA: should we keep index in state, and use that for the browse by albums link? that way it keeps your place...? is that stored in count on the state?
+
 const Home = () => {
   return (
     <Background>
