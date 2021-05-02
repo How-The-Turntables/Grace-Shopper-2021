@@ -41,3 +41,15 @@ export const cartChecker = (token) => {
     }
   };
 };
+
+export const guestCart = () => {
+  return async (dispatch) => {
+    try {
+      const { data: cart } = await axios.post('/api/orders/cart');
+      localStorage.setItem('GScart', cart);
+      dispatch(loadCart(cart));
+    } catch (error) {
+      console.log('error occured in guestCart thunk', error);
+    }
+  };
+};
