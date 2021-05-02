@@ -15,9 +15,9 @@ describe('Testing the Orders Details', () => {
     await db.close();
   });
 
-  describe('/api/orders exists', () => {
+  describe('/api/orders/admin exists', () => {
     it('expects the route to be accessible', async () => {
-      const response = await app.get('/api/orders');
+      const response = await app.get('/api/orders/admin');
       expect(response.status).toEqual(200);
     });
   });
