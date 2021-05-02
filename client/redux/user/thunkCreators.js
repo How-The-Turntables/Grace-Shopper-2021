@@ -6,8 +6,7 @@ export const loginUser = (credentials) => {
   return async (dispatch) => {
     try {
       const response = await axios.post('/api/auth', credentials);
-      console.log('response.data', response.data);
-      const { token } = response.data;
+      const { token } = response.data
       window.localStorage.setItem('JWTtoken', token);
       dispatch(attemptTokenLogin());
     } catch (error) {

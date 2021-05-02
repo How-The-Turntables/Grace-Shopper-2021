@@ -23,7 +23,7 @@ User.init(
       allowNull: false,
       defaultValue: 'User',
     },
-    email_address: {
+    email: {
       type: DataTypes.STRING,
       unique: true,
       validate: {
@@ -55,14 +55,14 @@ const error = function () {
 };
 
 User.authenticate = async ({ email, password }) => {
-  console.log(email);
   const user = await User.findOne({
     where: { email },
   });
-  console.log('user', user);
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    return jwt.sign(user.id, process.env.JWT); // token w/ user ID
+    const token = await jwt.sign(user.id, process.env.JWT); // token w/ user ID
+    console.log("TOKEN", token)
+    return token;
   }
   throw error();
 };
