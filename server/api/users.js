@@ -34,7 +34,7 @@ usersRouter.put('/:id', async (req, res, next) => {
     const userUpdated = await user.update({
       first_name: req.body.firstName,
       last_name: req.body.lastName,
-      email_address: req.body.email,
+      email: req.body.email,
       password: req.body.password,
     });
     res.send(userUpdated);

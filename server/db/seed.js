@@ -74,7 +74,7 @@ const syncAndSeed = async () => {
         User.create({
           first_name,
           last_name: lastName,
-          email_address: `${first_name[0].toLowerCase()}${lastName
+          email: `${first_name[0].toLowerCase()}${lastName
             .replace(/'/g, '')
             .toLowerCase()}@gmail.com`,
           password: '123',
@@ -122,7 +122,7 @@ const syncAndSeed = async () => {
     const buyer = await User.create({
       first_name: 'Henry',
       last_name: 'Bigbottom',
-      email_address: 'hbig@gmail.com',
+      email: 'hbig@gmail.com',
       password: 'welcome123',
     });
 
@@ -163,7 +163,7 @@ const syncAndSeed = async () => {
     //   stars: 5,
     // });
     // const user = await User.create({
-    //   email_address: 'test@gmail.com',
+    //   email: 'test@gmail.com',
     //   password: 'supersecret',
     // });
     // const artist = await Artist.create({

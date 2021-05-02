@@ -31,7 +31,7 @@ class LoginForm extends Component {
       <div>
         <form onSubmit={this.onSubmit}>
           <input
-            type="text"
+            type="email"
             name="email"
             placeholder="email"
             onChange={this.onChange}
