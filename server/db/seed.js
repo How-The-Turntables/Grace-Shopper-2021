@@ -68,13 +68,13 @@ const syncAndSeed = async () => {
 
     const userPromises = [];
 
-    usersArray.forEach((first_name) => {
+    usersArray.forEach((firstName) => {
       const lastName = faker.name.lastName();
       userPromises.push(
         User.create({
-          first_name,
-          last_name: lastName,
-          email: `${first_name[0].toLowerCase()}${lastName
+          firstName,
+          lastName: lastName,
+          email: `${firstName[0].toLowerCase()}${lastName
             .replace(/'/g, '')
             .toLowerCase()}@gmail.com`,
           password: '123'
@@ -87,29 +87,29 @@ const syncAndSeed = async () => {
     // --------- creating admin ---------
     await Promise.all([
       User.create({
-        first_name: 'Jonathan',
-        last_name: 'Crider',
+        firstName: 'Jonathan',
+        lastName: 'Crider',
         email: 'jonathan.crider@howtheturntables.com',
         password: process.env.AMPW,
         admin: true,
       }),
       User.create({
-        first_name: 'Emily',
-        last_name: 'Asaro',
+        firstName: 'Emily',
+        lastName: 'Asaro',
         email: 'emily.asaro@howtheturntables.com',
         password: process.env.AMPW,
         admin: true,
       }),
       User.create({
-        first_name: 'Maciej',
-        last_name: 'Piech',
+        firstName: 'Maciej',
+        lastName: 'Piech',
         email: 'maciej.piech@howtheturntables.com',
         password: process.env.AMPW,
         admin: true,
       }),
       User.create({
-        first_name: 'Kevin',
-        last_name: 'Gil',
+        firstName: 'Kevin',
+        lastName: 'Gil',
         email: 'kevin.gil@howtheturntables.com',
         password: process.env.AMPW,
         admin: true,
@@ -151,8 +151,8 @@ const syncAndSeed = async () => {
     // Product => just the id
 
     const buyer = await User.create({
-      first_name: 'Henry',
-      last_name: 'Bigbottom',
+      firstName: 'Henry',
+      lastName: 'Bigbottom',
       email: 'hbig@gmail.com',
       password: 'welcome123',
     });

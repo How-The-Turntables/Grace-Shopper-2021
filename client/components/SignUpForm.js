@@ -7,10 +7,10 @@ class SignUpForm extends Component {
     this.state = {
       email: '',
       password: '',
-      first_name: '',
-      last_name: ''
+      firstName: '',
+      lastName: '',
     };
-  };
+  }
 
   onChange = (e) => {
     const change = {};
@@ -30,37 +30,37 @@ class SignUpForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={ this.onSubmit }>
+        <form onSubmit={this.onSubmit}>
           <input
             type="text"
             name="email"
             placeholder="email"
-            onChange={ this.onChange }
+            onChange={this.onChange}
           />
           <input
             type="password"
             name="password"
             placeholder="password"
-            onChange={ this.onChange }
+            onChange={this.onChange}
           />
           <input
             type="text"
-            name="first_name"
+            name="firstName"
             placeholder="First Name"
-            onChange={ this.onChange }
+            onChange={this.onChange}
           />
           <input
             type="text"
-            name="last_name"
+            name="lastName"
             placeholder="Last Name"
-            onChange={ this.onChange }
+            onChange={this.onChange}
           />
           <button type="submit">Register</button>
         </form>
       </div>
     );
-  };
-};
+  }
+}
 
 // const mapStateToProps = (state, ownProps) => {
 //   return state

@@ -32,8 +32,8 @@ usersRouter.put('/:id', async (req, res, next) => {
     const id = req.params.id;
     let user = await User.findByPk(id);
     const userUpdated = await user.update({
-      first_name: req.body.firstName,
-      last_name: req.body.lastName,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
     });
