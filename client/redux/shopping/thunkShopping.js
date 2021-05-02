@@ -22,3 +22,24 @@ export const renderCart = (id) => {
     }
   };
 };
+
+export const cartChecker = (id) => {
+  return async (dispatch) => {
+    const order = await OrderDetail.findOne({
+      where: {
+        userId: id,
+        status: 'IN PROGRESS',
+      },
+    });
+    console.log(order);
+    if (order) {
+      window.localStorage.setItem('GSorder', order);
+    } else {
+      const order = await OrderDetail.create({
+        status: 'IN PROGRESS',
+        userId: id,
+      });
+      window.localStorage.setItem('GSorder', order);
+    }
+  };
+};
