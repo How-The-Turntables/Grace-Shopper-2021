@@ -67,23 +67,22 @@ ordersRouter.get('/:id', async (req, res, next) => {
 // user adds item to cart
 ordersRouter.post('/:id/cart', async (req, res, next) => {
   try {
-      const [cart] = await OrderDetail.findOrCreate({ // because they could already have a cart in session
+      const cart = await OrderDetail.create({
         where: {
           userId: req.params.id,
-          status: 'IN PROGRESS',
-          total: req.body.price
+          status: 'IN PROGRESS'
         },
         include: { all: true }
       });
-      const cartId = cart.dataValues.id;
-      const orderItemToUpdate = await OrderItem.findOne({
-        where: {
-          order_detailId: cartId,
-          albumId: req.body.albumId
-        },
-        include: { all: true }
-      });
-        res.status(201).send(orderItemToUpdate); // sending back just the one initially added product
+      // const cartId = cart.dataValues.id;
+      // const orderItemToUpdate = await OrderItem.findOne({
+      //   where: {
+      //     order_detailId: cartId,
+      //   },
+      //   include: { all: true }
+      // });
+
+      res.status(201).send(cart); // sending new cart session to client
 
   } catch (error) {
     console.log('problem with your POST api/orders/:id/cart route: ', error);
