@@ -6,13 +6,14 @@ import { Container, Box, Background, Title, DescriptionBox } from '../styles';
 class SingleArtist extends Component {
   // not addind local state until we know if we will be adding edit, create or delete functionality
   componentDidMount() {
-    const id = this.props.match.params.id;
-    const { loadArtist } = this.props;
-    loadArtist(id);
+    // console.log('this.props******',this.props.match.params.id)
+    this.props.loadArtist(this.props.match.params.id)
+
   }
 
   render() {
     const { artist } = this.props;
+    // console.log( '*****',artist )
     const albums = artist.albums;
     return (
       <div>
@@ -54,7 +55,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, { history }) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     loadArtist: (id) => dispatch(renderSingleArtist(id)),
   };

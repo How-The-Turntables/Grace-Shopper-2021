@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { renderArtists } from '../redux/artists/artistThunkCreator';
+
 
 class AllArtists extends Component {
+  componentDidMount() {
+    this.props.loadArtists();
+  }
   render() {
     const { artists } = this.props;
     return (
@@ -22,11 +27,18 @@ class AllArtists extends Component {
       </div>
     );
   }
-}
+};
+
 const mapStateToProps = (state) => {
   return {
     artists: state.artists,
   };
 };
 
-export default connect(mapStateToProps)(AllArtists);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadArtists: () => dispatch(renderArtists())
+  };
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )( AllArtists );

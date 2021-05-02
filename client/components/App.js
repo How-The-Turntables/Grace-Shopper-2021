@@ -3,6 +3,8 @@ import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { renderArtists } from '../redux/artists/artistThunkCreator';
 import { renderAlbums } from '../redux/albums/thunkCreators';
+import { createCart } from '../redux/shopping/thunkShopping'; // what about if a user is returning to the site?
+
 import {
   Nav,
   Home,
@@ -19,7 +21,7 @@ import LoginForm from './LoginForm';
 
 class App extends Component {
   componentDidMount() {
-    this.props.load(); // move artists load later
+    // this.props.newCart();
   }
   render() {
     return (
@@ -40,14 +42,13 @@ class App extends Component {
       </div>
     );
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    load: () => {
-      dispatch(renderArtists());
-      // dispatch(renderAlbums());
-    },
+    newCart: (id) => dispatch(createCart(id)), // need this to have userId token
+    // loadArtists: () => dispatch(renderArtists())
+
   };
 };
 
