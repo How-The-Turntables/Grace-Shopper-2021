@@ -68,10 +68,10 @@ class AllAlbums extends React.Component {
 
                       <ProductInfo>
                         <Link to={{ pathname: `/albums/${album.id}` }}>
-                          <h4>Album{album.title}</h4>
+                          <h4>{album.title}</h4>
                         </Link>
-                        <h5>By{album.artist.name}</h5>
-                        <h4>Price{album.price}</h4>
+                        <h5>{album.artist.name}</h5>
+                        <h4>{album.price}</h4>
                       </ProductInfo>
                       <button>Add to Cart</button>
                     </ProductCard>
