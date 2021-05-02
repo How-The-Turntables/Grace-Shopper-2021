@@ -19,7 +19,7 @@ const syncAndSeed = async () => {
     const bandNames = Array(20)
       .fill(1)
       .map(
-        album => `${faker.company.bsAdjective()} ${faker.name.firstName()}`
+        (album) => `${faker.company.bsAdjective()} ${faker.name.firstName()}`
       );
 
     const bandPromises = [];
@@ -38,12 +38,12 @@ const syncAndSeed = async () => {
     // --------- creating albums ---------
     const albumNamesArray = Array(200)
       .fill(1)
-      .map(album => `${faker.lorem.words(3).toUpperCase()}`);
+      .map((album) => `${faker.lorem.words(3).toUpperCase()}`);
     const genres = ['ROCK', 'JAZZ', 'POP', 'METAL', 'OTHER'];
 
     const albumPromises = [];
 
-    albumNamesArray.forEach(title => {
+    albumNamesArray.forEach((title) => {
       const bandId = Math.floor(Math.random() * 19) + 1;
 
       albumPromises.push(
@@ -64,7 +64,7 @@ const syncAndSeed = async () => {
     // --------- creating users ---------
     const usersArray = Array(20)
       .fill(1)
-      .map(user => faker.name.firstName());
+      .map((user) => faker.name.firstName());
 
     const userPromises = [];
 
@@ -77,18 +77,49 @@ const syncAndSeed = async () => {
           email: `${first_name[0].toLowerCase()}${lastName
             .replace(/'/g, '')
             .toLowerCase()}@gmail.com`,
-          password: '123',
-          // admin
+          password: '123'
         })
       );
     });
 
     await Promise.all(userPromises);
 
+    // --------- creating admin ---------
+    await Promise.all([
+      User.create({
+        first_name: 'Jonathan',
+        last_name: 'Crider',
+        email: 'jonathan.crider@howtheturntables.com',
+        password: process.env.AMPW,
+        admin: true,
+      }),
+      User.create({
+        first_name: 'Emily',
+        last_name: 'Asaro',
+        email: 'emily.asaro@howtheturntables.com',
+        password: process.env.AMPW,
+        admin: true,
+      }),
+      User.create({
+        first_name: 'Maciej',
+        last_name: 'Piech',
+        email: 'maciej.piech@howtheturntables.com',
+        password: process.env.AMPW,
+        admin: true,
+      }),
+      User.create({
+        first_name: 'Kevin',
+        last_name: 'Gil',
+        email: 'kevin.gil@howtheturntables.com',
+        password: process.env.AMPW,
+        admin: true,
+      }),
+    ]);
+
     // --------- creating reviews ---------
     const reviewsArray = Array(20)
       .fill(1)
-      .map(stars => Math.floor(Math.random() * 5) + 1);
+      .map((stars) => Math.floor(Math.random() * 5) + 1);
     const usersdata = await User.findAll();
     const userIds = usersdata.map((user) => user.id); // array of user Ids since they're UUID type
 
