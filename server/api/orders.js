@@ -35,7 +35,7 @@ ordersRouter.get('/:id/cart', async (req, res, next) => {  try {
   });
 
 
-  if (!orderItems) res.status(404).json('Your cart is empty');
+  if (!orderItems) res.sendStatus(404);
   else res.status(200).send(orderItems);
 } catch (error) {
   console.log('problem with your GET api/orders/:id/cart route: ', error);
