@@ -21,6 +21,7 @@ const ADD_REVIEW = 'ADD_REVIEW';
 const EDIT_REVIEW = 'EDIT_REVIEW'; // we might not want this (low priority)
 const DELETE_REVIEW = 'DELETE_REVIEW';
 // Shopping
+const NEW_CART = 'NEW_CART';
 const ADD_TO_CART = 'ADD_TO_CART';
 const LOAD_CART = 'LOAD_CART';
 const CHECKOUT = 'CHECKOUT';
@@ -51,6 +52,7 @@ const types = {
   ADD_REVIEW,
   EDIT_REVIEW,
   DELETE_REVIEW,
+  NEW_CART,
   ADD_TO_CART,
   LOAD_CART,
   CHECKOUT,

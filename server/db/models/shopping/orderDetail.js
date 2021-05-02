@@ -13,11 +13,9 @@ OrderDetail.init(
     // },
     total: {
       type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
     },
     status: {
       type: DataTypes.ENUM('IN PROGRESS', 'COMPLETED', 'CANCELLED'),
-
       allowNull: false,
     },
   },

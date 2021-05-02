@@ -10,7 +10,7 @@ import {
 export const renderArtists = () => {
   return async (dispatch) => {
     try {
-      const artistsList = (await axios.get('/api/artists')).data;
+      const { data: artistsList } = await axios.get('/api/artists');
       dispatch(loadArtists(artistsList));
     } catch (error) {
       console.log('Error rendering all artists in thunk creator: ', error);
@@ -21,7 +21,7 @@ export const renderArtists = () => {
 export const renderSingleArtist = (id) => {
   return async (dispatch) => {
     try {
-      const singleArtist = (await axios.get(`/api/artists/${id}`)).data;
+      const { data: singleArtist } = await axios.get(`/api/artists/${id}`);
       dispatch(loadSingleArtist(singleArtist));
     } catch (error) {
       console.log('Error rendering single artist in thunk creator: ', error);
