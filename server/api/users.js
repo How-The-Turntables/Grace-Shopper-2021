@@ -1,5 +1,6 @@
 const { User } = require('../db/index.js');
 const usersRouter = require('express').Router();
+const { requireToken } = require('./auth');
 
 // two gets: /auth and /users/userId
 usersRouter.get('/', async (req, res, next) => {
@@ -12,14 +13,41 @@ usersRouter.get('/', async (req, res, next) => {
   }
 });
 
-usersRouter.get('/:id', async (req, res, next) => {
+usersRouter.post('/', async (req, res, next) => {
+  try {
+    const { firstName, lastName, email, password } = req.body;
+    const newUser = await User.create({
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.trim(),
+      password
+    });
+    res.send(newUser);
+  } catch (error) {
+    console.log('cannot create user');
+    next(error);
+  }
+})
+
+
+// -------- To access a user ID, you must be authenticated by passing a token into the get request, such as below: ---------
+/*
+
+await axios.get(`/api/users/${id}`, {
+  headers: {
+    authorization: token,
+  },
+});
+
+ */
+
+usersRouter.get('/:id', requireToken, async (req, res, next) => {
   try {
     const user = await User.findAll({
       where: {
-        id: req.params.id,
+        id: req.user.id,
       },
     });
-
     res.send(user);
   } catch (error) {
     console.log('problem with your api/users/:id route: ', error);
@@ -32,9 +60,9 @@ usersRouter.put('/:id', async (req, res, next) => {
     const id = req.params.id;
     let user = await User.findByPk(id);
     const userUpdated = await user.update({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
+      firstName: req.body.firstName.trim(),
+      lastName: req.body.lastName.trim(),
+      email: req.body.email.trim(),
       password: req.body.password,
     });
     res.send(userUpdated);
