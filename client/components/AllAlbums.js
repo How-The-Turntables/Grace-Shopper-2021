@@ -64,6 +64,7 @@ class AllAlbums extends React.Component {
                         <h5>{album.artist.name}</h5>
                         <h4>{album.price}</h4>
                       </ProductInfo>
+                      {/* need to add onclick */}
                       <button>Add to Cart</button>
                     </ProductCard>
                   );

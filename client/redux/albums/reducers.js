@@ -25,9 +25,6 @@ const albumsReducer = (state = initialState, action) => {
   else if (action.type === types.SET_COUNT) {
     state = { ...state, count: action.count };
   }
-  // else if (action.type === types.SINGLE_ALBUM) {
-  //   state = action.album;
-  // }
   else if (action.type === types.EDIT_ALBUM) {
     const allAlbums = state.albums.map((album) =>
       album.id === action.album.id ? action.album : album

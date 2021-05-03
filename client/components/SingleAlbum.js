@@ -19,7 +19,7 @@ class SingleAlbum extends React.Component{
 
   render() {
     const { album } = this.props;
-    console.log('hey albums', album)
+    console.log('hey albums!', album)
 
   return (
     <div >

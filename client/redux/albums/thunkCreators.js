@@ -30,7 +30,7 @@ export const filterTutorial = (albums, genre) => {
   };
 };
 
-
+// SINGLE Album
 export const renderSingleAlbum = (id) => {
   return async (dispatch) => {
     try {
