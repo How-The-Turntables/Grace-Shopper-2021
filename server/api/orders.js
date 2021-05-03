@@ -1,6 +1,7 @@
 const ordersRouter = require('express').Router();
 const { Op } = require('sequelize'); // MOVE THS and the query to order model
-const { OrderDetail, Album, OrderItem } = require('../db/index');
+const { OrderDetail, Album } = require('../db/index');
+const OrderItem = require('../db/models/shopping/orderItem');
 const { requireToken } = require('./auth');
 
 //  all orders route for admin
@@ -21,7 +22,7 @@ ordersRouter.get('/:id/items', async (req, res, next) => {
     const id = req.params.id;
     const items = await OrderItem.findAll({
       where: {
-        order_deaitId: id,
+        order_detailId: id,
       },
     });
     res.status(200).send(items);
@@ -204,6 +205,18 @@ ordersRouter.post('/cart', async (req, res, next) => {
     res.status(201).send(cart);
   } catch (error) {
     console.log('problem with your POST api/cart route: ', error);
+    next(error);
+  }
+});
+
+ordersRouter.delete('/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const cartToRemove = OrderDetail.findByPk(id);
+    cartToRemove.destory();
+    res.status(204);
+  } catch (error) {
+    console.log('error occured in deleting cart');
     next(error);
   }
 });

@@ -36,21 +36,26 @@ export const cartChecker = (token) => {
       console.log('guest cart is ', guestCart);
       console.log('user cart is ', cart);
       // we got the guest cart.id
-      const { data: guestCartCall } = await axios.get(
-        `/api/${guestCart.id}/items`
-      );
-      //need to write a backend route for getting just order_items
-      console.log('guestCartCall is: ', guestCartCall);
-      // check for user cart in progress
-      // check for order_items with guest cart id
-      // map through and change their order_detail id to user cart's id
+      if (guestCart.total !== null) {
+        const { data: guestCartItems } = await axios.get(
+          `/api/${guestCart.id}/items`
+        );
+        //need to write a backend route for getting just order_items
+        // check for user cart in progress
+        // check for order_items with guest cart id
+        console.log('guestCartCall is: ', guestCartItems);
+
+        guestCartItems.map((item) => (item.order_detailId = cart.cart.id));
+        // map through and change their order_detail id to user cart's id
+      }
       // destroy guest cart
       // pull order_items with user cart.id
       // send user cart and order_items
       // profit
-
-      localStorage.setItem('GScart', JSON.stringify(cart));
-      dispatch(loadCart(cart));
+      else {
+        localStorage.setItem('GScart', JSON.stringify(cart));
+        dispatch(loadCart(cart));
+      }
     } catch (error) {
       console.log('error occured in cartChecker thunk', error);
     }
