@@ -19,9 +19,10 @@ ordersRouter.get('/admin', async (req, res, next) => {
 // Active user cart
 ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
+    const id = (req.params.id === req.user.id || req.user.admin) ? req.params.id : null
     const cart = await OrderDetail.findOne({
       where: {
-        userId: req.user.id,
+        userId: id,
         status: 'IN PROGRESS',
       },
       include: { all: true },
