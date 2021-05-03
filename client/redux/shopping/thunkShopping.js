@@ -33,9 +33,10 @@ export const cartChecker = (token) => {
         },
       });
       const oldCart = localStorage.getItem('GScart');
-      console.log(cart);
+      console.log('old cart is ', oldCart);
       if (cart) {
         localStorage.setItem('GScart', cart);
+        console.log('new cart is', cart);
         dispatch(loadCart(cart));
       }
     } catch (error) {
