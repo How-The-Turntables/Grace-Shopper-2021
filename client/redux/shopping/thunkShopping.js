@@ -32,8 +32,9 @@ export const cartChecker = (token) => {
           authorization: token,
         },
       });
-      const oldCart = localStorage.getItem('GScart');
+      const guestCart = localStorage.getItem('GScart');
       // console.log('old cart is ', oldCart);
+      // combine guestcart and cart somehow
       if (cart) {
         localStorage.setItem('GScart', cart);
         // console.log('new cart is', cart);
