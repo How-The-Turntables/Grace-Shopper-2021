@@ -10,6 +10,7 @@ import Checkout from './Checkout';
 import Footer from './Footer';
 import SignUpForm from './SignUpForm';
 import SingleArtist from './SingleArtist';
+import AllOrders from './AllOrders';
 
 export {
   App,
@@ -24,4 +25,5 @@ export {
   LoginForm,
   LoginView,
   SignUpForm,
+  AllOrders,
 };

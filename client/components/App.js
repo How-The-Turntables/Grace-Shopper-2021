@@ -3,7 +3,12 @@ import { Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { renderArtists } from '../redux/artists/artistThunkCreator';
 import { renderAlbums } from '../redux/albums/thunkCreators';
-import { createCart } from '../redux/shopping/thunkShopping'; // what about if a user is returning to the site?
+import {
+  createCart,
+  cartChecker,
+  guestCart,
+} from '../redux/shopping/thunkShopping'; // what about if a user is returning to the site?
+import { attemptTokenLogin } from '../redux/user/userActions';
 
 import {
   Nav,
@@ -16,12 +21,32 @@ import {
   Checkout,
   Footer,
   SignUpForm,
+  AllOrders,
 } from './index';
 import LoginForm from './LoginForm';
 
 class App extends Component {
   componentDidMount() {
-    // this.props.newCart();
+    const token = window.localStorage.JWTtoken;
+    if (token) {
+      this.props.attemptTokenLogin();
+    } else {
+      this.props.guestCart();
+    }
+  }
+
+  componentDidUpdate(props) {
+    const cart = window.localStorage.GScart;
+    const token = window.localStorage.JWTtoken;
+    if (token) {
+      // start here tomorrow
+      // check if theres a token
+      // yes? => status in progress, merge items from current cart
+    }
+    if (!cart) {
+      props.cartChecker(token);
+      //this may go away
+    }
   }
   render() {
     return (
@@ -29,6 +54,7 @@ class App extends Component {
         <Route component={Nav} />
         <Route component={Home} path="/" exact />
 
+        <Route component={AllOrders} path="/orders/admin" />
         <Route component={AllAlbums} path="/albums/:idx" />
         <Route component={LoginView} path="/login" />
         <Route component={LoginForm} path="/loginform" />
@@ -42,14 +68,19 @@ class App extends Component {
       </div>
     );
   }
+}
+
+const mapStateToProps = (state) => {
+  return state;
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, { history }) => {
   return {
     newCart: (id) => dispatch(createCart(id)), // need this to have userId token
-    // loadArtists: () => dispatch(renderArtists())
-
+    cartChecker: (token) => dispatch(cartChecker(token)),
+    attemptTokenLogin: () => dispatch(attemptTokenLogin(history)),
+    guestCart: () => dispatch(guestCart()),
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
