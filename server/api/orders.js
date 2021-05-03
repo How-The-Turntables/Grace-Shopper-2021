@@ -2,9 +2,10 @@ const ordersRouter = require('express').Router();
 const { Op } = require('sequelize'); // MOVE THS and the query to order model
 const { OrderDetail, Album, OrderItem } = require('../db/index');
 const { requireToken } = require('./auth');
+const { authId } = require('../utils');
 
 //  all orders route for admin
-ordersRouter.get('/admin', async (req, res, next) => {
+ordersRouter.get('/admin', requireToken, async (req, res, next) => {
   try {
     const orders = await OrderDetail.findAll({
       include: { all: true },
@@ -19,7 +20,10 @@ ordersRouter.get('/admin', async (req, res, next) => {
 // Active user cart
 ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
-    const id = (req.params.id === req.user.id || req.user.admin) ? req.params.id : null
+    // const id = (req.params.id === req.user.id || req.user.admin === true) ? req.params.id : null
+    const id = authId(req);
+    console.log('USER ID', id)
+    if (!id) next()
     const cart = await OrderDetail.findOne({
       where: {
         userId: id,
