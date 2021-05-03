@@ -24,7 +24,7 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
         userId: req.user.id,
         status: 'IN PROGRESS',
       },
-      include: { all: true },
+      // include: { all: true },
     });
     const cartId = cart.dataValues.id;
     // findAll order_items where order_detailId: cartId
@@ -32,11 +32,12 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
       where: {
         order_detailId: cartId,
       },
-      include: { all: true },
+      // include: { all: true },
     });
 
+    const cartDetails = { cart, orderItems };
     if (!orderItems) res.sendStatus(404);
-    else res.status(200).send(orderItems);
+    else res.status(200).send(cartDetails);
   } catch (error) {
     console.log('problem with your GET api/orders/:id/cart route: ', error);
     next(error);

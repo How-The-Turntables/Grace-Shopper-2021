@@ -45,10 +45,10 @@ class App extends Component {
         //could this could cause an infinite loop***
       }
     }
-    if (!cart) {
-      this.props.cartChecker(token);
-      //this may go away
-    }
+    // if (!cart) {
+    //   this.props.cartChecker(token);
+    //   //this may go away
+    // }
   }
   render() {
     return (

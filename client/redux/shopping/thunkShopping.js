@@ -32,25 +32,35 @@ export const cartChecker = (token) => {
           authorization: token,
         },
       });
-      const guestCart = JSON.parse(localStorage.getItem('GScart'));
-      console.log('guest cart is ', typeof guestCart);
-      console.log('user casrt is ', cart);
+      const guestCart = localStorage.getItem('GScart');
+      console.log('guest cart is ', guestCart);
+      console.log('user cart is ', cart);
       // need to get order_items fromguest car t and add them to the user cart
-      // if guestCart type is an object => ignore it is empty
-      // if it is an array => fetch all order_items for this order_detail
-      // add them all to the user cart
 
-      // combine guestcart and cart somehow
-      if (typeof guestCart === 'object') {
-        if (cart) {
-          localStorage.setItem('GScart', JSON.stringify(cart));
-          dispatch(loadCart(cart));
-        }
-      } else {
-        cart.push(guestCart);
-        localStorage.setItem('GScart', JSON.stringify(cart));
-        dispatch(loadCart(cart));
-      }
+      // if gvuest wants to check out
+      // chekout process will check the local storage
+
+      // typeof array is an object
+      // if only 1 product, will it be an array
+      // !guestCart.length
+
+      // if (typeof guestCart !== 'object') {
+      //   // if guestCart type is an object => ignore it is empty
+      //   // if it is an array => fetch all order_items for this order_detail
+      //   guestCart.forEach((orderItem) => cart.push(orderItem));
+      //   // add them all to the user cart
+      //   // combine guestcart and cart somehow
+
+      //   // when should the axios PUT be made?
+      //   // after login?
+      //   // after adding to cart
+
+      //   localStorage.setItem('GScart', cart);
+      //   dispatch(loadCart(cart));
+      // }
+
+      localStorage.setItem('GScart', JSON.stringify(cart));
+      dispatch(loadCart(cart));
     } catch (error) {
       console.log('error occured in cartChecker thunk', error);
     }
