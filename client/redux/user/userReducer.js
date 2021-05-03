@@ -9,7 +9,6 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   if (action.type === types.LOGIN) {
     const { user, token, admin } = action;
-    console.log(state);
     state = { ...state, token, user, admin };
   }
   return state;

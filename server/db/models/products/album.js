@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+// const { db } = require('../../index');
 const db = require('../../db');
 
 class Album extends Model {}

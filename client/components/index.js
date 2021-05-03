@@ -11,7 +11,7 @@ import Footer from './Footer';
 import SignUpForm from './SignUpForm';
 import SingleArtist from './SingleArtist';
 import SingleAlbum from './SingleAlbum';
-
+import AllOrders from './AllOrders';
 
 export {
   App,
@@ -27,4 +27,5 @@ export {
   LoginForm,
   LoginView,
   SignUpForm,
+  AllOrders,
 };

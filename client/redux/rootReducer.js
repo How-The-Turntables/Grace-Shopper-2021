@@ -4,6 +4,7 @@ import albumReducer from './albums/reducers';
 import artistReducers from './artists/artistReducers';
 import cartReducer from './shopping/reducers';
 import userReducer from './user/userReducer';
+import adminReducers from './admin/adminReducer';
 
 const rootReducer = combineReducers({
   albums: albumReducer.albumsReducer,
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   artists: artistReducers.artistsReducer,
   singleArtist: artistReducers.singleArtistReducer,
   cart: cartReducer,
-  auth: userReducer
+  auth: userReducer,
+  orders: adminReducers.ordersReducer,
 });
 
 export default rootReducer;
