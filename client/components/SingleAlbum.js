@@ -24,7 +24,7 @@ class SingleAlbum extends React.Component{
     <div >
       <h1>{album.title}</h1>
 
-      {!album.quantity ? (<div>Sorry, this album is out of stock!</div>) :
+      {!album.quantity ? (<div>Sorry, this album is out of stock!</div>):
         (
           <div key={album.id}>
               <img src={album.photoUrl}/>
