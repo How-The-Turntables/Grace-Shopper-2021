@@ -26,7 +26,9 @@ class Nav extends Component {
         <AppBar position='static' style={{ background:'#F2F1E7'
  }}>
           <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <Typography variant='h3' style={{ color: '#42240C' }}>How The Turntables</Typography>
+          </Link>
             <div>
               <Link to="/" style={{ textDecoration: 'none' }}>
                 <Button >
