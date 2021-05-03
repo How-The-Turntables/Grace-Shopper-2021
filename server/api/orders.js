@@ -131,7 +131,7 @@ ordersRouter.put('/:id/cart/:albumId', async (req, res, next) => {
   }
 });
 
-// user can add cart items and quantity of current items
+// user can delete current items
 ordersRouter.delete('/:id/cart/:albumId', async (req, res, next) => {
   try {
     const albumToRemove = await Album.findByPk(req.params.albumId); // change to a findOne w/ where clause?
