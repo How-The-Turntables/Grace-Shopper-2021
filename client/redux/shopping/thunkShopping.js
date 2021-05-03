@@ -35,8 +35,13 @@ export const cartChecker = (token) => {
       const guestCart = JSON.parse(localStorage.getItem('GScart'));
       console.log('guest cart is ', typeof guestCart);
       console.log('user casrt is ', cart);
+      // need to get order_items fromguest car t and add them to the user cart
+      // if guestCart type is an object => ignore it is empty
+      // if it is an array => fetch all order_items for this order_detail
+      // add them all to the user cart
+
       // combine guestcart and cart somehow
-      if (typeof guestCart !== 'object') {
+      if (typeof guestCart === 'object') {
         if (cart) {
           localStorage.setItem('GScart', JSON.stringify(cart));
           dispatch(loadCart(cart));
