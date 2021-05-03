@@ -32,12 +32,18 @@ export const cartChecker = (token) => {
           authorization: token,
         },
       });
-      const guestCart = localStorage.getItem('GScart');
-      console.log('old cart is ', oldCart);
+      const guestCart = JSON.parse(localStorage.getItem('GScart'));
+      console.log('guest cart is ', typeof guestCart);
+      console.log('user casrt is ', cart);
       // combine guestcart and cart somehow
-      if (cart) {
-        localStorage.setItem('GScart', cart);
-        // console.log('new cart is', cart);
+      if (typeof guestCart !== 'object') {
+        if (cart) {
+          localStorage.setItem('GScart', JSON.stringify(cart));
+          dispatch(loadCart(cart));
+        }
+      } else {
+        cart.push(guestCart);
+        localStorage.setItem('GScart', JSON.stringify(cart));
         dispatch(loadCart(cart));
       }
     } catch (error) {
@@ -50,7 +56,7 @@ export const guestCart = () => {
   return async (dispatch) => {
     try {
       const { data: cart } = await axios.post('/api/orders/cart');
-      localStorage.setItem('GScart', cart);
+      localStorage.setItem('GScart', JSON.stringify(cart));
       dispatch(loadCart(cart));
     } catch (error) {
       console.log('error occured in guestCart thunk', error);
