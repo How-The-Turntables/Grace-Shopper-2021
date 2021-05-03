@@ -32,32 +32,22 @@ export const cartChecker = (token) => {
           authorization: token,
         },
       });
-      const guestCart = localStorage.getItem('GScart');
+      const guestCart = JSON.parse(localStorage.getItem('GScart'));
       console.log('guest cart is ', guestCart);
       console.log('user cart is ', cart);
-      // need to get order_items fromguest car t and add them to the user cart
-
-      // if gvuest wants to check out
-      // chekout process will check the local storage
-
-      // typeof array is an object
-      // if only 1 product, will it be an array
-      // !guestCart.length
-
-      // if (typeof guestCart !== 'object') {
-      //   // if guestCart type is an object => ignore it is empty
-      //   // if it is an array => fetch all order_items for this order_detail
-      //   guestCart.forEach((orderItem) => cart.push(orderItem));
-      //   // add them all to the user cart
-      //   // combine guestcart and cart somehow
-
-      //   // when should the axios PUT be made?
-      //   // after login?
-      //   // after adding to cart
-
-      //   localStorage.setItem('GScart', cart);
-      //   dispatch(loadCart(cart));
-      // }
+      // we got the guest cart.id
+      const { data: guestCartCall } = await axios.get(
+        `/api/${guestCart.id}/items`
+      );
+      //need to write a backend route for getting just order_items
+      console.log('guestCartCall is: ', guestCartCall);
+      // check for user cart in progress
+      // check for order_items with guest cart id
+      // map through and change their order_detail id to user cart's id
+      // destroy guest cart
+      // pull order_items with user cart.id
+      // send user cart and order_items
+      // profit
 
       localStorage.setItem('GScart', JSON.stringify(cart));
       dispatch(loadCart(cart));
