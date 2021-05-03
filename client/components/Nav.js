@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 //import Calligraffitti from '../../server/public/fonts/Calligraffitti-Regular.ttf'; -- Working on figuring out changing the web font;
-import { AppBar, Toolbar, ListItem, IconButton, ListItemText, Avatar, Divider, List, Typography, Box, Button } from '@material-ui/core';
-import { ArrowBack, AssignmentInd, Apps, Home, ContactMail, VpnKey } from '@material-ui/icons';
+import { AppBar, Toolbar, Typography, Box, Button } from '@material-ui/core';
+import { Home, VpnKey, ShoppingCart } from '@material-ui/icons';
 //import avatar from '../../server/public/img/defaultAlbum.png';
 
 class Nav extends Component {
@@ -36,6 +36,11 @@ class Nav extends Component {
               <Link to="/login" style={{ textDecoration: 'none' }}>
                 <Button>
                   <VpnKey />Login
+                </Button>
+              </Link>
+              <Link to="/cart" style={{ textDecoration: 'none' }}>
+                <Button>
+                  <ShoppingCart />
                 </Button>
               </Link>
             </div>
