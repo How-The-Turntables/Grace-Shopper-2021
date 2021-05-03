@@ -182,6 +182,18 @@ ordersRouter.put('/:id/admin', async (req, res, next) => {
   }
 });
 
+ordersRouter.post('/cart', async (req, res, next) => {
+  try {
+    const cart = await OrderDetail.create({
+      status: 'IN PROGRESS',
+    });
+    res.status(201).send(cart);
+  } catch (error) {
+    console.log('problem with your POST api/cart route: ', error);
+    next(error);
+  }
+});
+
 module.exports = ordersRouter;
 
 // // console.logs that were helpful for debugging
