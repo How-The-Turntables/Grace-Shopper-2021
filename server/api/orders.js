@@ -24,7 +24,6 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
         userId: req.user.id,
         status: 'IN PROGRESS',
       },
-      // include: { all: true },
     });
     const cartId = cart.dataValues.id;
     // findAll order_items where order_detailId: cartId
@@ -32,7 +31,6 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
       where: {
         order_detailId: cartId,
       },
-      // include: { all: true },
     });
 
     const cartDetails = { cart, orderItems };
