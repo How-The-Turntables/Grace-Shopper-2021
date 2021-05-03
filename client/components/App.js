@@ -32,8 +32,12 @@ class App extends Component {
     if (token) {
       this.props.attemptTokenLogin();
     } else {
-      console.log(window.localStorage);
       // this.props.guestCart();
+      const cart = {
+        id: 'guest',
+        albums: [],
+      };
+      localStorage.setItem('GuestCart', JSON.stringify(cart));
     }
   }
 
@@ -46,10 +50,6 @@ class App extends Component {
         //could this could cause an infinite loop***
       }
     }
-    // if (!cart) {
-    //   this.props.cartChecker(token);
-    //   //this may go away
-    // }
   }
   render() {
     return (
