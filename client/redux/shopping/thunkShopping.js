@@ -22,3 +22,22 @@ export const renderCart = (id) => {
     }
   };
 };
+
+export const cartChecker = (token) => {
+  return async (dispatch) => {
+    try {
+      const { id } = token;
+      const { data: cart } = await axios.get(`/api/orders/${id}/cart`, {
+        headers: {
+          authorization: token,
+        },
+      });
+      if (cart) {
+        localStorage.setItem('GScart', cart);
+        dispatch(loadCart(cart));
+      }
+    } catch (error) {
+      console.log('error occured in cartChecker thunk', error);
+    }
+  };
+};

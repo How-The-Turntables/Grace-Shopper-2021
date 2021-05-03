@@ -1,5 +1,7 @@
 const { DataTypes, Model } = require('sequelize');
 const db = require('../../db');
+const OrderDetail = require('../shopping/orderDetail');
+// const { db, OrderDetail } = require('../../index');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -58,7 +60,6 @@ User.authenticate = async ({ email, password }) => {
   const user = await User.findOne({
     where: { email },
   });
-
   if (user && (await bcrypt.compare(password, user.password))) {
     return await jwt.sign(user.id, process.env.JWT); // token w/ user ID
   }
