@@ -26,7 +26,7 @@ albumsRouter.get('/:id', async (req, res, next) => {
     const album = await Album.findByPk(id);
     res.send(album);
   } catch (error) {
-    console.log('error occured in the /api/albums/:id');
+    console.log('error occured in the /api/albums/:id/details');
     next(error);
   }
 });

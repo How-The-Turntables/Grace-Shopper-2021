@@ -15,10 +15,10 @@ export const setCount = (count) => {
   };
 };
 
-export const loadSingleAlbum = (album) => {
+export const loadSingleAlbum = (singleAlbum) => {
   return {
     type: types.SINGLE_ALBUM,
-    album,
+    singleAlbum,
   };
 };
 
