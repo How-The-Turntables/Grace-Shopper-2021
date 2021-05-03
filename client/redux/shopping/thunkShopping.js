@@ -36,7 +36,7 @@ export const cartChecker = (token) => {
       console.log('guest cart is ', guestCart);
       console.log('user cart is ', cart);
       // we got the guest cart.id
-      if (guestCart.total !== null) {
+      if (guestCart.total > 0) {
         const { data: guestCartItems } = await axios.get(
           `/api/${guestCart.id}/items`
         );
@@ -47,9 +47,21 @@ export const cartChecker = (token) => {
 
         guestCartItems.map((item) => (item.order_detailId = cart.cart.id));
         // map through and change their order_detail id to user cart's id
+        await axios.delete(`/api/orders/${guestCart.id}`);
+        localStorage.removeItem('GScart');
+        // destroy guest cart
+        const { data: updatedCartItems } = await axios.get(
+          `/api/orders/${id}/cart`,
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
+        localStorage.setItem('GScart', updatedCartItems);
+
+        // pull order_items with user cart.id
       }
-      // destroy guest cart
-      // pull order_items with user cart.id
       // send user cart and order_items
       // profit
       else {
@@ -65,7 +77,11 @@ export const cartChecker = (token) => {
 export const guestCart = () => {
   return async (dispatch) => {
     try {
-      const { data: cart } = await axios.post('/api/orders/cart');
+      const cart = {
+        id: 'guest',
+        albums: [],
+      };
+      // const { data: cart } = await axios.post('/api/orders/cart');
       localStorage.setItem('GScart', JSON.stringify(cart));
       dispatch(loadCart(cart));
     } catch (error) {

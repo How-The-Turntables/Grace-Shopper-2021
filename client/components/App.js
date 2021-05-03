@@ -32,7 +32,8 @@ class App extends Component {
     if (token) {
       this.props.attemptTokenLogin();
     } else {
-      this.props.guestCart();
+      console.log(window.localStorage);
+      // this.props.guestCart();
     }
   }
 
