@@ -32,6 +32,21 @@ ordersRouter.get('/:id/items', async (req, res, next) => {
   }
 });
 
+ordersRouter.post('/items', async (req, res, next) => {
+  try {
+    const data = req.params.data;
+    const newOrderItems = await OrderItem.create({
+      quantity: 1,
+      albumId: data.albumId,
+      order_detailId: data.order_detailId,
+    });
+    res.status(204).send(newOrderItems);
+  } catch (error) {
+    console.log('error occured in POST /api/orders/:id/items');
+    next(error);
+  }
+});
+
 // Active user cart
 ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
@@ -76,7 +91,7 @@ ordersRouter.get('/:id', async (req, res, next) => {
 });
 
 // user adds item to cart
-ordersRouter.post('/:id/cart', requireToken, async (req, res, next) => {
+ordersRouter.post('/cart', requireToken, async (req, res, next) => {
   try {
     const cart = await OrderDetail.create({
       where: {
@@ -205,18 +220,6 @@ ordersRouter.post('/cart', async (req, res, next) => {
     res.status(201).send(cart);
   } catch (error) {
     console.log('problem with your POST api/cart route: ', error);
-    next(error);
-  }
-});
-
-ordersRouter.delete('/:id', async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const cartToRemove = OrderDetail.findByPk(id);
-    cartToRemove.destory();
-    res.status(204);
-  } catch (error) {
-    console.log('error occured in deleting cart');
     next(error);
   }
 });

@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  createCart,
-  cartChecker,
-  guestCart,
-} from '../redux/shopping/thunkShopping'; // what about if a user is returning to the site?
+import { createCart, cartChecker } from '../redux/shopping/thunkShopping'; // what about if a user is returning to the site?
 import { attemptTokenLogin } from '../redux/user/userActions';
-
 import {
   Nav,
   Home,
@@ -25,6 +20,7 @@ import {
   AllOrders,
 } from './index';
 import LoginForm from './LoginForm';
+import { newGuestCart } from '../../server/utils';
 
 class App extends Component {
   componentDidMount() {
@@ -32,12 +28,7 @@ class App extends Component {
     if (token) {
       this.props.attemptTokenLogin();
     } else {
-      // this.props.guestCart();
-      const cart = {
-        id: 'guest',
-        albums: [],
-      };
-      localStorage.setItem('GuestCart', JSON.stringify(cart));
+      newGuestCart();
     }
   }
 
@@ -91,7 +82,6 @@ const mapDispatchToProps = (dispatch, { history }) => {
     newCart: (id) => dispatch(createCart(id)), // need this to have userId token
     cartChecker: (token) => dispatch(cartChecker(token)),
     attemptTokenLogin: () => dispatch(attemptTokenLogin(history)),
-    guestCart: () => dispatch(guestCart()),
   };
 };
 
