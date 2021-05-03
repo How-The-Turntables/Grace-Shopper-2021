@@ -16,6 +16,7 @@ import {
   Checkout,
   Footer,
   SignUpForm,
+  AllOrders,
 } from './index';
 import LoginForm from './LoginForm';
 
@@ -29,6 +30,7 @@ class App extends Component {
         <Route component={Nav} />
         <Route component={Home} path="/" exact />
 
+        <Route component={AllOrders} path="/orders/admin" />
         <Route component={AllAlbums} path="/albums/:idx" />
         <Route component={LoginView} path="/login" />
         <Route component={LoginForm} path="/loginform" />
