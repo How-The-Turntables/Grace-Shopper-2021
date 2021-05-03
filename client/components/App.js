@@ -56,8 +56,9 @@ class App extends Component {
         <Route component={Home} path="/" exact />
 
         <Route component={AllOrders} path="/orders/admin" />
-        <Route component={AllAlbums} path="/albums/:idx" />
         <Route component={SingleAlbum} path="/albums/:id/details" exact />
+        <Route component={AllAlbums} path="/albums/:idx" exact />
+
 
         <Route component={LoginView} path="/login" />
         <Route component={LoginForm} path="/loginform" />
