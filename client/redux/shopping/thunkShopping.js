@@ -33,7 +33,7 @@ export const cartChecker = (token) => {
         },
       });
       const guestCart = localStorage.getItem('GScart');
-      // console.log('old cart is ', oldCart);
+      console.log('old cart is ', oldCart);
       // combine guestcart and cart somehow
       if (cart) {
         localStorage.setItem('GScart', cart);
