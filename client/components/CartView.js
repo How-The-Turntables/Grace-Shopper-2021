@@ -16,10 +16,18 @@ class CartView extends Component {
     };
   }
   render() {
+    const { orderDetail } = this.props;
+    console.log(orderDetail)
     return (
       <div>
-        <h1>Cart View Component</h1>
+        <div>{!orderDetail.length ?
+          (<h2>Your cart is empty.</h2>) :
+          (<div>
+            </div>)
+        }
+        </div>
       </div>
+
     );
   }
 }
