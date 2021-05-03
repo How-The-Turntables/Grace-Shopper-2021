@@ -1,13 +1,14 @@
 import { combineReducers } from 'redux';
 
-import albumReducer from './albums/reducers';
+import albumReducers from './albums/reducers';
 import artistReducers from './artists/artistReducers';
 import cartReducer from './shopping/reducers';
 import userReducer from './user/userReducer';
 import adminReducers from './admin/adminReducer';
 
 const rootReducer = combineReducers({
-  albums: albumReducer,
+  albums: albumReducers.albumsReducer,
+  singleAlbum: albumReducers.singleAlbumReducer,
   artists: artistReducers.artistsReducer,
   singleArtist: artistReducers.singleArtistReducer,
   cart: cartReducer,

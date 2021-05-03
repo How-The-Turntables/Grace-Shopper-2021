@@ -25,6 +25,7 @@ class AllAlbums extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const { albums, count } = this.props;
     const pageCount = Math.ceil(count / 10); //Math.ceil rounds up
     const links = new Array(pageCount).fill('filler').map((el, idx) => {
@@ -67,12 +68,13 @@ class AllAlbums extends React.Component {
                       <ImageCard src={album.photoUrl} />
 
                       <ProductInfo>
-                        <Link to={{ pathname: `/albums/${album.id}` }}>
+                        <Link to={{ pathname: `/albums/${album.id}/details` }}>
                           <h4>{album.title}</h4>
                         </Link>
                         <h5>{album.artist.name}</h5>
                         <h4>{album.price}</h4>
                       </ProductInfo>
+                      {/* need to add onclick */}
                       <button>Add to Cart</button>
                     </ProductCard>
                   );
@@ -98,7 +100,7 @@ class AllAlbums extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     count: state.albums.count,
-    albums: state.albums.data[ownProps.match.params.idx] || [],
+    albums: state.albums.data[ownProps.match.params.idx] || []
   };
 };
 
