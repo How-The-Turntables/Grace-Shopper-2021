@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { renderArtists } from '../redux/artists/artistThunkCreator';
-import { renderAlbums } from '../redux/albums/thunkCreators';
 import {
   createCart,
   cartChecker,
@@ -52,23 +50,28 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Route component={Nav} />
-        <Route component={Home} path="/" exact />
+        <Router>
+          <Route component={Nav} />
+          <Switch>
+            <Route component={Home} path="/" exact />
 
-        <Route component={AllOrders} path="/orders/admin" />
-        <Route component={SingleAlbum} path="/albums/:id/details" exact />
-        <Route component={AllAlbums} path="/albums/:idx" exact />
+            <Route component={AllOrders} path="/orders/admin" />
+            <Route component={SingleAlbum} path="/albums/:id/details" exact />
+            <Route component={AllAlbums} path="/albums/:idx" exact />
 
 
-        <Route component={LoginView} path="/login" />
-        <Route component={LoginForm} path="/loginform" />
-        <Route component={SignUpForm} path="/register" />
+            <Route component={LoginView} path="/login" />
+            <Route component={LoginForm} path="/loginform" />
+            <Route component={SignUpForm} path="/register" />
 
-        <Route component={SingleArtist} path="/artists/:id" />
-        <Route component={AllArtists} path="/artists" exact />
-        <Route component={CartView} path="/cart" />
-        <Route component={Checkout} path="/checkout" />
-        <Route component={Footer} />
+            <Route component={SingleArtist} path="/artists/:id" />
+            <Route component={AllArtists} path="/artists" exact />
+            <Route component={CartView} path="/cart" />
+            <Route component={Checkout} path="/checkout" />
+
+          </Switch>
+          <Route component={Footer} />
+        </Router>
       </div>
     );
   }
