@@ -11,6 +11,8 @@ import { attemptTokenLogin } from '../redux/user/userActions';
 import {
   Nav,
   Home,
+  AdminPage,
+  AllUsers,
   LoginView,
   AllAlbums,
   AllArtists,
@@ -54,8 +56,7 @@ class App extends Component {
           <Route component={Nav} />
           <Switch>
             <Route component={Home} path="/" exact />
-
-            <Route component={AllOrders} path="/orders/admin" />
+  
             <Route component={SingleAlbum} path="/albums/:id/details" exact />
             <Route component={AllAlbums} path="/albums/:idx" exact />
 
@@ -63,6 +64,11 @@ class App extends Component {
             <Route component={LoginView} path="/login" />
             <Route component={LoginForm} path="/loginform" />
             <Route component={SignUpForm} path="/register" />
+
+
+            <Route component={AdminPage} path="/admin" />
+            <Route component={AllUsers} path="/orders/admin" />
+            <Route component={AllOrders} path="/orders/admin" />
 
             <Route component={SingleArtist} path="/artists/:id" />
             <Route component={AllArtists} path="/artists" exact />
@@ -72,6 +78,7 @@ class App extends Component {
           </Switch>
           <Route component={Footer} />
         </Router>
+
       </div>
     );
   }
