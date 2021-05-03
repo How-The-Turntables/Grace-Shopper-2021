@@ -15,7 +15,7 @@ const initialState = {
 
 // added filteredAlbums: action.payload to LOAD_ALBUMS
 
-const albumReducer = (state = initialState, action) => {
+const albumsReducer = (state = initialState, action) => {
   if (action.type === types.LOAD_ALBUMS) {
     state = {
       ...state,
@@ -25,9 +25,9 @@ const albumReducer = (state = initialState, action) => {
   else if (action.type === types.SET_COUNT) {
     state = { ...state, count: action.count };
   }
-  else if (action.type === types.SINGLE_ALBUM) {
-    state = action.album;
-  }
+  // else if (action.type === types.SINGLE_ALBUM) {
+  //   state = action.album;
+  // }
   else if (action.type === types.EDIT_ALBUM) {
     const allAlbums = state.albums.map((album) =>
       album.id === action.album.id ? action.album : album
@@ -38,6 +38,19 @@ const albumReducer = (state = initialState, action) => {
     state = { ...state, filteredAlbums: action.payload, genre: action.payload.genre }
   }
   return state;
+};
+
+
+const singleAlbumReducer = (state = {}, action) => {
+  if (action.type === types.SINGLE_ALBUM) {
+    state = action.album;
+  }
+  return state
+};
+
+const albumReducer = {
+  singleAlbumReducer,
+  albumsReducer
 };
 
 export default albumReducer;

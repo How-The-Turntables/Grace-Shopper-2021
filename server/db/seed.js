@@ -184,6 +184,11 @@ const syncAndSeed = async () => {
       artistId: 2,
     });
 
+    const review = await Review.create({
+      comment: 'Pretty okay',
+      stars: 5
+    })
+
     const order_detail = await OrderDetail.create({
       total: (1*record1.price + 1*record2.price),
       status: 'IN PROGRESS',
@@ -205,7 +210,7 @@ const syncAndSeed = async () => {
     });
 
     // await Promise.all([buyer, record, order_detail, order_item]);
-
+    // record1.reviews.push(review);
     order_detail.userId = buyer.id;
     order_detail2.userId = buyer.id;
     order_item1.albumId = record1.id;

@@ -12,7 +12,7 @@ class FilterSort extends React.Component {
 
   render() {
     const { albums } = this.props;
-    console.log('hey albums', albums)
+    // console.log('hey albums', albums)
     return (
       <div>
         <h1>Shop all albums</h1>

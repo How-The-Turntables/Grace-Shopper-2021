@@ -6,15 +6,17 @@ import { Container, Box, Background, Title, DescriptionBox } from '../styles';
 class SingleArtist extends Component {
   // not addind local state until we know if we will be adding edit, create or delete functionality
   componentDidMount() {
-    // console.log('this.props******',this.props.match.params.id)
+    console.log('comp did mount',this.props)
+
     this.props.loadArtist(this.props.match.params.id)
 
   }
 
   render() {
     const { artist } = this.props;
-    // console.log( '*****',artist )
     const albums = artist.albums;
+    console.log('hey artist', artist)
+
     return (
       <div>
         {artist.id ? (

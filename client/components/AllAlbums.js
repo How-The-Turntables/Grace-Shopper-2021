@@ -44,18 +44,9 @@ class AllAlbums extends React.Component {
       <div>
         <h1>Shop all albums</h1>
         <ProductFilter>
-          <SortParent>
-            <SortChild>
-              <FilterSort albums={albums}/>
-            </SortChild>
-            <SortChild>
-              <label>Sort By</label>
-              <select>
-                <option value="/">Title</option>
-                <option value="/">Price</option>
-              </select>
-            </SortChild>
-          </SortParent>
+
+           <FilterSort albums={albums}/>
+
         </ProductFilter>
         <Products>
           <ProductContainer>
@@ -67,7 +58,7 @@ class AllAlbums extends React.Component {
                       <ImageCard src={album.photoUrl} />
 
                       <ProductInfo>
-                        <Link to={{ pathname: `/albums/${album.id}` }}>
+                        <Link to={{ pathname: `/albums/${album.id}/details` }}>
                           <h4>{album.title}</h4>
                         </Link>
                         <h5>{album.artist.name}</h5>
@@ -99,7 +90,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     count: state.albums.count,
     albums: state.albums.data[ownProps.match.params.idx] || state.albums.filteredAlbums,
-    // albums: state.albums.filterTutorial
   };
 };
 

@@ -16,7 +16,7 @@ artistRouter.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
     const artist = await Artist.findByPk(id, { include: [Album] });
-    res.send(artist);
+    res.status(200).send(artist);
   } catch (error) {
     console.log('error occured in /api/artists/:id: ', error);
     next(error);

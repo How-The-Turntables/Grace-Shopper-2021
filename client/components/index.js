@@ -10,6 +10,8 @@ import Checkout from './Checkout';
 import Footer from './Footer';
 import SignUpForm from './SignUpForm';
 import SingleArtist from './SingleArtist';
+import SingleAlbum from './SingleAlbum';
+
 
 export {
   App,
@@ -18,6 +20,7 @@ export {
   AllArtists,
   SingleArtist,
   AllAlbums,
+  SingleAlbum,
   CartView,
   Checkout,
   Footer,

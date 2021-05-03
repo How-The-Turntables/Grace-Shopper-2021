@@ -23,10 +23,10 @@ albumsRouter.get('/', async (req, res, next) => {
 albumsRouter.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    const album = await Album.findByPk(id);
-    res.send(album);
+    const album = await Album.findByPk(id, { include: [ Review ] });
+    res.status(200).send(album);
   } catch (error) {
-    console.log('error occured in the /api/albums/:id');
+    console.log('error occured in the /api/albums/:id -- ', error);
     next(error);
   }
 });
@@ -135,6 +135,7 @@ albumsRouter.get('/:id/reviews', async (req, res, next) => {
       },
       include: Album,
     });
+    console.log(typeof reviews)
     res.send(reviews);
   } catch (error) {
     console.log(
