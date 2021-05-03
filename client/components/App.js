@@ -36,19 +36,17 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(props) {
+  componentDidUpdate(prevState) {
     const cart = window.localStorage.GScart;
     const token = window.localStorage.JWTtoken;
-    // may need to remove
     if (token) {
-      // start here tomorrow
-      // check if theres a token
-      // yes? => status in progress, merge items from current cart
-
-      props.cartChecker(token);
+      if (prevState.cart === this.props.cart) {
+        this.props.cartChecker(token);
+        //could this could cause an infinite loop***
+      }
     }
     if (!cart) {
-      props.cartChecker(token);
+      this.props.cartChecker(token);
       //this may go away
     }
   }
