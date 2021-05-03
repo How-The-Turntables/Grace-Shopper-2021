@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loadAlbums, setCount, loadSingleAlbum } from './actionCreators';
+import { loadAlbums, setCount, loadSingleAlbum, filterGenreAlbums } from './actionCreators';
 
 export const renderAlbums = (idx) => {
   return async (dispatch, getState) => {
@@ -30,5 +30,13 @@ export const renderSingleAlbum = (id) => {
     } catch (error) {
       console.log('Error rendering single album in thunk creator: ', error);
     }
+  };
+};
+
+
+// FILTER
+export const filterTutorial = (albums, genre) => {
+  return  (dispatch) => {
+    dispatch(filterGenreAlbums(albums, genre))
   };
 };

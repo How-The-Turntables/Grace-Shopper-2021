@@ -29,16 +29,14 @@ export const editAlbum = (album) => {
   };
 };
 
-export const sortAlbums = (sortType) => {
+// FILTERING
+export const filterGenreAlbums = (genre, albums) => {
   return {
-    type: types.SORT_BY,
-    sortType,
-  };
-};
-
-export const filterAlbums = (filterType) => {
-  return {
-    type: types.SORT_BY,
-    filterType,
+    type: types.FILTER_BY_GENRE,
+    payload: {
+      genre,
+      // if no genre filter has been selected, return all albums, otherwise return all albums with the selected genre
+      items: genre === ''? albums : albums.filter( album => album.genre === genre)
+    }
   };
 };
