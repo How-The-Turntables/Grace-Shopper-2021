@@ -33,6 +33,8 @@ const EDIT_USER = 'EDIT_USER'; // when a user edits their own info
 const PROMOTE_USER = 'PROMOTE_USER'; // when admin promotes another user to admin
 const LOGIN = 'LOGIN';
 const CREATE_USER = 'CREATE_USER';
+//Admins
+const LOAD_ORDERS = 'LOAD_ORDERS';
 
 const types = {
   LOAD_ALBUMS,
@@ -63,6 +65,7 @@ const types = {
   PROMOTE_USER,
   LOGIN,
   CREATE_USER,
+  LOAD_ORDERS,
 };
 
 export default types;
