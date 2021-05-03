@@ -59,4 +59,24 @@ Album.init(
   }
 );
 
+// Album.filterAlbums = async function  () {
+//     let result = await this.findAll({
+//       offset: req.query.offset || 0,
+//       limit: req.query.limit || 10,
+//       where: req.query.filter ? sqs.find(req.query.filter) : {},
+//       order: req.query.sort ? sqs.sort(req.query.sort) : [['id', 'asc']]
+//     })
+
+// }
+
+
+// await Promise.all(categories.map(async (category)=> {
+//   let items = await category.getProducts({
+//       offset: req.query.offset || 0,
+//       limit: req.query.limit || 10,
+//       where: req.query.filter ? sqs.find(req.query.filter) : {},
+//       order: req.query.sort ? sqs.sort(req.query.sort) : [['id', 'asc']]
+//   });
+//   category.dataValues.products = items;
+// }));
 module.exports = Album;

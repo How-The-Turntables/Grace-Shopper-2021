@@ -14,3 +14,9 @@ export const loadCart = (cart) => {
   };
 };
 
+export const addToCart = (cart) => {
+  return {
+    type: types.LOAD_CART,
+    cart,
+  };
+};
