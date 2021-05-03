@@ -19,45 +19,49 @@ class SingleAlbum extends React.Component{
 
   render() {
     const { album } = this.props;
-    // console.log('hey albums!', this.props)
 
   return (
     <div >
-      {/* {console.log('hola', album.title)} */}
-      <h1>heyyyyyy album!</h1>
-      {album.title}
-      {/* {!Object.entries(album).length ? (<div>this is loading</div>) :
+      <h1>{album.title}</h1>
+
+      {!album.quantity ? (<div>Sorry, this album is out of stock!</div>) :
         (
           <div key={album.id}>
               <img src={album.photoUrl}/>
-              <div className='info'>
-                <h3> {album.name} </h3>
+              <div >
                 <div> {album.artist.name} </div>
                 <div> {album.year} </div>
                 <p> {album.description} </p>
-                <div> {album.price} </div>
+                <div> ${album.price} </div>
               </div>
-              {!album.reviews.length ? (<div>This album has not been reviewed</div>) :
-              (<div>
-                Reviews:
-                {album.reviews.map((review) => {
-                  <div key={review.id}>
-                    {review.description}
-                    {review.stars}
-                  </div>
-                })}
+              {/*add to cart button and quantity select*/}
+              <select>
+                <option></option>
+              </select>
+              <button>Add to Cart</button>
+              {/* have a reviews component that opens upon click */}
+              <div>
+              Product Reviews
+                {!album.reviews.length ? (<div>This album has not been reviewed</div>) :
+                (<div>
+                  {album.reviews.map((review) => {
+                    <div key={review.id}>
+                      {review.description}
+                      {review.stars}
+                    </div>
+                  })}
+                </div>
+                )}
               </div>
-              )}
           </div>
         )
-      } */}
+      }
       </div>
     )
   }
 };
 
 const mapStateToProps = (state) => {
-  console.log('state', state)
   return {
     album: state.singleAlbum,
   }

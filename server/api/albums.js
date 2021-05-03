@@ -23,7 +23,7 @@ albumsRouter.get('/', async (req, res, next) => {
 albumsRouter.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    const album = await Album.findByPk(id);
+    const album = await Album.findByPk(id, { include: { all: true } });
     res.send(album);
   } catch (error) {
     console.log('error occured in the /api/albums/:id/details');
