@@ -22,6 +22,19 @@ export const loadSingleAlbum = (album) => {
   };
 };
 
+// FILTERING
+export const filterGenreAlbums = (genre, albums) => {
+  return {
+    type: types.FILTER_BY_GENRE,
+    payload: {
+      genre,
+      // if no genre filter has been selected, return all albums, otherwise return all albums with the selected genre
+      items: genre === ''? albums : albums.filter( album => album.genre === genre)
+    }
+  };
+};
+
+
 export const editAlbum = (album) => {
   return {
     type: types.EDIT_ALBUM,
@@ -36,9 +49,3 @@ export const sortAlbums = (sortType) => {
   };
 };
 
-export const filterAlbums = (filterType) => {
-  return {
-    type: types.SORT_BY,
-    filterType,
-  };
-};

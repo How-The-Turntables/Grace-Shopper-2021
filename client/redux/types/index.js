@@ -5,7 +5,7 @@ const EDIT_ALBUM = 'EDIT_ALBUM';
 const SET_COUNT = 'SET_COUNT';
 // Sort and filter
 const SORT_BY = 'SORT_BY'; // or do I need specific sorts for each option?
-const FILTER_BY = 'FILTER_BY';
+const FILTER_BY_GENRE = 'FILTER_BY_GENRE';
 // Pagination
 const LOAD_NEXT_PAGE = 'LOAD_NEXT_PAGE';
 const LOAD_EXACT_PAGE = 'LOAD_EXACT_PAGE';
@@ -40,7 +40,7 @@ const types = {
   EDIT_ALBUM,
   SET_COUNT,
   SORT_BY,
-  FILTER_BY,
+  FILTER_BY_GENRE,
   LOAD_NEXT_PAGE,
   LOAD_EXACT_PAGE,
   LOAD_ARTISTS,

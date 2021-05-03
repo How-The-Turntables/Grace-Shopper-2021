@@ -9,25 +9,34 @@ const initialState = {
   album: {},
   count: 0,
   data: {},
+  filteredAlbums: [],
+  size: '',
 };
+
+// added filteredAlbums: action.payload to LOAD_ALBUMS
 
 const albumReducer = (state = initialState, action) => {
   if (action.type === types.LOAD_ALBUMS) {
     state = {
       ...state,
-      data: { ...state.data, [action.idx]: action.albums }, // action.index key is the page you're rendering
+      data: { ...state.data, [action.idx]: action.albums, filteredAlbums: action.payload }, // action.index key is the page you're rendering
     };
-  } else if (action.type === types.SET_COUNT) {
+  }
+  else if (action.type === types.SET_COUNT) {
     state = { ...state, count: action.count };
-  } else if (action.type === types.SINGLE_ALBUM) {
+  }
+  else if (action.type === types.SINGLE_ALBUM) {
     state = action.album;
-  } else if (action.type === types.EDIT_ALBUM) {
+  }
+  else if (action.type === types.EDIT_ALBUM) {
     const allAlbums = state.albums.map((album) =>
       album.id === action.album.id ? action.album : album
     );
-    state = { ...state, albums: [...allAlbums]};
+    state = { ...state, albums: [...allAlbums] };
   }
-  // use method to reset state
+  else if (action.type === types.FILTER_BY_GENRE) {
+    state = { ...state, filteredAlbums: action.payload, genre: action.payload.genre }
+  }
   return state;
 };
 

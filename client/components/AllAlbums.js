@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { renderAlbums } from '../redux/albums/thunkCreators';
+import { connect  } from 'react-redux';
+import { renderAlbums, filterTutorial } from '../redux/albums/thunkCreators';
+import FilterSort from './FilterSort';
+
+//filter and sort
+
 
 import {
   Products,
@@ -42,11 +46,7 @@ class AllAlbums extends React.Component {
         <ProductFilter>
           <SortParent>
             <SortChild>
-              <label>Filter By</label>
-              <select>
-                <option value="/">Genre</option>
-                <option value="/">Artist</option>
-              </select>
+              <FilterSort albums={albums}/>
             </SortChild>
             <SortChild>
               <label>Sort By</label>
@@ -98,7 +98,8 @@ class AllAlbums extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     count: state.albums.count,
-    albums: state.albums.data[ownProps.match.params.idx] || [],
+    albums: state.albums.data[ownProps.match.params.idx] || state.albums.filteredAlbums,
+    // albums: state.albums.filterTutorial
   };
 };
 

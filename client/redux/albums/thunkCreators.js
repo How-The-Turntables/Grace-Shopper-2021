@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { loadAlbums, setCount } from './actionCreators';
+import { loadAlbums, setCount, filterGenreAlbums } from './actionCreators';
+
 
 export const renderAlbums = (idx) => {
   return async (dispatch, getState) => {
@@ -18,5 +19,13 @@ export const renderAlbums = (idx) => {
     } catch (error) {
       console.log('Error rendering all albums in thunk creator: ', error);
     }
+  };
+};
+
+
+// FROM TUTORIAL
+export const filterTutorial = (albums, genre) => {
+  return  (dispatch) => {
+    dispatch(filterGenreAlbums(albums, genre))
   };
 };
