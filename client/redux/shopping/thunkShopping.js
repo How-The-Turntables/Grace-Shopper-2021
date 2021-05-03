@@ -32,6 +32,8 @@ export const cartChecker = (token) => {
           authorization: token,
         },
       });
+      const oldCart = localStorage.getItem('GScart');
+      console.log(cart);
       if (cart) {
         localStorage.setItem('GScart', cart);
         dispatch(loadCart(cart));

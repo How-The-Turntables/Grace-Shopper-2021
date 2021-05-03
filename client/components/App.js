@@ -43,6 +43,8 @@ class App extends Component {
       // start here tomorrow
       // check if theres a token
       // yes? => status in progress, merge items from current cart
+      console.log('there is a token');
+      props.cartChecker(token);
     }
     if (!cart) {
       props.cartChecker(token);
@@ -58,7 +60,6 @@ class App extends Component {
         <Route component={AllOrders} path="/orders/admin" />
         <Route component={SingleAlbum} path="/albums/:id/details" exact />
         <Route component={AllAlbums} path="/albums/:idx" exact />
-
 
         <Route component={LoginView} path="/login" />
         <Route component={LoginForm} path="/loginform" />
