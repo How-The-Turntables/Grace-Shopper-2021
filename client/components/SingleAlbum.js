@@ -88,7 +88,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-    loadSingle: (id) => dispatch( renderSingleAlbum(id) ),
+    loadSingle: (albumId) => dispatch( renderSingleAlbum(albumId) ),
     // add to cart
 	}
 };
