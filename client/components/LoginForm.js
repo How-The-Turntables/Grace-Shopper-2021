@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/user/userActions';
 
+//STYLING IMPORTS
+import { Grid, Paper, TextField, Button } from '@material-ui/core';
+
 class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -28,21 +31,47 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{
+        display: 'flex',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
+        marginTop: '300px',
+      }}>
         <form onSubmit={this.onSubmit}>
-          <input
-            type="email"
-            name="email"
-            placeholder="email"
-            onChange={this.onChange}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            onChange={this.onChange}
-          />
-          <button type="submit">Login</button>
+        <Grid container spacing={3} style={{
+          backgroundColor: '#F2F1E7',
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+          <Grid item xs={12}>
+            <Grid container spacing={3} style={{
+              display: 'flex',
+              marginTop: '10px',
+            }}>
+              <Grid item xs={12}>
+                <TextField
+                  type="email"
+                  name="email"
+                  placeholder="email"
+                  onChange={this.onChange}
+                  fullWidth
+                />
+                  </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        type="password"
+                        name="password"
+                        placeholder="password"
+                        onChange={this.onChange}
+                        fullWidth
+                      />
+                    </Grid>
+                  <Grid item xs={12}>
+                <Button type="submit" fullWidth>Login</Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
         </form>
       </div>
     );
