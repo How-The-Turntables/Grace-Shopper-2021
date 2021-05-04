@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-//import Calligraffitti from '../../server/public/fonts/Calligraffitti-Regular.ttf'; -- Working on figuring out changing the web font;
+
+//STYLING IMPORTS
 import { AppBar, Toolbar, Typography, Box, Button } from '@material-ui/core';
 import { Home, VpnKey, ShoppingCart } from '@material-ui/icons';
+//import Calligraffitti from '../../server/public/fonts/Calligraffitti-Regular.ttf'; -- Working on figuring out changing the web font;
 //import avatar from '../../server/public/img/defaultAlbum.png';
 
 class Nav extends Component {
@@ -41,13 +43,13 @@ class Nav extends Component {
                 </Link>
                 <Link to="/login" style={{ textDecoration: 'none' }}>
                   <Button>
-                    <VpnKey />
+                    <VpnKey style={{ color: '#42240C' }} />
                     Login
                   </Button>
                 </Link>
                 <Link to="/cart" style={{ textDecoration: 'none' }}>
                   <Button>
-                    <ShoppingCart />
+                    <ShoppingCart style={{ color: '#42240C' }} />
                   </Button>
                 </Link>
               </div>

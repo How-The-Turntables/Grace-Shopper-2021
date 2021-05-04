@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createCart, cartChecker } from '../redux/shopping/thunkShopping'; // what about if a user is returning to the site?
+import { createCart, cartChecker } from '../redux/shopping/shoppingActions'; // what about if a user is returning to the site?
+// import StripeCheckout from 'react-stripe-checkout';
 import { attemptTokenLogin } from '../redux/user/userActions';
 import {
   Nav,
@@ -33,12 +34,12 @@ class App extends Component {
   }
 
   componentDidUpdate(prevState) {
-    const cart = window.localStorage.GScart;
+    // const cart = window.localStorage.GScart;
     const token = window.localStorage.JWTtoken;
+    const userId = this.props.auth.user.id;
     if (token) {
       if (prevState.cart === this.props.cart) {
-        this.props.cartChecker(token);
-        //could this could cause an infinite loop***
+        this.props.cartChecker(token, userId);
       }
     }
   }
@@ -80,7 +81,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
     newCart: (id) => dispatch(createCart(id)), // need this to have userId token
-    cartChecker: (token) => dispatch(cartChecker(token)),
+    cartChecker: (token, userId) => dispatch(cartChecker(token, userId)),
     attemptTokenLogin: () => dispatch(attemptTokenLogin(history)),
   };
 };

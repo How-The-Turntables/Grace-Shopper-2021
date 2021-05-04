@@ -1,11 +1,13 @@
 import axios from 'axios';
-import {
-  loadArtists,
-  loadSingleArtist,
-  createArtist,
-  editArtist,
-  deleteArtist,
-} from './artistActionCreator';
+import types from '../types/index';
+
+// ALL ARTIST ACTIONS
+export const loadArtists = (artists) => {
+  return {
+    type: types.LOAD_ARTISTS,
+    artists,
+  };
+};
 
 export const renderArtists = () => {
   return async (dispatch) => {
@@ -15,6 +17,14 @@ export const renderArtists = () => {
     } catch (error) {
       console.log('Error rendering all artists in thunk creator: ', error);
     }
+  };
+};
+
+// SINGLE ARTIST ACTIONS
+export const loadSingleArtist = (singleArtist) => {
+  return {
+    type: types.SINGLE_ARTIST,
+    singleArtist,
   };
 };
 
