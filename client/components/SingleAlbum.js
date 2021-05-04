@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect  } from 'react-redux';
-import { renderSingleAlbum } from '../redux/albums/thunkCreators';
+import { renderSingleAlbum } from '../redux/albums/albumActions';
 
 
 class SingleAlbum extends React.Component{

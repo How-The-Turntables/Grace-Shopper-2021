@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect  } from 'react-redux';
-import { filterTutorial } from '../redux/albums/thunkCreators';
+import { filterTutorial } from '../redux/albums/albumActions';
 
 import {
   ProductFilter,

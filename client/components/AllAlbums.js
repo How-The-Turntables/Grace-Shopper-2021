@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { renderAlbums } from '../redux/albums/thunkCreators';
+import { renderAlbums } from '../redux/albums/albumActions';
 import FilterSort from './FilterSort';
 
 import {
