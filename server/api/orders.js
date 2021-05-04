@@ -25,7 +25,7 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
     // const id = (req.params.id === req.user.id || req.user.admin === true) ? req.params.id : null
     const id = authId(req);
-    if (!id) next()
+    if (!id) res.status(401).send('you are not authorized');
     const cart = await OrderDetail.findOne({
       where: {
         userId: id,
