@@ -10,7 +10,6 @@ export const loginAction = ({ user, token, admin }) => {
   };
 };
 
-
 // generates token and calls attemptTokeLogin
 export const loginUser = (credentials, history) => {
   return async (dispatch) => {

@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { loadCart, newCart } from './actionCreatorShopping';
+import types from '../types/index';
+
+// CREATING A NEW CART
+export const newCart = (cart) => {
+  return {
+    type: types.NEW_CART,
+    cart
+  }
+};
 
 export const createCart = (id) => {
   return async (dispatch) => {
@@ -9,6 +17,14 @@ export const createCart = (id) => {
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+// LOADING CART ACTION
+export const loadCart = (cart) => {
+  return {
+    type: types.LOAD_CART,
+    cart,
   };
 };
 
@@ -53,3 +69,5 @@ export const guestCart = () => {
     }
   };
 };
+
+

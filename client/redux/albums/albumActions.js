@@ -1,5 +1,24 @@
 import axios from 'axios';
-import { loadAlbums, setCount, loadSingleAlbum, filterGenreAlbums } from './actionCreators';
+import types from '../types/index';
+
+
+// ALL ALBUMS ACTIONS
+
+export const loadAlbums = ({ idx, albums }) => {
+  return {
+    type: types.LOAD_ALBUMS,
+    albums,
+    idx,
+  };
+};
+
+export const setCount = (count) => {
+  return {
+    type: types.SET_COUNT,
+    count,
+  };
+};
+
 
 export const renderAlbums = (idx) => {
   return async (dispatch, getState) => {
@@ -21,6 +40,15 @@ export const renderAlbums = (idx) => {
   };
 };
 
+
+// SINGLE ALBUM ACTIONS
+export const loadSingleAlbum = (singleAlbum) => {
+  return {
+    type: types.SINGLE_ALBUM,
+    singleAlbum,
+  };
+};
+
 export const renderSingleAlbum = (id) => {
   return async (dispatch) => {
     try {
@@ -34,9 +62,30 @@ export const renderSingleAlbum = (id) => {
 };
 
 
-// FILTER
+// FILTERING
+export const filterGenreAlbums = (genre, albums) => {
+  return {
+    type: types.FILTER_BY_GENRE,
+    payload: {
+      genre,
+      // if no genre filter has been selected, return all albums, otherwise return all albums with the selected genre
+      items: genre === ''? albums : albums.filter( album => album.genre === genre)
+    }
+  };
+};
+
 export const filterTutorial = (albums, genre) => {
   return  (dispatch) => {
     dispatch(filterGenreAlbums(albums, genre))
   };
 };
+
+
+
+// export const editAlbum = (album) => {
+//   return {
+//     type: types.EDIT_ALBUM,
+//     album,
+//   };
+// };
+

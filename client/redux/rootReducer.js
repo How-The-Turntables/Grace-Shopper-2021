@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
-import albumReducers from './albums/reducers';
-import artistReducers from './artists/artistReducers';
-import cartReducer from './shopping/reducers';
+import albumReducers from './albums/albumReducer';
+import artistReducers from './artists/artistReducer';
+import cartReducer from './shopping/shoppingReducer';
 import userReducer from './user/userReducer';
 import adminReducers from './admin/adminReducer';
 

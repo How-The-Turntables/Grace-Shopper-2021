@@ -1,11 +1,5 @@
 import types from '../types/index';
 
-// const initialState = {
-//   albums: [],
-//   // album: {},
-//   count: 0,
-//   data: {},
-// };
 
 const albumsReducer = (state = { albums: [], album: {}, count: 0, data: {}, filteredAlbums: [],
   genre: '', }, action) => {
@@ -14,7 +8,8 @@ const albumsReducer = (state = { albums: [], album: {}, count: 0, data: {}, filt
       ...state,
       data: { ...state.data, [action.idx]: action.albums, filteredAlbums: action.payload }, // action.index key is the page you're rendering
     };
-  } else if (action.type === types.SET_COUNT) {
+  }
+  else if (action.type === types.SET_COUNT) {
     state = { ...state, count: action.count };
   }
   else if (action.type === types.FILTER_BY_GENRE) {
@@ -36,6 +31,6 @@ const singleAlbumReducer = (state = {}, action) => {
   return state;
 };
 
-const albumReducers = { albumsReducer, singleAlbumReducer };;
+const albumReducers = { albumsReducer, singleAlbumReducer };
 
 export default albumReducers;

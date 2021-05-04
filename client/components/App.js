@@ -6,7 +6,7 @@ import {
   createCart,
   cartChecker,
   guestCart,
-} from '../redux/shopping/thunkShopping'; // what about if a user is returning to the site?
+} from '../redux/shopping/shoppingActions'; // what about if a user is returning to the site?
 import { attemptTokenLogin } from '../redux/user/userActions';
 
 import {
