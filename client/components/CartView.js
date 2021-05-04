@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+
 // cartView we have order_items and order_details that we may need
 // order_details we want status to in IN PROGESS
 
@@ -17,6 +18,7 @@ class CartView extends Component {
       status: 'IN PROGRESS',
     };
   }
+
   render() {
     const { orderDetail } = this.props;
     console.log(orderDetail)
@@ -56,6 +58,8 @@ class CartView extends Component {
                 )
               })}
             </ul>
+            <Link src='/checkout'><h4>Ready to checkout?</h4></Link>
+
             </div>)
         }
         </div>

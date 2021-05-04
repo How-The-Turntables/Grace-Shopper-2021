@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { renderUsers } from '../redux/users/adminThunkCreator';
 
-class AllUsers extends Component {};
+//
+class AllUsers extends Component {
+
+
+};
 
 const mapStateToProps = (state) => {
   return {
