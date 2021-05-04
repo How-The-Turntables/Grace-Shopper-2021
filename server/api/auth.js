@@ -12,7 +12,6 @@ const requireToken = async (req, res, next) => {
     const token = req.headers.authorization;
     const user = await User.byToken(token);
     req.user = user;
-    if (!user.admin) res.status(401).send('GTFO');
     next();
   } catch (error) {
     next(error);
