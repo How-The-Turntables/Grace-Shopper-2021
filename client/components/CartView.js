@@ -20,14 +20,14 @@ class CartView extends Component {
   }
 
   componentDidMount() {
-    console.log(JSON.parse(window.localStorage.UserCart));
-    // if (window.localStorage.GuestCart) {
-    //   const cart = JSON.parse(window.localStorage.GuestCart);
-    //   this.setState({
-    //     cartId: cart.id,
-    //     albums: cart.albums,
-    //   });
-    // }
+    console.log(JSON.parse(window.localStorage.GuestCart));
+    if (window.localStorage.GuestCart) {
+      const cart = JSON.parse(window.localStorage.GuestCart);
+      this.setState({
+        cartId: cart.id,
+        albums: cart.albums,
+      });
+    }
 
     if (window.localStorage.UserCart) {
       const cart = JSON.parse(window.localStorage.UserCart);
