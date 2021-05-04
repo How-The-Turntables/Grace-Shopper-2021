@@ -61,17 +61,18 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
         userId: id,
         status: 'IN PROGRESS',
       },
+      include: { all: true },
     });
-    const cartId = cart.dataValues.id;
-    const orderItems = await OrderItem.findAll({
-      where: {
-        order_detailId: cartId,
-      },
-    });
+    // const cartId = cart.dataValues.id;
+    // const orderItems = await OrderItem.findAll({
+    //   where: {
+    //     order_detailId: cartId,
+    //   },
+    // });
 
-    const cartDetails = { cart, orderItems };
-    if (!orderItems) res.sendStatus(404);
-    else res.status(200).send(cartDetails);
+    // const cartDetails = { cart, orderItems };
+    if (!cart) res.sendStatus(404);
+    else res.status(200).send(cart);
   } catch (error) {
     console.log('problem with your GET api/orders/:id/cart route: ', error);
     next(error);

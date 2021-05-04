@@ -8,43 +8,54 @@ import { Link } from 'react-router-dom';
 // order-items has on it order_detail.id, quantity and album_id
 
 class CartView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       // write if statem to see if our redux already has this info
-      userId: '',
+      cartId: '',
+      albums: [],
       total: 0,
       status: 'IN PROGRESS',
     };
   }
 
   componentDidMount() {
+    console.log(JSON.parse(window.localStorage.UserCart));
     // if (window.localStorage.GuestCart) {
-    //   console.log('guestcart');
+    //   const cart = JSON.parse(window.localStorage.GuestCart);
+    //   this.setState({
+    //     cartId: cart.id,
+    //     albums: cart.albums,
+    //   });
     // }
-    // if (window.localStorage.UserCart) {
-    //   console.log('userCart');
-    // }
-    // const cartObject = localStorage.getItem();
+
+    if (window.localStorage.UserCart) {
+      const cart = JSON.parse(window.localStorage.UserCart);
+      this.setState({
+        cartId: cart.id,
+        albums: cart.albums,
+        total: cart.total,
+      });
+    }
   }
 
   render() {
-    const { orderDetail } = this.props;
-    console.log(orderDetail);
+    const { albums } = this.state;
+    console.log('current state', this.state);
     return (
       <div>
         <div>
-          {!orderDetail ? (
+          {albums.length === 0 ? (
             <h2>Your cart is empty.</h2>
           ) : (
             <div>
               <ul>
                 {/* might need to be object.entries */}
-                {orderDetail.albums.map((album) => {
+                {albums.map((album) => {
                   return (
                     <li key={album.id}>
                       <div>
-                        <Link to={{ pathname: `/albums/${album.id}` }}>
+                        <Link to={{ pathname: `/albums/${album.id}/details` }}>
                           <h4>{album.title}</h4>
                         </Link>
                       </div>
@@ -69,7 +80,7 @@ class CartView extends Component {
                   );
                 })}
               </ul>
-              <Link src="/checkout">
+              <Link to="/checkout">
                 <h4>Ready to checkout?</h4>
               </Link>
             </div>

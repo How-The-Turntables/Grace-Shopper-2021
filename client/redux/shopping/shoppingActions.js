@@ -47,6 +47,7 @@ export const cartChecker = (token, userId) => {
           authorization: token,
         },
       });
+      console.log('cart in thunk', cart);
       const guestCart = JSON.parse(localStorage.getItem('GuestCart'));
       if (guestCart.albums.length > 0) {
         guestCart.albums.map(async (album) => {
