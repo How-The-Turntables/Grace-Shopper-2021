@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 //STYLING IMPORTS
-import { AppBar, Toolbar, Typography, Box, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Box, Button, Image } from '@material-ui/core';
 import { Home, VpnKey, ShoppingCart } from '@material-ui/icons';
 //import Calligraffitti from '../../server/public/fonts/Calligraffitti-Regular.ttf'; -- Working on figuring out changing the web font;
-//import avatar from '../../server/public/img/defaultAlbum.png';
+import image from '../../server/public/img/howtheturntablesLOGO.png';
 
 class Nav extends Component {
   constructor() {
@@ -42,7 +42,7 @@ class Nav extends Component {
                   <VpnKey style={{ color: '#42240C' }} />Login
                 </Button>
               </Link>
-              <Link to="/cart" style={{ textDecoration: 'none' }}>
+              <Link nk to="/cart" style={{ textDecoration: 'none' }}>
                 <Button>
                   <ShoppingCart style={{ color: '#42240C' }} />
                 </Button>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 //STYLING IMPORTS
-import img from '/Users/kgil/Grace-Shopper-2021/server/public/img/unsplashRecord.png';
+import img from '../../server/public/img/unsplashRecord.png';
 //import Calligraffitti from '../../server/public/fonts/Calligraffitti-Regular.ttf'; -- Working on figuring out changing the web font;
 //import avatar from '../../server/public/img/defaultAlbum.png';
 
@@ -20,9 +20,9 @@ const LoginView = (props) => {
         height: '100vh',
         width: '100 vw',
       }}>
-        {/* <p>
+        <p>
           New user? <Link to="/register">Sign up</Link>
-        </p> */}
+        </p>
         <LoginForm history={ props.history }/>
       </div>
     );
