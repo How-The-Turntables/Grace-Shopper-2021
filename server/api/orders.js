@@ -7,8 +7,7 @@ const { authId } = require('../utils');
 //  all orders route for admin
 ordersRouter.get('/admin', requireToken, async (req, res, next) => {
   try {
-    const isAuthorized = authId(req);
-    if (isAuthorized === 401) res.status(isAuthorized).send('you are not authorized')
+    if (!res.user.admin) res.status(401).send('you are not authorized')
     else {
       const orders = await OrderDetail.findAll({
         include: { all: true },
@@ -26,7 +25,6 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
     // const id = (req.params.id === req.user.id || req.user.admin === true) ? req.params.id : null
     const id = authId(req);
-    console.log('USER ID', id)
     if (!id) next()
     const cart = await OrderDetail.findOne({
       where: {
@@ -53,11 +51,13 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
 });
 
 // all orders by user for user account view
-ordersRouter.get('/:id', async (req, res, next) => {
+ordersRouter.get('/:id', requireToken, async (req, res, next) => {
   try {
+    const id = authId(req);
+    if (!id) res.status(401).send('you are not authorized');
     const order = await OrderDetail.findAll({
       where: {
-        userId: req.params.id,
+        userId: id,
         [Op.or]: [{ status: 'COMPLETED' }, { status: 'CANCELLED' }],
       },
       include: { all: true },
@@ -72,6 +72,8 @@ ordersRouter.get('/:id', async (req, res, next) => {
 // user adds item to cart
 ordersRouter.post('/:id/cart', requireToken, async (req, res, next) => {
   try {
+    const id = authId(req);
+    if (!id) res.status(401).send('you are not authorized');
     const cart = await OrderDetail.create({
       where: {
         userId: req.params.id,
@@ -95,13 +97,15 @@ ordersRouter.post('/:id/cart', requireToken, async (req, res, next) => {
 });
 
 // user can add cart items and quantity of current items
-ordersRouter.put('/:id/cart/:albumId', async (req, res, next) => {
+ordersRouter.put('/:id/cart/:albumId', requireToken, async (req, res, next) => {
   try {
+    const id = authId(req);
+    if (!id) res.status(401).send('you are not authorized');
     const albumSelected = await Album.findByPk(req.params.albumId);
     const cartSession = await OrderDetail.findOne({
       // because they could already have a cart in session
       where: {
-        userId: req.params.id,
+        userId: id,
         status: 'IN PROGRESS',
       },
       include: { all: true },
@@ -141,8 +145,10 @@ ordersRouter.put('/:id/cart/:albumId', async (req, res, next) => {
 });
 
 // user can delete current items
-ordersRouter.delete('/:id/cart/:albumId', async (req, res, next) => {
+ordersRouter.delete('/:id/cart/:albumId', requireToken, async (req, res, next) => {
   try {
+    const id = authId(req);
+    if (!id) res.status(401).send('you are not authorized');
     const albumToRemove = await Album.findByPk(req.params.albumId); // change to a findOne w/ where clause?
     const cartSession = await OrderDetail.findOne({
       // because they could already have a cart in session
@@ -174,8 +180,9 @@ ordersRouter.delete('/:id/cart/:albumId', async (req, res, next) => {
 });
 
 // single order put route for admin to change order status
-ordersRouter.put('/:id/admin', async (req, res, next) => {
+ordersRouter.put('/:id/admin', requireToken, async (req, res, next) => {
   try {
+    if (!res.user.admin) res.status(401).send('you are not authorized');
     const order = await OrderDetail.findAll({
       where: {
         userId: req.params.id,

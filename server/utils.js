@@ -4,7 +4,7 @@
 const authId = (req) => {
     return req.params.id === req.user.id || req.user.admin === true
       ? req.params.id
-      : 401;
+      : false;
 };
 
 module.exports = {
