@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { renderAlbums } from '../redux/albums/thunkCreators';
+import FilterSort from './FilterSort';
 
 import {
   Products,
@@ -9,9 +10,7 @@ import {
   ProductCard,
   ProductInfo,
   ImageCard,
-  ProductFilter,
-  SortParent,
-  SortChild,
+  ProductFilter
 } from '../styles';
 
 class AllAlbums extends React.Component {
@@ -40,45 +39,32 @@ class AllAlbums extends React.Component {
       <div>
         <h1>Shop all albums</h1>
         <ProductFilter>
-          <SortParent>
-            <SortChild>
-              <label>Filter By</label>
-              <select>
-                <option value="/">Genre</option>
-                <option value="/">Artist</option>
-              </select>
-            </SortChild>
-            <SortChild>
-              <label>Sort By</label>
-              <select>
-                <option value="/">Title</option>
-                <option value="/">Price</option>
-              </select>
-            </SortChild>
-          </SortParent>
+
+              <FilterSort albums={albums} />
+
         </ProductFilter>
-        <Products>
           <ProductContainer>
-            {!albums.length
-              ? `Sorry, we're out of stock. Check back next week!`
-              : albums.map((album) => {
+
+              {albums.map((album) => {
                   return (
                     <ProductCard key={album.id}>
                       <ImageCard src={album.photoUrl} />
 
                       <ProductInfo>
-                        <Link to={{ pathname: `/albums/${album.id}` }}>
+                        <Link to={{ pathname: `/albums/${album.id}/details` }}>
                           <h4>{album.title}</h4>
                         </Link>
                         <h5>{album.artist.name}</h5>
                         <h4>{album.price}</h4>
                       </ProductInfo>
+                      {/* need to add onclick */}
                       <button>Add to Cart</button>
                     </ProductCard>
                   );
-                })}
-          </ProductContainer>
-        </Products>
+                }
+                )}
+           </ProductContainer>
+
         <div>
           <nav>
             {links.map(({ idx, num }) => {
@@ -98,7 +84,7 @@ class AllAlbums extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     count: state.albums.count,
-    albums: state.albums.data[ownProps.match.params.idx] || [],
+    albums: state.albums.data[ownProps.match.params.idx] || state.albums.filteredAlbums,
   };
 };
 

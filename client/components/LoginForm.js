@@ -38,40 +38,40 @@ class LoginForm extends Component {
         marginTop: '300px',
       }}>
         <form onSubmit={this.onSubmit}>
-        <Grid container spacing={3} style={{
-          backgroundColor: '#F2F1E7',
-          display: 'flex',
-          flexDirection: 'column',
-        }}>
-          <Grid item xs={12}>
-            <Grid container spacing={3} style={{
-              display: 'flex',
-              marginTop: '10px',
-            }}>
-              <Grid item xs={12}>
-                <TextField
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  onChange={this.onChange}
-                  fullWidth
-                />
-                  </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        onChange={this.onChange}
-                        fullWidth
-                      />
-                    </Grid>
-                  <Grid item xs={12}>
-                <Button type="submit" fullWidth>Login</Button>
+          <Grid container spacing={3} style={{
+            backgroundColor: '#F2F1E7',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            <Grid item xs={12}>
+              <Grid container spacing={3} style={{
+                display: 'flex',
+                marginTop: '10px',
+              }}>
+                <Grid item xs={12}>
+                  <TextField
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    onChange={this.onChange}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    onChange={this.onChange}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button type="submit" fullWidth>Login</Button>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
         </form>
       </div>
     );
