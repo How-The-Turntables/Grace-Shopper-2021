@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-
 // cartView we have order_items and order_details that we may need
 // order_details we want status to in IN PROGESS
 
@@ -19,52 +18,64 @@ class CartView extends Component {
     };
   }
 
+  componentDidMount() {
+    // if (window.localStorage.GuestCart) {
+    //   console.log('guestcart');
+    // }
+    // if (window.localStorage.UserCart) {
+    //   console.log('userCart');
+    // }
+    // const cartObject = localStorage.getItem();
+  }
+
   render() {
     const { orderDetail } = this.props;
-    console.log(orderDetail)
+    console.log(orderDetail);
     return (
       <div>
-        <div>{!orderDetail ?
-          (<h2>Your cart is empty.</h2>) :
-          (<div>
-            <ul>
-              {/* might need to be object.entries */}
-              {orderDetail.albums.map((album) => {
-                return (
-                  <li key={album.id}>
-                    <div>
-                      <Link to={{ pathname: `/albums/${album.id}` }}>
+        <div>
+          {!orderDetail ? (
+            <h2>Your cart is empty.</h2>
+          ) : (
+            <div>
+              <ul>
+                {/* might need to be object.entries */}
+                {orderDetail.albums.map((album) => {
+                  return (
+                    <li key={album.id}>
+                      <div>
+                        <Link to={{ pathname: `/albums/${album.id}` }}>
                           <h4>{album.title}</h4>
-                      </Link>
-                      </div>
-                    <div>
-                      <img src={album.photoUrl}/>
-                      <div>
-                        <h6>Genre: {album.genre} </h6>
-                        <h6>Year: {album.year} </h6>
+                        </Link>
                       </div>
                       <div>
-                        <div>${album.price}</div>
+                        <img src={album.photoUrl} />
                         <div>
-                          <select>
-                            <option value="1"></option>
-                            <option value="2"></option>
-                            <option value="3"></option>
-                          </select>
+                          <h6>Genre: {album.genre} </h6>
+                          <h6>Year: {album.year} </h6>
+                        </div>
+                        <div>
+                          <div>${album.price}</div>
+                          <div>
+                            <select>
+                              <option value="1"></option>
+                              <option value="2"></option>
+                              <option value="3"></option>
+                            </select>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-            <Link src='/checkout'><h4>Ready to checkout?</h4></Link>
-
-            </div>)
-        }
+                    </li>
+                  );
+                })}
+              </ul>
+              <Link src="/checkout">
+                <h4>Ready to checkout?</h4>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
-
     );
   }
 }

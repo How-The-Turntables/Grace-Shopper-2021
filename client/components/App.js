@@ -38,7 +38,7 @@ class App extends Component {
     const token = window.localStorage.JWTtoken;
     const userId = this.props.auth.user.id;
     if (token) {
-      if (prevState.cart !== this.props.cart) {
+      if (!window.localStorage.UserCart) {
         this.props.cartChecker(token, userId);
       }
     }
