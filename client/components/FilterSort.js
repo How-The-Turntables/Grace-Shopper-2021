@@ -15,7 +15,6 @@ class FilterSort extends React.Component {
     console.log('hey albums', albums)
     return (
       <div>
-        <h1>Shop all albums</h1>
         <ProductFilter>
           <SortParent>
             <SortChild>

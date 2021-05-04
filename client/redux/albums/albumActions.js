@@ -4,7 +4,7 @@ import types from '../types/index';
 
 // ALL ALBUMS ACTIONS
 
-export const loadAlbums = ({ idx, albums }) => {
+const loadAlbums = ({ idx, albums }) => {
   return {
     type: types.LOAD_ALBUMS,
     albums,
@@ -12,7 +12,7 @@ export const loadAlbums = ({ idx, albums }) => {
   };
 };
 
-export const setCount = (count) => {
+const setCount = (count) => {
   return {
     type: types.SET_COUNT,
     count,
@@ -42,7 +42,7 @@ export const renderAlbums = (idx) => {
 
 
 // SINGLE ALBUM ACTIONS
-export const loadSingleAlbum = (singleAlbum) => {
+const loadSingleAlbum = (singleAlbum) => {
   return {
     type: types.SINGLE_ALBUM,
     singleAlbum,
@@ -53,7 +53,6 @@ export const renderSingleAlbum = (id) => {
   return async (dispatch) => {
     try {
       const { data: singleAlbum } = await axios.get(`/api/albums/${id}`);
-      console.log('*******thunk',singleAlbum)
       dispatch(loadSingleAlbum(singleAlbum));
     } catch (error) {
       console.log('Error rendering single album in thunk creator: ', error);
@@ -63,7 +62,7 @@ export const renderSingleAlbum = (id) => {
 
 
 // FILTERING
-export const filterGenreAlbums = (genre, albums) => {
+const filterGenreAlbums = (genre, albums) => {
   return {
     type: types.FILTER_BY_GENRE,
     payload: {
