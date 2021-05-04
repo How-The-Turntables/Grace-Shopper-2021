@@ -3,15 +3,27 @@ import LoginForm from './LoginForm';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+//STYLING IMPORTS!
+import img from '../../server/public/img/unsplashRecord.png';
+//import Calligraffitti from '../../server/public/fonts/Calligraffitti-Regular.ttf'; -- Working on figuring out changing the web font;
+//import avatar from '../../server/public/img/defaultAlbum.png';
+
 
 const LoginView = (props) => {
     return (
-      <div>
-        <h1>Login View, Bitch</h1>
-        <LoginForm history={ props.history }/>
-        <p>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundImage: `url(${img})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        height: '100vh',
+        width: '100 vw',
+      }}>
+        {/* <p>
           New user? <Link to="/register">Sign up</Link>
-        </p>
+        </p> */}
+        <LoginForm history={ props.history }/>
       </div>
     );
 };

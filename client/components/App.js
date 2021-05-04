@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { createCart, cartChecker } from '../redux/shopping/thunkShopping'; // what about if a user is returning to the site?
+
+// import StripeCheckout from 'react-stripe-checkout';
+
 import { attemptTokenLogin } from '../redux/user/userActions';
 import {
   Nav,
@@ -65,6 +69,7 @@ class App extends Component {
             <Route component={AllArtists} path="/artists" exact />
             <Route component={CartView} path="/cart" />
             <Route component={Checkout} path="/checkout" />
+
           </Switch>
           <Route component={Footer} />
         </Router>
