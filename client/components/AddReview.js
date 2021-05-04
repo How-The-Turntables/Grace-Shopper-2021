@@ -10,12 +10,9 @@ class AddReview extends React.Component {
       stars: 5,
       albumId: this.props.id
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-
   };
 
-  async handleSubmit(event){
+  handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await this.props.addReviewDispatch(this.state, this.props.id);
@@ -25,7 +22,7 @@ class AddReview extends React.Component {
     }
   };
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });

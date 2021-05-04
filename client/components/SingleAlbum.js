@@ -11,19 +11,17 @@ class SingleAlbum extends React.Component{
     this.state = {
       review: '',
       showHideReviewForm: false
-    }
-    this.showComponent = this.showComponent.bind(this);
-    // this.handleAddToCart = this.handleAddToCart.bind(this)
+    }    // this.handleAddToCart = this.handleAddToCart.bind(this)
   };
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-    this.props.loadSingle(id);
+    const albumId = this.props.match.params.id;
+    this.props.loadSingle(albumId);
   };
 
  // handleAddToCart
 
-  showComponent(review) {
+  showComponent = (review) => {
     if (review === "showHideReviewForm") {
       return this.setState({ showHideReviewForm: !this.state.showHideReviewForm });
       // return break
