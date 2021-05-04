@@ -5,8 +5,6 @@ const server = require('../server/server');
 
 const app = supertest(server);
 
-require('../env');
-
 describe('Testing the Orders Details', () => {
   beforeEach(async () => {
     await db.sync({ force: true });
