@@ -7,8 +7,7 @@ class SingleArtist extends Component {
   // not addind local state until we know if we will be adding edit, create or delete functionality
   componentDidMount() {
     // console.log('this.props******',this.props.match.params.id)
-    this.props.loadArtist(this.props.match.params.id)
-
+    this.props.loadArtist(this.props.match.params.id);
   }
 
   render() {
@@ -31,7 +30,7 @@ class SingleArtist extends Component {
                   <Box key={album.id}>
                     {album.title}
                     <DescriptionBox>
-                      <p>Description: </p>
+                      Description:
                       {album.description}
                     </DescriptionBox>
                   </Box>

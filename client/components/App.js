@@ -29,6 +29,7 @@ class App extends Component {
     if (token) {
       this.props.attemptTokenLogin();
     } else {
+      console.log('else fired');
       newGuestCart();
     }
   }
