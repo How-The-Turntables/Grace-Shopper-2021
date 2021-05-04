@@ -8,9 +8,11 @@ const { User } = require('../db/index');
 // const id = utils(req); ** returns either requested ID or null.
 const requireToken = async (req, res, next) => {
   try {
+    if (!req.headers.authorization) res.status(401).send('GTFO');
     const token = req.headers.authorization;
     const user = await User.byToken(token);
     req.user = user;
+    if (!user.admin) res.status(401).send('GTFO');
     next();
   } catch (error) {
     next(error);

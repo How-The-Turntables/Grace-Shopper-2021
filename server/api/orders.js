@@ -7,10 +7,14 @@ const { authId } = require('../utils');
 //  all orders route for admin
 ordersRouter.get('/admin', requireToken, async (req, res, next) => {
   try {
-    const orders = await OrderDetail.findAll({
-      include: { all: true },
-    });
-    res.status(200).send(orders);
+    const isAuthorized = authId(req);
+    if (isAuthorized === 401) res.status(isAuthorized).send('you are not authorized')
+    else {
+      const orders = await OrderDetail.findAll({
+        include: { all: true },
+      });
+      res.status(200).send(orders);
+    }
   } catch (error) {
     console.log('problem with your api/orders get route: ', error);
     next(error);
