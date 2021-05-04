@@ -21,35 +21,35 @@ ordersRouter.get('/admin', requireToken, async (req, res, next) => {
   }
 });
 
-ordersRouter.get('/:id/items', async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const items = await OrderItem.findAll({
-      where: {
-        order_detailId: id,
-      },
-    });
-    res.status(200).send(items);
-  } catch (error) {
-    console.log('error occured in /api/orders/:id/items');
-    next(error);
-  }
-});
+// ordersRouter.get('/:id/items', async (req, res, next) => {
+//   try {
+//     const id = req.params.id;
+//     const items = await OrderItem.findAll({
+//       where: {
+//         order_detailId: id,
+//       },
+//     });
+//     res.status(200).send(items);
+//   } catch (error) {
+//     console.log('error occured in /api/orders/:id/items');
+//     next(error);
+//   }
+// });
 
-ordersRouter.post('/items', async (req, res, next) => {
-  try {
-    const data = req.params.data;
-    const newOrderItems = await OrderItem.create({
-      quantity: 1,
-      albumId: data.albumId,
-      order_detailId: data.order_detailId,
-    });
-    res.status(204).send(newOrderItems);
-  } catch (error) {
-    console.log('error occured in POST /api/orders/:id/items');
-    next(error);
-  }
-});
+// ordersRouter.post('/items', async (req, res, next) => {
+//   try {
+//     const data = req.params.data;
+//     const newOrderItems = await OrderItem.create({
+//       quantity: 1,
+//       albumId: data.albumId,
+//       order_detailId: data.order_detailId,
+//     });
+//     res.status(204).send(newOrderItems);
+//   } catch (error) {
+//     console.log('error occured in POST /api/orders/:id/items');
+//     next(error);
+//   }
+// });
 
 // Active user cart
 ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
