@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 //STYLING IMPORTS!
-import img from '/Users/kgil/Grace-Shopper-2021/server/public/img/unsplashRecord.png';
+import img from '../../server/public/img/unsplashRecord.png';
 //import Calligraffitti from '../../server/public/fonts/Calligraffitti-Regular.ttf'; -- Working on figuring out changing the web font;
 //import avatar from '../../server/public/img/defaultAlbum.png';
 
