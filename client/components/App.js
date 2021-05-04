@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+// import StripeCheckout from 'react-stripe-checkout';
 import {
   createCart,
   cartChecker,
@@ -56,7 +57,7 @@ class App extends Component {
           <Route component={Nav} />
           <Switch>
             <Route component={Home} path="/" exact />
-  
+
             <Route component={SingleAlbum} path="/albums/:id/details" exact />
             <Route component={AllAlbums} path="/albums/:idx" exact />
 
@@ -74,6 +75,7 @@ class App extends Component {
             <Route component={AllArtists} path="/artists" exact />
             <Route component={CartView} path="/cart" />
             <Route component={Checkout} path="/checkout" />
+
 
           </Switch>
           <Route component={Footer} />

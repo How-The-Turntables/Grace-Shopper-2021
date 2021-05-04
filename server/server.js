@@ -1,16 +1,19 @@
 const express = require('express');
 const router = require('./api/router');
 const path = require('path');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const cors = require('cors');
+// emily made a stripe account and used deveoper key to grap the pk_test
+const stripe = require('stripe')('sk_test_51InBnVLzJ6Ooq8ftOt9DFsvKpWDGTQCDwuMsFVroHTtpe7wAAHAC7TAnvnSxXbCVJn4sQMnr3stRgCQQQT4vZ5Eg00DL1juudz');
 
 const app = express();
 
 module.exports = app;
 
 app.use(express.json());
-// app.use(morgan('tiny'));
 app.use(cors());
+// app.use(morgan('tiny'));
+
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
