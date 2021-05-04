@@ -58,28 +58,7 @@ albumsRouter.post('/', async (req, res, next) => {
   }
 });
 
-// Post review route.
-albumsRouter.post('/reviews', async (req, res, next) => {
-  try {
-    const [review, wasCreated] = await Review.findOrCreate({
-      where: {
-        comment: req.body.comment,
-        stars: req.body.stars,
-        albumId: req.body.albumId,
-      },
-      include: [Album],
-    });
-    if (wasCreated) {
-      res.status(201).send(review);
-      review.save();
-    } else {
-      res.status(409).send(await Review.findAll());
-    }
-  } catch (error) {
-    console.log('error occured in /api/reviews/ post route: ', error);
-    next(error);
-  }
-});
+
 
 //ALBUMS EDITING ROUTES FOR ADMINS - ADD, DELETE, EDIT
 
@@ -124,26 +103,8 @@ albumsRouter.put('/:id', async (req, res, next) => {
   }
 });
 
-//THESE ROUTES ARE FOR REVIEWS
+// ALBUM REVIEWS
 
-albumsRouter.get('/:id/reviews', async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const reviews = await Review.findAll({
-      where: {
-        albumId: id,
-      },
-      include: Album,
-    });
-    res.send(reviews);
-  } catch (error) {
-    console.log(
-      'error occured in the /api/albums/:id/reviews get route: ',
-      error
-    );
-    next(error);
-  }
-});
 
 albumsRouter.post('/:id/reviews', async (req, res, next) => {
   try {
@@ -153,6 +114,7 @@ albumsRouter.post('/:id/reviews', async (req, res, next) => {
         stars: req.body.stars,
         albumId: req.body.albumId,
       },
+      include: [Album],
     });
 
     res.status(201).send(review);
@@ -162,4 +124,6 @@ albumsRouter.post('/:id/reviews', async (req, res, next) => {
     next(error);
   }
 });
+
+
 module.exports = albumsRouter;
