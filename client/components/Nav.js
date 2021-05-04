@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 //STYLING IMPORTS
-import { AppBar, Toolbar, Typography, Box, Button } from '@material-ui/core';
-import { Home, VpnKey, ShoppingCart } from '@material-ui/icons';
+import { AppBar, Toolbar, Box, Button, CardMedia } from '@material-ui/core';
+import { ShoppingCart } from '@material-ui/icons';
 //import Calligraffitti from '../../server/public/fonts/Calligraffitti-Regular.ttf'; -- Working on figuring out changing the web font;
-//import avatar from '../../server/public/img/defaultAlbum.png';
+import Logo from '../../server/public/img/howtheturntablesLOGO.png';
 
 class Nav extends Component {
   constructor() {
@@ -25,21 +25,35 @@ class Nav extends Component {
     return (
       <div>
       <Box component='nav'>
-        <AppBar position='static' style={{ background:'#F2F1E7'
- }}>
+        <AppBar position='static' style={{ background:'#F2F1E7' }}>
           <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
           <Link to="/" style={{ textDecoration: 'none' }}>
-            <Typography variant='h3' style={{ color: '#42240C' }}>How The Turntables</Typography>
+            <div
+                style={{
+                  display: "flex",
+                  alignItem: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <CardMedia
+                  style={{
+                    width: "auto",
+                    maxHeight: "80px"
+                  }}
+                  component="img"
+                  image={Logo}
+                />
+            </div>
           </Link>
             <div>
               <Link to="/" style={{ textDecoration: 'none' }}>
-                <Button >
-                  <Home style={{ color: '#42240C' }} />Home
+                <Button style={{ color: '#42240C' }}>
+                  Home
                 </Button>
               </Link>
               <Link to="/login" style={{ textDecoration: 'none' }}>
-                <Button>
-                  <VpnKey style={{ color: '#42240C' }} />Login
+                <Button style={{ color: '#42240C' }} >
+                  Login
                 </Button>
               </Link>
               <Link to="/cart" style={{ textDecoration: 'none' }}>
