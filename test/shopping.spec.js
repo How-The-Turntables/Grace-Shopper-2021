@@ -18,7 +18,7 @@ describe('Testing the Orders Details', () => {
   describe('GET /api/orders/admin exists', () => {
     it('expects the route to be accessible', async () => {
       const response = await app.get('/api/orders/admin');
-      expect(response.status).toEqual(200);
+      expect(response.status).toEqual(401);
     });
   });
 
