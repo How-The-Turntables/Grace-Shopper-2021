@@ -1,7 +1,6 @@
 import axios from 'axios';
 import types from '../types/index';
 
-
 // ALL ALBUMS ACTIONS
 
 const loadAlbums = ({ idx, albums }) => {
@@ -18,7 +17,6 @@ const setCount = (count) => {
     count,
   };
 };
-
 
 export const renderAlbums = (idx) => {
   return async (dispatch, getState) => {
@@ -40,7 +38,6 @@ export const renderAlbums = (idx) => {
   };
 };
 
-
 // SINGLE ALBUM ACTIONS
 const loadSingleAlbum = (singleAlbum) => {
   return {
@@ -60,7 +57,6 @@ export const renderSingleAlbum = (id) => {
   };
 };
 
-
 // FILTERING
 const filterGenreAlbums = (genre, albums) => {
   return {
@@ -68,18 +64,17 @@ const filterGenreAlbums = (genre, albums) => {
     payload: {
       genre,
       // if no genre filter has been selected, return all albums, otherwise return all albums with the selected genre
-      items: genre === ''? albums : albums.filter( album => album.genre === genre)
-    }
+      items:
+        genre === '' ? albums : albums.filter((album) => album.genre === genre),
+    },
   };
 };
 
 export const filterTutorial = (albums, genre) => {
-  return  (dispatch) => {
-    dispatch(filterGenreAlbums(albums, genre))
+  return (dispatch) => {
+    dispatch(filterGenreAlbums(albums, genre));
   };
 };
-
-
 
 // export const editAlbum = (album) => {
 //   return {
@@ -87,4 +82,3 @@ export const filterTutorial = (albums, genre) => {
 //     album,
 //   };
 // };
-

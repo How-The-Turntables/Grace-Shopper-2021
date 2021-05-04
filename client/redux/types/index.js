@@ -36,6 +36,9 @@ const CREATE_USER = 'CREATE_USER';
 //Admins
 const LOAD_ORDERS = 'LOAD_ORDERS';
 
+//Universal
+const UNLOAD = 'UNLOAD';
+
 const types = {
   LOAD_ALBUMS,
   SINGLE_ALBUM,
@@ -66,6 +69,7 @@ const types = {
   LOGIN,
   CREATE_USER,
   LOAD_ORDERS,
+  UNLOAD,
 };
 
 export default types;
