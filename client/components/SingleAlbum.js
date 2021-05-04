@@ -34,7 +34,6 @@ class SingleAlbum extends React.Component{
   render() {
     const { album } = this.props;
     const { showHideReviewForm } = this.state;
-    console.log(album.reviews)
     return (
       <div >
         <h1>{album.title}</h1>
@@ -57,7 +56,7 @@ class SingleAlbum extends React.Component{
                 <div>
                   Product Reviews
                     <div>
-                      {showHideReviewForm && <AddReview />}
+                      {showHideReviewForm && <AddReview history={this.props.history} id={album.id}/>}
                     </div>
                     <button
                       onClick={() =>  this.showComponent('showHideReviewForm')}>

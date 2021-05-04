@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { renderAddReview } from '../redux/reviews/reviewActions';
 
 class AddReview extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       comment: '',
       stars: 5,
+      albumId: this.props.id
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -17,7 +18,7 @@ class AddReview extends React.Component {
   async handleSubmit(event){
     event.preventDefault();
     try {
-      await this.props.addReviewDispatch(this.state);
+      await this.props.addReviewDispatch(this.state, this.props.id);
     }
     catch(error) {
       this.setState({ error: error.response.data.error });
@@ -29,7 +30,6 @@ class AddReview extends React.Component {
       [event.target.name]: event.target.value
     });
   };
-
   render() {
     return (
       <div>
@@ -70,7 +70,7 @@ class AddReview extends React.Component {
 
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
-    addReviewDispatch: (review) => dispatch(renderAddReview( review, history ))
+    addReviewDispatch: (review, id) => dispatch(renderAddReview( review, id, history ))
   }
 };
 

@@ -31,25 +31,18 @@ albumsRouter.get('/:id', async (req, res, next) => {
   }
 });
 
+//ALBUMS EDITING ROUTES FOR ADMINS - ADD, DELETE, EDIT
+
 albumsRouter.post('/', async (req, res, next) => {
   try {
-    const {
-      title,
-      description,
-      genre,
-      year,
-      price,
-      photoURL,
-      quantity,
-    } = req.body;
     const newAlbum = await Album.create({
-      title,
-      description,
-      genre,
-      year,
-      price,
-      photoURL,
-      quantity,
+      title: req.body.title,
+      description: req.body.description,
+      genre: req.body.genre,
+      year: req.body.year,
+      price: req.body.price,
+      photoURL: req.body.photoURL,
+      quantity: req.body.quantity,
     });
     res.status(201).send(newAlbum);
   } catch (error) {
@@ -57,10 +50,6 @@ albumsRouter.post('/', async (req, res, next) => {
     next(error);
   }
 });
-
-
-
-//ALBUMS EDITING ROUTES FOR ADMINS - ADD, DELETE, EDIT
 
 albumsRouter.delete('/:id', async (req, res, next) => {
   try {
@@ -76,25 +65,16 @@ albumsRouter.delete('/:id', async (req, res, next) => {
 
 albumsRouter.put('/:id', async (req, res, next) => {
   try {
-    const {
-      title,
-      description,
-      genre,
-      year,
-      price,
-      photoURL,
-      quantity,
-    } = req.body;
     const { id } = req.params;
     const album = await album.findByPk({ id });
     await album.update({
-      title,
-      description,
-      genre,
-      year,
-      price,
-      photoURL,
-      quantity,
+      title: req.body.title,
+      description: req.body.description,
+      genre: req.body.genre,
+      year: req.body.year,
+      price: req.body.price,
+      photoURL: req.body.photoURL,
+      quantity: req.body.quantity,
     });
     res.status(201).send(album);
   } catch (error) {
@@ -103,10 +83,10 @@ albumsRouter.put('/:id', async (req, res, next) => {
   }
 });
 
+
 // ALBUM REVIEWS
 
-
-albumsRouter.post('/:id/reviews', async (req, res, next) => {
+albumsRouter.post('/reviews', async (req, res, next) => {
   try {
     const review = await Review.create({
       where: {

@@ -12,12 +12,10 @@ export const addReview = ( review ) => {
 export const renderAddReview = ( newReview, id, history ) => {
   return async (dispatch) => {
     try {
-      const { data: review } = await axios.post(`api/albums/${id}/reviews`, newReview );
+      const { data: review } = await axios.post(`api/albums/reviews`, newReview );
       dispatch(addReview( review ));
-      history.push('/'); // or should this just be '/'
+      // history.push('/'); // or should this just be '/'
       console.log('left review')
-      // dispatch(renderReviews(id));
-      console.log('rendering album')
       dispatch(renderSingleAlbum( id ));
     }
     catch (error) {
