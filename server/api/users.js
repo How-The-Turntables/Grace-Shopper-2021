@@ -3,31 +3,34 @@ const usersRouter = require('express').Router();
 const { requireToken } = require('./auth');
 
 // two gets: /auth and /users/userId
-usersRouter.get('/', async (req, res, next) => {
+usersRouter.get('/admin', requireToken, async (req, res, next) => {
   try {
-    const users = await User.findAll();
-    res.send(users);
+    if (!req.user.admin) res.status(401).send('you are not authorized');
+    else {
+      const users = await User.findAll();
+      res.send(users);
+    }
   } catch (error) {
     console.log('error occured in /api/users: ', error);
     next(error);
   }
 });
 
-usersRouter.post('/', async (req, res, next) => {
-  try {
-    const { firstName, lastName, email, password } = req.body;
-    const newUser = await User.create({
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
-      email: email.trim(),
-      password
-    });
-    res.send(newUser);
-  } catch (error) {
-    console.log('cannot create user');
-    next(error);
-  }
-})
+// usersRouter.post('/', async (req, res, next) => {
+//   try {
+//     const { firstName, lastName, email, password } = req.body;
+//     const newUser = await User.create({
+//       firstName: firstName.trim(),
+//       lastName: lastName.trim(),
+//       email: email.trim(),
+//       password
+//     });
+//     res.send(newUser);
+//   } catch (error) {
+//     console.log('cannot create user');
+//     next(error);
+//   }
+// })
 
 
 // -------- To access a user ID, you must be authenticated by passing a token into the get request, such as below: ---------

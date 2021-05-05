@@ -29,7 +29,7 @@ const styles = theme => ({
 });
 
 
-class Orders extends Component {
+class Users extends Component {
   constructor(props) {
     super(props)
   }
@@ -85,4 +85,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Orders))
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Users))
