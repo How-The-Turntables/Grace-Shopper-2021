@@ -8,40 +8,39 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import Typography from '@material-ui/core/Typography';
 
-
 export const sidebarData = [
   {
     title: 'Orders',
     path: '/admin',
-    icon: <DashboardIcon/>
+    icon: <DashboardIcon />,
   },
   {
     title: 'Users',
     path: '/admin/users',
-    icon: <PeopleIcon/>
-  }
+    icon: <PeopleIcon />,
+  },
 ];
 
 function preventDefault(event) {
   event.preventDefault();
-};
+}
 
 export const NavItems = (
-  <Typography >
-   {sidebarData.map((item, index) => {
-        return (
-          <ListItem key={index}
-            onClick={preventDefault}
-            // replace
-            button>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
-              <Link to={item.path}>
-                <ListItemText primary={item.title} />
-              </Link>
-          </ListItem>
-        )
-      })}
+  <Typography>
+    {sidebarData.map((item, index) => {
+      return (
+        <ListItem
+          key={index}
+          onClick={preventDefault}
+          // replace
+          button
+        >
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <Link to={item.path}>
+            <ListItemText primary={item.title} />
+          </Link>
+        </ListItem>
+      );
+    })}
   </Typography>
 );
