@@ -8,7 +8,7 @@ const { authId } = require('../utils');
 //  all orders route for admin
 ordersRouter.get('/admin', requireToken, async (req, res, next) => {
   try {
-    if (!req.user.admin) res.status(401).send('you are not authorized');
+    if (!req.user.admin) res.status(401).send('you are not authorized')
     else {
       const orders = await OrderDetail.findAll({
         include: { all: true },
