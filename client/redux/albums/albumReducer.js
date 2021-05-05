@@ -1,19 +1,33 @@
 import types from '../types/index';
 
-
-const albumsReducer = (state = { albums: [], album: {}, count: 0, data: {}, filteredAlbums: [],
-  genre: '', }, action) => {
+const albumsReducer = (
+  state = {
+    albums: [],
+    album: {},
+    count: 0,
+    data: {},
+    filteredAlbums: [],
+    genre: '',
+  },
+  action
+) => {
   if (action.type === types.LOAD_ALBUMS) {
     state = {
       ...state,
-      data: { ...state.data, [action.idx]: action.albums, filteredAlbums: action.payload }, // action.index key is the page you're rendering
+      data: {
+        ...state.data,
+        [action.idx]: action.albums,
+        filteredAlbums: action.payload,
+      }, // action.index key is the page you're rendering
     };
-  }
-  else if (action.type === types.SET_COUNT) {
+  } else if (action.type === types.SET_COUNT) {
     state = { ...state, count: action.count };
-  }
-  else if (action.type === types.FILTER_BY_GENRE) {
-    state = { ...state, filteredAlbums: action.payload, genre: action.payload.genre }
+  } else if (action.type === types.FILTER_BY_GENRE) {
+    state = {
+      ...state,
+      filteredAlbums: action.payload,
+      genre: action.payload.genre,
+    };
   }
   return state;
 };
