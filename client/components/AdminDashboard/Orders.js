@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { renderOrders } from '../../redux/admin/adminActions';
 
 function preventDefault(event) {
@@ -20,11 +20,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Orders(props) {
+function Orders( props ) {
+  const dispatch = useDispatch;
   const classes = useStyles();
-  // if (!props.state.orders) props.orders();
-  const rows = []
-  console.log("PROPS", props.orders)
+  useEffect(function () {
+    dispatch(renderOrders());
+  }, [dispatch]);
+console.log(props)
+const rows =[]
+  // console.log("PROPS", props.orders)
   return (
     <React.Fragment>
       <Title>Recent Orders</Title>
