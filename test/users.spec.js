@@ -1,4 +1,4 @@
-const { db, User } = require('./../server/db/index');
+const { db, User, OrderDetail } = require('./../server/db/index');
 
 describe('user model', () => {
   describe('seeding user data', () => {
@@ -15,5 +15,20 @@ describe('user model', () => {
 
       expect(user.firstName).toEqual('Anonymous');
     });
+    it('new users should have a cart', async () => {
+      const user = await User.create({
+        firstName: 'Test',
+        lastName: 'User',
+        email: 'test.user@howtheturntables.com',
+        password: '123',
+      });
+      const order = await OrderDetail.findOne({
+        where: {
+          userId: user.id
+        }
+      });
+      console.log("TEST SPEC ORDER", order)
+      expect(order).not.toBeNull();
+    })
   });
 });
