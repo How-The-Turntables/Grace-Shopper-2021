@@ -4,13 +4,19 @@ import React, { Component } from 'react';
 import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import clsx from 'clsx';
+// import NavBar from './NavItems';
+
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 import { connect } from 'react-redux'
-import { renderOrders } from '../../redux/admin/adminActions';
+import { renderUsers } from '../../redux/admin/adminActions';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -34,40 +40,36 @@ class Users extends Component {
     super(props)
   }
   componentDidMount() {
-    this.props.loadOrders()
+    this.props.loadUsers()
   }
   render() {
-    const { classes, orders } = this.props
+    const { classes, users } = this.props
+    // console.log(users[0].admin)
   return (
     <React.Fragment>
-      <Title>Recent Orders</Title>
+      <Title>Registered Users</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell>Admin Status</TableCell>
+            <TableCell>First Name</TableCell>
+            <TableCell>Last Name</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Registration Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.length ? orders.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.createdAt}</TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell>{row.user.firstName} {row.user.lastName}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.total}</TableCell>
+          {users.length ? users.map((user) => (
+            <TableRow key={user.id}>
+              <TableCell>{!user.admin? 'Customer' : 'Admin'}</TableCell>
+              <TableCell>{user.firstName}</TableCell>
+              <TableCell>{user.lastName}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell>{user.createdAt}</TableCell>
             </TableRow>
-          )) : 'no orders yet'}
+          )) : 'no users yet'}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
-        </Link>
-      </div>
     </React.Fragment>
   );
 }
@@ -75,13 +77,13 @@ class Users extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    orders: state.orders
+    users: state.users
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadOrders: () => dispatch(renderOrders())
+    loadUsers: () => dispatch(renderUsers())
   }
 }
 
