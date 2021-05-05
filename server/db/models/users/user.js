@@ -43,6 +43,14 @@ User.init(
   { sequelize: db, modelName: 'user' }
 );
 
+User.afterCreate(async (user) => {
+  await OrderDetail.create({
+      total: 0,
+      status: 'IN PROGRESS',
+      userId: user.id
+    });
+});
+
 User.addHook('beforeSave', async (user) => {
   if (user._changed.has('password')) {
     user.password = await bcrypt.hash(user.password, 5);

@@ -13,7 +13,8 @@
     "test:dev": "npm run test -- --watch",
     "build": "webpack",
     "build:dev": "webpack -w",
-    "start:dev": "nodemon server/index --ignore server/public --ignore client & npm run build:dev",
+    "start": "node server/index.js",
+    "start:dev": "nodemon server/index --ignore server/public --ignore client/ & npm run build:dev",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
