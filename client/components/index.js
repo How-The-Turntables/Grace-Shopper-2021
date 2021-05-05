@@ -1,7 +1,6 @@
 import App from './App';
 import Nav from './Nav';
 import Home from './Home';
-import AdminPage from './AdminPage';
 import AllUsers from './AllUsers';
 import AllOrders from './AllOrders';
 import AllArtists from './AllArtists';
@@ -24,7 +23,6 @@ export {
   App,
   Nav,
   Home,
-  AdminPage,
   AllArtists,
   SingleArtist,
   AllAlbums,

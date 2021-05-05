@@ -13,18 +13,6 @@ import Link from '@material-ui/core/Link';
 import { NavItems } from './listItems';
 import Users from './Users';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -109,14 +97,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UsersDashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
@@ -126,7 +106,6 @@ export default function UsersDashboard() {
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
-        open={open}
       >
         <div className={classes.toolbarIcon}>
         </div>
@@ -143,9 +122,6 @@ export default function UsersDashboard() {
               </Paper>
             </Grid>
           </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
         </Container>
       </main>
     </div>

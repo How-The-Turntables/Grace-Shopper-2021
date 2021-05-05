@@ -47,19 +47,6 @@ class Users extends Component {
     // console.log(users[0].admin)
   return (
     <React.Fragment>
-      {/* <CssBaseline />
-      <Drawer
-        // onClick={showSidebar}
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-        </div>
-        <List><NavBar/></List>
-      </Drawer> */}
       <Title>Registered Users</Title>
       <Table size="small">
         <TableHead>

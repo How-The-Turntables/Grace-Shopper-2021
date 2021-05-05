@@ -66,8 +66,8 @@ class App extends Component {
             <Route component={Checkout} path="/checkout" />
 
 
-            <Route component={OrdersDashboard} path="/admin/orders" exact/>
-            <Route component={UsersDashboard} path="/admin/users" exact/>
+            <Route component={OrdersDashboard} path="/admin" exact/>
+            <Route component={UsersDashboard} path="/admin/users" />
 
           </Switch>
           <Route component={Footer} />

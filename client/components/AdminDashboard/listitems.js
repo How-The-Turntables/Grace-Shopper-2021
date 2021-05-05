@@ -11,7 +11,7 @@ import PeopleIcon from '@material-ui/icons/People';
 export const sidebarData = [
   {
     title: 'Orders',
-    path: '/admin/orders',
+    path: '/admin',
     icon: <DashboardIcon/>
   },
   {
@@ -21,11 +21,16 @@ export const sidebarData = [
   }
 ];
 
+function preventDefault(event) {
+  event.preventDefault();
+};
+
 export const NavItems = (
-  <div>
+  <Typography >
    {sidebarData.map((item, index) => {
         return (
           <ListItem key={index}
+            onClick={preventDefault}
             // replace
             button>
               <ListItemIcon>
@@ -37,5 +42,5 @@ export const NavItems = (
           </ListItem>
         )
       })}
-  </div>
+  </Typography>
 );
