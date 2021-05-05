@@ -16,9 +16,9 @@ import {
   Checkout,
   Footer,
   SignUpForm,
-  AllOrders,
-  OrdersDashboard,
-  UsersDashboard
+  UserOrders,
+  AdminOrders,
+  AdminUsers
 } from './index';
 import LoginForm from './LoginForm';
 import { newGuestCart } from '../../server/utils';
@@ -57,15 +57,16 @@ class App extends Component {
             <Route component={LoginView} path="/login" />
             <Route component={LoginForm} path="/loginform" />
             <Route component={SignUpForm} path="/register" />
-            <Route component={AllOrders} path="/orders/admin" />
             <Route component={SingleArtist} path="/artists/:id" />
             <Route component={AllArtists} path="/artists" exact />
             <Route component={CartView} path="/cart" />
             <Route component={Checkout} path="/checkout" />
 
+            {/* <Route component={AccountInfo} path="/orderhistory/:id" /> */}
+            <Route component={UserOrders} path="/account/:id" />
 
-            <Route component={OrdersDashboard} path="/admin" exact/>
-            <Route component={UsersDashboard} path="/admin/users" />
+            <Route component={AdminOrders} path="/admin" exact/>
+            <Route component={AdminUsers} path="/admin/users" />
 
           </Switch>
           <Route component={Footer} />

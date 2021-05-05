@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function OrdersDashboard() {
+export default function UserOrders() {
   const classes = useStyles();
 
   return (

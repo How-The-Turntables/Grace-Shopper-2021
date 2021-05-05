@@ -1,7 +1,7 @@
 import App from './App';
 import Nav from './Nav';
 import Home from './Home';
-import AllOrders from './AllOrders';
+import UserOrders from './Dashboards/UserDashboard/UserOrders';
 import AllArtists from './AllArtists';
 import AllAlbums from './AllAlbums';
 import LoginForm from './LoginForm';
@@ -12,8 +12,8 @@ import Footer from './Footer';
 import SignUpForm from './SignUpForm';
 import SingleArtist from './SingleArtist';
 import SingleAlbum from './SingleAlbum';
-import OrdersDashboard from './AdminDashboard/OrdersDashboard';
-import UsersDashboard from './AdminDashboard/UsersDashboard';
+import AdminOrders from './Dashboards/AdminDashboard/AdminOrders';
+import AdminUsers from './Dashboards/AdminDashboard/AdminUsers';
 
 import AddReview from './AddReview';
 
@@ -32,8 +32,8 @@ export {
   LoginForm,
   LoginView,
   SignUpForm,
-  AllOrders,
-  OrdersDashboard,
-  UsersDashboard,
+  AdminOrders,
+  AdminUsers,
+  UserOrders,
   AddReview
 };
