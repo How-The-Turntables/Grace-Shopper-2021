@@ -1,7 +1,6 @@
 import App from './App';
 import Nav from './Nav';
 import Home from './Home';
-import AllUsers from './AllUsers';
 import AllOrders from './AllOrders';
 import AllArtists from './AllArtists';
 import AllAlbums from './AllAlbums';
@@ -34,7 +33,6 @@ export {
   LoginView,
   SignUpForm,
   AllOrders,
-  AllUsers,
   OrdersDashboard,
   UsersDashboard,
   AddReview
