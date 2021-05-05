@@ -7,8 +7,7 @@ class Review extends Model {}
 Review.init(
   {
     comment: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+      type: DataTypes.TEXT
     },
     stars: {
       type: DataTypes.INTEGER,
@@ -16,7 +15,7 @@ Review.init(
         min: 1,
         max: 5,
       },
-      allowNull: false,
+      defaultValue: 5
     },
   },
   { sequelize: db, modelName: 'review' }

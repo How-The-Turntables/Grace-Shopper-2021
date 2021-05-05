@@ -1,6 +1,7 @@
 const ordersRouter = require('express').Router();
 const { Op } = require('sequelize'); // MOVE THS and the query to order model
-const { OrderDetail, Album, OrderItem } = require('../db/index');
+const { OrderDetail, Album } = require('../db/index');
+const OrderItem = require('../db/models/shopping/orderItem');
 const { requireToken } = require('./auth');
 const { authId } = require('../utils');
 
@@ -20,10 +21,39 @@ ordersRouter.get('/admin', requireToken, async (req, res, next) => {
   }
 });
 
+// ordersRouter.get('/:id/items', async (req, res, next) => {
+//   try {
+//     const id = req.params.id;
+//     const items = await OrderItem.findAll({
+//       where: {
+//         order_detailId: id,
+//       },
+//     });
+//     res.status(200).send(items);
+//   } catch (error) {
+//     console.log('error occured in /api/orders/:id/items');
+//     next(error);
+//   }
+// });
+
+ordersRouter.post('/items', async (req, res, next) => {
+  try {
+    const data = req.params.data;
+    const newOrderItems = await OrderItem.create({
+      quantity: 1,
+      albumId: data.albumId,
+      order_detailId: data.order_detailId,
+    });
+    res.status(204).send(newOrderItems);
+  } catch (error) {
+    console.log('error occured in POST /api/orders/:id/items');
+    next(error);
+  }
+});
+
 // Active user cart
 ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
-    // const id = (req.params.id === req.user.id || req.user.admin === true) ? req.params.id : null
     const id = authId(req);
     if (!id) res.status(401).send('you are not authorized');
     const cart = await OrderDetail.findOne({
@@ -31,19 +61,17 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
         userId: id,
         status: 'IN PROGRESS',
       },
-      include: { all: true },
     });
     const cartId = cart.dataValues.id;
-    // findAll order_items where order_detailId: cartId
     const orderItems = await OrderItem.findAll({
       where: {
         order_detailId: cartId,
       },
-      include: { all: true },
     });
 
+    const cartDetails = { cart, orderItems };
     if (!orderItems) res.sendStatus(404);
-    else res.status(200).send(orderItems);
+    else res.status(200).send(cartDetails);
   } catch (error) {
     console.log('problem with your GET api/orders/:id/cart route: ', error);
     next(error);
@@ -70,7 +98,7 @@ ordersRouter.get('/:id', requireToken, async (req, res, next) => {
 });
 
 // user adds item to cart
-ordersRouter.post('/:id/cart', requireToken, async (req, res, next) => {
+ordersRouter.post('/cart', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);
     if (!id) res.status(401).send('you are not authorized');
@@ -145,39 +173,46 @@ ordersRouter.put('/:id/cart/:albumId', requireToken, async (req, res, next) => {
 });
 
 // user can delete current items
-ordersRouter.delete('/:id/cart/:albumId', requireToken, async (req, res, next) => {
-  try {
-    const id = authId(req);
-    if (!id) res.status(401).send('you are not authorized');
-    const albumToRemove = await Album.findByPk(req.params.albumId); // change to a findOne w/ where clause?
-    const cartSession = await OrderDetail.findOne({
-      // because they could already have a cart in session
-      where: {
-        userId: req.params.id,
-        status: 'IN PROGRESS',
-      },
-      include: { all: true },
-    });
-    const cart = cartSession.dataValues;
+ordersRouter.delete(
+  '/:id/cart/:albumId',
+  requireToken,
+  async (req, res, next) => {
+    try {
+      const id = authId(req);
+      if (!id) res.status(401).send('you are not authorized');
+      const albumToRemove = await Album.findByPk(req.params.albumId); // change to a findOne w/ where clause?
+      const cartSession = await OrderDetail.findOne({
+        // because they could already have a cart in session
+        where: {
+          userId: req.params.id,
+          status: 'IN PROGRESS',
+        },
+        include: { all: true },
+      });
+      const cart = cartSession.dataValues;
 
-    let orderItem = await OrderItem.findOne({
-      where: {
-        order_detailId: cart.id,
-        albumId: albumToRemove.id,
-      },
-      include: { all: true },
-    });
-    // updating cart item quantity and quantity of selected album
-    if (orderItem > 1) {
-      orderItem.quantity -= req.body.quantity;
-      cart.total -= 1 * albumToRemove.price;
-      res.status(204).send(orderItem);
-    } else orderItem.destroy();
-  } catch (error) {
-    console.log('problem with your DELETE api/orders/:id/cart route: ', error);
-    next(error);
+      let orderItem = await OrderItem.findOne({
+        where: {
+          order_detailId: cart.id,
+          albumId: albumToRemove.id,
+        },
+        include: { all: true },
+      });
+      // updating cart item quantity and quantity of selected album
+      if (orderItem > 1) {
+        orderItem.quantity -= req.body.quantity;
+        cart.total -= 1 * albumToRemove.price;
+        res.status(204).send(orderItem);
+      } else orderItem.destroy();
+    } catch (error) {
+      console.log(
+        'problem with your DELETE api/orders/:id/cart route: ',
+        error
+      );
+      next(error);
+    }
   }
-});
+);
 
 // single order put route for admin to change order status
 ordersRouter.put('/:id/admin', requireToken, async (req, res, next) => {

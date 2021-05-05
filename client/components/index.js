@@ -15,6 +15,7 @@ import SignUpForm from './SignUpForm';
 import SingleArtist from './SingleArtist';
 import SingleAlbum from './SingleAlbum';
 import Dashboard from './AdminDashboard/Dashboard'
+import AddReview from './AddReview';
 
 
 export {
@@ -34,5 +35,6 @@ export {
   SignUpForm,
   AllOrders,
   AllUsers,
-  Dashboard
+  Dashboard,
+  AddReview
 };

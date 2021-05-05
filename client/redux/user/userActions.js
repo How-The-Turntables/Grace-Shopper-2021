@@ -6,7 +6,7 @@ export const loginAction = ({ user, token, admin }) => {
     type: types.LOGIN,
     user,
     token,
-    admin
+    admin,
   };
 };
 
@@ -15,7 +15,7 @@ export const loginUser = (credentials, history) => {
   return async (dispatch) => {
     try {
       const response = await axios.post('/api/auth', credentials);
-      const { token } = response.data
+      const { token } = response.data;
       window.localStorage.setItem('JWTtoken', token);
       dispatch(attemptTokenLogin(history));
     } catch (error) {
@@ -36,6 +36,7 @@ export const attemptTokenLogin = (history) => {
       const { id, firstName, lastName, email, admin } = response.data;
       const user = { id, firstName, lastName, email };
       dispatch(loginAction({ user, token, admin }));
+
       history.push('/');
 
       //send order history only, yes!

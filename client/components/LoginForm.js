@@ -79,8 +79,8 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {...state};
-}
+  return { ...state };
+};
 
 const mapDistpatchToProps = (dispatch, { history }) => {
   return {

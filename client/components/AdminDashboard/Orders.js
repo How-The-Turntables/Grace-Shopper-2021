@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Orders(props) {
   const classes = useStyles();
-  if (!props.state.orders) props.orders();
+  // if (!props.state.orders) props.orders();
   const rows = []
   console.log("PROPS", props.orders)
   return (
