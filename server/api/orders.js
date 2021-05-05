@@ -8,7 +8,7 @@ const { authId } = require('../utils');
 //  all orders route for admin
 ordersRouter.get('/admin', requireToken, async (req, res, next) => {
   try {
-    if (!res.user.admin) res.status(401).send('you are not authorized');
+    if (!req.user.admin) res.status(401).send('you are not authorized');
     else {
       const orders = await OrderDetail.findAll({
         include: { all: true },
@@ -21,20 +21,20 @@ ordersRouter.get('/admin', requireToken, async (req, res, next) => {
   }
 });
 
-ordersRouter.get('/:id/items', async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const items = await OrderItem.findAll({
-      where: {
-        order_detailId: id,
-      },
-    });
-    res.status(200).send(items);
-  } catch (error) {
-    console.log('error occured in /api/orders/:id/items');
-    next(error);
-  }
-});
+// ordersRouter.get('/:id/items', async (req, res, next) => {
+//   try {
+//     const id = req.params.id;
+//     const items = await OrderItem.findAll({
+//       where: {
+//         order_detailId: id,
+//       },
+//     });
+//     res.status(200).send(items);
+//   } catch (error) {
+//     console.log('error occured in /api/orders/:id/items');
+//     next(error);
+//   }
+// });
 
 ordersRouter.post('/items', async (req, res, next) => {
   try {
