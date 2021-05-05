@@ -14,6 +14,7 @@ import Footer from './Footer';
 import SignUpForm from './SignUpForm';
 import SingleArtist from './SingleArtist';
 import SingleAlbum from './SingleAlbum';
+import Dashboard from './AdminDashboard/Dashboard'
 
 
 export {
@@ -32,5 +33,6 @@ export {
   LoginView,
   SignUpForm,
   AllOrders,
-  AllUsers
+  AllUsers,
+  Dashboard
 };

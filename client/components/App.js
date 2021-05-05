@@ -24,6 +24,7 @@ import {
   Footer,
   SignUpForm,
   AllOrders,
+  Dashboard,
 } from './index';
 import LoginForm from './LoginForm';
 
@@ -67,8 +68,8 @@ class App extends Component {
             <Route component={SignUpForm} path="/register" />
 
 
-            <Route component={AdminPage} path="/admin" />
-            <Route component={AllUsers} path="/orders/admin" />
+            <Route component={Dashboard} path="/admin" />
+            <Route component={AllUsers} path="/allusers" />
             <Route component={AllOrders} path="/orders/admin" />
 
             <Route component={SingleArtist} path="/artists/:id" />
