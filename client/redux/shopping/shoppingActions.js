@@ -5,8 +5,8 @@ import types from '../types/index';
 export const newCart = (cart) => {
   return {
     type: types.NEW_CART,
-    cart
-  }
+    cart,
+  };
 };
 
 export const createCart = (id) => {
@@ -39,17 +39,37 @@ export const renderCart = (id) => {
   };
 };
 
-export const cartChecker = (token) => {
+export const cartChecker = (token, userId) => {
   return async (dispatch) => {
     try {
-      const { id } = token;
-      const { data: cart } = await axios.get(`/api/orders/${id}/cart`, {
+      const { data: cart } = await axios.get(`/api/orders/${userId}/cart`, {
         headers: {
           authorization: token,
         },
       });
-      if (cart) {
-        localStorage.setItem('GScart', cart);
+      const guestCart = JSON.parse(localStorage.getItem('GuestCart'));
+      if (guestCart.albums.length > 0) {
+        guestCart.albums.map(async (album) => {
+          const data = {
+            albumId: album.id,
+            order_deatil: cart.cart.id,
+          };
+          const { data: albumToAdd } = await axios.post('/api/items/', data);
+        });
+        localStorage.removeItem('GuestCart');
+        const { data: updatedCartItems } = await axios.get(
+          `/api/orders/${userId}/cart`,
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
+        localStorage.setItem('UserCart', JSON.stringify(updatedCartItems));
+        dispatch(loadCart(updatedCartItems));
+      } else {
+        localStorage.removeItem('GuestCart');
+        localStorage.setItem('UserCart', JSON.stringify(cart));
         dispatch(loadCart(cart));
       }
     } catch (error) {
@@ -58,16 +78,18 @@ export const cartChecker = (token) => {
   };
 };
 
-export const guestCart = () => {
-  return async (dispatch) => {
-    try {
-      const { data: cart } = await axios.post('/api/orders/cart');
-      localStorage.setItem('GScart', cart);
-      dispatch(loadCart(cart));
-    } catch (error) {
-      console.log('error occured in guestCart thunk', error);
-    }
-  };
-};
-
-
+// export const guestCart = () => {
+//   return async (dispatch) => {
+//     try {
+//       const cart = {
+//         id: 'guest',
+//         albums: [],
+//       };
+//       // const { data: cart } = await axios.post('/api/orders/cart');
+//       localStorage.setItem('GScart', JSON.stringify(cart));
+//       dispatch(loadCart(cart));
+//     } catch (error) {
+//       console.log('error occured in guestCart thunk', error);
+//     }
+//   };
+// };

@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createCart, cartChecker } from '../redux/shopping/shoppingActions'; // what about if a user is returning to the site?
 // import StripeCheckout from 'react-stripe-checkout';
-import {
-  createCart,
-  cartChecker,
-  guestCart,
-} from '../redux/shopping/shoppingActions'; // what about if a user is returning to the site?
 import { attemptTokenLogin } from '../redux/user/userActions';
-
 import {
   Nav,
   Home,
@@ -26,6 +21,7 @@ import {
   AllOrders,
 } from './index';
 import LoginForm from './LoginForm';
+import { newGuestCart } from '../../server/utils';
 
 class App extends Component {
   componentDidMount() {
@@ -33,21 +29,18 @@ class App extends Component {
     if (token) {
       this.props.attemptTokenLogin();
     } else {
-      this.props.guestCart();
+      newGuestCart();
     }
   }
 
-  componentDidUpdate(props) {
-    const cart = window.localStorage.GScart;
+  componentDidUpdate(prevState) {
+    // const cart = window.localStorage.GScart;
     const token = window.localStorage.JWTtoken;
+    const userId = this.props.auth.user.id;
     if (token) {
-      // start here tomorrow
-      // check if theres a token
-      // yes? => status in progress, merge items from current cart
-    }
-    if (!cart) {
-      props.cartChecker(token);
-      //this may go away
+      if (!window.localStorage.UserCart) {
+        this.props.cartChecker(token, userId);
+      }
     }
   }
   render() {
@@ -61,11 +54,9 @@ class App extends Component {
             <Route component={SingleAlbum} path="/albums/:id/details" exact />
             <Route component={AllAlbums} path="/albums/:idx" exact />
 
-
             <Route component={LoginView} path="/login" />
             <Route component={LoginForm} path="/loginform" />
             <Route component={SignUpForm} path="/register" />
-
 
             <Route component={AdminPage} path="/admin" />
             <Route component={AllUsers} path="/orders/admin" />
@@ -75,12 +66,9 @@ class App extends Component {
             <Route component={AllArtists} path="/artists" exact />
             <Route component={CartView} path="/cart" />
             <Route component={Checkout} path="/checkout" />
-
-
           </Switch>
           <Route component={Footer} />
         </Router>
-
       </div>
     );
   }
@@ -93,9 +81,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
     newCart: (id) => dispatch(createCart(id)), // need this to have userId token
-    cartChecker: (token) => dispatch(cartChecker(token)),
+    cartChecker: (token, userId) => dispatch(cartChecker(token, userId)),
     attemptTokenLogin: () => dispatch(attemptTokenLogin(history)),
-    guestCart: () => dispatch(guestCart()),
   };
 };
 
