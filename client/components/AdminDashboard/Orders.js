@@ -1,34 +1,45 @@
-import React, { useEffect} from 'react';
+// import React, { useEffect} from 'react';
+import React, { Component} from 'react';
+
 import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { renderOrders } from '../../redux/admin/adminActions';
 
 function preventDefault(event) {
   event.preventDefault();
 }
 
-const useStyles = makeStyles((theme) => ({
+// const useStyles = makeStyles((theme) => ({
+//   seeMore: {
+//     marginTop: theme.spacing(3),
+//   },
+// }));
+
+const styles = theme => ({
   seeMore: {
     marginTop: theme.spacing(3),
   },
-}));
+});
 
-function Orders( props ) {
-  const dispatch = useDispatch;
-  const classes = useStyles();
-  useEffect(function () {
-    dispatch(renderOrders());
-  }, [dispatch]);
-console.log(props)
-const rows =[]
-  // console.log("PROPS", props.orders)
+
+class Orders extends Component {
+  constructor(props) {
+    super(props)
+  }
+  componentDidMount() {
+    this.props.loadOrders()
+  }
+  render() {
+    const { classes, orders } = this.props
+    console.log('Orders ', orders)
+const rows = []
   return (
     <React.Fragment>
       <Title>Recent Orders</Title>
@@ -36,22 +47,22 @@ const rows =[]
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
+            <TableCell>Status</TableCell>
             <TableCell>Ship To</TableCell>
             <TableCell>Payment Method</TableCell>
             <TableCell align="right">Sale Amount</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {orders.length ? orders.map((row) => (
             <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
+              <TableCell>{row.createdAt}</TableCell>
+              <TableCell>{row.status}</TableCell>
+              <TableCell>{row.user.firstName} {row.user.lastName}</TableCell>
               <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
+              <TableCell align="right">{row.total}</TableCell>
             </TableRow>
-          ))}
+          )) : 'no orders yet'}
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
@@ -62,13 +73,18 @@ const rows =[]
     </React.Fragment>
   );
 }
+}
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = (state) => {
+  return {
+    orders: state.orders
+  }
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    orders: () => dispatch(renderOrders())
+    loadOrders: () => dispatch(renderOrders())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Orders)
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Orders))

@@ -54,12 +54,13 @@ ordersRouter.get('/admin', requireToken, async (req, res, next) => {
 // Active user cart
 ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
+    console.log('banana')
     const id = authId(req);
     if (!id) res.status(401).send('you are not authorized');
     const cart = await OrderDetail.findOne({
       where: {
         userId: id,
-        status: 'IN PROGRESS',
+        // status: 'IN PROGRESS',
       },
       include: { all: true },
     });
@@ -71,8 +72,8 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
     // });
 
     // const cartDetails = { cart, orderItems };
-    if (!cart) res.sendStatus(404);
-    else res.status(200).send(cart);
+    // if (!cart) res.sendStatus(404);
+    res.status(200).send(cart);
   } catch (error) {
     console.log('problem with your GET api/orders/:id/cart route: ', error);
     next(error);

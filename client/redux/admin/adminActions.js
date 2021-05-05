@@ -17,7 +17,9 @@ export const renderOrders = () => {
           authorization: token,
         },
       });
+      console.log('ORDERS IN THUNK CALL ', ordersList)
       dispatch(loadOrders(ordersList));
+
     } catch (error) {
       console.log('ERROR OCCURRING IN ADMIN ACTIONS -- RENDER ORDERS: ', error);
     }

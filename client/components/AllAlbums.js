@@ -5,7 +5,7 @@ import { renderAlbums } from '../redux/albums/albumActions';
 import FilterSort from './FilterSort';
 
 import {
-  Products,
+  // Products,
   ProductContainer,
   ProductCard,
   ProductInfo,
