@@ -1,7 +1,8 @@
 import types from '../types/index';
 
 const initialState = {
-  orders: []
+  orders: [],
+  users: []
 };
 
 const ordersReducer = (state = initialState, action) => {
@@ -9,10 +10,19 @@ const ordersReducer = (state = initialState, action) => {
     state = action.orders;
   };
   return state;
+};
+
+const usersReducer = (state = initialState, action) => {
+  if (action.type === types.LOAD_USERS) {
+    state = action.users;
+  };
+  return state;
 }
 
+
 const adminReducers = {
-  ordersReducer
+  ordersReducer,
+  usersReducer
 };
 
 export default adminReducers;

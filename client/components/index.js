@@ -1,7 +1,6 @@
 import App from './App';
 import Nav from './Nav';
 import Home from './Home';
-import AdminPage from './AdminPage';
 import AllUsers from './AllUsers';
 import AllOrders from './AllOrders';
 import AllArtists from './AllArtists';
@@ -15,6 +14,9 @@ import SignUpForm from './SignUpForm';
 import SingleArtist from './SingleArtist';
 import SingleAlbum from './SingleAlbum';
 import Dashboard from './AdminDashboard/Dashboard'
+import Users from './AdminDashboard/Users';
+import Orders from './AdminDashboard/Users';
+
 import AddReview from './AddReview';
 
 
@@ -22,7 +24,6 @@ export {
   App,
   Nav,
   Home,
-  AdminPage,
   AllArtists,
   SingleArtist,
   AllAlbums,
@@ -36,5 +37,7 @@ export {
   AllOrders,
   AllUsers,
   Dashboard,
+  Users,
+  Orders,
   AddReview
 };

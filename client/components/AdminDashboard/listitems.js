@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Orders, Users } from '../index';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -8,37 +10,48 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 
-export const mainListItems = (
+
+export const sidebarData = [
+  {
+    title: 'Orders',
+    path: '/admin/orders',
+    icon: <DashboardIcon/>
+  },
+  {
+    title: 'Users',
+    path: '/admin/users',
+    icon: <PeopleIcon/>
+  }
+]
+const NavBar = () => {
+  return (
   <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
+      {sidebarData.map((item, index) => {
+        return (
+          <ListItem key={index}
+            // replace
+            button>
+              <ListItemIcon>
+                {item.icon}
+              </ListItemIcon>
+              <Link to={item.path}>
+                <ListItemText primary={item.title} />
+              </Link>
+          </ListItem>
+        )
+      })}
+
     <ListItem button>
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Orders" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
+      </ListItem>
+
+
+
   </div>
-);
+  )
+};
+
+export default NavBar;
