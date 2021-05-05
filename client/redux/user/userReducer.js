@@ -14,5 +14,16 @@ const userReducer = (state = initialState, action) => {
   return state;
 };
 
+const userOrdersReducer = (state = [], action) => {
+  if(action.type === types.LOAD_USER_ORDERS){
+    state = action.userOrders;
+  }
+  return state;
+};
 
-export default userReducer;
+const userReducers = {
+  userReducer,
+  userOrdersReducer
+};
+
+export default userReducers;
