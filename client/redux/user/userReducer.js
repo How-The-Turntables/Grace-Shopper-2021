@@ -12,6 +12,7 @@ const userReducer = (state = initialState, action) => {
     state = { ...state, token, user, admin };
   }
   return state;
-}
+};
+
 
 export default userReducer;

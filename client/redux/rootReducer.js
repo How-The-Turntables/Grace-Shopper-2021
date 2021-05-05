@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   auth: userReducer,
   orders: adminReducers.ordersReducer,
+  users: adminReducers.usersReducer,
   reviews: albumReducer.albumReviews,
   newReview: albumReducer.addReview
 });

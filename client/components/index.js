@@ -14,7 +14,9 @@ import Footer from './Footer';
 import SignUpForm from './SignUpForm';
 import SingleArtist from './SingleArtist';
 import SingleAlbum from './SingleAlbum';
-import Dashboard from './AdminDashboard/Dashboard'
+import OrdersDashboard from './AdminDashboard/OrdersDashboard';
+import UsersDashboard from './AdminDashboard/UsersDashboard';
+
 import AddReview from './AddReview';
 
 
@@ -35,6 +37,7 @@ export {
   SignUpForm,
   AllOrders,
   AllUsers,
-  Dashboard,
+  OrdersDashboard,
+  UsersDashboard,
   AddReview
 };
