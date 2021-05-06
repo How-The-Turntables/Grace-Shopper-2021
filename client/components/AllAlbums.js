@@ -4,34 +4,9 @@ import { renderAlbums } from '../redux/albums/albumActions';
 //import FilterSort from './FilterSort';
 
 import React, { Component } from 'react';
-import { Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Typography, Container, CardActionArea } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography, Container, CardActionArea } from '@material-ui/core';
+import { Pagination } from '@material-ui/lab';
 import { withStyles } from '@material-ui/core/styles';
-
-// import {
-//   Products,
-//   ProductContainer,
-//   ProductCard,
-//   ProductInfo,
-//   ImageCard,
-//   ProductFilter,
-// } from '../styles';
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
-// function preventDefault(event) {
-//   event.preventDefault();
-// }
 
 const styles = (theme) => ({
   icon: {
@@ -59,6 +34,11 @@ const styles = (theme) => ({
   cardContent: {
     flexGrow: 1,
   },
+  root: {
+    '& > *': {
+      marginTop: theme.spacing(2),
+    },
+  }
 });
 
 class AllAlbums extends Component {
@@ -114,6 +94,7 @@ class AllAlbums extends Component {
           <Grid container spacing={4} >
             {albums.map((album) => (
               <Grid item key={album.id} xs={12} sm={6} md={4}>
+                <Link to={`/albums/${album.id}/details`}>
                 <Card className={classes.card}>
                   <CardActionArea>
                   <CardMedia
@@ -143,12 +124,14 @@ class AllAlbums extends Component {
                     </Button>
                   </CardActions>
                 </Card>
+                </Link>
               </Grid>
             ))}
           </Grid>
         </Container>
       </main>
-      <nav>
+      <div className={classes.root}>
+      <Pagination count={10} shape="rounded" />
       {links.map(({ idx, num }) => {
               return (
                 <Link key={idx} to={`/albums/${idx}`}>
@@ -156,7 +139,7 @@ class AllAlbums extends Component {
                 </Link>
               );
             })}
-      </nav>
+            </div>
     </React.Fragment>
   );
  };
