@@ -15,8 +15,7 @@ import SingleArtist from './SingleArtist';
 import SingleAlbum from './SingleAlbum';
 import AdminOrders from './Dashboards/AdminDashboard/AdminOrders';
 import AdminUsers from './Dashboards/AdminDashboard/AdminUsers';
-// import { Users}
-import AddReview from './AddReview';
+import AddReview from './ReviewViews/AddReview';
 
 
 export {

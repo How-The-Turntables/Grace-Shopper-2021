@@ -29,6 +29,8 @@ class AccountInfo extends React.Component {
       password: this.props.user.password ? this.props.user.password : '',
       admin: this.props.user.admin ? this.props.user.admin : 'Customer'
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   };
 
   // componentDidMount() {
@@ -41,7 +43,6 @@ class AccountInfo extends React.Component {
 
 
   componentDidUpdate = (prevProps) => {
-    console.log('PROPS ', this.props)
     const user = JSON.parse(window.localStorage.getItem('UserCart'));
     if(!prevProps.user.id && user.id){
       this.setState({
@@ -54,9 +55,8 @@ class AccountInfo extends React.Component {
     }
   };
 
-  handleSubmit = async (event) => {
+  async handleSubmit(event) {
     event.preventDefault();
-    console.log('hello')
     try {
       const user = JSON.parse(window.localStorage.getItem('UserCart'));
       await this.props.updateUser(user.id, this.state );
@@ -115,6 +115,7 @@ class AccountInfo extends React.Component {
             onChange={ this.handleChange }
           />
           <Button
+            type="submit"
             variant="contained"
             color="primary"
             size="small"
@@ -128,9 +129,6 @@ class AccountInfo extends React.Component {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  // console.log('ownProps', ownProps)
-
-  // const user = state.auth.users.find(user => user.id === ownProps.match.params.id*1) || {};
     return {
       user: state.auth.user
     }
@@ -139,7 +137,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, { history }) => {
 	return {
-    // loadSingle: (id) => dispatch( renderSelectedCampus(id) ),
     updateUser: ( id, user ) => dispatch( renderEditUser( id, user, history )),
 	}
 };

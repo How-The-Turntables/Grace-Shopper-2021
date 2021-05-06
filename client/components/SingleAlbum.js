@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { renderSingleAlbum } from '../redux/albums/albumActions';
 import { renderReviews } from '../redux/reviews/reviewActions';
 import { AddReview } from './index';
-import Reviews from './Reviews';
+import Reviews from './ReviewViews/Reviews';
 import {
   Card,
   CardActions,

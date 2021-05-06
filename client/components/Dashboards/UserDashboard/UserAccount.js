@@ -22,37 +22,37 @@ const styles = (theme) => ({
   root: {
     display: 'flex',
   },
-  toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: 36,
-  },
-  menuButtonHidden: {
-    display: 'none',
-  },
+  // toolbar: {
+  //   paddingRight: 24, // keep right padding when drawer closed
+  // },
+  // toolbarIcon: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'flex-end',
+  //   padding: '0 8px',
+  //   ...theme.mixins.toolbar,
+  // },
+  // appBar: {
+  //   zIndex: theme.zIndex.drawer + 1,
+  //   transition: theme.transitions.create(['width', 'margin'], {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.leavingScreen,
+  //   }),
+  // },
+  // appBarShift: {
+  //   marginLeft: drawerWidth,
+  //   width: `calc(100% - ${drawerWidth}px)`,
+  //   transition: theme.transitions.create(['width', 'margin'], {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.enteringScreen,
+  //   }),
+  // },
+  // menuButton: {
+  //   marginRight: 36,
+  // },
+  // menuButtonHidden: {
+  //   display: 'none',
+  // },
   title: {
     flexGrow: 1,
   },
@@ -76,12 +76,12 @@ const styles = (theme) => ({
       width: theme.spacing(9),
     },
   },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
-  },
+  // appBarSpacer: theme.mixins.toolbar,
+  // content: {
+  //   flexGrow: 1,
+  //   height: '100vh',
+  //   overflow: 'auto',
+  // },
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
@@ -98,17 +98,8 @@ const styles = (theme) => ({
 });
 
 class UserAccount extends React.Component {
-  // constructor() {
-  //   super()
-  // }
-  // componentDidMount() {
-  //   const user = JSON.parse(window.localStorage.getItem('UserCart'));
-  //   this.props.loadUser(user.id);
-  // }
   render() {
-  // const { classes, user } = this.props;
   const { classes } = this.props;
-
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -130,7 +121,7 @@ class UserAccount extends React.Component {
               <Grid item xs={12}>
                 <Paper className={classes.paper}>
                   {/* <AccountInfo user={user}/> */}
-                  <AccountInfo />
+                  <AccountInfo  />
                 </Paper>
               </Grid>
             </Grid>
@@ -140,19 +131,6 @@ class UserAccount extends React.Component {
     );
   };
 };
-
-// const mapStateToProps = (state) => {
-//   console.log( 'USER STATE', state.auth.user)
-//     return {
-//       user: state.auth.user
-//     }
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-// 	return {
-//     loadUser: (id) => dispatch( renderSelectedUser( id ))
-// 	}
-// };
 
 export default withStyles(styles, { withTheme: true })(connect(null)(UserAccount));
 

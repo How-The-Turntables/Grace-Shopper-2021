@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { renderAddReview } from '../redux/reviews/reviewActions';
+import { renderAddReview } from '../../redux/reviews/reviewActions';
 
 class AddReview extends React.Component {
   constructor(props) {

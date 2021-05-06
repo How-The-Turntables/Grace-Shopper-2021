@@ -5,3 +5,4 @@ server/public/bundle.js.map
 .idea
 env.js
 .env
+/client/components/oldSingleAlbum.js
