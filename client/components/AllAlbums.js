@@ -159,77 +159,8 @@ class AllAlbums extends Component {
       </nav>
     </React.Fragment>
   );
- }
-}
-
-
-// class AllAlbums extends React.Component {
-//   componentDidMount() {
-//     this.props.load();
-//   }
-//   componentDidUpdate(prevProps) {
-//     if (prevProps.match.params.idx !== this.props.match.params.idx) {
-//       this.props.load();
-//     }
-//   }
-
-//   render() {
-//     const { albums, count } = this.props;
-//     const pageCount = Math.ceil(count / 10); //Math.ceil rounds up
-//     const links = new Array(pageCount).fill('filler').map((el, idx) => {
-//       return {
-//         num: idx + 1,
-//         idx,
-//         selected:
-//           (!this.props.match.params.idx && idx === 0) ||
-//           this.props.match.params.idx * 1 === idx,
-//       };
-//     });
-//     return (
-//       <div>
-//         <h1>Shop all albums</h1>
-//         <ProductFilter>
-
-//               <FilterSort albums={albums} />
-
-//         </ProductFilter>
-//           <ProductContainer>
-
-//               {albums.map((album) => {
-//                   return (
-//                     <ProductCard key={album.id}>
-//                       <ImageCard src={album.photoUrl} />
-
-//                       <ProductInfo>
-//                         <Link to={{ pathname: `/albums/${album.id}/details` }}>
-//                           <h4>{album.title}</h4>
-//                         </Link>
-//                         <h5>{album.artist.name}</h5>
-//                         <h4>{album.price}</h4>
-//                       </ProductInfo>
-//                       {/* need to add onclick */}
-//                       <button>Add to Cart</button>
-//                     </ProductCard>
-//                   );
-//                 }
-//                 )}
-//            </ProductContainer>
-
-//         <div>
-//           <nav>
-//             {links.map(({ idx, num }) => {
-//               return (
-//                 <Link key={idx} to={`/albums/${idx}`}>
-//                   {num}
-//                 </Link>
-//               );
-//             })}
-//           </nav>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
+ };
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -244,4 +175,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(AllAlbums))
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(AllAlbums));
