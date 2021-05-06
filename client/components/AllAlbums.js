@@ -80,8 +80,6 @@ class AllAlbums extends Component {
     this.props.load();
   }
   componentDidMount() {
-    console.log('this.props mounted', this.props);
-    console.log('local cart', JSON.parse(localStorage.getItem('UserCart')));
     this.props.load();
   }
 

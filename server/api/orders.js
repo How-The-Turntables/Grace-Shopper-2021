@@ -129,7 +129,6 @@ ordersRouter.post('/cart', requireToken, async (req, res, next) => {
 ordersRouter.put('/:id/cart/:albumId', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);
-    // console.log(id);
     if (!id) res.status(401).send('you are not authorized');
 
     const albumSelected = await Album.findByPk(req.params.albumId);

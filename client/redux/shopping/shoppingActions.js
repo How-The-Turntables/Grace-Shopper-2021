@@ -55,7 +55,6 @@ export const cartChecker = (token, userId) => {
           authorization: token,
         },
       });
-      // console.log('cart in thunk', cart);
       const guestCart = JSON.parse(localStorage.getItem('GuestCart'));
       if (guestCart.albums.length > 0) {
         guestCart.albums.map(async (album) => {
@@ -112,7 +111,6 @@ export const addToCart = (albumId, body) => {
       );
       localStorage.removeItem('UserCart');
       localStorage.setItem('UserCart', JSON.stringify(updatedCart));
-      console.log('updated Cart in the thunk', updatedCart);
       dispatch(addIntoCart(updatedCart));
     } catch (error) {
       console.log('error in addToCart thunk', error);
