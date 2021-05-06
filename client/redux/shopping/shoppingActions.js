@@ -9,6 +9,22 @@ export const newCart = (cart) => {
   };
 };
 
+// LOADING CART ACTION
+export const loadCart = (cart) => {
+  return {
+    type: types.LOAD_CART,
+    cart,
+  };
+};
+
+// ADD TO CART
+export const addIntoCart = (cart) => {
+  return {
+    type: types.ADD_TO_CART,
+    cart,
+  };
+};
+
 export const createCart = (id) => {
   return async (dispatch) => {
     try {
@@ -17,14 +33,6 @@ export const createCart = (id) => {
     } catch (error) {
       console.log(error);
     }
-  };
-};
-
-// LOADING CART ACTION
-export const loadCart = (cart) => {
-  return {
-    type: types.LOAD_CART,
-    cart,
   };
 };
 
@@ -77,6 +85,27 @@ export const cartChecker = (token, userId) => {
       console.log('error occured in cartChecker thunk', error);
     }
   };
+};
+
+export const addToCart = (userId, token) => {
+  return async (dispatch) => {
+   try {
+     const cartData = JSON.parse(localStorage.getItem('UserCart'))
+     console.log(cartData)
+     dispatch(addIntoCart())
+   } catch (error) {
+     console.log('error in addToCart thunk')
+
+   }
+    } 
+  };
+  //This is only for the registered user, for guest we will use local storage
+  // check if order_item for this albumId and order_detailId exists
+  //         if not
+  // create new order_items with quantity 1
+  // input albumId, order_detailId, quantity
+  //         if yes
+  // increase the quantity by 1
 };
 
 // export const guestCart = () => {
