@@ -19,7 +19,8 @@ import {
   UserOrders,
   UserAccount,
   AdminOrders,
-  AdminUsers
+  AdminUsers,
+  PromoteUser
 } from './index';
 import LoginForm from './LoginForm';
 import { newGuestCart } from '../../server/utils';
@@ -66,8 +67,10 @@ class App extends Component {
             <Route component={UserOrders} path="/orders/:id" />
             <Route component={UserAccount} path="/account/:id" />
 
-            <Route component={AdminUsers} path="/admin/users" />
+            <Route component={AdminUsers} path="/admin/users" exact/>
+            <Route component={PromoteUser} path="/admin/users/:id" />
             <Route component={AdminOrders} path="/admin" exact/>
+
 
           </Switch>
           <Route component={Footer} />

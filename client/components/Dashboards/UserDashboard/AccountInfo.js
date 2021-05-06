@@ -33,15 +33,6 @@ class AccountInfo extends React.Component {
 
   };
 
-  // componentDidMount() {
-  //   console.log("ComponentWillMount");
-  //   const user = JSON.parse(window.localStorage.getItem('UserCart'));
-  //   const id = user.id;
-  //   console.log("Will fetch expert with id", id);
-  //   this.props.fetchUser(id);
-  // };
-
-
   componentDidUpdate = (prevProps) => {
     const user = JSON.parse(window.localStorage.getItem('UserCart'));
     if(!prevProps.user.id && user.id){

@@ -17,6 +17,8 @@ const rootReducer = combineReducers({
   userOrders: userReducers.userOrdersReducer,
   orders: adminReducers.ordersReducer,
   users: adminReducers.usersReducer,
+  promoteUser: adminReducers.editUserReducer,
+  selectedUser: adminReducers.singleUserReducer,
   editedUser: userReducers.editUserReducer,
   reviews: albumReducer.albumReviews,
   newReview: albumReducer.addReview
