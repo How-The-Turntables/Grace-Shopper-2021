@@ -9,7 +9,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
-import { NavItems } from './listItems';
+import { NavItems } from './listitems';
 import Orders from './Orders';
 
 const drawerWidth = 240;

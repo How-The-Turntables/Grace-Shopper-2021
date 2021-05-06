@@ -1,12 +1,15 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
+// import Users from './Users.js';
+// import Orders from './Orders.js';
+
+// import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
-import Typography from '@material-ui/core/Typography';
 
 
 export const sidebarData = [
@@ -26,22 +29,48 @@ function preventDefault(event) {
   event.preventDefault();
 };
 
-export const NavItems = (
-  <Typography >
-   {sidebarData.map((item, index) => {
-        return (
-          <ListItem key={index}
-            onClick={preventDefault}
-            // replace
-            button>
+export const NavItems = () => {
+  return (
+    <div>
+      <Link to='/admin'>
+          <ListItem onClick={preventDefault} button>
               <ListItemIcon>
-                {item.icon}
+                <DashboardIcon/>
               </ListItemIcon>
-              <Link to={item.path}>
-                <ListItemText primary={item.title} />
-              </Link>
+                <ListItemText>Orders</ListItemText>
           </ListItem>
-        )
-      })}
-  </Typography>
-);
+      </Link>
+
+      <Link to='/admin/users'>
+          <ListItem onClick={preventDefault} button>
+              <ListItemIcon>
+                <DashboardIcon/>
+              </ListItemIcon>
+                <ListItemText>Users</ListItemText>
+          </ListItem>
+      </Link>
+    </div>
+  )
+}
+
+
+
+// {sidebarData.map((item, index) => {
+//   return (
+//     <Link to={item.path}>
+//       < ListItem
+//         key={index}
+//         onClick={preventDefault}
+//         // replace
+//         button>
+//           <ListItemIcon>
+//             {item.icon}
+//           </ListItemIcon>
+
+//             <ListItemText primary={item.title} />
+
+//       </ListItem>
+
+//       </Link>
+//   )
+// })}
