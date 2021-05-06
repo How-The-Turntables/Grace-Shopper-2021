@@ -18,7 +18,7 @@ import {
   SignUpForm,
   UserOrders,
   AdminOrders,
-  AdminUsers
+  AdminUsers,
 } from './index';
 import LoginForm from './LoginForm';
 import { newGuestCart } from '../../server/utils';
@@ -66,8 +66,7 @@ class App extends Component {
             <Route component={UserOrders} path="/account/:id" />
 
             <Route component={AdminUsers} path="/admin/users" />
-            <Route component={AdminOrders} path="/admin" exact/>
-
+            <Route component={AdminOrders} path="/admin" exact />
           </Switch>
           <Route component={Footer} />
         </Router>

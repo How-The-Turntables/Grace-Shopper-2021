@@ -17,11 +17,27 @@ class Nav extends Component {
     };
   }
 
+  componentDidUpdate() {
+    const userToken = window.localStorage.JWTtoken;
+    // console.log('user token', userToken);
+    // console.log('nav updated prevState', prevState);
+    // if (userToken) {
+    //   if (this.props.auth !== this.state.auth) {
+    //     this.setState({ auth: this.props.auth.admin });
+    //     console.log('nav updated State', this.state);
+    //   }
+    // }
+    // else {
+    //   this.setState({ auth: {} });
+    // }
+  }
+
   logout() {
     window.localStorage.removeItem('JWTtoken');
     window.localStorage.removeItem('UserCart');
     this.setState({ auth: {} });
     newGuestCart();
+    console.log('this props after logout', this.props);
   }
 
   render() {
@@ -65,6 +81,11 @@ class Nav extends Component {
                 ) : (
                   <Link to="/login" style={{ textDecoration: 'none' }}>
                     <Button style={{ color: '#42240C' }}>Login</Button>
+                  </Link>
+                )}
+                {this.props.auth.admin && (
+                  <Link to="/admin" style={{ textDecoration: 'none' }}>
+                    <Button style={{ color: '#42240C' }}>Admin</Button>
                   </Link>
                 )}
 
