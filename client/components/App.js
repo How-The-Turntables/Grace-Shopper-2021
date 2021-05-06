@@ -65,8 +65,8 @@ class App extends Component {
             {/* <Route component={AccountInfo} path="/orderhistory/:id" /> */}
             <Route component={UserOrders} path="/account/:id" />
 
-            <Route component={AdminOrders} path="/admin" exact/>
             <Route component={AdminUsers} path="/admin/users" />
+            <Route component={AdminOrders} path="/admin" exact/>
 
           </Switch>
           <Route component={Footer} />

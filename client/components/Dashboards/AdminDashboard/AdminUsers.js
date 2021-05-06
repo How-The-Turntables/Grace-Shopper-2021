@@ -109,7 +109,7 @@ export default function AdminUsers() {
       >
         <div className={classes.toolbarIcon}>
         </div>
-        <List>{NavItems}</List>
+        <List><NavItems/></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

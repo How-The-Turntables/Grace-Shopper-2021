@@ -6,42 +6,49 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
-import Typography from '@material-ui/core/Typography';
 
 
-export const sidebarData = [
-  {
-    title: 'Orders',
-    path: '/orderhistory/:id',
-    icon: <DashboardIcon/>
-  },
-  {
-    title: 'Personal Information',
-    path: '/account/:id',
-    icon: <PeopleIcon/>
-  }
-];
 
 function preventDefault(event) {
   event.preventDefault();
 };
 
-export const NavItems = (
-  <Typography >
-   {sidebarData.map((item, index) => {
-        return (
-          <ListItem key={index}
-            onClick={preventDefault}
-            // replace
-            button>
+export const NavItems = () => {
+  return (
+    <div>
+          <ListItem onClick={preventDefault} button>
               <ListItemIcon>
-                {item.icon}
+                <DashboardIcon/>
               </ListItemIcon>
-              <Link to={item.path}>
-                <ListItemText primary={item.title} />
+              <Link to='/orderhistory/:id'>
+                <ListItemText>Orders</ListItemText>
               </Link>
           </ListItem>
-        )
-      })}
-  </Typography>
-);
+
+
+          <ListItem onClick={preventDefault} button>
+              <ListItemIcon>
+                <PeopleIcon/>
+              </ListItemIcon>
+              <Link to='/account/:id'>
+                <ListItemText>Users</ListItemText>
+                </Link>
+          </ListItem>
+    </div>
+  )
+};
+
+
+
+// export const sidebarData = [
+//   {
+//     title: 'Orders',
+//     path: '/orderhistory/:id',
+//     icon: <DashboardIcon/>
+//   },
+//   {
+//     title: 'Personal Information',
+//     path: '/account/:id',
+//     icon: <PeopleIcon/>
+//   }
+// ];

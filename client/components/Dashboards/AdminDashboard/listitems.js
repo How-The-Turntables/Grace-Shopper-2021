@@ -1,7 +1,4 @@
 import React from 'react';
-// import Users from './Users.js';
-// import Orders from './Orders.js';
-
 // import Link from '@material-ui/core/Link';
 import { Link } from 'react-router-dom';
 
@@ -12,18 +9,6 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 
 
-export const sidebarData = [
-  {
-    title: 'Orders',
-    path: '/admin',
-    icon: <DashboardIcon/>
-  },
-  {
-    title: 'Users',
-    path: '/admin/users',
-    icon: <PeopleIcon/>
-  }
-];
 
 function preventDefault(event) {
   event.preventDefault();
@@ -32,28 +17,41 @@ function preventDefault(event) {
 export const NavItems = () => {
   return (
     <div>
-      <Link to='/admin'>
           <ListItem onClick={preventDefault} button>
               <ListItemIcon>
                 <DashboardIcon/>
               </ListItemIcon>
+              <Link to='/admin'>
                 <ListItemText>Orders</ListItemText>
+              </Link>
           </ListItem>
-      </Link>
 
-      <Link to='/admin/users'>
+
           <ListItem onClick={preventDefault} button>
               <ListItemIcon>
-                <DashboardIcon/>
+                <PeopleIcon/>
               </ListItemIcon>
+              <Link to='/admin/users'>
                 <ListItemText>Users</ListItemText>
+                </Link>
           </ListItem>
-      </Link>
     </div>
   )
 }
 
 
+// export const sidebarData = [
+//   {
+//     title: 'Orders',
+//     path: '/admin',
+//     icon: <DashboardIcon/>
+//   },
+//   {
+//     title: 'Users',
+//     path: '/admin/users',
+//     icon: <PeopleIcon/>
+//   }
+// ];
 
 // {sidebarData.map((item, index) => {
 //   return (
