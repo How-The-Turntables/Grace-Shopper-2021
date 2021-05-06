@@ -40,7 +40,6 @@ class CartView extends Component {
 
   render() {
     const { albums } = this.state;
-    console.log('current state', this.state);
     return (
       <div>
         <div>
