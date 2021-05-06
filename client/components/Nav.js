@@ -19,22 +19,25 @@ class Nav extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.auth.admin === true && this.state.admin === false) {
+    const propAdmin = this.props.auth.admin;
+    if (propAdmin && !this.state.admin) {
       this.setState({ admin: true });
-      console.log('nav updated State', this.state);
-    } else if (this.props.auth.admin === false && this.state.admin === true) {
+    } else if (!propAdmin && this.state.admin) {
       this.setState({ admin: false });
     }
   }
 
   logout() {
+    const history = this.props.history;
     window.localStorage.removeItem('JWTtoken');
     window.localStorage.removeItem('UserCart');
     this.setState({ auth: {}, admin: false });
     newGuestCart();
+    history.push('/');
   }
 
   render() {
+    const token = window.localStorage.JWTtoken;
     const admin = this.state.admin;
     return (
       <div>
@@ -66,7 +69,7 @@ class Nav extends Component {
                   <Button style={{ color: '#42240C' }}>Home</Button>
                 </Link>
 
-                {window.localStorage.JWTtoken ? (
+                {token ? (
                   <Button
                     onClick={() => this.logout()}
                     style={{ color: '#42240C' }}
@@ -78,7 +81,8 @@ class Nav extends Component {
                     <Button style={{ color: '#42240C' }}>Login</Button>
                   </Link>
                 )}
-                {admin && window.localStorage.JWTtoken ? (
+
+                {admin && token ? (
                   <Link to="/admin" style={{ textDecoration: 'none' }}>
                     <Button style={{ color: '#42240C' }}>Admin</Button>
                   </Link>
