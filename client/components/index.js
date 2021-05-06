@@ -2,6 +2,7 @@ import App from './App';
 import Nav from './Nav';
 import Home from './Home';
 import UserOrders from './Dashboards/UserDashboard/UserOrders';
+import UserAccount from './Dashboards/UserDashboard/UserAccount';
 import AllArtists from './AllArtists';
 import AllAlbums from './AllAlbums';
 import LoginForm from './LoginForm';
@@ -35,5 +36,6 @@ export {
   AdminOrders,
   AdminUsers,
   UserOrders,
+  UserAccount,
   AddReview
 };

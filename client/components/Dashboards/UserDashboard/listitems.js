@@ -20,7 +20,7 @@ export const NavItems = () => {
               <ListItemIcon>
                 <DashboardIcon/>
               </ListItemIcon>
-              <Link to='/orderhistory/:id'>
+              <Link to='/orders/:id'>
                 <ListItemText>Orders</ListItemText>
               </Link>
           </ListItem>
@@ -31,7 +31,7 @@ export const NavItems = () => {
                 <PeopleIcon/>
               </ListItemIcon>
               <Link to='/account/:id'>
-                <ListItemText>Users</ListItemText>
+                <ListItemText>Account Info</ListItemText>
                 </Link>
           </ListItem>
     </div>

@@ -107,7 +107,7 @@ export default function UserOrders() {
       >
         <div className={classes.toolbarIcon}>
         </div>
-        <List>{NavItems}</List>
+        <List><NavItems /></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
@@ -124,4 +124,4 @@ export default function UserOrders() {
       </main>
     </div>
   );
-}
+};

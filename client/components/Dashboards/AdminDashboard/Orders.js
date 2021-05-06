@@ -81,6 +81,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadOrders: () => dispatch(renderOrders())
   }
-}
+};
 
-export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Orders))
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Orders));

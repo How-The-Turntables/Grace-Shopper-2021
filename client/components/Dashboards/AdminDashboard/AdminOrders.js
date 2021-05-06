@@ -124,4 +124,4 @@ export default function AdminOrders() {
       </main>
     </div>
   );
-}
+};

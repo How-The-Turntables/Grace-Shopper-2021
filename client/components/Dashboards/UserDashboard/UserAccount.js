@@ -5,18 +5,20 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import { NavItems } from './listitems';
-import Users from './Users';
+import AccountInfo from './AccountInfo';
 
+import { renderSelectedUser } from '../../../redux/user/userActions';
+import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
   },
@@ -93,37 +95,64 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-}));
+});
 
-export default function AdminUsers() {
-  const classes = useStyles();
+class UserAccount extends React.Component {
+  // constructor() {
+  //   super()
+  // }
+  // componentDidMount() {
+  //   const user = JSON.parse(window.localStorage.getItem('UserCart'));
+  //   this.props.loadUser(user.id);
+  // }
+  render() {
+  // const { classes, user } = this.props;
+  const { classes } = this.props;
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-      >
-        <div className={classes.toolbarIcon}>
-        </div>
-        <List><NavItems/></List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            Registered Users
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Users />
-              </Paper>
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+        >
+          <div className={classes.toolbarIcon}>
+          </div>
+          <List><NavItems /></List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
+              Account Info
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  {/* <AccountInfo user={user}/> */}
+                  <AccountInfo />
+                </Paper>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      </main>
-    </div>
-  );
+          </Container>
+        </main>
+      </div>
+    );
+  };
 };
+
+// const mapStateToProps = (state) => {
+//   console.log( 'USER STATE', state.auth.user)
+//     return {
+//       user: state.auth.user
+//     }
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+// 	return {
+//     loadUser: (id) => dispatch( renderSelectedUser( id ))
+// 	}
+// };
+
+export default withStyles(styles, { withTheme: true })(connect(null)(UserAccount));
+
