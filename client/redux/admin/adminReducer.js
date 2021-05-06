@@ -1,7 +1,8 @@
 import types from '../types/index';
 
 const initialState = {
-  orders: []
+  orders: [],
+  users: []
 };
 
 const ordersReducer = (state = initialState, action) => {
