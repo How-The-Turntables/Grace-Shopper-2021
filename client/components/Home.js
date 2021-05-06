@@ -2,7 +2,7 @@ import React from 'react';
 //import { Title, Container, Box, Background, Record } from '../styles'; //these are styled containers from /client/styles.js
 import { Container, Button, Typography, CardContent, makeStyles, Card, CardActionArea, CardMedia, CardActions } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import homeImage from '../../server/public/img/homePage.png';
+import homeImage from '../../server/public/img/smallerhomePage.png';
 import cardOneImage from '../../server/public/img/Card1.png';
 import cardTwoImage from '../../server/public/img/Card2.png';
 // import { connect } from 'react-redux'
