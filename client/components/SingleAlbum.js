@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { renderSingleAlbum } from '../redux/albums/albumActions';
 import { renderReviews } from '../redux/reviews/reviewActions';
 import { AddReview } from './index';
+import Reviews from './Reviews';
 import {
   Card,
   CardActions,
@@ -14,11 +15,11 @@ import {
 } from 'material-ui/Card';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
-import { makeStyles } from '@material-ui/core';
+// import { makeStyles } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 
-const useStyles =(theme)=>({
-  
+const styles =(theme)=>({
+
 })
 
 class SingleAlbum extends React.Component {
@@ -79,7 +80,38 @@ class SingleAlbum extends React.Component {
                     // onClick={this.addToCart.bind(this)}
                   />
                 </CardActions>
-                {/* <div>
+                <MuiThemeProvider>
+                  <Card>
+                    <Reviews reviews={album.reviews}/>
+                  </Card>
+                </MuiThemeProvider>
+
+              </div>
+            )}
+          </Card>
+        </MuiThemeProvider>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    album: state.singleAlbum,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadSingle: (id) => dispatch(renderSingleAlbum(id)),
+    // add to cart
+  };
+};
+
+export default withStyles(styles, {withTheme:true})(connect(mapStateToProps, mapDispatchToProps)(SingleAlbum));
+
+
+{/* <div>
                   <div> {album.artist.name} </div>
                   <div> {album.year} </div>
                   <p> {album.description} </p>
@@ -115,26 +147,3 @@ class SingleAlbum extends React.Component {
                     </div>
                   )} */}
                 {/* </div> */}
-              </div>
-            )}
-          </Card>
-        </MuiThemeProvider>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    album: state.singleAlbum,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadSingle: (id) => dispatch(renderSingleAlbum(id)),
-    // add to cart
-  };
-};
-
-export default withStyles(styles, {withTheme:true})(connect(mapStateToProps, mapDispatchToProps)(SingleAlbum);

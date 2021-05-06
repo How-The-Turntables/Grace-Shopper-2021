@@ -36,40 +36,40 @@ class Orders extends Component {
   }
   render() {
     const { classes, orders } = this.props
-  return (
-    <React.Fragment>
-      <Title>Recent Orders</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {orders.length ? orders.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.createdAt}</TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell>{row.user.firstName} {row.user.lastName}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.total}</TableCell>
+    return (
+      <React.Fragment>
+        <Title>Recent Orders</Title>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>Date</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Ship To</TableCell>
+              <TableCell>Payment Method</TableCell>
+              <TableCell align="right">Sale Amount</TableCell>
             </TableRow>
-          )) : 'no orders yet'}
-        </TableBody>
-      </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more orders
-        </Link>
-      </div>
-    </React.Fragment>
-  );
-}
-}
+          </TableHead>
+          <TableBody>
+            {orders.length ? orders.map((row) => (
+              <TableRow key={row.id}>
+                <TableCell>{row.createdAt}</TableCell>
+                <TableCell>{row.status}</TableCell>
+                <TableCell>{row.user.firstName} {row.user.lastName}</TableCell>
+                <TableCell>{row.paymentMethod}</TableCell>
+                <TableCell align="right">{row.total}</TableCell>
+              </TableRow>
+            )) : 'no orders yet'}
+          </TableBody>
+        </Table>
+        <div className={classes.seeMore}>
+          <Link color="primary" href="#" onClick={preventDefault}>
+            See more orders
+          </Link>
+        </div>
+      </React.Fragment>
+    );
+  }
+};
 
 const mapStateToProps = (state) => {
   return {
