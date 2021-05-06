@@ -1,6 +1,7 @@
 const { User } = require('../db/index.js');
 const usersRouter = require('express').Router();
 const { requireToken } = require('./auth');
+const { authId } = require('../utils');
 
 // two gets: /auth and /users/userId
 usersRouter.get('/admin', requireToken, async (req, res, next) => {
@@ -46,31 +47,41 @@ await axios.get(`/api/users/${id}`, {
 
 usersRouter.get('/:id', requireToken, async (req, res, next) => {
   try {
-    const user = await User.findAll({
-      where: {
-        id: req.user.id,
-      },
-    });
-    res.send(user);
+    const id = authId(req);
+    console.log('AUTHENTICATED ID GET ROUTE', id)
+    if (!id) res.status(401).send('you are not authorized');
+    else {
+      const user = await User.findAll({
+        where: {
+          id: req.user.id,
+        },
+      });
+      res.send(user);
+    }
   } catch (error) {
-    console.log('problem with your api/users/:id route: ', error);
+    console.log('problem with your GET /users/:id route: ', error);
     next(error);
   }
 });
 
-usersRouter.put('/:id', async (req, res, next) => {
+usersRouter.put('/:id', requireToken, async (req, res, next) => {
   try {
-    const id = req.params.id;
-    let user = await User.findByPk(id);
-    const userUpdated = await user.update({
-      firstName: req.body.firstName.trim(),
-      lastName: req.body.lastName.trim(),
-      email: req.body.email.trim(),
-      password: req.body.password,
-    });
+    const id = authId(req);
+    console.log('AUTHENTICATED ID PUT ROUTE', id)
+    if (!id) res.status(401).send('you are not authorized');
+    else {
+      let user = await User.findByPk(id);
+      const userUpdated = await user.update({
+        firstName: req.body.firstName.trim(),
+        lastName: req.body.lastName.trim(),
+        email: req.body.email.trim(),
+        password: req.body.password
+      });
     res.send(userUpdated);
+    }
+
   } catch (error) {
-    console.log('Error editing user in /:id put route: ', error);
+    console.log('Error editing user in PUT users/:id route: ', error);
     next(error);
   }
 });

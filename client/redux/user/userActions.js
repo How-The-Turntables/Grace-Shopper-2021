@@ -19,7 +19,7 @@ export const loginUser = (credentials, history) => {
       window.localStorage.setItem('JWTtoken', token);
       dispatch(attemptTokenLogin(history));
     } catch (error) {
-      console.log('error occured in loginUser thunk', error);
+
     }
   };
 };
@@ -68,8 +68,6 @@ export const renderUserOrders = (id) => {
           authorization: token,
         },
       });
-      console.log(orderList, 'THUNK ID')
-
       dispatch(loadUserOrders(orderList));
     } catch (error) {
       console.log('ERROR OCCURRING IN USER ACTIONS -- RENDER ORDERS: ', error);
@@ -77,6 +75,59 @@ export const renderUserOrders = (id) => {
   };
 };
 
+const loadUser = (user) => {
+  return {
+    type: types.LOAD_USER,
+    user
+  }
+};
+
+export const renderSelectedUser = (id) => {
+  return async(dispatch) => {
+    try {
+      const token = window.localStorage.getItem('JWTtoken');
+      const { data: user } = await axios.get(`/api/users/${id}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+      console.log('LOADED USER THUNK ', user)
+      dispatch(loadUser(user));
+      console.log('THUNK DISPATCHED')
+    } catch (error) {
+      console.log('ERROR OCCURRING IN USER ACTIONS -- RENDER SINGLE USER: ', error);
+    }
+  };
+};
+const editUser = ( user ) => {
+  return {
+    type: types.EDIT_USER,
+    user
+  }
+};
+
+export const renderEditUser = ( id, body, history ) => {
+  return async (dispatch) => {
+    try {
+      const token = window.localStorage.getItem('JWTtoken');
+      console.log(token
+        )
+      const { data: userToEdit } = await axios.put(`/api/users/${id}`, body, {
+          headers: {
+            authorization: token,
+          },
+      });
+      console.log('THUNK USER', userToEdit)
+      dispatch(editUser( userToEdit ));
+      // history.push(`/users/${id}`);
+      history.push('/');
+
+    }
+    catch (error) {
+      console.log('Error editing USER in thunk creator: ', error);
+    }
+  }
+};
 // const loadUsers = (users) => {
 //   return {
 //     type: types.LOAD_USERS,

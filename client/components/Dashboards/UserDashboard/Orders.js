@@ -32,7 +32,6 @@ class Orders extends Component {
   }
   render() {
     const { classes, orders } = this.props
-    console.log(orders)
   return (
     <React.Fragment>
       <Title>Past Orders</Title>

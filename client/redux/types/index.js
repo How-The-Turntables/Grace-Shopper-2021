@@ -29,6 +29,7 @@ const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const COMPLETE_PAYMENT = 'COMPLETE_PAYMENT';
 // Users
 const LOAD_USERS = 'LOAD_USERS';
+const LOAD_USER = 'LOAD_USER';
 const EDIT_USER = 'EDIT_USER'; // when a user edits their own info
 const PROMOTE_USER = 'PROMOTE_USER'; // when admin promotes another user to admin
 const LOGIN = 'LOGIN';
@@ -65,6 +66,7 @@ const types = {
   REMOVE_FROM_CART,
   COMPLETE_PAYMENT,
   LOAD_USERS,
+  LOAD_USER,
   EDIT_USER,
   PROMOTE_USER,
   LOGIN,

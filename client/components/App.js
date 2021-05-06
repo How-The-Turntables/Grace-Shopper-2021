@@ -17,6 +17,7 @@ import {
   Footer,
   SignUpForm,
   UserOrders,
+  UserAccount,
   AdminOrders,
   AdminUsers
 } from './index';
@@ -63,7 +64,7 @@ class App extends Component {
             <Route component={Checkout} path="/checkout" />
 
             <Route component={UserOrders} path="/orders/:id" />
-            {/* <Route component={AccountInfo} path="/account/:id" /> */}
+            <Route component={UserAccount} path="/account/:id" />
 
             <Route component={AdminUsers} path="/admin/users" />
             <Route component={AdminOrders} path="/admin" exact/>
