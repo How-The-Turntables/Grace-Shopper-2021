@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import albumReducers from './albums/albumReducer';
 import artistReducers from './artists/artistReducer';
 import cartReducer from './shopping/shoppingReducer';
-import userReducer from './user/userReducer';
+import userReducers from './user/userReducer';
 import adminReducers from './admin/adminReducer';
 import albumReducer from './reviews/reviewReducer';
 
@@ -13,7 +13,8 @@ const rootReducer = combineReducers({
   artists: artistReducers.artistsReducer,
   singleArtist: artistReducers.singleArtistReducer,
   cart: cartReducer,
-  auth: userReducer,
+  auth: userReducers.userReducer,
+  userOrders: userReducers.userOrdersReducer,
   orders: adminReducers.ordersReducer,
   users: adminReducers.usersReducer,
   reviews: albumReducer.albumReviews,

@@ -52,24 +52,48 @@ export const attemptTokenLogin = (history) => {
   };
 };
 
-const loadUsers = (users) => {
+const loadUserOrders = (userOrders) => {
   return {
-    type: types.LOAD_USERS,
-    users
+    type: types.LOAD_USER_ORDERS,
+    userOrders
   }
-}
-export const renderUsers = () => {
+};
+
+export const renderUserOrders = (id) => {
   return async(dispatch) => {
     try {
       const token = window.localStorage.getItem('JWTtoken');
-      const { data: userList } = await axios.get('/api/users/admin', {
+      const { data: orderList } = await axios.get(`/api/orders/${id}`, {
         headers: {
           authorization: token,
         },
       });
-      dispatch(loadUsers(userList));
+      dispatch(loadUserOrders(orderList));
     } catch (error) {
-      console.log('ERROR OCCURRING IN ADMIN ACTIONS -- RENDER USERS: ', error);
+      console.log('ERROR OCCURRING IN USER ACTIONS -- RENDER ORDERS: ', error);
     }
   };
 };
+
+// const loadUsers = (users) => {
+//   return {
+//     type: types.LOAD_USERS,
+//     users
+//   }
+// };
+
+// export const renderUsers = () => {
+//   return async(dispatch) => {
+//     try {
+//       const token = window.localStorage.getItem('JWTtoken');
+//       const { data: userList } = await axios.get('/api/users/admin', {
+//         headers: {
+//           authorization: token,
+//         },
+//       });
+//       dispatch(loadUsers(userList));
+//     } catch (error) {
+//       console.log('ERROR OCCURRING IN ADMIN ACTIONS -- RENDER USERS: ', error);
+//     }
+//   };
+// };
