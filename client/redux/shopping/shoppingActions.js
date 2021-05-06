@@ -87,25 +87,37 @@ export const cartChecker = (token, userId) => {
   };
 };
 
-export const addToCart = (userId, token) => {
+export const addToCart = (albumId, body) => {
   return async (dispatch) => {
-   try {
-     const cartData = JSON.parse(localStorage.getItem('UserCart'))
-     console.log(cartData)
-     dispatch(addIntoCart())
-   } catch (error) {
-     console.log('error in addToCart thunk')
-
-   }
-    } 
+    try {
+      const cartData = JSON.parse(localStorage.getItem('UserCart'));
+      const userId = cartData.user.id;
+      const token = localStorage.getItem('JWTtoken');
+      const order_item = await axios.put(
+        `/api/orders/${userId}/cart/${albumId}`,
+        body,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      const { data: updatedCart } = await axios.get(
+        `/api/orders/${userId}/cart`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      localStorage.removeItem('UserCart');
+      localStorage.setItem('UserCart', JSON.stringify(updatedCart));
+      console.log('updated Cart in the thunk', updatedCart);
+      dispatch(addIntoCart(updatedCart));
+    } catch (error) {
+      console.log('error in addToCart thunk', error);
+    }
   };
-  //This is only for the registered user, for guest we will use local storage
-  // check if order_item for this albumId and order_detailId exists
-  //         if not
-  // create new order_items with quantity 1
-  // input albumId, order_detailId, quantity
-  //         if yes
-  // increase the quantity by 1
 };
 
 // export const guestCart = () => {

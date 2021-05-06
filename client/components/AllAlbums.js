@@ -80,6 +80,8 @@ class AllAlbums extends Component {
     this.props.load();
   }
   componentDidMount() {
+    console.log('this.props mounted', this.props);
+    console.log('local cart', JSON.parse(localStorage.getItem('UserCart')));
     this.props.load();
   }
 
@@ -89,9 +91,10 @@ class AllAlbums extends Component {
     }
   }
 
-  addButton() {
-    this.props.addToCart();
-  }
+  addButton = (albumId) => {
+    // determine if guest or user first
+    this.props.addToCart(albumId);
+  };
 
   render() {
     const { classes, albums, count } = this.props;
@@ -176,7 +179,7 @@ class AllAlbums extends Component {
                       <Button
                         size="small"
                         color="primary"
-                        onClick={() => this.addToCart()}
+                        onClick={() => this.addButton(album.id)}
                       >
                         Add To Cart
                       </Button>
@@ -213,7 +216,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     load: () => dispatch(renderAlbums(ownProps.match.params.idx || 0)),
-    addToCart: () => dispatch(addToCart()),
+    addToCart: (albumId) => dispatch(addToCart(albumId)),
   };
 };
 
