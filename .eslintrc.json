@@ -4,7 +4,7 @@
     "browser": true,
     "commonjs": true,
     "es6": true,
-    "mocha": true,
+    "jest": true,
     "node": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
@@ -21,7 +21,7 @@
   },
   "plugins": ["react"],
   // Don't lint these things. They're always gonna be messy.
-  "ignorePatterns": ["dist", "bundle*", "node_modules"],
+  "ignorePatterns": ["client", "bundle*", "node_modules"],
   "rules": {
     "object-curly-spacing": [
       2,
