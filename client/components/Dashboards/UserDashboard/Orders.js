@@ -14,13 +14,7 @@ import { renderUserOrders } from '../../../redux/user/userActions';
 
 function preventDefault(event) {
   event.preventDefault();
-}
-
-// const useStyles = makeStyles((theme) => ({
-//   seeMore: {
-//     marginTop: theme.spacing(3),
-//   },
-// }));
+};
 
 const styles = theme => ({
   seeMore: {
@@ -28,16 +22,17 @@ const styles = theme => ({
   },
 });
 
-
 class Orders extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
   }
   componentDidMount() {
-    this.props.loadOrders()
+    const user = JSON.parse(window.localStorage.getItem('UserCart'));
+    this.props.loadOrders(user.id);
   }
   render() {
     const { classes, orders } = this.props
+    console.log(orders)
   return (
     <React.Fragment>
       <Title>Past Orders</Title>
@@ -73,13 +68,13 @@ class Orders extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    orders: state.orders
+    orders: state.userOrders
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadOrders: () => dispatch(renderUserOrders())
+    loadOrders: (id) => dispatch(renderUserOrders(id))
   }
 }
 

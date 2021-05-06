@@ -62,8 +62,8 @@ class App extends Component {
             <Route component={CartView} path="/cart" />
             <Route component={Checkout} path="/checkout" />
 
-            {/* <Route component={AccountInfo} path="/orderhistory/:id" /> */}
-            <Route component={UserOrders} path="/account/:id" />
+            <Route component={UserOrders} path="/orders/:id" />
+            {/* <Route component={AccountInfo} path="/account/:id" /> */}
 
             <Route component={AdminUsers} path="/admin/users" />
             <Route component={AdminOrders} path="/admin" exact/>

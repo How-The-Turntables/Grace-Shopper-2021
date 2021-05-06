@@ -68,6 +68,8 @@ export const renderUserOrders = (id) => {
           authorization: token,
         },
       });
+      console.log(orderList, 'THUNK ID')
+
       dispatch(loadUserOrders(orderList));
     } catch (error) {
       console.log('ERROR OCCURRING IN USER ACTIONS -- RENDER ORDERS: ', error);

@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import { NavItems } from './listitems';
-import Orders from './Orders';
+import Account from './Account';
 
 const drawerWidth = 240;
 
@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function UserOrders() {
+export default function UserAccount() {
   const classes = useStyles();
 
   return (
@@ -113,10 +113,10 @@ export default function UserOrders() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            Recent Orders
+            Account Info
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Orders />
+                <Account />
               </Paper>
             </Grid>
           </Grid>
