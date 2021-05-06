@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { renderAlbums } from '../redux/albums/albumActions';
-import { addToCart } from '../redux/shopping/shoppingActions';
-//import FilterSort from './FilterSort';
 
+import { Pagination } from '@material-ui/lab';
 import {
   Button,
   Card,
@@ -13,38 +12,11 @@ import {
   CardMedia,
   CssBaseline,
   Grid,
-  Toolbar,
   Typography,
   Container,
   CardActionArea,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-
-// import {
-//   Products,
-//   ProductContainer,
-//   ProductCard,
-//   ProductInfo,
-//   ImageCard,
-//   ProductFilter,
-// } from '../styles';
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
-// function preventDefault(event) {
-//   event.preventDefault();
-// }
 
 const styles = (theme) => ({
   icon: {
@@ -115,13 +87,20 @@ class AllAlbums extends Component {
           }}
         >
           {/* Hero unit */}
-          <div className={classes.heroContent}>
+          <div
+            className={classes.heroContent}
+            style={{
+              background: '#42240C',
+            }}
+          >
             <Container maxWidth="sm">
               <Typography
                 component="h1"
                 variant="h2"
                 align="center"
-                color="textPrimary"
+                style={{
+                  color: '#F2F1E7',
+                }}
                 gutterBottom
               >
                 Albums
@@ -155,7 +134,7 @@ class AllAlbums extends Component {
                     <CardContent
                       className={classes.cardContent}
                       style={{
-                        background: '#C81912',
+                        background: '#a12222',
                       }}
                     >
                       <Typography
@@ -164,20 +143,56 @@ class AllAlbums extends Component {
                         component="h2"
                         style={{
                           color: '#F2F1E7',
+                          display: 'flex',
+                          justifyContent: 'center',
                         }}
                       >
                         {album.title}
                       </Typography>
-                      <Typography>{album.description}</Typography>
+                      <Typography
+                        style={{
+                          color: '#F2F1E7',
+                          display: 'flex',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        {album.description}
+                      </Typography>
                     </CardContent>
-                    <CardActions>
-                      <Button size="small" color="primary">
-                        View
-                      </Button>
+                    <CardActions
+                      style={{
+                        background: '#a12222',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        paddingLeft: '3rem',
+                        paddingRight: '3rem',
+                        paddingBottom: '1rem',
+                      }}
+                    >
+                      <Link
+                        to={`/albums/${album.id}/details`}
+                        style={{
+                          textDecoration: 'none',
+                        }}
+                      >
+                        <Button
+                          size="small"
+                          color="primary"
+                          style={{
+                            color: '#F2F1E7',
+                            background: '#42240C',
+                          }}
+                        >
+                          View
+                        </Button>
+                      </Link>
                       <Button
                         size="small"
                         color="primary"
-                        onClick={() => this.addButton(album.id)}
+                        style={{
+                          color: '#F2F1E7',
+                          background: '#42240C',
+                        }}
                       >
                         Add To Cart
                       </Button>
@@ -187,16 +202,16 @@ class AllAlbums extends Component {
               ))}
             </Grid>
           </Container>
+          <nav>
+            {links.map(({ idx, num }) => {
+              return (
+                <Link key={idx} to={`/albums/${idx}`}>
+                  {num}
+                </Link>
+              );
+            })}
+          </nav>
         </main>
-        <nav>
-          {links.map(({ idx, num }) => {
-            return (
-              <Link key={idx} to={`/albums/${idx}`}>
-                {num}
-              </Link>
-            );
-          })}
-        </nav>
       </React.Fragment>
     );
   }

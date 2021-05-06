@@ -16,6 +16,7 @@ import SingleAlbum from './SingleAlbum';
 import AdminOrders from './Dashboards/AdminDashboard/AdminOrders';
 import AdminUsers from './Dashboards/AdminDashboard/AdminUsers';
 import AddReview from './ReviewViews/AddReview';
+import PromoteUser from './Dashboards/AdminDashboard/PromoteUser';
 
 
 export {
@@ -34,6 +35,7 @@ export {
   SignUpForm,
   AdminOrders,
   AdminUsers,
+  PromoteUser,
   UserOrders,
   UserAccount,
   AddReview
