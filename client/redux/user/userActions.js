@@ -91,9 +91,7 @@ export const renderSelectedUser = (id) => {
           authorization: token,
         },
       });
-      console.log('LOADED USER THUNK ', user)
       dispatch(loadUser(user));
-      console.log('THUNK DISPATCHED')
     } catch (error) {
       console.log('ERROR OCCURRING IN USER ACTIONS -- RENDER SINGLE USER: ', error);
     }
@@ -117,11 +115,8 @@ export const renderEditUser = ( id, body, history ) => {
             authorization: token,
           },
       });
-      console.log('THUNK USER', userToEdit)
       dispatch(editUser( userToEdit ));
-      // history.push(`/users/${id}`);
-      history.push('/');
-
+      history.push(`/account/${id}`);
     }
     catch (error) {
       console.log('Error editing USER in thunk creator: ', error);
