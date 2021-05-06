@@ -37,38 +37,5 @@ export const NavItems = () => {
           </ListItem>
     </div>
   )
-}
+};
 
-
-// export const sidebarData = [
-//   {
-//     title: 'Orders',
-//     path: '/admin',
-//     icon: <DashboardIcon/>
-//   },
-//   {
-//     title: 'Users',
-//     path: '/admin/users',
-//     icon: <PeopleIcon/>
-//   }
-// ];
-
-// {sidebarData.map((item, index) => {
-//   return (
-//     <Link to={item.path}>
-//       < ListItem
-//         key={index}
-//         onClick={preventDefault}
-//         // replace
-//         button>
-//           <ListItemIcon>
-//             {item.icon}
-//           </ListItemIcon>
-
-//             <ListItemText primary={item.title} />
-
-//       </ListItem>
-
-//       </Link>
-//   )
-// })}
