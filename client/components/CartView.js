@@ -21,7 +21,7 @@ class CartView extends Component {
 
   componentDidMount() {
     if (window.localStorage.GuestCart) {
-      const cart = JSON.parse(window.localStorage.GuestCart);
+      const cart = JSON.parse(window.localStorage.getItem('UserCart'));
       this.setState({
         cartId: cart.id,
         albums: cart.albums,
@@ -29,7 +29,7 @@ class CartView extends Component {
     }
 
     if (window.localStorage.UserCart) {
-      const cart = JSON.parse(window.localStorage.UserCart);
+      const cart = JSON.parse(window.localStorage.getItem('UserCart'));
       this.setState({
         cartId: cart.id,
         albums: cart.albums,

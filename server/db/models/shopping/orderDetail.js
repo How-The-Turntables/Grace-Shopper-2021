@@ -14,6 +14,15 @@ const OrderDetail = db.define('order_detail', {
   },
 });
 
+OrderDetail.fetchItems = async (order_detailId) => {
+  const items = await OrderItem.findAll({
+    where: {
+      order_detailId,
+    },
+  });
+  // incomplete feature, should find all relevant order items for this cart and add them to that cart instance
+};
+
 // OrderDetail.init(
 //   {
 //     // id: {
