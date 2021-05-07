@@ -36,15 +36,6 @@ export const NavItems = () => {
                 <ListItemText>Account Info</ListItemText>
                 </Link>
           </ListItem>
-
-          <ListItem onClick={preventDefault} button>
-              <ListItemIcon>
-                <ShoppingCart/>
-              </ListItemIcon>
-              <Link to='/user/cart'>
-                <ListItemText>Cart</ListItemText>
-                </Link>
-          </ListItem>
     </div>
   )
 };

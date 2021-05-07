@@ -78,7 +78,7 @@ class Nav extends Component {
                 )}
 
                 {!admin && token ? (
-                    <Link to="/user" style={{ textDecoration: 'none' }}>
+                    <Link to="/user/orders" style={{ textDecoration: 'none' }}>
                       <Button style={{ color: '#42240C' }}>Account</Button>
                     </Link>
                 ) : (

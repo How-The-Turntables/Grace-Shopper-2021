@@ -21,7 +21,7 @@ export const NavItems = () => {
               <ListItemIcon>
                 <DashboardIcon/>
               </ListItemIcon>
-              <Link to='/admin'>
+              <Link to='/admin/orders'>
                 <ListItemText>Orders</ListItemText>
               </Link>
           </ListItem>

@@ -99,7 +99,7 @@ const styles = (theme) => ({
   },
 });
 
-class UserAccount extends React.Component {
+class UserOrders extends React.Component {
   render() {
   const { classes } = this.props;
     return (
@@ -126,7 +126,7 @@ class UserAccount extends React.Component {
                     <Route component={Orders} path="/user/orders" />
                     <Route component={UserInfo} path="/user/account" />
                   </Switch> */}
-                  <UserInfo />
+                  <Orders />
                 </Paper>
               </Grid>
             </Grid>
@@ -137,5 +137,5 @@ class UserAccount extends React.Component {
   };
 };
 
-export default withStyles(styles, { withTheme: true })(connect(null)(UserAccount));
+export default withStyles(styles, { withTheme: true })(connect(null)(UserOrders));
 
