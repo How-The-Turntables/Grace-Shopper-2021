@@ -9,6 +9,22 @@ export const newCart = (cart) => {
   };
 };
 
+// LOADING CART ACTION
+export const loadCart = (cart) => {
+  return {
+    type: types.LOAD_CART,
+    cart,
+  };
+};
+
+// ADD TO CART
+export const addIntoCart = (cart) => {
+  return {
+    type: types.ADD_TO_CART,
+    cart,
+  };
+};
+
 export const createCart = (id) => {
   return async (dispatch) => {
     try {
@@ -20,34 +36,27 @@ export const createCart = (id) => {
   };
 };
 
-// LOADING CART ACTION
-export const loadCart = (cart) => {
-  return {
-    type: types.LOAD_CART,
-    cart,
-  };
-};
-
-export const renderCart = (id) => {
-  return async (dispatch) => {
-    try {
-      const { data: cart } = await axios.get(`/api/orders/${id}/cart`);
-      dispatch(newCart(cart));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+// export const renderCart = (id) => {
+//   return async (dispatch) => {
+//     try {
+//       const { data: cart } = await axios.get(`/api/orders/${id}/cart`);
+//       dispatch(newCart(cart));
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
 
 export const cartChecker = (token, userId) => {
   return async (dispatch) => {
     try {
+      console.log('hey thunks!')
       const { data: cart } = await axios.get(`/api/orders/${userId}/cart`, {
         headers: {
           authorization: token,
         },
       });
-      // console.log('cart in thunk', cart);
+      console.log('CART ', cart)
       const guestCart = JSON.parse(localStorage.getItem('GuestCart'));
       if (guestCart.albums.length > 0) {
         guestCart.albums.map(async (album) => {
@@ -75,6 +84,38 @@ export const cartChecker = (token, userId) => {
       }
     } catch (error) {
       console.log('error occured in cartChecker thunk', error);
+    }
+  };
+};
+
+export const addToCart = (albumId, body) => {
+  return async (dispatch) => {
+    try {
+      const cartData = JSON.parse(localStorage.getItem('UserCart'));
+      const userId = cartData.user.id;
+      const token = localStorage.getItem('JWTtoken');
+      const order_item = await axios.put(
+        `/api/orders/${userId}/cart/${albumId}`,
+        body,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      const { data: updatedCart } = await axios.get(
+        `/api/orders/${userId}/cart`,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      localStorage.removeItem('UserCart');
+      localStorage.setItem('UserCart', JSON.stringify(updatedCart));
+      dispatch(addIntoCart(updatedCart));
+    } catch (error) {
+      console.log('error in addToCart thunk', error);
     }
   };
 };

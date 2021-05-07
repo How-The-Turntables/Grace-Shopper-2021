@@ -1,6 +1,5 @@
-// import React, { useEffect} from 'react';
-import React, { Component } from 'react';
 
+import React, { Component } from 'react';
 import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,9 +7,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Title from '../Title';
+import Title from './Dashboards/Title';
 import { connect } from 'react-redux'
-import { renderUserOrders } from '../../../redux/user/userActions';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -22,20 +20,20 @@ const styles = theme => ({
   },
 });
 
-class Orders extends Component {
+class Cart extends Component {
   constructor() {
     super()
   }
   componentDidMount() {
     const user = JSON.parse(window.localStorage.getItem('UserCart'));
-    console.log('USER ', user.cart.userId)
-    this.props.loadOrders(user.cart.userId);
+    if ( user.id === 'guest')
+    this.props.loadOrders(user.id);
   }
   render() {
     const { classes, orders } = this.props
   return (
     <React.Fragment>
-      <Title>Past Orders</Title>
+      <Title>Today's a great day to give us your money!</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -78,4 +76,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Orders))
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Cart))

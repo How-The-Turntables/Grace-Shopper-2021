@@ -1,6 +1,11 @@
 import React from 'react';
-import clsx from 'clsx';
+import { Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import { NavItems } from './listitems';
+import Users from './Users';
+import Orders from './Orders';
+
+import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
@@ -9,8 +14,6 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
-import { NavItems } from './listitems';
-import Orders from './Orders';
 
 const drawerWidth = 240;
 
@@ -93,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AdminOrders() {
+export default function AdminOrdersAccount() {
   const classes = useStyles();
 
   return (
@@ -113,10 +116,14 @@ export default function AdminOrders() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            Recent Orders
+            Account
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Orders />
+              {/* <Switch>
+                <Route component={Orders} path="/admin/orders" exact />
+                <Route component={Users} path="/admin/users" exact />
+              </Switch> */}
+              <Orders />
               </Paper>
             </Grid>
           </Grid>

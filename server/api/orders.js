@@ -1,13 +1,13 @@
 const ordersRouter = require('express').Router();
 const { Op } = require('sequelize'); // MOVE THS and the query to order model
-const { OrderDetail, Album } = require('../db/index');
-const OrderItem = require('../db/models/shopping/orderItem');
+const { OrderDetail, Album, OrderItem } = require('../db/index');
 const { requireToken } = require('./auth');
 const { authId } = require('../utils');
 
 //  all orders route for admin
-ordersRouter.get('/admin', requireToken, async (req, res, next) => {
+ordersRouter.get('/admin', requireToken,  async (req, res, next) => {
   try {
+    console.log('ADMIN ID ', req.user.admin)
     if (!req.user.admin) res.status(401).send('you are not authorized');
     else {
       const orders = await OrderDetail.findAll({
@@ -16,63 +16,39 @@ ordersRouter.get('/admin', requireToken, async (req, res, next) => {
       res.status(200).send(orders);
     }
   } catch (error) {
-    console.log('problem with your api/orders get route: ', error);
+    console.log('problem with your GET api/orders/admin get route: ', error);
     next(error);
   }
 });
-
-// ordersRouter.get('/:id/items', async (req, res, next) => {
-//   try {
-//     const id = req.params.id;
-//     const items = await OrderItem.findAll({
-//       where: {
-//         order_detailId: id,
-//       },
-//     });
-//     res.status(200).send(items);
-//   } catch (error) {
-//     console.log('error occured in /api/orders/:id/items');
-//     next(error);
-//   }
-// });
-
-// ordersRouter.post('/items', async (req, res, next) => {
-//   try {
-//     const data = req.params.data;
-//     const newOrderItems = await OrderItem.create({
-//       quantity: 1,
-//       albumId: data.albumId,
-//       order_detailId: data.order_detailId,
-//     });
-//     res.status(204).send(newOrderItems);
-//   } catch (error) {
-//     console.log('error occured in POST /api/orders/:id/items');
-//     next(error);
-//   }
-// });
 
 // Active user cart
 ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);
-    if (!id) res.status(401).send('you are not authorized');
-    const cart = await OrderDetail.findOne({
-      where: {
-        userId: id,
-        status: 'IN PROGRESS',
-      },
-      include: [{ all: true, attributes: { exclude: 'password' } }],
-    });
-    // const cartId = cart.dataValues.id;
-    // const orderItems = await OrderItem.findAll({
-    //   where: {
-    //     order_detailId: cartId,
-    //   },
-    // });
+    if (!id) {
+      res.status(401).send('you are not authorized');
+    }
+    else {
+      const cart = await OrderDetail.findOne({
+        where: {
+          userId: id,
+        },
+        include: [{ all: true, attributes: { exclude: ['admin', 'password'] } }],
+      });
 
-    // const cartDetails = { cart, orderItems };
-    if (!cart) res.sendStatus(404);
-    else res.status(200).send(cart);
+      const cartId = cart.dataValues.id;
+      const orderItems = await OrderItem.findAll({
+        where: {
+          order_detailId: cartId,
+        },
+        include: [{ all: true }]
+      });
+
+      const cartDetails = { cart, orderItems };
+
+      if (!cartDetails) res.sendStatus(404);
+      else res.status(200).send(cartDetails);
+    }
   } catch (error) {
     console.log('problem with your GET api/orders/:id/cart route: ', error);
     next(error);
@@ -82,54 +58,36 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
 // all orders by user for user account view
 ordersRouter.get('/:id', requireToken, async (req, res, next) => {
   try {
+
+    console.log(req.params)
     const id = authId(req);
-    if (!id) res.status(401).send('you are not authorized');
-    const order = await OrderDetail.findAll({
-      where: {
-        userId: id,
-        [Op.or]: [{ status: 'COMPLETED' }, { status: 'CANCELLED' }],
-      },
-      include: { all: true },
-    });
-    res.send(order);
+    if (!id) {
+      res.status(401).send('you are not authorized');
+    }
+    else {
+      const orders = await OrderDetail.findAll({
+        where: {
+          userId: id,
+          [Op.or]: [{ status: 'COMPLETED' }, { status: 'CANCELLED' }],
+        },
+        include: { all: true },
+      });
+      res.send(orders);
+    }
   } catch (error) {
     console.log('problem with your GET api/orders/:id user route: ', error);
     next(error);
   }
 });
 
-// user adds item to cart
-ordersRouter.post('/cart', requireToken, async (req, res, next) => {
-  try {
-    const id = authId(req);
-    if (!id) res.status(401).send('you are not authorized');
-    const cart = await OrderDetail.create({
-      where: {
-        userId: req.params.id,
-        status: 'IN PROGRESS',
-      },
-      include: { all: true },
-    });
-    // const cartId = cart.dataValues.id;
-    // const orderItemToUpdate = await OrderItem.findOne({
-    //   where: {
-    //     order_detailId: cartId,
-    //   },
-    //   include: { all: true }
-    // });
 
-    res.status(201).send(cart); // sending new cart session to client
-  } catch (error) {
-    console.log('problem with your POST api/orders/:id/cart route: ', error);
-    next(error);
-  }
-});
 
 // user can add cart items and quantity of current items
 ordersRouter.put('/:id/cart/:albumId', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);
     if (!id) res.status(401).send('you are not authorized');
+
     const albumSelected = await Album.findByPk(req.params.albumId);
     const cartSession = await OrderDetail.findOne({
       // because they could already have a cart in session
@@ -150,23 +108,28 @@ ordersRouter.put('/:id/cart/:albumId', requireToken, async (req, res, next) => {
     // updating cart item quantity and removing quantity from selected album
     if (!orderItem) {
       orderItem = await OrderItem.create({
-        where: {
-          order_detailId: cart.id,
-          albumId: albumSelected.id,
-          quantity: req.body.quantity,
-        },
-        include: { all: true },
+        order_detailId: cart.id,
+        albumId: albumSelected.id,
+        quantity: 1,
       });
+    } else {
+      orderItem.quantity += 1;
+      await orderItem.save();
     }
     // updates quantity and total
-    if (orderItem.quantity < req.body.quantity) {
-      orderItem.quantity += req.body.quantity;
-      cart.total += 1 * albumSelected.price;
-    } else {
-      orderItem.quantity -= req.body.quantity;
-      cart.total -= 1 * albumSelected.price;
-    }
-    res.status(200).send(orderItem);
+    // revist for price
+    // if (orderItem.quantity < req.body.quantity) {
+    //   orderItem.quantity += req.body.quantity;
+    //   cart.total += 1 * albumSelected.price;
+    // } else {
+    //   orderItem.quantity -= req.body.quantity;
+    //   cart.total -= 1 * albumSelected.price;
+    // }
+    cartSession.total *= 1;
+    cartSession.total += albumSelected.price * 1;
+    await cartSession.save();
+
+    res.status(200).send(cartSession);
   } catch (error) {
     console.log('problem with your PUT api/:id/cart/:albumId route: ', error);
     next(error);
@@ -234,19 +197,10 @@ ordersRouter.put('/:id/admin', requireToken, async (req, res, next) => {
   }
 });
 
-ordersRouter.post('/cart', async (req, res, next) => {
-  try {
-    const cart = await OrderDetail.create({
-      status: 'IN PROGRESS',
-    });
-    res.status(201).send(cart);
-  } catch (error) {
-    console.log('problem with your POST api/cart route: ', error);
-    next(error);
-  }
-});
-
 module.exports = ordersRouter;
+
+
+// ROUTES THAT WE DIDN'T USE OR REWROTE ABOVE. WILL DELETE THESE UPON THOROUGH AUDIT
 
 // // console.logs that were helpful for debugging
 //   // calculate cart total --- NOT necessary in backend route but leaving for now just in case
@@ -257,3 +211,74 @@ module.exports = ordersRouter;
 //     // console.log(cart.map((album) => {
 //     //   return album
 //     // }))
+
+
+// ordersRouter.get('/:id/items', async (req, res, next) => {
+//   try {
+//     const id = req.params.id;
+//     const items = await OrderItem.findAll({
+//       where: {
+//         order_detailId: id,
+//       },
+//     });
+//     res.status(200).send(items);
+//   } catch (error) {
+//     console.log('error occured in /api/orders/:id/items');
+//     next(error);
+//   }
+// });
+
+// ordersRouter.post('/items', async (req, res, next) => {
+//   try {
+//     const data = req.params.data;
+//     const newOrderItems = await OrderItem.create({
+//       quantity: 1,
+//       albumId: data.albumId,
+//       order_detailId: data.order_detailId,
+//     });
+//     res.status(204).send(newOrderItems);
+//   } catch (error) {
+//     console.log('error occured in POST /api/orders/:id/items');
+//     next(error);
+//   }
+// });
+
+
+// // user adds item to cart
+// ordersRouter.post('/cart', requireToken, async (req, res, next) => {
+//   try {
+//     const id = authId(req);
+//     if (!id) res.status(401).send('you are not authorized');
+//     const cart = await OrderDetail.create({
+//       where: {
+//         userId: req.params.id,
+//         status: 'IN PROGRESS',
+//       },
+//       include: { all: true },
+//     });
+//     // const cartId = cart.dataValues.id;
+//     // const orderItemToUpdate = await OrderItem.findOne({
+//     //   where: {
+//     //     order_detailId: cartId,
+//     //   },
+//     //   include: { all: true }
+//     // });
+
+//     res.status(201).send(cart); // sending new cart session to client
+//   } catch (error) {
+//     console.log('problem with your POST api/orders/:id/cart route: ', error);
+//     next(error);
+//   }
+// });
+
+// ordersRouter.post('/cart', async (req, res, next) => {
+//   try {
+//     const cart = await OrderDetail.create({
+//       status: 'IN PROGRESS',
+//     });
+//     res.status(201).send(cart);
+//   } catch (error) {
+//     console.log('problem with your POST api/cart route: ', error);
+//     next(error);
+//   }
+// });

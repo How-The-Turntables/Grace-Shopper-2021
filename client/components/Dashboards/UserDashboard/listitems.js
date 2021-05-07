@@ -1,11 +1,13 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
-
+// import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
+import { ShoppingCart } from '@material-ui/icons';
+
 
 
 
@@ -20,7 +22,7 @@ export const NavItems = () => {
               <ListItemIcon>
                 <DashboardIcon/>
               </ListItemIcon>
-              <Link to='/orders/:id'>
+              <Link to='/user/orders'>
                 <ListItemText>Orders</ListItemText>
               </Link>
           </ListItem>
@@ -30,7 +32,7 @@ export const NavItems = () => {
               <ListItemIcon>
                 <PeopleIcon/>
               </ListItemIcon>
-              <Link to='/account/:id'>
+              <Link to='/user/account'>
                 <ListItemText>Account Info</ListItemText>
                 </Link>
           </ListItem>

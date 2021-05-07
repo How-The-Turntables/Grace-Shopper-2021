@@ -1,6 +1,13 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+
+import { NavItems } from './listitems';
+import Orders from './Orders';
+import UserInfo from './UserInfo';
+
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
@@ -8,13 +15,12 @@ import List from '@material-ui/core/List';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
-import { NavItems } from './listitems';
-import Orders from './Orders';
+
+
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
   },
@@ -91,37 +97,45 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-}));
+});
 
-export default function UserOrders() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-      >
-        <div className={classes.toolbarIcon}>
-        </div>
-        <List><NavItems /></List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            Recent Orders
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
+class UserOrders extends React.Component {
+  render() {
+  const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+        >
+          <div className={classes.toolbarIcon}>
+          </div>
+          <List><NavItems /></List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg" className={classes.container}>
+            <Grid container spacing={3}>
+              Account
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  {/* <Switch>
+                    <Route component={Orders} path="/user/orders" />
+                    <Route component={UserInfo} path="/user/account" />
+                  </Switch> */}
+                  <Orders />
+                </Paper>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      </main>
-    </div>
-  );
+          </Container>
+        </main>
+      </div>
+    );
+  };
 };
+
+export default withStyles(styles, { withTheme: true })(connect(null)(UserOrders));
+

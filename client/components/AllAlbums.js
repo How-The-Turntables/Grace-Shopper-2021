@@ -36,19 +36,24 @@ const styles = (theme) => ({
 });
 
 class AllAlbums extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.props.load();
-  };
-  componentDidMount(){
+  }
+  componentDidMount() {
     this.props.load();
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps) {
     if (prevProps.match.params.idx !== this.props.match.params.idx) {
       this.props.load();
     }
   }
+
+  addButton = (albumId) => {
+    // determine if guest or user first
+    this.props.addToCart(albumId);
+  };
 
   render() {
     const { classes, albums, count } = this.props;
@@ -81,9 +86,100 @@ class AllAlbums extends Component {
             </Typography>
             {/* <Typography variant="h5" align="center" color="textSecondary" paragraph>
               Something short and leading about the collection below—its contents, the creator, etc.
-              Make it short and sweet, but not too short so folks don&apos;t simply skip over it
+              Make it short and sweet, but yes not too short so folks don&apos;t simply skip over it
               entirely.
             </Typography> */}
+            </Container>
+          </div>
+          {/* End hero unit */}
+          <Container
+            className={classes.cardGrid}
+            maxWidth="md"
+            style={{
+              background: '#F2F1E7',
+            }}
+          >
+            <Grid container spacing={4}>
+              {albums.map((album) => (
+                <Grid item key={album.id} xs={12} sm={6} md={4}>
+                  <Card className={classes.card}>
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.cardMedia}
+                        image={album.photoUrl}
+                        title="Album Artwork"
+                      />
+                    </CardActionArea>
+                    <CardContent
+                      className={classes.cardContent}
+                      style={{
+                        background: '#a12222',
+                      }}
+                    >
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h2"
+                        style={{
+                          color: '#F2F1E7',
+                          display: 'flex',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        {album.title}
+                      </Typography>
+                      <Typography
+                        style={{
+                          color: '#F2F1E7',
+                          display: 'flex',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        {album.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions
+                      style={{
+                        background: '#a12222',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        paddingLeft: '3rem',
+                        paddingRight: '3rem',
+                        paddingBottom: '1rem',
+                      }}
+                    >
+                      <Link
+                        to={`/albums/${album.id}/details`}
+                        style={{
+                          textDecoration: 'none',
+                        }}
+                      >
+                        <Button
+                          size="small"
+                          color="primary"
+                          style={{
+                            color: '#F2F1E7',
+                            background: '#42240C',
+                          }}
+                        >
+                          View
+                        </Button>
+                      </Link>
+                      <Button
+                        size="small"
+                        color="primary"
+                        style={{
+                          color: '#F2F1E7',
+                          background: '#42240C',
+                        }}
+                      >
+                        Add To Cart
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
           </Container>
         </div>
         {/* End hero unit */}
@@ -178,18 +274,22 @@ class AllAlbums extends Component {
  };
 };
 
-
 const mapStateToProps = (state, ownProps) => {
   return {
     count: state.albums.count,
-    albums: state.albums.data[ownProps.match.params.idx] || state.albums.filteredAlbums,
+    albums:
+      state.albums.data[ownProps.match.params.idx] ||
+      state.albums.filteredAlbums,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     load: () => dispatch(renderAlbums(ownProps.match.params.idx || 0)),
+    addToCart: (albumId) => dispatch(addToCart(albumId)),
   };
 };
 
-export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(AllAlbums));
+export default withStyles(styles, { withTheme: true })(
+  connect(mapStateToProps, mapDispatchToProps)(AllAlbums)
+);
