@@ -1,10 +1,10 @@
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { renderAlbums } from '../redux/albums/albumActions';
 
-import React, { Component } from 'react';
 import { Pagination } from '@material-ui/lab';
-import { Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Typography, Container, CardActionArea } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography, Container, CardActionArea } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
@@ -104,12 +104,16 @@ class AllAlbums extends Component {
                     background: '#a12222',
                   }}>
                     <Typography gutterBottom variant="h5" component="h2" style={{
-                      color: '#F2F1E7'
+                      color: '#F2F1E7',
+                      display: 'flex',
+                      justifyContent: 'center',
                     }}>
                       {album.title}
                     </Typography>
                     <Typography style={{
-                      color: '#F2F1E7'
+                      color: '#F2F1E7',
+                      display: 'flex',
+                      justifyContent: 'center',
                     }}>
                       {album.description}
                     </Typography>
