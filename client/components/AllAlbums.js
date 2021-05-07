@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { renderAlbums } from '../redux/albums/albumActions';
 import { addToCart } from '../redux/shopping/shoppingActions';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.min.css';
 // import 'react-toastify/dist/ReactToastify.css';
-// import '!style-loader!css-loader!react-toastify/dist/ReactToastify.css';
+import '!style-loader!css-loader!react-toastify/dist/ReactToastify.css';
 
 //import { Pagination } from '@material-ui/lab';
 import {
@@ -72,7 +72,7 @@ class AllAlbums extends Component {
     // determine if guest or user first
     // const userId = this.props.auth.user.id;
     // this.props.addToCart(albumId, userId);
-    toast('Item added to cart!');
+    toast.error('Item added to cart!');
   };
 
   render() {
@@ -237,7 +237,7 @@ class AllAlbums extends Component {
               );
             })}
           </div>
-          <ToastContainer />
+          <ToastContainer transition={Zoom} />
         </main>
       </React.Fragment>
     );
