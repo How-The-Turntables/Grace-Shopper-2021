@@ -4,11 +4,9 @@ module.exports = {
   output: {
     path: __dirname,
     filename: './server/public/bundle.js',
-
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-
   },
   devtool: 'source-map',
   watchOptions: {
