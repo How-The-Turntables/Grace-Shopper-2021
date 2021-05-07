@@ -53,7 +53,8 @@ class AllArtists extends Component {
         }}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" style={{
-              color: '#F2F1E7'
+              color: '#F2F1E7',
+              fontFamily: 'Special Elite, cursive'
             }} gutterBottom>
               Artists
             </Typography>
@@ -86,6 +87,7 @@ class AllArtists extends Component {
                       color: '#F2F1E7',
                       display: 'flex',
                       justifyContent: 'center',
+                      fontFamily: 'Special Elite, cursive',
                     }}>
                       {artist.name}
                     </Typography>

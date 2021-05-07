@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AdminAccount() {
+export default function AdminUsersAccount() {
   const classes = useStyles();
 
   return (
@@ -116,13 +116,10 @@ export default function AdminAccount() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            Recent Orders
+            Account
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-              <Switch>
-                <Route component={Orders} path="/admin/orders" />
-                <Route component={Users} path="/admin/users" />
-              </Switch>
+              <Users />
               </Paper>
             </Grid>
           </Grid>

@@ -3,19 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { renderAlbums } from '../redux/albums/albumActions';
 
-import { Pagination } from '@material-ui/lab';
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  CssBaseline,
-  Grid,
-  Typography,
-  Container,
-  CardActionArea,
-} from '@material-ui/core';
+//import { Pagination } from '@material-ui/lab';
+import { Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography, Container, CardActionArea } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
@@ -79,143 +68,115 @@ class AllAlbums extends Component {
       };
     });
     return (
-      <React.Fragment>
-        <CssBaseline />
-        <main
-          style={{
-            background: '#F2F1E7',
-          }}
-        >
-          {/* Hero unit */}
-          <div
-            className={classes.heroContent}
-            style={{
-              background: '#42240C',
-            }}
-          >
-            <Container maxWidth="sm">
-              <Typography
-                component="h1"
-                variant="h2"
-                align="center"
-                style={{
-                  color: '#F2F1E7',
-                }}
-                gutterBottom
-              >
-                Albums
-              </Typography>
-              {/* <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Something short and leading about the collection below—its contents, the creator, etc.
-              Make it short and sweet, but yes not too short so folks don&apos;t simply skip over it
-              entirely.
-            </Typography> */}
+    <React.Fragment>
+      <CssBaseline />
+      <main style={{
+        background: '#F2F1E7',
+      }}>
+        {/* Hero unit */}
+        <div className={classes.heroContent} style={{
+          background: '#42240C'
+        }}>
+          <Container maxWidth="sm">
+            <Typography component="h1" variant="h2" align="center" style={{
+              color: '#F2F1E7',
+              fontFamily: 'Special Elite, cursive'
+            }} gutterBottom>
+              Albums
+            </Typography>
             </Container>
           </div>
-          {/* End hero unit */}
-          <Container
-            className={classes.cardGrid}
-            maxWidth="md"
-            style={{
-              background: '#F2F1E7',
-            }}
-          >
-            <Grid container spacing={4}>
-              {albums.map((album) => (
-                <Grid item key={album.id} xs={12} sm={6} md={4}>
-                  <Card className={classes.card}>
-                    <CardActionArea>
-                      <CardMedia
-                        className={classes.cardMedia}
-                        image={album.photoUrl}
-                        title="Album Artwork"
-                      />
-                    </CardActionArea>
-                    <CardContent
-                      className={classes.cardContent}
-                      style={{
-                        background: '#a12222',
-                      }}
-                    >
-                      <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h2"
-                        style={{
-                          color: '#F2F1E7',
-                          display: 'flex',
-                          justifyContent: 'center',
-                        }}
-                      >
-                        {album.title}
-                      </Typography>
-                      <Typography
-                        style={{
-                          color: '#F2F1E7',
-                          display: 'flex',
-                          justifyContent: 'center',
-                        }}
-                      >
-                        {album.description}
-                      </Typography>
-                    </CardContent>
-                    <CardActions
-                      style={{
-                        background: '#a12222',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        paddingLeft: '3rem',
-                        paddingRight: '3rem',
-                        paddingBottom: '1rem',
-                      }}
-                    >
-                      <Link
-                        to={`/albums/${album.id}/details`}
-                        style={{
-                          textDecoration: 'none',
-                        }}
-                      >
-                        <Button
-                          size="small"
-                          color="primary"
-                          style={{
-                            color: '#F2F1E7',
-                            background: '#42240C',
-                          }}
-                        >
-                          View
-                        </Button>
-                      </Link>
-                      <Button
-                        size="small"
-                        color="primary"
-                        style={{
-                          color: '#F2F1E7',
-                          background: '#42240C',
-                        }}
-                      >
-                        Add To Cart
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Container>
-          <nav>
-            {links.map(({ idx, num }) => {
+        {/* End hero unit */}
+        <Container className={classes.cardGrid} maxWidth="md" style={{
+            background: '#F2F1E7',
+          }}>
+          <Grid container spacing={4} >
+            {albums.map((album) => (
+              <Grid item key={album.id} xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardActionArea>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image= {album.photoUrl}
+                    title="Album Artwork"
+                  />
+                  </CardActionArea>
+                  <CardContent className={classes.cardContent} style={{
+                    background: '#a12222',
+                  }}>
+                    <Typography gutterBottom variant="h5" component="h2" style={{
+                      color: '#F2F1E7',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      fontFamily: 'Special Elite, cursive'
+                    }}>
+                      {album.title}
+                    </Typography>
+                    <Typography style={{
+                      color: '#F2F1E7',
+                      display: 'flex',
+                      justifyContent: 'center',
+                    }}>
+                      {album.description}
+                    </Typography>
+                  </CardContent>
+                  <CardActions style={{
+                    background: '#a12222',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    paddingLeft: '3rem',
+                    paddingRight: '3rem',
+                    paddingBottom: '1rem',
+                  }}>
+                  <Link to={`/albums/${album.id}/details`} style={{
+                    textDecoration: 'none',
+                  }}>
+                    <Button size="small" color="primary" style={{
+                      color: '#F2F1E7',
+                      background: '#42240C'
+                    }}>
+                      View
+                    </Button>
+                    </Link>
+                    <Button size="small" color="primary" style={{
+                      color: '#F2F1E7',
+                      background: '#42240C'
+                    }}>
+                      Add To Cart
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          }}>
+      {links.map(({ idx, num }) => {
               return (
-                <Link key={idx} to={`/albums/${idx}`}>
+                <Link key={idx} to={`/albums/${idx}`} style={{
+                  border: '1px solid #42240C',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '2rem',
+                  height: '2rem',
+                  textDecoration: 'none',
+                  color: '#C81912',
+                  margin: '0.2rem'
+                }}>
                   {num}
                 </Link>
               );
             })}
-          </nav>
-        </main>
-      </React.Fragment>
-    );
-  }
-}
+      </div>
+      </main>
+    </React.Fragment>
+  );
+ };
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {

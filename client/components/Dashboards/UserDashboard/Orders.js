@@ -28,8 +28,8 @@ class Orders extends Component {
   }
   componentDidMount() {
     const user = JSON.parse(window.localStorage.getItem('UserCart'));
-    console.log('USER ', user)
-    this.props.loadOrders(user.id);
+    console.log('USER ', user.cart.userId)
+    this.props.loadOrders(user.cart.userId);
   }
   render() {
     const { classes, orders } = this.props

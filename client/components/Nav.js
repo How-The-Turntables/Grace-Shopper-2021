@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { newGuestCart } from '../../server/utils';
 
 //STYLING IMPORTS
-import { AppBar, Toolbar, Box, Button, CardMedia } from '@material-ui/core';
+import { AppBar, Toolbar, Box, Button, CardMedia, Typography } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
-//import Calligraffitti from '../../server/public/fonts/Calligraffitti-Regular.ttf'; -- Working on figuring out changing the web font;
 import Logo from '../../server/public/img/howtheturntablesLOGO.png';
 
 class Nav extends Component {
@@ -64,6 +63,7 @@ class Nav extends Component {
                   />
                 </div>
               </Link>
+              <h1 style={{ color: '#42240C', fontFamily: 'Special Elite, cursive', fontSize: '40px' }}>Bootleg Records For Your Ear Holes</h1>
               <div>
                 <Link to="/" style={{ textDecoration: 'none' }}>
                   <Button style={{ color: '#42240C' }}>Home</Button>
@@ -78,7 +78,7 @@ class Nav extends Component {
                 )}
 
                 {!admin && token ? (
-                    <Link to="/user" style={{ textDecoration: 'none' }}>
+                    <Link to="/user/orders" style={{ textDecoration: 'none' }}>
                       <Button style={{ color: '#42240C' }}>Account</Button>
                     </Link>
                 ) : (
