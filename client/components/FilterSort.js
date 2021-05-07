@@ -1,18 +1,12 @@
 import React from 'react';
-import { connect  } from 'react-redux';
+import { connect } from 'react-redux';
 import { filterTutorial } from '../redux/albums/albumActions';
 
-import {
-  ProductFilter,
-  SortParent,
-  SortChild,
-} from '../styles';
+import { ProductFilter, SortParent, SortChild } from '../styles';
 
 class FilterSort extends React.Component {
-
   render() {
     const { albums } = this.props;
-    console.log('hey albums', albums)
     return (
       <div>
         <ProductFilter>
@@ -20,13 +14,14 @@ class FilterSort extends React.Component {
             <SortChild>
               <label>Filter By Genre</label>
               <select
-                value={ albums.genre }
-                onChange={ (ev) => albums.filterGenre(albums, ev.target.value) }>
-                  <option value="/">Rock</option>
-                  <option value="/">Pop</option>
-                  <option value="/">Jazz</option>
-                  <option value="/">Metal</option>
-                  <option value="/">Other</option>
+                value={albums.genre}
+                onChange={(ev) => albums.filterGenre(albums, ev.target.value)}
+              >
+                <option value="/">Rock</option>
+                <option value="/">Pop</option>
+                <option value="/">Jazz</option>
+                <option value="/">Metal</option>
+                <option value="/">Other</option>
               </select>
             </SortChild>
             <SortChild>

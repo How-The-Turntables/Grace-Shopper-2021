@@ -50,13 +50,11 @@ export const createCart = (id) => {
 export const cartChecker = (token, userId) => {
   return async (dispatch) => {
     try {
-      console.log('hey thunks!')
       const { data: cart } = await axios.get(`/api/orders/${userId}/cart`, {
         headers: {
           authorization: token,
         },
       });
-      console.log('CART ', cart)
       const guestCart = JSON.parse(localStorage.getItem('GuestCart'));
       if (guestCart.albums.length > 0) {
         guestCart.albums.map(async (album) => {

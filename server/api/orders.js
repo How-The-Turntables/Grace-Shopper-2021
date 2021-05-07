@@ -54,32 +54,29 @@ ordersRouter.get('/admin', requireToken, async (req, res, next) => {
 // Active user cart
 ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
-    console.log('*****REQ ',req)
     const id = authId(req);
-    console.log('ID', id)
     // if (!id) {
     //   res.status(401).send('you are not authorized');
     // }
     // else {
-      const cart = await OrderDetail.findOne({
-        where: {
-          userId: id,
-        },
-        include: [{ all: true, attributes: { exclude: ['admin', 'password'] } }],
-      });
+    const cart = await OrderDetail.findOne({
+      where: {
+        userId: id,
+      },
+      include: [{ all: true, attributes: { exclude: ['admin', 'password'] } }],
+    });
 
-      const cartId = cart.dataValues.id;
-      const orderItems = await OrderItem.findAll({
-        where: {
-          order_detailId: cartId,
-        },
-        include: [{ all: true }]
-      });
+    const cartId = cart.dataValues.id;
+    const orderItems = await OrderItem.findAll({
+      where: {
+        order_detailId: cartId,
+      },
+      include: [{ all: true }],
+    });
 
-      const cartDetails = { cart, orderItems };
-
-      if (!cartDetails) res.sendStatus(404);
-      else res.status(200).send(cartDetails);
+    const cartDetails = { cart, orderItems };
+    if (!cartDetails) res.sendStatus(404);
+    else res.status(200).send(cartDetails);
     // }
   } catch (error) {
     console.log('problem with your GET api/orders/:id/cart route: ', error);
@@ -106,7 +103,7 @@ ordersRouter.get('/:id', requireToken, async (req, res, next) => {
   }
 });
 
-// user adds item to cart
+// crates a new cart
 ordersRouter.post('/cart', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);

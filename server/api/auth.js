@@ -13,7 +13,6 @@ const requireToken = async (req, res, next) => {
 
     const user = await User.byToken(token);
 
-    console.log('******USER',user)
     req.user = user;
     next();
   } catch (error) {
