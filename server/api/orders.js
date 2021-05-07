@@ -31,13 +31,12 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
       const cart = await OrderDetail.findOne({
         where: {
           userId: id,
-          status: 'IN PROGRESS'
+          status: 'IN PROGRESS',
         },
         include: [
-          { all: true, attributes: { exclude: ['admin', 'password']}},
+          { all: true, attributes: { exclude: ['admin', 'password'] } },
         ],
       });
-console.log('cart ****',cart)
       const cartId = cart.dataValues.id;
       const orderItems = await OrderItem.findAll({
         where: {
