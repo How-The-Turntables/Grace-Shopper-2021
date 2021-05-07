@@ -59,6 +59,53 @@ const syncAndSeed = async () => {
       );
     });
 
+    // -------------funny stuff------------------
+    await Promise.all([
+      Artist.create({
+        name: 'Guns and Moses',
+        description: '',
+      }),
+      Artist.create({
+        name: 'The Profs',
+        description: '',
+      }),
+      Artist.create({
+        name: 'AC/PC',
+        description: 'Theyre on the highway to SQL',
+      }),
+      Artist.create({
+        name: 'Von Zeppelin',
+        description: 'Boom!',
+      }),
+      Artist.create({
+        name: '#FFC0CB Floyd',
+        description: '// |2 1 7 7 3 [\\]    1 [\\]    1 3 3 7',
+      }),
+      Artist.create({
+        name: 'Infinite Loop of Destruction',
+        description: '',
+      }),
+      Artist.create({
+        name: 'Redux Stones',
+        description: 'I cant get no SPA',
+      }),
+      Artist.create({
+        name: 'Soggy Bottom Boys',
+        description: 'oh Brother, Where art though',
+      }),
+    ]);
+    await Promise.all([
+      Album.create({
+        title: 'Escalator to heaven',
+        description: '',
+        genre: 'ROCK',
+        year: 1975,
+        prize: 138.0,
+        quantity: 1,
+        artistId: 00000,
+      }),
+    ]);
+
     await Promise.all(albumPromises);
 
     // --------- creating users ---------
