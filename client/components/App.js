@@ -71,7 +71,6 @@ class App extends Component {
             <Route component={PromoteUser} path="/admin/users/:id" />
             <Route component={AdminOrders} path="/admin" exact/>
 
-
           </Switch>
           <Route component={Footer} />
         </Router>

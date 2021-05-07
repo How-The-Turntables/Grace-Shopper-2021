@@ -14,17 +14,31 @@ class Nav extends Component {
     super();
     this.state = {
       auth: {},
+      admin: false,
     };
   }
 
+  componentDidUpdate() {
+    const propAdmin = this.props.auth.admin;
+    if (propAdmin && !this.state.admin) {
+      this.setState({ admin: true });
+    } else if (!propAdmin && this.state.admin) {
+      this.setState({ admin: false });
+    }
+  }
+
   logout() {
+    const history = this.props.history;
     window.localStorage.removeItem('JWTtoken');
     window.localStorage.removeItem('UserCart');
-    this.setState({ auth: {} });
+    this.setState({ auth: {}, admin: false });
     newGuestCart();
+    history.push('/');
   }
 
   render() {
+    const token = window.localStorage.JWTtoken;
+    const admin = this.state.admin;
     return (
       <div>
         <Box component="nav">
@@ -55,7 +69,7 @@ class Nav extends Component {
                   <Button style={{ color: '#42240C' }}>Home</Button>
                 </Link>
 
-                {window.localStorage.JWTtoken ? (
+                {token ? (
                   <Button
                     onClick={() => this.logout()}
                     style={{ color: '#42240C' }}
@@ -66,6 +80,14 @@ class Nav extends Component {
                   <Link to="/login" style={{ textDecoration: 'none' }}>
                     <Button style={{ color: '#42240C' }}>Login</Button>
                   </Link>
+                )}
+
+                {admin && token ? (
+                  <Link to="/admin" style={{ textDecoration: 'none' }}>
+                    <Button style={{ color: '#42240C' }}>Admin</Button>
+                  </Link>
+                ) : (
+                  ''
                 )}
 
                 <Link to="/cart" style={{ textDecoration: 'none' }}>
