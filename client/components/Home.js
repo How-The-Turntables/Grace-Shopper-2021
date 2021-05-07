@@ -36,7 +36,6 @@ export default function Home() {
         alignItems: 'center',
         paddingTop: '5%',
       }}>
-      <Typography variant='h2'component='h2'style={{ color: 'jet-black' }}>Bootleg Records For Your Ear Holes</Typography>
       <Container style={{
         display: 'flex',
         justifyContent: 'space-around',
