@@ -12,14 +12,12 @@ import {
   AllArtists,
   SingleArtist,
   SingleAlbum,
-  CartView,
+  UserCart,
   Checkout,
   Footer,
   SignUpForm,
-  UserOrders,
   UserAccount,
-  AdminOrders,
-  AdminUsers,
+  AdminAccount,
 } from './index';
 import LoginForm from './LoginForm';
 import { newGuestCart } from '../../server/utils';
@@ -60,14 +58,12 @@ class App extends Component {
             <Route component={SignUpForm} path="/register" />
             <Route component={SingleArtist} path="/artists/:id" />
             <Route component={AllArtists} path="/artists" exact />
-            <Route component={CartView} path="/cart" />
             <Route component={Checkout} path="/checkout" />
 
-            <Route component={UserOrders} path="/orders/:id" />
-            <Route component={UserAccount} path="/account/:id" />
 
-            <Route component={AdminUsers} path="/admin/users" />
-            <Route component={AdminOrders} path="/admin" exact />
+            <Route component={UserCart} path="/cart" /> */}
+            <Route component={UserAccount} path="/user" />
+            <Route component={AdminAccount} path="/admin" exact />
           </Switch>
           <Route component={Footer} />
         </Router>

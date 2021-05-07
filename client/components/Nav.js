@@ -90,7 +90,7 @@ class Nav extends Component {
                   ''
                 )}
 
-                <Link to="/cart" style={{ textDecoration: 'none' }}>
+                <Link to="/user/cart" style={{ textDecoration: 'none' }}>
                   <Button>
                     <ShoppingCart style={{ color: '#42240C' }} />
                   </Button>

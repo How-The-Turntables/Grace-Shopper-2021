@@ -19,7 +19,7 @@ const styles = (theme) => ({
   },
 });
 
-class AccountInfo extends React.Component {
+class UserInfo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -110,7 +110,6 @@ class AccountInfo extends React.Component {
             type="password"
             autoComplete="current-password"
             name="password"
-            // defaultValue="NothingToSeeHere"
             value={password}
             onChange={ this.handleChange }
           />
@@ -141,5 +140,5 @@ const mapDispatchToProps = (dispatch, { history }) => {
 	}
 };
 
-export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(AccountInfo));
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(UserInfo));
 
