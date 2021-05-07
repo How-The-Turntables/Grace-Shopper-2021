@@ -1,37 +1,11 @@
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { renderAlbums } from '../redux/albums/albumActions';
-//import FilterSort from './FilterSort';
 
 import React, { Component } from 'react';
+import { Pagination } from '@material-ui/lab';
 import { Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Typography, Container, CardActionArea } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-
-// import {
-//   Products,
-//   ProductContainer,
-//   ProductCard,
-//   ProductInfo,
-//   ImageCard,
-//   ProductFilter,
-// } from '../styles';
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
-// function preventDefault(event) {
-//   event.preventDefault();
-// }
 
 const styles = (theme) => ({
   icon: {
@@ -95,9 +69,13 @@ class AllAlbums extends Component {
         background: '#F2F1E7',
       }}>
         {/* Hero unit */}
-        <div className={classes.heroContent} >
+        <div className={classes.heroContent} style={{
+          background: '#42240C'
+        }}>
           <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Typography component="h1" variant="h2" align="center" style={{
+              color: '#F2F1E7'
+            }} gutterBottom>
               Albums
             </Typography>
             {/* <Typography variant="h5" align="center" color="textSecondary" paragraph>
@@ -123,24 +101,41 @@ class AllAlbums extends Component {
                   />
                   </CardActionArea>
                   <CardContent className={classes.cardContent} style={{
-                    background: '#C81912',
+                    background: '#a12222',
                   }}>
                     <Typography gutterBottom variant="h5" component="h2" style={{
                       color: '#F2F1E7'
                     }}>
                       {album.title}
                     </Typography>
-                    <Typography>
+                    <Typography style={{
+                      color: '#F2F1E7'
+                    }}>
                       {album.description}
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                  <Link to={`/albums/${album.id}/details`}>
-                    <Button size="small" color="primary">
+                  <CardActions style={{
+                    background: '#a12222',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    paddingLeft: '3rem',
+                    paddingRight: '3rem',
+                    paddingBottom: '1rem',
+                  }}>
+                  <Link to={`/albums/${album.id}/details`} style={{
+                    textDecoration: 'none',
+                  }}>
+                    <Button size="small" color="primary" style={{
+                      color: '#F2F1E7',
+                      background: '#42240C'
+                    }}>
                       View
                     </Button>
                     </Link>
-                    <Button size="small" color="primary">
+                    <Button size="small" color="primary" style={{
+                      color: '#F2F1E7',
+                      background: '#42240C'
+                    }}>
                       Add To Cart
                     </Button>
                   </CardActions>
@@ -149,8 +144,7 @@ class AllAlbums extends Component {
             ))}
           </Grid>
         </Container>
-      </main>
-      <nav>
+        <nav>
       {links.map(({ idx, num }) => {
               return (
                 <Link key={idx} to={`/albums/${idx}`}>
@@ -159,10 +153,12 @@ class AllAlbums extends Component {
               );
             })}
       </nav>
+      </main>
     </React.Fragment>
   );
  };
 };
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
