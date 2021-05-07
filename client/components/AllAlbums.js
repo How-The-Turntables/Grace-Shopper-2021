@@ -135,9 +135,11 @@ class AllAlbums extends Component {
                     </Typography>
                   </CardContent>
                   <CardActions>
+                  <Link to={`/albums/${album.id}/details`}>
                     <Button size="small" color="primary">
                       View
                     </Button>
+                    </Link>
                     <Button size="small" color="primary">
                       Add To Cart
                     </Button>
