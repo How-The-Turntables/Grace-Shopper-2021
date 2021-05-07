@@ -1,4 +1,4 @@
-const { User } = require('../db/index.js');
+const { User, Address } = require('../db/index.js');
 const usersRouter = require('express').Router();
 const { requireToken } = require('./auth');
 const { authId } = require('../utils');
@@ -70,7 +70,7 @@ usersRouter.put('/:id', requireToken, async (req, res, next) => {
     console.log('AUTHENTICATED ID PUT ROUTE', id)
     if (!id) res.status(401).send('you are not authorized');
     else {
-      let user = await User.findByPk(id);
+      let user = await User.findByPk(id, { include: [ Address ]} );
       const userUpdated = await user.update({
         firstName: req.body.firstName.trim(),
         lastName: req.body.lastName.trim(),

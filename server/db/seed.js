@@ -184,10 +184,10 @@ const syncAndSeed = async () => {
       artistId: 2,
     });
 
-    const order_detail = await OrderDetail.create({
-      total: 1 * record1.price + 1 * record2.price,
-      status: 'IN PROGRESS',
-    });
+    // const order_detail = await OrderDetail.create({
+    //   total: 1 * record1.price + 1 * record2.price,
+    //   status: 'IN PROGRESS',
+    // });
 
     const order_detail2 = await OrderDetail.create({
       total: 1 * record3.price,
@@ -207,17 +207,17 @@ const syncAndSeed = async () => {
     // await Promise.all([buyer, record, order_detail, order_item]);
     // fix this
 
-    order_detail.userId = buyer.id;
+    // order_detail.userId = buyer.id;
     order_detail2.userId = buyer.id;
     order_item1.albumId = record1.id;
     order_item2.albumId = record2.id;
     order_item3.albumId = record3.id;
 
-    order_item1.order_detailId = order_detail.id;
-    order_item2.order_detailId = order_detail.id;
+    order_item1.order_detailId = 25;
+    order_item2.order_detailId = 25;
     order_item3.order_detailId = order_detail2.id;
 
-    await order_detail.save();
+    // await order_detail.save();
     await order_detail2.save();
     await order_item1.save();
     await order_item2.save();
