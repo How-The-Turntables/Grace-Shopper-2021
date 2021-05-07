@@ -7,7 +7,6 @@ const { authId } = require('../utils');
 //  all orders route for admin
 ordersRouter.get('/admin', requireToken, async (req, res, next) => {
   try {
-    console.log('ADMIN ID ', req.user.admin);
     if (!req.user.admin) res.status(401).send('you are not authorized');
     else {
       const orders = await OrderDetail.findAll({
@@ -32,12 +31,13 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
       const cart = await OrderDetail.findOne({
         where: {
           userId: id,
+          status: 'IN PROGRESS'
         },
         include: [
-          { all: true, attributes: { exclude: ['admin', 'password'] } },
+          { all: true, attributes: { exclude: ['admin', 'password']}},
         ],
       });
-
+console.log('cart ****',cart)
       const cartId = cart.dataValues.id;
       const orderItems = await OrderItem.findAll({
         where: {
@@ -59,7 +59,6 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
 // all orders by user for user account view
 ordersRouter.get('/:id', requireToken, async (req, res, next) => {
   try {
-    console.log(req.params);
     const id = authId(req);
     if (!id) {
       res.status(401).send('you are not authorized');
