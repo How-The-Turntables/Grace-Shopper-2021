@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { authId } from '../../../server/utils';
 import types from '../types/index';
 
 // CREATING A NEW CART
@@ -86,12 +87,13 @@ export const cartChecker = (token, userId) => {
   };
 };
 
-export const addToCart = (albumId, body) => {
+export const addToCart = (albumId, userId, body) => {
   return async (dispatch) => {
     try {
-      const cartData = JSON.parse(localStorage.getItem('UserCart'));
-      const userId = cartData.cart.user.id;
+      // const cartData = JSON.parse(localStorage.getItem('UserCart'));
+      // const userId = cartData.cart.user.id;
       const token = localStorage.getItem('JWTtoken');
+
       const order_item = await axios.put(
         `/api/orders/${userId}/cart/${albumId}`,
         body,
@@ -109,8 +111,9 @@ export const addToCart = (albumId, body) => {
           },
         }
       );
-      localStorage.removeItem('UserCart');
-      localStorage.setItem('UserCart', JSON.stringify(updatedCart));
+      // localStorage.removeItem('UserCart');
+      // console.log('updated cart in thunk ', updatedCart);
+      // localStorage.setItem('UserCart', JSON.stringify(updatedCart));
       dispatch(addIntoCart(updatedCart));
     } catch (error) {
       console.log('error in addToCart thunk', error);

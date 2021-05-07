@@ -64,7 +64,8 @@ class AllAlbums extends Component {
 
   addButton = (albumId) => {
     // determine if guest or user first
-    this.props.addToCart(albumId);
+    const userId = this.props.auth.user.id;
+    this.props.addToCart(albumId, userId);
   };
 
   render() {
@@ -225,13 +226,14 @@ const mapStateToProps = (state, ownProps) => {
     albums:
       state.albums.data[ownProps.match.params.idx] ||
       state.albums.filteredAlbums,
+    auth: state.auth,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     load: () => dispatch(renderAlbums(ownProps.match.params.idx || 0)),
-    addToCart: (albumId) => dispatch(addToCart(albumId)),
+    addToCart: (albumId, userId) => dispatch(addToCart(albumId, userId)),
   };
 };
 
