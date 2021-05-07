@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createCart, cartChecker } from '../redux/shopping/shoppingActions'; // what about if a user is returning to the site?
 // import StripeCheckout from 'react-stripe-checkout';
 import { attemptTokenLogin } from '../redux/user/userActions';
+
 import {
   Nav,
   Home,
@@ -19,7 +20,7 @@ import {
   UserAccount,
   UserOrders,
   AdminOrdersAccount,
-  AdminUsersAccount
+  AdminUsersAccount,
 } from './index';
 import LoginForm from './LoginForm';
 import { newGuestCart } from '../../server/utils';
@@ -33,7 +34,6 @@ class App extends Component {
       newGuestCart();
     }
   }
-
   componentDidUpdate(prevState) {
     // const cart = window.localStorage.GScart;
     const token = window.localStorage.JWTtoken;
@@ -61,7 +61,6 @@ class App extends Component {
             <Route component={SingleArtist} path="/artists/:id" />
             <Route component={AllArtists} path="/artists" exact />
             <Route component={Checkout} path="/checkout" />
-
 
             <Route component={Cart} path="/cart" />
             <Route component={UserAccount} path="/user/account" exact />

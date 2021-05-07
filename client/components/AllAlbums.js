@@ -70,9 +70,11 @@ class AllAlbums extends Component {
 
   addButton = (albumId) => {
     // determine if guest or user first
-    // const userId = this.props.auth.user.id;
-    // this.props.addToCart(albumId, userId);
-    toast.error('Item added to cart!');
+    const userId = this.props.auth.user.id;
+    this.props.addToCart(albumId, userId);
+    toast.error('Item added to cart! Now go Pay!', {
+      position: 'bottom-right',
+    });
   };
 
   render() {

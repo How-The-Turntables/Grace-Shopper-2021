@@ -2,11 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { newGuestCart } from '../../server/utils';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 //STYLING IMPORTS
-import { AppBar, Toolbar, Box, Button, CardMedia, Typography } from '@material-ui/core';
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Button,
+  CardMedia,
+  Typography,
+} from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
 import Logo from '../../server/public/img/howtheturntablesLOGO.png';
+
+toast.configure();
 
 class Nav extends Component {
   constructor() {
@@ -32,6 +42,7 @@ class Nav extends Component {
     window.localStorage.removeItem('UserCart');
     this.setState({ auth: {}, admin: false });
     newGuestCart();
+    toast.error('Bye...we wont forget you', { autoClose: 4000 });
     history.push('/');
   }
 
@@ -41,7 +52,10 @@ class Nav extends Component {
     return (
       <div>
         <Box component="nav">
-          <AppBar position="static" style={{ background: '#F2F1E7', position: 'static' }}>
+          <AppBar
+            position="static"
+            style={{ background: '#F2F1E7', position: 'static' }}
+          >
             <Toolbar
               style={{ display: 'flex', justifyContent: 'space-between' }}
             >
@@ -63,7 +77,15 @@ class Nav extends Component {
                   />
                 </div>
               </Link>
-              <h1 style={{ color: '#42240C', fontFamily: 'Special Elite, cursive', fontSize: '40px' }}>Bootleg Records For Your Ear Holes</h1>
+              <h1
+                style={{
+                  color: '#42240C',
+                  fontFamily: 'Special Elite, cursive',
+                  fontSize: '40px',
+                }}
+              >
+                Bootleg Records For Your Ear Holes
+              </h1>
               <div>
                 <Link to="/" style={{ textDecoration: 'none' }}>
                   <Button style={{ color: '#42240C' }}>Home</Button>
@@ -78,20 +100,20 @@ class Nav extends Component {
                 )}
 
                 {!admin && token ? (
-                    <Link to="/user/orders" style={{ textDecoration: 'none' }}>
-                      <Button style={{ color: '#42240C' }}>Account</Button>
-                    </Link>
+                  <Link to="/user/orders" style={{ textDecoration: 'none' }}>
+                    <Button style={{ color: '#42240C' }}>Account</Button>
+                  </Link>
                 ) : (
                   ''
                 )}
 
                 {token ? (
-                    <Button
-                      onClick={() => this.logout()}
-                      style={{ color: '#42240C' }}
-                    >
-                      Logout
-                    </Button>
+                  <Button
+                    onClick={() => this.logout()}
+                    style={{ color: '#42240C' }}
+                  >
+                    Logout
+                  </Button>
                 ) : (
                   <Link to="/login" style={{ textDecoration: 'none' }}>
                     <Button style={{ color: '#42240C' }}>Login</Button>
@@ -107,6 +129,7 @@ class Nav extends Component {
             </Toolbar>
           </AppBar>
         </Box>
+        <ToastContainer transition={Zoom} />
       </div>
     );
   }

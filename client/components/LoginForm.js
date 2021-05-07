@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/user/userActions';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
 
 //STYLING IMPORTS
 import { Grid, Paper, TextField, Button } from '@material-ui/core';
+
+toast.configure();
 
 class LoginForm extends Component {
   constructor(props) {
@@ -24,30 +27,45 @@ class LoginForm extends Component {
     e.preventDefault();
     try {
       await this.props.login(this.state);
+      toast.error('Hello!', {
+        transition: Zoom,
+        autoClose: 2000,
+      });
     } catch (error) {
       console.log(error.response.data);
+      toast.error('Wrong credentials! >:(');
     }
   };
 
   render() {
     return (
-      <div style={{
-        display: 'flex',
-        alignItems: 'baseline',
-        justifyContent: 'space-between',
-        marginTop: '300px',
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          marginTop: '300px',
+        }}
+      >
         <form onSubmit={this.onSubmit}>
-          <Grid container spacing={3} style={{
-            backgroundColor: '#F2F1E7',
-            display: 'flex',
-            flexDirection: 'column',
-          }}>
+          <Grid
+            container
+            spacing={3}
+            style={{
+              backgroundColor: '#F2F1E7',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <Grid item xs={12}>
-              <Grid container spacing={3} style={{
-                display: 'flex',
-                marginTop: '10px',
-              }}>
+              <Grid
+                container
+                spacing={3}
+                style={{
+                  display: 'flex',
+                  marginTop: '10px',
+                }}
+              >
                 <Grid item xs={12}>
                   <TextField
                     type="email"
@@ -67,7 +85,9 @@ class LoginForm extends Component {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Button type="submit" fullWidth>Login</Button>
+                  <Button type="submit" fullWidth>
+                    Login
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
