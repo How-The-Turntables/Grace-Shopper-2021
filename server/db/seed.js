@@ -15,59 +15,15 @@ const syncAndSeed = async () => {
   try {
     await db.sync({ force: true });
 
-    // --------- creating bands ---------
-    const bandNames = Array(20)
-      .fill(1)
-      .map(
-        (album) => `${faker.company.bsAdjective()} ${faker.name.firstName()}`
-      );
-
-    const bandPromises = [];
-
-    bandNames.forEach((name) => {
-      bandPromises.push(
-        Artist.create({
-          name,
-          description: faker.company.catchPhraseDescriptor(),
-        })
-      );
-    });
-
-    await Promise.all(bandPromises);
-
-    // --------- creating albums ---------
-    const albumNamesArray = Array(200)
-      .fill(1)
-      .map((album) => `${faker.lorem.words(3).toUpperCase()}`);
-    const genres = ['ROCK', 'JAZZ', 'POP', 'METAL', 'OTHER'];
-
-    const albumPromises = [];
-
-    albumNamesArray.forEach((title) => {
-      const bandId = Math.floor(Math.random() * 19) + 1;
-
-      albumPromises.push(
-        Album.create({
-          title,
-          description: faker.commerce.productDescription(),
-          genre: genres[Math.floor(Math.random() * 4)],
-          year: Math.floor(Math.random() * (2021 - 1700 + 1)) + 1700,
-          price: Math.floor(Math.random() * (300 - 29 + 1)) + 29.99,
-          quantity: Math.floor(Math.random() * 25) + 1,
-          artistId: bandId,
-        })
-      );
-    });
-
     // -------------funny stuff------------------
-    await Promise.all([
+    const funnyArtists = [
       Artist.create({
         name: 'Guns and Moses',
-        description: '',
+        description: 'Welcome to the Bootcamp',
       }),
       Artist.create({
         name: 'The Profs',
-        description: '',
+        description: 'Everything is white',
       }),
       Artist.create({
         name: 'AC/PC',
@@ -79,11 +35,11 @@ const syncAndSeed = async () => {
       }),
       Artist.create({
         name: '#FFC0CB Floyd',
-        description: '// |2 1 7 7 3 [\\]    1 [\\]    1 3 3 7',
+        description: 'VV |2 1 7 7 3 [\\]    1 [\\]    1 3 3 7',
       }),
       Artist.create({
         name: 'Infinite Loop of Destruction',
-        description: '',
+        description: '10/3',
       }),
       Artist.create({
         name: 'Redux Stones',
@@ -93,20 +49,141 @@ const syncAndSeed = async () => {
         name: 'Soggy Bottom Boys',
         description: 'oh Brother, Where art though',
       }),
-    ]);
-    await Promise.all([
+    ];
+
+    await Promise.all(funnyArtists);
+
+    const funnyAlbums = [
       Album.create({
-        title: 'Escalator to heaven',
+        title: 'Greatest Coding Hits vol 62',
+        description: 'Prety Awesome',
+        genre: 'ROCK',
+        year: 1998,
+        price: 99.99,
+        quantity: 72,
+        artistId: 2,
+      }),
+      Album.create({
+        title: 'Escalator To Heaven',
         description: '',
         genre: 'ROCK',
         year: 1975,
-        prize: 138.0,
-        quantity: 1,
-        artistId: 00000,
+        price: 19.99,
+        quantity: 18,
+        artistId: 2,
       }),
-    ]);
+      Album.create({
+        title: 'You Broke My Heart So I Busted Your Jaw',
+        description: '',
+        genre: 'METAL',
+        year: 2004,
+        price: 39.99,
+        quantity: 21,
+        artistId: 2,
+      }),
+      Album.create({
+        title: 'Were Doing This For Money',
+        description: '',
+        genre: 'JAZZ',
+        year: 1982,
+        price: 139.99,
+        quantity: 1000,
+        artistId: 2,
+      }),
+      Album.create({
+        title: 'Psychodelic CSS',
+        description: '',
+        genre: 'OTHER',
+        year: 1979,
+        price: 0.99,
+        quantity: 100,
+        artistId: 2,
+      }),
+      Album.create({
+        title: 'Saturday Night Coding',
+        description: '',
+        genre: 'POP',
+        year: 1986,
+        price: 19.99,
+        quantity: 1,
+        artistId: 2,
+      }),
+      Album.create({
+        title: 'The Dark Side of Middleware',
+        description: '',
+        genre: 'ROCK',
+        year: 1969,
+        price: 299.99,
+        quantity: 4,
+        artistId: 2,
+      }),
+      Album.create({
+        title: 'Another Line in the Code',
+        description: '',
+        genre: 'ROCK',
+        year: 1980,
+        price: 18.99,
+        quantity: 7,
+        artistId: 2,
+      }),
+      Album.create({
+        title: 'Men of Constant Sorrow',
+        description: '',
+        genre: 'POP',
+        year: 2004,
+        price: 49.99,
+        quantity: 10,
+        artistId: 2,
+      }),
+    ];
 
-    await Promise.all(albumPromises);
+    await Promise.all(funnyAlbums);
+
+    // // --------- creating bands ---------
+    // const bandNames = Array(20)
+    //   .fill(1)
+    //   .map(
+    //     (album) => `${faker.company.bsAdjective()} ${faker.name.firstName()}`
+    //   );
+
+    // const bandPromises = [];
+
+    // bandNames.forEach((name) => {
+    //   bandPromises.push(
+    //     Artist.create({
+    //       name,
+    //       description: faker.company.catchPhraseDescriptor(),
+    //     })
+    //   );
+    // });
+
+    // await Promise.all(bandPromises);
+
+    // // --------- creating albums ---------
+    // const albumNamesArray = Array(200)
+    //   .fill(1)
+    //   .map((album) => `${faker.lorem.words(3).toUpperCase()}`);
+    // const genres = ['ROCK', 'JAZZ', 'POP', 'METAL', 'OTHER'];
+
+    // const albumPromises = [];
+
+    // albumNamesArray.forEach((title) => {
+    //   const bandId = Math.floor(Math.random() * 19) + 1;
+
+    //   albumPromises.push(
+    //     Album.create({
+    //       title,
+    //       description: faker.commerce.productDescription(),
+    //       genre: genres[Math.floor(Math.random() * 4)],
+    //       year: Math.floor(Math.random() * (2021 - 1700 + 1)) + 1700,
+    //       price: Math.floor(Math.random() * (300 - 29 + 1)) + 29.99,
+    //       quantity: Math.floor(Math.random() * 25) + 1,
+    //       artistId: bandId,
+    //     })
+    //   );
+    // });
+
+    // await Promise.all(albumPromises);
 
     // --------- creating users ---------
     const usersArray = Array(20)
@@ -178,7 +255,7 @@ const syncAndSeed = async () => {
           stars,
           comment: faker.lorem.sentence(4),
           userId: userIds[Math.floor(Math.random() * 20) + 1],
-          albumId: Math.floor(Math.random() * 200) + 1,
+          albumId: Math.floor(Math.random() * 9) + 1,
         })
       );
     });
