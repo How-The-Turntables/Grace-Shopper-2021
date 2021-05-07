@@ -63,11 +63,13 @@ export const renderUserOrders = (id) => {
   return async(dispatch) => {
     try {
       const token = window.localStorage.getItem('JWTtoken');
+      console.log('ID', id)
       const { data: orderList } = await axios.get(`/api/orders/${id}`, {
         headers: {
           authorization: token,
         },
       });
+      console.log('ORDER LIST ', orderList)
       dispatch(loadUserOrders(orderList));
     } catch (error) {
       console.log('ERROR OCCURRING IN USER ACTIONS -- RENDER ORDERS: ', error);

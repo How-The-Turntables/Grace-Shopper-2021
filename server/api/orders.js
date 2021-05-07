@@ -52,37 +52,35 @@ ordersRouter.get('/admin', requireToken, async (req, res, next) => {
 // });
 
 // Active user cart
-ordersRouter.get('/:userId/cart/:cartId', /*requireToken,*/ async (req, res, next) => {
+ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
-    // const id = authId(req);
-    // if (!id) res.status(401).send('you are not authorized');
-    const cartItems = await OrderItem.findAll({
-      where: {
-        order_detailId: req.params.cartId,
-      },
-      include: [{ all: true }]
-    });
-    const album = await Album.findByPk(cartItems.albumId)
-    const cartSession = await OrderDetail.findOne({
-      where: {
-        userId: req.params.userId,
-      },
-      include: [{ all: true, attributes: { exclude: ['admin', 'password'] } }],
-    });
-    console.log('CART ITEMS ',cartItems)
-    console.log('CART SESSION ',cartSession)
+    console.log('*****REQ ',req)
+    const id = authId(req);
+    console.log('ID', id)
+    // if (!id) {
+    //   res.status(401).send('you are not authorized');
+    // }
+    // else {
+      const cart = await OrderDetail.findOne({
+        where: {
+          userId: id,
+        },
+        include: [{ all: true, attributes: { exclude: ['admin', 'password'] } }],
+      });
 
-    // const cartId = cart.dataValues.id;
-    // const orderItems = await OrderItem.findAll({
-    //   where: {
-    //     order_detailId: cartId,
-    //   },
-    // });
+      const cartId = cart.dataValues.id;
+      const orderItems = await OrderItem.findAll({
+        where: {
+          order_detailId: cartId,
+        },
+        include: [{ all: true }]
+      });
 
-    // const cartDetails = { cart, orderItems };
+      const cartDetails = { cart, orderItems };
 
-    if (!cartSession) res.sendStatus(404);
-    else res.status(200).send(cartSession);
+      if (!cartDetails) res.sendStatus(404);
+      else res.status(200).send(cartDetails);
+    // }
   } catch (error) {
     console.log('problem with your GET api/orders/:id/cart route: ', error);
     next(error);
@@ -94,14 +92,14 @@ ordersRouter.get('/:id', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);
     if (!id) res.status(401).send('you are not authorized');
-    const order = await OrderDetail.findAll({
+    const orders = await OrderDetail.findAll({
       where: {
         userId: id,
         [Op.or]: [{ status: 'COMPLETED' }, { status: 'CANCELLED' }],
       },
       include: { all: true },
     });
-    res.send(order);
+    res.send(orders);
   } catch (error) {
     console.log('problem with your GET api/orders/:id user route: ', error);
     next(error);
