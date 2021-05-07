@@ -111,7 +111,6 @@ export const addToCart = (albumId, body) => {
       );
       localStorage.removeItem('UserCart');
       localStorage.setItem('UserCart', JSON.stringify(updatedCart));
-      console.log(updatedCart);
       dispatch(addIntoCart(updatedCart));
     } catch (error) {
       console.log('error in addToCart thunk', error);
