@@ -16,7 +16,7 @@ ordersRouter.get('/admin', requireToken,  async (req, res, next) => {
       res.status(200).send(orders);
     }
   } catch (error) {
-    console.log('problem with your api/orders get route: ', error);
+    console.log('problem with your GET api/orders/admin get route: ', error);
     next(error);
   }
 });
@@ -58,16 +58,22 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
 // all orders by user for user account view
 ordersRouter.get('/:id', requireToken, async (req, res, next) => {
   try {
+
+    console.log(req.params)
     const id = authId(req);
-    if (!id) res.status(401).send('you are not authorized');
-    const orders = await OrderDetail.findAll({
-      where: {
-        userId: id,
-        [Op.or]: [{ status: 'COMPLETED' }, { status: 'CANCELLED' }],
-      },
-      include: { all: true },
-    });
-    res.send(orders);
+    if (!id) {
+      res.status(401).send('you are not authorized');
+    }
+    else {
+      const orders = await OrderDetail.findAll({
+        where: {
+          userId: id,
+          [Op.or]: [{ status: 'COMPLETED' }, { status: 'CANCELLED' }],
+        },
+        include: { all: true },
+      });
+      res.send(orders);
+    }
   } catch (error) {
     console.log('problem with your GET api/orders/:id user route: ', error);
     next(error);

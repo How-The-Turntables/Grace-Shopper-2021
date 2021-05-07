@@ -1,11 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-
+import { makeStyles } from '@material-ui/core/styles';
 import { NavItems } from './listitems';
+import Users from './Users';
 import Orders from './Orders';
-import UserInfo from './UserInfo';
 
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,12 +13,11 @@ import List from '@material-ui/core/List';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-
-
+import Link from '@material-ui/core/Link';
 
 const drawerWidth = 240;
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
@@ -97,45 +94,41 @@ const styles = (theme) => ({
   fixedHeight: {
     height: 240,
   },
-});
+}));
 
-class UserAccount extends React.Component {
-  render() {
-  const { classes } = this.props;
-    return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-          }}
-        >
-          <div className={classes.toolbarIcon}>
-          </div>
-          <List><NavItems /></List>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={3}>
-              Account
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                  {/* <Switch>
-                    <Route component={Orders} path="/user/orders" />
-                    <Route component={UserInfo} path="/user/account" />
-                  </Switch> */}
-                  <UserInfo />
-                </Paper>
-              </Grid>
+export default function AdminOrdersAccount() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <Drawer
+        variant="permanent"
+        classes={{
+          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+        }}
+      >
+        <div className={classes.toolbarIcon}>
+        </div>
+        <List><NavItems/></List>
+      </Drawer>
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
+            Account
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+              {/* <Switch>
+                <Route component={Orders} path="/admin/orders" exact />
+                <Route component={Users} path="/admin/users" exact />
+              </Switch> */}
+              <Orders />
+              </Paper>
             </Grid>
-          </Container>
-        </main>
-      </div>
-    );
-  };
+          </Grid>
+        </Container>
+      </main>
+    </div>
+  );
 };
-
-export default withStyles(styles, { withTheme: true })(connect(null)(UserAccount));
-

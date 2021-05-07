@@ -96,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AdminAccount() {
+export default function AdminUsersAccount() {
   const classes = useStyles();
 
   return (
@@ -119,10 +119,7 @@ export default function AdminAccount() {
             Account
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-              <Switch>
-                <Route component={Orders} path="/admin/orders" />
-                <Route component={Users} path="/admin/users" />
-              </Switch>
+              <Users />
               </Paper>
             </Grid>
           </Grid>
