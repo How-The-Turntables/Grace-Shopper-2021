@@ -13,6 +13,7 @@ import SingleArtist from './SingleArtist';
 import SingleAlbum from './SingleAlbum';
 import AdminAccount from './Dashboards/AdminDashboard/AdminAccount';
 import AddReview from './ReviewViews/AddReview';
+import PromoteUser from './Dashboards/AdminDashboard/PromoteUser';
 
 
 export {

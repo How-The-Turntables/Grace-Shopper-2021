@@ -75,28 +75,6 @@ export const renderUserOrders = (id) => {
   };
 };
 
-const loadUser = (user) => {
-  return {
-    type: types.LOAD_USER,
-    user
-  }
-};
-
-export const renderSelectedUser = (id) => {
-  return async(dispatch) => {
-    try {
-      const token = window.localStorage.getItem('JWTtoken');
-      const { data: user } = await axios.get(`/api/users/${id}`, {
-        headers: {
-          authorization: token,
-        },
-      });
-      dispatch(loadUser(user));
-    } catch (error) {
-      console.log('ERROR OCCURRING IN USER ACTIONS -- RENDER SINGLE USER: ', error);
-    }
-  };
-};
 const editUser = ( user ) => {
   return {
     type: types.EDIT_USER,
