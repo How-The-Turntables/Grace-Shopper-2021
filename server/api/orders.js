@@ -140,6 +140,7 @@ ordersRouter.put('/:id/cart/:albumId', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);
     if (!id) res.status(401).send('you are not authorized');
+
     const albumSelected = await Album.findByPk(req.params.albumId);
     const cartSession = await OrderDetail.findOne({
       // because they could already have a cart in session
@@ -160,23 +161,28 @@ ordersRouter.put('/:id/cart/:albumId', requireToken, async (req, res, next) => {
     // updating cart item quantity and removing quantity from selected album
     if (!orderItem) {
       orderItem = await OrderItem.create({
-        where: {
-          order_detailId: cart.id,
-          albumId: albumSelected.id,
-          quantity: req.body.quantity,
-        },
-        include: { all: true },
+        order_detailId: cart.id,
+        albumId: albumSelected.id,
+        quantity: 1,
       });
+    } else {
+      orderItem.quantity += 1;
+      await orderItem.save();
     }
     // updates quantity and total
-    if (orderItem.quantity < req.body.quantity) {
-      orderItem.quantity += req.body.quantity;
-      cart.total += 1 * albumSelected.price;
-    } else {
-      orderItem.quantity -= req.body.quantity;
-      cart.total -= 1 * albumSelected.price;
-    }
-    res.status(200).send(orderItem);
+    // revist for price
+    // if (orderItem.quantity < req.body.quantity) {
+    //   orderItem.quantity += req.body.quantity;
+    //   cart.total += 1 * albumSelected.price;
+    // } else {
+    //   orderItem.quantity -= req.body.quantity;
+    //   cart.total -= 1 * albumSelected.price;
+    // }
+    cartSession.total *= 1;
+    cartSession.total += albumSelected.price * 1;
+    await cartSession.save();
+
+    res.status(200).send(cartSession);
   } catch (error) {
     console.log('problem with your PUT api/:id/cart/:albumId route: ', error);
     next(error);
