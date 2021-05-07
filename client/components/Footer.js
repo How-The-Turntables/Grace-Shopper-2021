@@ -6,7 +6,9 @@ import Box from '@material-ui/core/Box';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" style={{
+      color: '#42240C'
+    }} align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         How the Turntables
@@ -19,7 +21,10 @@ function Copyright() {
 class Footer extends Component {
   render() {
     return (
-      <div>
+      <div style={{
+        background: '#F2F1E7',
+        paddingBottom: '1rem'
+      }}>
         <Box pt={4}>
             <Copyright />
           </Box>
