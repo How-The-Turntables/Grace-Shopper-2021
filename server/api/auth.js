@@ -10,7 +10,10 @@ const requireToken = async (req, res, next) => {
   try {
     if (!req.headers.authorization) res.status(401).send('GTFO');
     const token = req.headers.authorization;
+
     const user = await User.byToken(token);
+
+    console.log('******USER',user)
     req.user = user;
     next();
   } catch (error) {

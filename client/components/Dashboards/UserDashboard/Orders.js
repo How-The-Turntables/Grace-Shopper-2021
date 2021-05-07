@@ -28,6 +28,7 @@ class Orders extends Component {
   }
   componentDidMount() {
     const user = JSON.parse(window.localStorage.getItem('UserCart'));
+    console.log('USER ', user)
     this.props.loadOrders(user.id);
   }
   render() {
