@@ -12,6 +12,7 @@ export const renderOrders = () => {
   return async(dispatch) => {
     try {
       const token = window.localStorage.getItem('JWTtoken');
+      console.log('TOKEN IN THUNKS ', token)
       const { data: ordersList } = await axios.get('/api/orders/admin', {
         headers: {
           authorization: token,

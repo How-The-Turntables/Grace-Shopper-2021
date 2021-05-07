@@ -63,7 +63,7 @@ export const renderUserOrders = (id) => {
   return async(dispatch) => {
     try {
       const token = window.localStorage.getItem('JWTtoken');
-      console.log('ID', id)
+      console.log('TOKEN', token)
       const { data: orderList } = await axios.get(`/api/orders/${id}`, {
         headers: {
           authorization: token,

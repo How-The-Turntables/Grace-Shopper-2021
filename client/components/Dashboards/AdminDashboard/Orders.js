@@ -14,12 +14,6 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-// const useStyles = makeStyles((theme) => ({
-//   seeMore: {
-//     marginTop: theme.spacing(3),
-//   },
-// }));
-
 const styles = theme => ({
   seeMore: {
     marginTop: theme.spacing(3),
@@ -32,6 +26,7 @@ class Orders extends Component {
     super(props)
   }
   componentDidMount() {
+    console.log('component mounts ', this.props)
     this.props.loadOrders()
   }
   render() {
@@ -72,6 +67,7 @@ class Orders extends Component {
 };
 
 const mapStateToProps = (state) => {
+  console.log('STATE ', state)
   return {
     orders: state.orders
   }

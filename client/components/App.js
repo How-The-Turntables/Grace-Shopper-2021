@@ -17,7 +17,9 @@ import {
   Footer,
   SignUpForm,
   UserAccount,
-  AdminAccount,
+  UserOrders,
+  AdminOrdersAccount,
+  AdminUsersAccount
 } from './index';
 import LoginForm from './LoginForm';
 import { newGuestCart } from '../../server/utils';
@@ -62,8 +64,10 @@ class App extends Component {
 
 
             <Route component={Cart} path="/cart" />
-            <Route component={UserAccount} path="/user" />
-            <Route component={AdminAccount} path="/admin" exact />
+            <Route component={UserAccount} path="/user/account" exact />
+            <Route component={UserOrders} path="/user/orders" exact />
+            <Route component={AdminOrdersAccount} path="/admin/orders" exact />
+            <Route component={AdminUsersAccount} path="/admin/users" />
           </Switch>
           <Route component={Footer} />
         </Router>
