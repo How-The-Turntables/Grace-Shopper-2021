@@ -69,25 +69,33 @@ class Nav extends Component {
                   <Button style={{ color: '#42240C' }}>Home</Button>
                 </Link>
 
-                {token ? (
-                  <Button
-                    onClick={() => this.logout()}
-                    style={{ color: '#42240C' }}
-                  >
-                    Logout
-                  </Button>
-                ) : (
-                  <Link to="/login" style={{ textDecoration: 'none' }}>
-                    <Button style={{ color: '#42240C' }}>Login</Button>
-                  </Link>
-                )}
-
                 {admin && token ? (
                   <Link to="/admin" style={{ textDecoration: 'none' }}>
                     <Button style={{ color: '#42240C' }}>Admin</Button>
                   </Link>
                 ) : (
                   ''
+                )}
+
+                {!admin && token ? (
+                    <Link to="/user" style={{ textDecoration: 'none' }}>
+                      <Button style={{ color: '#42240C' }}>Account</Button>
+                    </Link>
+                ) : (
+                  ''
+                )}
+
+                {token ? (
+                    <Button
+                      onClick={() => this.logout()}
+                      style={{ color: '#42240C' }}
+                    >
+                      Logout
+                    </Button>
+                ) : (
+                  <Link to="/login" style={{ textDecoration: 'none' }}>
+                    <Button style={{ color: '#42240C' }}>Login</Button>
+                  </Link>
                 )}
 
                 <Link to="/cart" style={{ textDecoration: 'none' }}>
