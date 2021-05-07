@@ -6,6 +6,7 @@ import AllArtists from './AllArtists';
 import AllAlbums from './AllAlbums';
 import LoginForm from './LoginForm';
 import LoginView from './LoginView';
+import Cart from './Cart';
 import Checkout from './Checkout';
 import Footer from './Footer';
 import SignUpForm from './SignUpForm';
@@ -25,6 +26,7 @@ export {
   AllAlbums,
   SingleAlbum,
   Checkout,
+  Cart,
   Footer,
   LoginForm,
   LoginView,

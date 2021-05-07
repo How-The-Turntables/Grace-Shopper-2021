@@ -12,8 +12,8 @@ import {
   AllArtists,
   SingleArtist,
   SingleAlbum,
-  UserCart,
   Checkout,
+  Cart,
   Footer,
   SignUpForm,
   UserAccount,
@@ -61,7 +61,7 @@ class App extends Component {
             <Route component={Checkout} path="/checkout" />
 
 
-            <Route component={UserCart} path="/cart" /> */}
+            <Route component={Cart} path="/cart" />
             <Route component={UserAccount} path="/user" />
             <Route component={AdminAccount} path="/admin" exact />
           </Switch>

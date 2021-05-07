@@ -1,7 +1,7 @@
 const ordersRouter = require('express').Router();
 const { Op } = require('sequelize'); // MOVE THS and the query to order model
-const { OrderDetail, Album } = require('../db/index');
-const OrderItem = require('../db/models/shopping/orderItem');
+const { OrderDetail, Album, OrderItem } = require('../db/index');
+// const OrderItem = require('../db/models/shopping/orderItem');
 const { requireToken } = require('./auth');
 const { authId } = require('../utils');
 
@@ -52,17 +52,26 @@ ordersRouter.get('/admin', requireToken, async (req, res, next) => {
 // });
 
 // Active user cart
-ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
+ordersRouter.get('/:userId/cart/:cartId', /*requireToken,*/ async (req, res, next) => {
   try {
-    const id = authId(req);
-    if (!id) res.status(401).send('you are not authorized');
-    const cart = await OrderDetail.findOne({
+    // const id = authId(req);
+    // if (!id) res.status(401).send('you are not authorized');
+    const cartItems = await OrderItem.findAll({
       where: {
-        userId: id,
-        status: 'IN PROGRESS',
+        order_detailId: req.params.cartId,
       },
-      include: [{ all: true, attributes: { exclude: 'password' } }],
+      include: [{ all: true }]
     });
+    const album = await Album.findByPk(cartItems.albumId)
+    const cartSession = await OrderDetail.findOne({
+      where: {
+        userId: req.params.userId,
+      },
+      include: [{ all: true, attributes: { exclude: ['admin', 'password'] } }],
+    });
+    console.log('CART ITEMS ',cartItems)
+    console.log('CART SESSION ',cartSession)
+
     // const cartId = cart.dataValues.id;
     // const orderItems = await OrderItem.findAll({
     //   where: {
@@ -71,8 +80,9 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
     // });
 
     // const cartDetails = { cart, orderItems };
-    if (!cart) res.sendStatus(404);
-    else res.status(200).send(cart);
+
+    if (!cartSession) res.sendStatus(404);
+    else res.status(200).send(cartSession);
   } catch (error) {
     console.log('problem with your GET api/orders/:id/cart route: ', error);
     next(error);

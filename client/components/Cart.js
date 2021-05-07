@@ -7,9 +7,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Title from '../Title';
+import Title from './Dashboards/Title';
 import { connect } from 'react-redux'
-import { renderUserOrders } from '../../../redux/user/userActions';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -21,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-class Orders extends Component {
+class Cart extends Component {
   constructor() {
     super()
   }
@@ -35,7 +34,7 @@ class Orders extends Component {
   return (
     <React.Fragment>
       <Title>Today's a great day to give us your money!</Title>
-      {/* <Table size="small">
+      <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
@@ -59,7 +58,7 @@ class Orders extends Component {
         <Link color="primary" href="#" onClick={preventDefault}>
           See more orders
         </Link>
-      </div> */}
+      </div>
     </React.Fragment>
   );
 }
@@ -77,4 +76,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Orders))
+export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Cart))
