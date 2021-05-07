@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { renderAlbums } from '../redux/albums/albumActions';
 
-import { Pagination } from '@material-ui/lab';
+//import { Pagination } from '@material-ui/lab';
 import { Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Typography, Container, CardActionArea } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -74,7 +74,8 @@ class AllAlbums extends Component {
         }}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" style={{
-              color: '#F2F1E7'
+              color: '#F2F1E7',
+              fontFamily: 'Special Elite, cursive'
             }} gutterBottom>
               Albums
             </Typography>
@@ -107,6 +108,7 @@ class AllAlbums extends Component {
                       color: '#F2F1E7',
                       display: 'flex',
                       justifyContent: 'center',
+                      fontFamily: 'Special Elite, cursive'
                     }}>
                       {album.title}
                     </Typography>
@@ -148,15 +150,28 @@ class AllAlbums extends Component {
             ))}
           </Grid>
         </Container>
-        <nav>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          }}>
       {links.map(({ idx, num }) => {
               return (
-                <Link key={idx} to={`/albums/${idx}`}>
+                <Link key={idx} to={`/albums/${idx}`} style={{
+                  border: '1px solid #42240C',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '2rem',
+                  height: '2rem',
+                  textDecoration: 'none',
+                  color: '#C81912',
+                  margin: '0.2rem'
+                }}>
                   {num}
                 </Link>
               );
             })}
-      </nav>
+      </div>
       </main>
     </React.Fragment>
   );
