@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { renderAlbums } from '../redux/albums/albumActions';
+import { addToCart } from '../redux/shopping/shoppingActions';
 
 import { Pagination } from '@material-ui/lab';
 import {
@@ -193,6 +194,7 @@ class AllAlbums extends Component {
                           color: '#F2F1E7',
                           background: '#42240C',
                         }}
+                        onClick={() => this.addButton(album.id)}
                       >
                         Add To Cart
                       </Button>

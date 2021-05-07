@@ -45,10 +45,10 @@ User.init(
 
 User.afterCreate(async (user) => {
   await OrderDetail.create({
-      total: 0,
-      status: 'IN PROGRESS',
-      userId: user.id
-    });
+    total: 0,
+    status: 'IN PROGRESS',
+    userId: user.id,
+  });
 });
 
 User.addHook('beforeSave', async (user) => {
@@ -79,7 +79,6 @@ User.byToken = async (token) => {
     const id = jwt.verify(token, process.env.JWT);
     const user = await User.findByPk(id);
 
-    console.log('****USERBYTOKEN', user)
     if (user) return user;
     throw error();
   } catch (ex) {
