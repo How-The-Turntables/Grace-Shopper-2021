@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { renderAlbums } from '../redux/albums/albumActions';
 import { addToCart } from '../redux/shopping/shoppingActions';
 
-import { Pagination } from '@material-ui/lab';
+//import { Pagination } from '@material-ui/lab';
 import {
   Button,
   Card,
@@ -102,16 +102,12 @@ class AllAlbums extends Component {
                 align="center"
                 style={{
                   color: '#F2F1E7',
+                  fontFamily: 'Special Elite, cursive',
                 }}
                 gutterBottom
               >
                 Albums
               </Typography>
-              {/* <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              Something short and leading about the collection below—its contents, the creator, etc.
-              Make it short and sweet, but yes not too short so folks don&apos;t simply skip over it
-              entirely.
-            </Typography> */}
             </Container>
           </div>
           {/* End hero unit */}
@@ -147,6 +143,7 @@ class AllAlbums extends Component {
                           color: '#F2F1E7',
                           display: 'flex',
                           justifyContent: 'center',
+                          fontFamily: 'Special Elite, cursive',
                         }}
                       >
                         {album.title}
@@ -205,15 +202,34 @@ class AllAlbums extends Component {
               ))}
             </Grid>
           </Container>
-          <nav>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
             {links.map(({ idx, num }) => {
               return (
-                <Link key={idx} to={`/albums/${idx}`}>
+                <Link
+                  key={idx}
+                  to={`/albums/${idx}`}
+                  style={{
+                    border: '1px solid #42240C',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '2rem',
+                    height: '2rem',
+                    textDecoration: 'none',
+                    color: '#C81912',
+                    margin: '0.2rem',
+                  }}
+                >
                   {num}
                 </Link>
               );
             })}
-          </nav>
+          </div>
         </main>
       </React.Fragment>
     );

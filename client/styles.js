@@ -69,6 +69,42 @@ export const Box = styled.div`
   }
 `;
 
+export const TitleBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15rem;
+  border: solid 1px black;
+  border-radius: 3rem;
+  margin: 3rem;
+  animation: ${neonGlow} 3s infinite;
+  color: #86c232;
+  padding-top: 1rem;
+
+  transition-property: width;
+  transition: width 1s, height 1s, transform 1s;
+
+  & a {
+    text-decoration: none;
+    color: #86c232;
+  }
+
+  :hover {
+    width: 40%;
+    border: solid 1px greenyellow;
+    font-weight: bold;
+    background-color: greenyellow;
+    box-shadow: none;
+    color: black;
+  }
+
+  :hover a {
+    color: black;
+  }
+`;
+
 export const DescriptionBox = styled.p`
   display: none;
   ${Box}:hover & {
@@ -83,6 +119,7 @@ export const DescriptionBox = styled.p`
 // use for the background
 export const Background = styled.div`
   background-color: #222629;
+  width: '100 vw'
 `;
 
 const rotationAnimation = keyframes`

@@ -1,6 +1,6 @@
 import React from 'react';
 //import { Title, Container, Box, Background, Record } from '../styles'; //these are styled containers from /client/styles.js
-import { Container, Button, Typography, CardContent, makeStyles, Card, CardActionArea, CardMedia, CardActions } from '@material-ui/core';
+import { Container, Typography, CardContent, makeStyles, Card, CardActionArea, CardMedia, CardActions } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import homeImage from '../../server/public/img/homePage.png';
 import cardOneImage from '../../server/public/img/Card1.png';
@@ -10,10 +10,10 @@ import cardTwoImage from '../../server/public/img/Card2.png';
 // IDEA: should we keep index in state, and use that for the browse by albums link? that way it keeps your place...? is that stored in count on the state?
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 375,
   },
   media: {
-    height: 200,
+    height: 275,
   },
 });
 
@@ -36,10 +36,9 @@ export default function Home() {
         alignItems: 'center',
         paddingTop: '5%',
       }}>
-      <Typography variant='h2'component='h2'style={{ color: 'jet-black' }}>Bootleg Records For Your Ear Holes</Typography>
       <Container style={{
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         marginTop: '110px',
         width: '80%',
       }}>
@@ -54,12 +53,17 @@ export default function Home() {
           title="Row of Albums"
         />
         <CardContent style={{
-          backgroundColor: '#F2F1E7'
+          backgroundColor: '#F2F1E7',
         }}>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant='h5' component='h2' style={{
+            color: '#42240C',
+            fontFamily: 'Special Elite, cursive'
+          }}>
             Browse By Albums
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="textSecondary" component="p" style={{
+            color: '#42240C',
+          }}>
             Do you like bootleg albums? So do we! Take your pick.
           </Typography>
         </CardContent>
@@ -79,10 +83,15 @@ export default function Home() {
         <CardContent style={{
           backgroundColor: '#F2F1E7'
         }}>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5" component="h2" style={{
+            color: '#42240C',
+            fontFamily: 'Special Elite, cursive'
+          }}>
             Browse By Artists
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p" >
+          <Typography variant="body2" color="textSecondary" component="p" style={{
+            color: '#42240C',
+          }}>
             All of your favorite artists from Duo Lipo to Wild Impala.
           </Typography>
         </CardContent>
