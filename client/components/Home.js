@@ -38,7 +38,7 @@ export default function Home() {
       }}>
       <Container style={{
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         marginTop: '110px',
         width: '80%',
       }}>
