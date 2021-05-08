@@ -4,6 +4,7 @@ import { loginUser } from "../redux/user/userActions"
 import { Grid, Paper, TextField, Button } from '@material-ui/core';
 import img from '../../server/public/img/unsplashRecord.png';
 
+
 class SignUpForm extends Component {
   constructor() {
     super();
