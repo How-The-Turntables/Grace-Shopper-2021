@@ -50,13 +50,17 @@ class Cart extends Component {
     if(!this.props.orderItems) {
       this.props.loadOrders(token, user.cart.userId);
     }
+    this.setState({
+      orderItems: this.props.orderItems,
+      albums: this.props.albums,
+    });
   }
   componentDidUpdate(prevProps) {
   if(!prevProps.orderItems && this.props.orderItems) {
     this.setState({
       orderItems: this.props.orderItems,
       albums: this.props.albums
-    })
+    });
 }
 
   }
@@ -81,6 +85,8 @@ class Cart extends Component {
     }}>
     {orders.length ? orders.map((order) => {
       const album = albums.filter((album) => album.id === order.albumId)
+      console.log('ORDER', order)
+      console.log('ALBUM', album);
       return (
         <div className={classes.root}>
       <Paper className={classes.paper} style={{
@@ -101,9 +107,6 @@ class Cart extends Component {
                 <Typography gutterBottom variant="subtitle1">
                   { album[0].title }
                 </Typography>
-                <Typography variant="body2" gutterBottom>
-                  { console.log(order) }
-                </Typography>
                 <Typography variant="body2" color="textSecondary">
                   { album[0].description }
                 </Typography>
@@ -123,17 +126,19 @@ class Cart extends Component {
       </Paper>
     </div>
     )}) : 'no orders yet'}
-    <Link to="/checkout">
-      <Button
-        size="small"
-        color="primary"
-        style={{
-        color: '#F2F1E7',
-        background: '#42240C',
-        }}>
-        Ready to Checkout
-      </Button>
-    </Link>
+    <div>
+      <Link to="/checkout">
+        <Button
+          size="small"
+          color="primary"
+          style={{
+          color: '#F2F1E7',
+          background: '#42240C',
+          }}>
+          Ready to Checkout
+        </Button>
+      </Link>
+    </div>
     </Box>
     </div>
   );
