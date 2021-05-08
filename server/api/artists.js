@@ -4,7 +4,7 @@ const artistRouter = require('express').Router();
 
 artistRouter.get('/', async (req, res, next) => {
   try {
-    const artists = await Artist.findAll();
+    const artists = await Artist.findAll({ order: [['id']] });
     res.send(artists);
   } catch (error) {
     console.log('error occured in /api/artists: ', error);
