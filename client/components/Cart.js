@@ -63,15 +63,19 @@ class Cart extends Component {
       });
     }
   }
-  handleRemove = (albumId) => {
+  handleRemove = (orderId) => {
     const user = JSON.parse(window.localStorage.getItem('UserCart'));
     console.log('DELETE', this.props.orderItems)
-    this.props.remove(user.cart.userId, this.props.orderItems.albumId);
+    this.props.remove(user.cart.userId, this.props.orderId);
   }
   render() {
     const { classes } = this.props;
     const { orderItems, albums } = this.state;
+          console.log('STATE', this.state);
+
     const orders = orderItems;
+    console.log('ORDER', orders)
+
   return (
     <div>
       <Background>
@@ -89,8 +93,6 @@ class Cart extends Component {
     }}>
     {orders.length ? orders.map((order) => {
       const album = albums.filter((album) => album.id === order.albumId)
-      // console.log('ORDER', order)
-      // console.log('ALBUM', album);
       return (
         <div className={classes.root}>
       <Paper className={classes.paper} style={{
@@ -124,7 +126,7 @@ class Cart extends Component {
                     color: '#F2F1E7',
                     background: '#42240C',
                   }}
-                  onClick={() => this.removeAlbum(album[0].id)}> Remove </Button>
+                  onClick={() => this.removeAlbum(order.id)}> Remove </Button>
                 </Typography>
               </Grid>
             </Grid>
@@ -157,6 +159,8 @@ class Cart extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('STATE', this.state);
+
   return {
     orderItems: state.cart.orderItems,
     albums: state.cart.cart.albums
