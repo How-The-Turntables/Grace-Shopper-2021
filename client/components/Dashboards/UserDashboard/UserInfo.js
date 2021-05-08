@@ -76,27 +76,27 @@ class UserInfo extends React.Component {
         <div>
           <TextField
             required id="standard-required"
-            label="Required"
+            label="First Name"
             value={firstName}
             name="firstName"
             onChange={ this.handleChange }
             />
             <TextField
             required id="standard-required"
-            label="Required"
+            label="Last Name"
             value={lastName}
             name="lastName"
             onChange={ this.handleChange }
             />
             <TextField
             required id="standard-required"
-            label="Required"
+            label="Email"
             value={email}
             name="email"
             onChange={ this.handleChange }
             />
           <TextField
-            id="standard-password-input"
+            required id="standard-password-input"
             label="Password"
             type="password"
             autoComplete="current-password"
@@ -110,7 +110,11 @@ class UserInfo extends React.Component {
             color="primary"
             size="small"
             className={classes.button}
-            startIcon={<SaveIcon />}>Save
+            startIcon={<SaveIcon />}
+            style={{
+              background: '#42240C'
+            }}
+            >Save
          </Button>
         </div>
       </form>
