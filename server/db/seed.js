@@ -192,6 +192,7 @@ const syncAndSeed = async () => {
     const review = await Review.create({
         comment: 'This album has all my favorite jams.',
         stars: 5,
+        albumId: 2
       });
 
 
