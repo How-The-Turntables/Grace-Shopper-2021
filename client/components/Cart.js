@@ -1,11 +1,12 @@
 
 import React, { Component } from 'react';
-import Link from '@material-ui/core/Link';
 import { connect } from 'react-redux'
-import { cartChecker } from '../redux/shopping/shoppingActions'
+import { cartChecker } from '../redux/shopping/shoppingActions';
+import { Link } from 'react-router-dom';
+
 
 //STYLING IMPORTS
-import { Grid, Paper, Typography, ButtonBase, withStyles, Box } from '@material-ui/core';
+import { Grid, Button, Paper, Typography, ButtonBase, withStyles, Box } from '@material-ui/core';
 import { Container, TitleBox, Background } from '../styles';
 
 
@@ -118,9 +119,21 @@ class Cart extends Component {
             </Grid>
           </Grid>
         </Grid>
+
       </Paper>
     </div>
     )}) : 'no orders yet'}
+    <Link to="/checkout">
+      <Button
+        size="small"
+        color="primary"
+        style={{
+        color: '#F2F1E7',
+        background: '#42240C',
+        }}>
+        Ready to Checkout
+      </Button>
+    </Link>
     </Box>
     </div>
   );
