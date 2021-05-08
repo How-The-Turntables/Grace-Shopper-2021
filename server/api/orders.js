@@ -5,9 +5,9 @@ const { requireToken } = require('./auth');
 const { authId } = require('../utils');
 
 //  all orders route for admin
-ordersRouter.get('/admin', requireToken,  async (req, res, next) => {
+ordersRouter.get('/admin', requireToken, async (req, res, next) => {
   try {
-    console.log('ADMIN ID ', req.user.admin)
+    console.log('ADMIN ID ', req.user.admin);
     if (!req.user.admin) res.status(401).send('you are not authorized');
     else {
       const orders = await OrderDetail.findAll({
@@ -25,15 +25,17 @@ ordersRouter.get('/admin', requireToken,  async (req, res, next) => {
 ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);
+
     if (!id) {
       res.status(401).send('you are not authorized');
-    }
-    else {
+    } else {
       const cart = await OrderDetail.findOne({
         where: {
           userId: id,
         },
-        include: [{ all: true, attributes: { exclude: ['admin', 'password'] } }],
+        include: [
+          { all: true, attributes: { exclude: ['admin', 'password'] } },
+        ],
       });
 
       const cartId = cart.dataValues.id;
@@ -41,11 +43,10 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
         where: {
           order_detailId: cartId,
         },
-        include: [{ all: true }]
+        include: [{ all: true }],
       });
 
       const cartDetails = { cart, orderItems };
-
       if (!cartDetails) res.sendStatus(404);
       else res.status(200).send(cartDetails);
     }
@@ -58,13 +59,11 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
 // all orders by user for user account view
 ordersRouter.get('/:id', requireToken, async (req, res, next) => {
   try {
-
-    console.log(req.params)
+    console.log(req.params);
     const id = authId(req);
     if (!id) {
       res.status(401).send('you are not authorized');
-    }
-    else {
+    } else {
       const orders = await OrderDetail.findAll({
         where: {
           userId: id,
@@ -80,7 +79,28 @@ ordersRouter.get('/:id', requireToken, async (req, res, next) => {
   }
 });
 
-
+// crates a new cart
+ordersRouter.post('/cart', requireToken, async (req, res, next) => {
+  try {
+    const id = authId(req);
+    if (!id) res.status(401).send('you are not authorized');
+    const cart = await OrderDetail.create({
+      where: {
+        userId: req.params.id,
+        status: 'IN PROGRESS',
+      },
+      include: { all: true },
+    });
+    // const cartId = cart.dataValues.id;
+    // const orderItemToUpdate = await OrderItem.findOne({
+    //   where: {
+    //     order_detailId: cartId,
+    //   },
+    //   include: { all: true }
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 // user can add cart items and quantity of current items
 ordersRouter.put('/:id/cart/:albumId', requireToken, async (req, res, next) => {
@@ -199,7 +219,6 @@ ordersRouter.put('/:id/admin', requireToken, async (req, res, next) => {
 
 module.exports = ordersRouter;
 
-
 // ROUTES THAT WE DIDN'T USE OR REWROTE ABOVE. WILL DELETE THESE UPON THOROUGH AUDIT
 
 // // console.logs that were helpful for debugging
@@ -211,7 +230,6 @@ module.exports = ordersRouter;
 //     // console.log(cart.map((album) => {
 //     //   return album
 //     // }))
-
 
 // ordersRouter.get('/:id/items', async (req, res, next) => {
 //   try {
@@ -242,7 +260,6 @@ module.exports = ordersRouter;
 //     next(error);
 //   }
 // });
-
 
 // // user adds item to cart
 // ordersRouter.post('/cart', requireToken, async (req, res, next) => {

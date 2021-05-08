@@ -18,9 +18,7 @@ export const loginUser = (credentials, history) => {
       const { token } = response.data;
       window.localStorage.setItem('JWTtoken', token);
       dispatch(attemptTokenLogin(history));
-    } catch (error) {
-
-    }
+    } catch (error) {}
   };
 };
 
@@ -55,21 +53,19 @@ export const attemptTokenLogin = (history) => {
 const loadUserOrders = (userOrders) => {
   return {
     type: types.LOAD_USER_ORDERS,
-    userOrders
-  }
+    userOrders,
+  };
 };
 
 export const renderUserOrders = (id) => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     try {
       const token = window.localStorage.getItem('JWTtoken');
-      console.log('TOKEN', token)
       const { data: orderList } = await axios.get(`/api/orders/${id}`, {
         headers: {
           authorization: token,
         },
       });
-      console.log('ORDER LIST ', orderList)
       dispatch(loadUserOrders(orderList));
     } catch (error) {
       console.log('ERROR OCCURRING IN USER ACTIONS -- RENDER ORDERS: ', error);
@@ -77,29 +73,26 @@ export const renderUserOrders = (id) => {
   };
 };
 
-const editUser = ( user ) => {
+const editUser = (user) => {
   return {
     type: types.EDIT_USER,
-    user
-  }
+    user,
+  };
 };
 
-export const renderEditUser = ( id, body, history ) => {
+export const renderEditUser = (id, body, history) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem('JWTtoken');
-      console.log(token
-        )
       const { data: userToEdit } = await axios.put(`/api/users/${id}`, body, {
-          headers: {
-            authorization: token,
-          },
+        headers: {
+          authorization: token,
+        },
       });
-      dispatch(editUser( userToEdit ));
+      dispatch(editUser(userToEdit));
       history.push(`/account/${id}`);
-    }
-    catch (error) {
+    } catch (error) {
       console.log('Error editing USER in thunk creator: ', error);
     }
-  }
+  };
 };

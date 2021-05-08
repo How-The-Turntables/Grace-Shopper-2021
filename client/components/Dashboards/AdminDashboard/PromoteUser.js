@@ -2,10 +2,12 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
-import { renderPromoteUser, renderSelectedUser } from '../../../redux/admin/adminActions';
+import {
+  renderPromoteUser,
+  renderSelectedUser,
+} from '../../../redux/admin/adminActions';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-
 
 const styles = (theme) => ({
   root: {
@@ -34,12 +36,9 @@ class PromoteUser extends React.Component {
   // };
 
   componentDidMount() {
-    console.log("ComponentWillMount");
-    const user = this.props.match.params.id
-    console.log("Will fetch expert with id", user);
+    const user = this.props.match.params.id;
     this.props.loadUser(user);
-  };
-
+  }
 
   // componentDidUpdate = (prevProps) => {
   //   // const user = this.props.match.params.id
@@ -75,7 +74,7 @@ class PromoteUser extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { admin } = this.state
+    const { admin } = this.state;
 
     return (
       <React.Fragment>
@@ -91,15 +90,19 @@ class PromoteUser extends React.Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {orders.length ? orders.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.createdAt}</TableCell>
-                <TableCell>{row.status}</TableCell>
-                <TableCell>{row.user.firstName} {row.user.lastName}</TableCell>
-                <TableCell>{row.paymentMethod}</TableCell>
-                <TableCell align="right">{row.total}</TableCell>
-              </TableRow>
-            )) : 'no orders yet'}
+            {orders.length
+              ? orders.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell>{row.createdAt}</TableCell>
+                    <TableCell>{row.status}</TableCell>
+                    <TableCell>
+                      {row.user.firstName} {row.user.lastName}
+                    </TableCell>
+                    <TableCell>{row.paymentMethod}</TableCell>
+                    <TableCell align="right">{row.total}</TableCell>
+                  </TableRow>
+                ))
+              : 'no orders yet'}
           </TableBody>
         </Table>
         <div className={classes.seeMore}>
@@ -109,45 +112,46 @@ class PromoteUser extends React.Component {
         </div>
       </React.Fragment>
     );
-  };
-};
+  }
+}
 
-{/* <TextField
+{
+  /* <TextField
           required
           id="filled-disabled"
           label="Admin Status"
           value={admin}
           name="admin"
           onChange={ this.handleChange }
-          /> */}
-        //   <Button
-        //     type="submit"
-        //     variant="contained"
-        //     color="primary"
-        //     size="small"
-        //     className={classes.button}
-        //     startIcon={<SaveIcon />}>Save
-        //  </Button>
+          /> */
+}
+//   <Button
+//     type="submit"
+//     variant="contained"
+//     color="primary"
+//     size="small"
+//     className={classes.button}
+//     startIcon={<SaveIcon />}>Save
+//  </Button>
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('STATE ',state )
   // const user = state.users.find(user => user.id === ownProps.match.params.id*1) || {};
   //   return {
   //     user
   //   }
-    return {
-      // promoteUser: state.promoteUser,
-      selectedUser: state.selectedUser
-    }
+  return {
+    // promoteUser: state.promoteUser,
+    selectedUser: state.selectedUser,
+  };
 };
-
 
 const mapDispatchToProps = (dispatch, { history }) => {
-	return {
+  return {
     // promoteUser: ( id, user ) => dispatch( renderPromoteUser( id, user, history )),
-    loadUser: ( id ) => dispatch( renderSelectedUser( id, history ))
-	}
+    loadUser: (id) => dispatch(renderSelectedUser(id, history)),
+  };
 };
 
-export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(PromoteUser));
-
+export default withStyles(styles, { withTheme: true })(
+  connect(mapStateToProps, mapDispatchToProps)(PromoteUser)
+);
