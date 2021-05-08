@@ -88,15 +88,13 @@ export const renderEditUser = ( id, body, history ) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem('JWTtoken');
-      console.log(token
-        )
       const { data: userToEdit } = await axios.put(`/api/users/${id}`, body, {
           headers: {
             authorization: token,
           },
       });
       dispatch(editUser( userToEdit ));
-      history.push(`/account/${id}`);
+      // history.push(`/account/${id}`);
     }
     catch (error) {
       console.log('Error editing USER in thunk creator: ', error);

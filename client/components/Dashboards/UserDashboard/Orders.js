@@ -28,7 +28,8 @@ class Orders extends Component {
   }
   componentDidMount() {
     const user = JSON.parse(window.localStorage.getItem('UserCart'));
-    console.log('USER ', user.cart.userId)
+    // cart is nested
+    // console.log('USER ', user.cart.userId)
     this.props.loadOrders(user.cart.userId);
   }
   render() {

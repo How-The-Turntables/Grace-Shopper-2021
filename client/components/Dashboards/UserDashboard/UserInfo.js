@@ -34,8 +34,7 @@ class UserInfo extends React.Component {
   };
 
   componentDidUpdate = (prevProps) => {
-    const user = JSON.parse(window.localStorage.getItem('UserCart'));
-    if(!prevProps.user.id && user.id){
+    if(!prevProps.user.id && this.props.user.id){
       this.setState({
         firstName: this.props.user.firstName,
         lastName: this.props.user.lastName,
@@ -49,8 +48,8 @@ class UserInfo extends React.Component {
   async handleSubmit(event) {
     event.preventDefault();
     try {
-      const user = JSON.parse(window.localStorage.getItem('UserCart'));
-      await this.props.updateUser(user.id, this.state );
+      const { id }= this.props.user;
+      await this.props.updateUser(id, this.state );
     }
     catch (err) {
       this.setState({ error: err.response.data.error });
@@ -65,6 +64,9 @@ class UserInfo extends React.Component {
 
   render() {
     const { classes } = this.props;
+    console.log('props ', this.props)
+    console.log('state ', this.state)
+
     const { firstName, lastName, email, password } = this.state
 
     return (

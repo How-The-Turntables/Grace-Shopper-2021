@@ -48,7 +48,7 @@ await axios.get(`/api/users/${id}`, {
 usersRouter.get('/:id', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);
-    console.log('AUTHENTICATED ID GET ROUTE', id)
+    console.log('AUTHENTICATED ID GET ROUTE', req)
     if (!id) res.status(401).send('you are not authorized');
     else {
       const user = await User.findAll({
@@ -67,10 +67,9 @@ usersRouter.get('/:id', requireToken, async (req, res, next) => {
 usersRouter.put('/:id', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);
-    console.log('AUTHENTICATED ID PUT ROUTE', id)
     if (!id) res.status(401).send('you are not authorized');
     else {
-      let user = await User.findByPk(id, { include: [ Address ]} );
+      let user = await User.findByPk(id );
       const userUpdated = await user.update({
         firstName: req.body.firstName.trim(),
         lastName: req.body.lastName.trim(),
