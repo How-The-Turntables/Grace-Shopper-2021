@@ -89,8 +89,7 @@ export const renderEditUser = (id, body, history) => {
           authorization: token,
         },
       });
-      dispatch(editUser(userToEdit));
-      history.push(`/account/${id}`);
+      dispatch(editUser( userToEdit ));
     } catch (error) {
       console.log('Error editing USER in thunk creator: ', error);
     }
