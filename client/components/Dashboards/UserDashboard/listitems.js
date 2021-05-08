@@ -1,23 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+
+//STYLES
+import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 
 
-
-
-// function preventDefault(event) {
-//   event.preventDefault();
-// };
-
 export const NavItems = () => {
   return (
-    <div style={{
-      //backgroundColor: '#F2F1E7'
-    }}>
+    <div>
       <Link to='/user/orders' style={{
                 textDecoration: 'none',
               }}>
@@ -42,18 +34,3 @@ export const NavItems = () => {
     </div>
   )
 };
-
-
-
-// export const sidebarData = [
-//   {
-//     title: 'Orders',
-//     path: '/orderhistory/:id',
-//     icon: <DashboardIcon/>
-//   },
-//   {
-//     title: 'Personal Information',
-//     path: '/account/:id',
-//     icon: <PeopleIcon/>
-//   }
-// ];

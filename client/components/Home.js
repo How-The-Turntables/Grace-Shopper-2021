@@ -1,11 +1,11 @@
 import React from 'react';
-//import { Title, Container, Box, Background, Record } from '../styles'; //these are styled containers from /client/styles.js
-import { Container, Typography, CardContent, makeStyles, Card, CardActionArea, CardMedia, CardActions } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+
+//STYLES
+import { Container, Typography, CardContent, makeStyles, Card, CardActionArea, CardMedia, CardActions } from '@material-ui/core';
 import homeImage from '../../server/public/img/homePage.png';
 import cardOneImage from '../../server/public/img/Card1.png';
 import cardTwoImage from '../../server/public/img/Card2.png';
-// import { connect } from 'react-redux'
 
 // IDEA: should we keep index in state, and use that for the browse by albums link? that way it keeps your place...? is that stored in count on the state?
 const useStyles = makeStyles({

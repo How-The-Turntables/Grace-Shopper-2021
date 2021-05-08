@@ -7,10 +7,6 @@ import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 
-function preventDefault(event) {
-  event.preventDefault();
-}
-
 const styles = (theme) => ({
   seeMore: {
     marginTop: theme.spacing(3),

@@ -1,10 +1,11 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import SaveIcon from '@material-ui/icons/Save';
-import { renderEditUser, renderSelectedUser } from '../../../redux/user/userActions';
-import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import { renderEditUser, renderSelectedUser } from '../../../redux/user/userActions';
+
+//STYLES
+import { TextField, Button } from '@material-ui/core';
+import SaveIcon from '@material-ui/icons/Save';
+import { withStyles } from '@material-ui/core/styles';
 
 
 const styles = (theme) => ({

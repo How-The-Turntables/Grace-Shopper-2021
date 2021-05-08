@@ -1,22 +1,12 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-
 import { NavItems } from './listitems';
-import Orders from './Orders';
 import UserInfo from './UserInfo';
 
+//STYLES
+import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
-import List from '@material-ui/core/List';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography'
-
+import { CssBaseline, Drawer, List, Container, Grid, Paper, Typography } from '@material-ui/core';
 
 
 const drawerWidth = 240;
@@ -129,10 +119,6 @@ class UserAccount extends React.Component {
               </Typography>
               <Grid item xs={12}>
                 <Paper className={classes.paper} style={{ backgroundColor: '#F2F1E7' }}>
-                  {/* <Switch>
-                    <Route component={Orders} path="/user/orders" />
-                    <Route component={UserInfo} path="/user/account" />
-                  </Switch> */}
                   <UserInfo />
                 </Paper>
               </Grid>
