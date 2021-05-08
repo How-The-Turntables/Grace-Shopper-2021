@@ -7,13 +7,14 @@ import homeImage from '../../server/public/img/homePage.png';
 import cardOneImage from '../../server/public/img/Card1.png';
 import cardTwoImage from '../../server/public/img/Card2.png';
 
+
 // IDEA: should we keep index in state, and use that for the browse by albums link? that way it keeps your place...? is that stored in count on the state?
 const useStyles = makeStyles({
   root: {
-    maxWidth: 375,
+    maxWidth: 400,
   },
   media: {
-    height: 275,
+    height: 300,
   },
 });
 
@@ -40,7 +41,7 @@ export default function Home() {
         display: 'flex',
         justifyContent: 'space-between',
         marginTop: '110px',
-        width: '80%',
+        width: '85%',
       }}>
         <Link to="/albums/0" style={{
           textDecoration: 'none',
