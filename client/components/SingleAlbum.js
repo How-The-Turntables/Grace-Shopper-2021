@@ -53,6 +53,7 @@ class SingleAlbum extends React.Component {
 
   render() {
     const { album, classes } = this.props;
+    // console.log('ALBUM', album)
     const { showHideReviewForm } = this.state;
     return (
       <div>

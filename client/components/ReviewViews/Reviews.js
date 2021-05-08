@@ -6,8 +6,10 @@ import { Button } from '@material-ui/core';
 
 
 
-export default function Reviews() {
-
+export default function Reviews(props) {
+  const reviews = Object.values(props)
+  console.log('REVIEWS ',  reviews)
+  // console.log('PROPS', props)
   return (
     <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab" style={{
       display: 'flex',
@@ -19,31 +21,40 @@ export default function Reviews() {
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-        <h4><span>1</span> review for <span>Fantasy T-shirt</span></h4>
+        <h4><span>{reviews.length}</span> Review</h4>
           <img className="d-flex mr-3 z-depth-1" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" width="62" alt="Generic placeholder image"/>
             <div className="media-body" style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-              <div className="d-sm-flex justify-content-between" style={{
+          <div className="d-sm-flex justify-content-between" style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}>
-                <p className="mt-1 mb-2">
-                  <strong>Marthasteward </strong>
-                  <span>– </span><span>January 28, 2020</span>
-                </p>
+        {reviews[0].map((review) => {
+          console.log(review)
+          return (
+          <div key={review.id} border-style='solid'>
+            <p className="mt-1 mb-2">
+            <strong>Tommy Lee </strong>
+            <span>– </span><span>{(new Date(review.createdAt)).toString().slice(0,16)}</span>
+            </p>
+            <strong><span>{review.stars}</span> out of 5 Stars</strong>
 
-              </div>
-              <p className="mb-0">Nice one, love it!</p>
-            </div>
+            <p className="mb-0">{review.comment}</p>
+          </div>
+          )
+        })}
+
+        </div>
       </div>
-
+      </div>
        <HoverRating/>
        <AddReview />
 
     </div>
 
 )};
+
