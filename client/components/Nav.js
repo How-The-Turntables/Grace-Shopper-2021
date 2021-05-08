@@ -64,7 +64,9 @@ class Nav extends Component {
                 </div>
               </Link>
               <h2 style={{ color: '#42240C', fontFamily: 'Special Elite, cursive' }}>Bootleg Records For Your Ear Holes</h2>
-              <div>
+              <div style= {{
+                minWidth: '300px'
+              }}>
                 <Link to="/" style={{ textDecoration: 'none' }}>
                   <Button style={{ color: '#42240C' }}>Home</Button>
                 </Link>
