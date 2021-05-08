@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { renderAlbums } from '../redux/albums/albumActions';
 import { addToCart } from '../redux/shopping/shoppingActions';
 
-//import { Pagination } from '@material-ui/lab';
+//STYLES
 import {
   Button,
   Card,
