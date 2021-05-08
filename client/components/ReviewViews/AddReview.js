@@ -113,6 +113,7 @@ class AddReview extends React.Component {
     )
     }
 };
+// need to finish functionality
 
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
