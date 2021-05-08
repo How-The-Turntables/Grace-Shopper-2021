@@ -15,6 +15,130 @@ const syncAndSeed = async () => {
   try {
     await db.sync({ force: true });
 
+    // -------------funny stuff------------------
+    const funnyArtists = [
+      Artist.create({
+        name: 'Guns and Moses',
+        description: 'Welcome to the Bootcamp',
+      }),
+      Artist.create({
+        name: 'The Profs',
+        description: 'Everything is white',
+      }),
+      Artist.create({
+        name: 'AC/PC',
+        description: 'Theyre on the highway to SQL',
+      }),
+      Artist.create({
+        name: 'Von Zeppelin',
+        description: 'Boom!',
+      }),
+      Artist.create({
+        name: '#FFC0CB Floyd',
+        description: 'VV |2 1 7 7 3 [\\]    1 [\\]    1 3 3 7',
+      }),
+      Artist.create({
+        name: 'Infinite Loop of Destruction',
+        description: 'While(i > 0) i++',
+      }),
+      Artist.create({
+        name: 'Redux Stones',
+        description: 'I cant get no SPA',
+      }),
+      Artist.create({
+        name: 'Soggy Bottom Boys',
+        description: 'oh Brother, Where art though',
+      }),
+    ];
+
+    await Promise.all(funnyArtists);
+
+    const funnyAlbums = [
+      Album.create({
+        title: 'Greatest Coding Hits vol 62',
+        description: 'Prety Awesome',
+        genre: 'ROCK',
+        year: 1998,
+        price: 99.99,
+        quantity: 72,
+        artistId: 2,
+      }),
+      Album.create({
+        title: 'Escalator To Heaven',
+        description: 'Out of Order',
+        genre: 'ROCK',
+        year: 1975,
+        price: 19.99,
+        quantity: 18,
+        artistId: 5,
+      }),
+      Album.create({
+        title: 'You Broke My Heart So I Busted Your Jaw',
+        description: 'Collection of the most metal love songs',
+        genre: 'METAL',
+        year: 2004,
+        price: 39.99,
+        quantity: 21,
+        artistId: 6,
+      }),
+      Album.create({
+        title: 'Were Doing This For Money',
+        description: 'Give us Money!',
+        genre: 'JAZZ',
+        year: 1982,
+        price: 139.99,
+        quantity: 1000,
+        artistId: 7,
+      }),
+      Album.create({
+        title: 'Psychodelic CSS',
+        description: 'Taste the sound',
+        genre: 'OTHER',
+        year: 1979,
+        price: 0.99,
+        quantity: 100,
+        artistId: 1,
+      }),
+      Album.create({
+        title: 'Saturday Night Coding',
+        description: 'Drink all the booze, hack all the things',
+        genre: 'POP',
+        year: 1986,
+        price: 19.99,
+        quantity: 1,
+        artistId: 3,
+      }),
+      Album.create({
+        title: 'The Dark Side of Middleware',
+        description: 'The fault is not with RequireToken',
+        genre: 'ROCK',
+        year: 1969,
+        price: 299.99,
+        quantity: 4,
+        artistId: 4,
+      }),
+      Album.create({
+        title: 'Another Line in the Code',
+        description: 'Just one more line of code',
+        genre: 'ROCK',
+        year: 1980,
+        price: 18.99,
+        quantity: 7,
+        artistId: 5,
+      }),
+      Album.create({
+        title: 'Men of Constant Sorrow',
+        description: 'O Brother, where art though',
+        genre: 'POP',
+        year: 2004,
+        price: 49.99,
+        quantity: 10,
+        artistId: 8,
+      }),
+    ];
+
+    await Promise.all(funnyAlbums);
+
     // --------- creating bands ---------
     const bandNames = Array(20)
       .fill(1)
