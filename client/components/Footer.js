@@ -15,6 +15,8 @@ function Copyright() {
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
+      <br/>
+      Mediocrity at it's finest
     </Typography>
   );
 }
@@ -25,10 +27,13 @@ class Footer extends Component {
         background: '#42240C',
         paddingBottom: '2rem',
         bottom: '0',
-        width: '100%'
+        width: '100%',
       }}>
         <Box pt={4}>
             <Copyright />
+            <Typography>
+
+            </Typography>
           </Box>
       </div>
     );

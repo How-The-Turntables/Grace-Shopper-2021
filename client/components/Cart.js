@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 
 //STYLING IMPORTS
-import { Grid, Button, Paper, Typography, ButtonBase, withStyles, Box } from '@material-ui/core';
-import { Container, TitleBox, Background } from '../styles';
+import { Grid, Button, Paper, Typography, ButtonBase, withStyles, Box, Container } from '@material-ui/core';
+//import { Container, TitleBox, Background } from '../styles';
 
 
 function preventDefault(event) {
@@ -70,15 +70,17 @@ class Cart extends Component {
     const orders = orderItems;
   return (
     <div>
-      <Background>
-      <Container style={{
+      <div style={{
         width: '100 vw',
+        backgroundColor: '#42240C',
+        display: 'flex',
+        justifyContent: 'center',
       }}>
-      <TitleBox>
-    <Typography variant='h2' component='h2' >Today's a great day to give us your money!</Typography>
-        </TitleBox>
-    </Container>
-    </Background>
+    <Typography variant='h2' component='h2' style={{
+      color: '#F2F1E7',
+    }}>
+      Today's a great day to give us your money!</Typography>
+    </div>
     <Box style={{
       height: '100vh',
       width: '100 vw',
