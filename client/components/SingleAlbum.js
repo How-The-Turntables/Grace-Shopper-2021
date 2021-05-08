@@ -150,8 +150,13 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+<<<<<<< HEAD
   return {
     loadSingle: (id) => dispatch(renderSingleAlbum(id)),
+=======
+	return {
+    loadSingle: (albumId) => dispatch( renderSingleAlbum(albumId) ),
+>>>>>>> f9387348eb58705e5cb890d19e67e0c2b6557641
     // add to cart
   };
 };
