@@ -56,6 +56,7 @@ const syncAndSeed = async () => {
     const funnyAlbums = [
       Album.create({
         title: 'Greatest Coding Hits vol 62',
+        photoUrl: 'https://cdn.pocket-lint.com/r/s/320x/assets/images/134579-gadgets-feature-53-of-the-worst-album-covers-of-all-time-image22-sl1hcqpb5o.jpg?v1',
         description: 'Prety Awesome',
         genre: 'ROCK',
         year: 1998,
@@ -65,6 +66,7 @@ const syncAndSeed = async () => {
       }),
       Album.create({
         title: 'Escalator To Heaven',
+        photoUrl: 'https://www.ultimate-guitar.com/static/article/news/1/69761_ver1516630290.jpg',
         description: 'Out of Order',
         genre: 'ROCK',
         year: 1975,
@@ -74,6 +76,7 @@ const syncAndSeed = async () => {
       }),
       Album.create({
         title: 'You Broke My Heart So I Busted Your Jaw',
+        photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3okNYxBt2InkFRt7Bo8-312si21RRetUqm1mKG7FunwTbe82m_6lAE5InaCHZ3tS56VQ&usqp=CAU',
         description: 'Collection of the most metal love songs',
         genre: 'METAL',
         year: 2004,
@@ -83,6 +86,7 @@ const syncAndSeed = async () => {
       }),
       Album.create({
         title: 'Were Doing This For Money',
+        photoUrl: 'https://upload.wikimedia.org/wikipedia/en/e/eb/Money_1973.jpg',
         description: 'Give us Money!',
         genre: 'JAZZ',
         year: 1982,
@@ -92,6 +96,7 @@ const syncAndSeed = async () => {
       }),
       Album.create({
         title: 'Psychodelic CSS',
+        photoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/5c/Weird_Al_Yankovic_-_Dare_to_Be_Stupid.jpg/220px-Weird_Al_Yankovic_-_Dare_to_Be_Stupid.jpg',
         description: 'Taste the sound',
         genre: 'OTHER',
         year: 1979,
@@ -101,6 +106,7 @@ const syncAndSeed = async () => {
       }),
       Album.create({
         title: 'Saturday Night Coding',
+        photoUrl: 'https://upload.wikimedia.org/wikipedia/en/0/0c/TheBeeGeesSaturdayNightFeveralbumcover.jpg',
         description: 'Drink all the booze, hack all the things',
         genre: 'POP',
         year: 1986,
@@ -110,6 +116,7 @@ const syncAndSeed = async () => {
       }),
       Album.create({
         title: 'The Dark Side of Middleware',
+        photoUrl: 'https://upload.wikimedia.org/wikipedia/en/6/6e/Pink_Floyd_-_Division_Bell.jpg',
         description: 'The fault is not with RequireToken',
         genre: 'ROCK',
         year: 1969,
@@ -119,6 +126,7 @@ const syncAndSeed = async () => {
       }),
       Album.create({
         title: 'Another Line in the Code',
+        photoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/1/16/Queen_The_Game.png/220px-Queen_The_Game.png',
         description: 'Just one more line of code',
         genre: 'ROCK',
         year: 1980,
@@ -128,6 +136,7 @@ const syncAndSeed = async () => {
       }),
       Album.create({
         title: 'Men of Constant Sorrow',
+        photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-aUxvpcQQfSVt7g-DxbkNwjEI3KEj44Ymr0eFEmXcgZT960VpVeTAwuo2_PuB0K23o7E&usqp=CAU',
         description: 'O Brother, where art though',
         genre: 'POP',
         year: 2004,
