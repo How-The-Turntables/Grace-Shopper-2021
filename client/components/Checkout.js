@@ -23,9 +23,7 @@ const Checkout = (props) => {
       body: JSON.stringify(body),
     })
       .then((response) => {
-        console.log('RESPONSE', response);
         const { status } = response;
-        console.log('STATUS', status);
       })
       .catch((error) => console.log(error));
   };

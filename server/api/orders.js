@@ -37,7 +37,6 @@ ordersRouter.get('/:id/cart', requireToken, async (req, res, next) => {
           { all: true, attributes: { exclude: ['admin', 'password']}},
         ],
       });
-console.log('cart ****',cart)
       const cartId = cart.dataValues.id;
       const orderItems = await OrderItem.findAll({
         where: {
