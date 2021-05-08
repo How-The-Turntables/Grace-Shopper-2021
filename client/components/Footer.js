@@ -25,7 +25,8 @@ class Footer extends Component {
         background: '#42240C',
         paddingBottom: '2rem',
         bottom: '0',
-        width: '100%'
+        width: '100%',
+        position: 'fixed',
       }}>
         <Box pt={4}>
             <Copyright />
