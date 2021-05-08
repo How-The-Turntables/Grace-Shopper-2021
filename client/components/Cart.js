@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { cartChecker } from '../redux/shopping/shoppingActions';
+import { cartChecker, removeFromCart } from '../redux/shopping/shoppingActions';
 import { Link } from 'react-router-dom';
 
 
@@ -56,13 +56,17 @@ class Cart extends Component {
     });
   }
   componentDidUpdate(prevProps) {
-  if(!prevProps.orderItems && this.props.orderItems) {
-    this.setState({
-      orderItems: this.props.orderItems,
-      albums: this.props.albums
-    });
-}
-
+    if(!prevProps.orderItems && this.props.orderItems) {
+      this.setState({
+        orderItems: this.props.orderItems,
+        albums: this.props.albums
+      });
+    }
+  }
+  handleRemove = (albumId) => {
+    const user = JSON.parse(window.localStorage.getItem('UserCart'));
+    console.log('DELETE', this.props.orderItems)
+    this.props.remove(user.cart.userId, this.props.orderItems.albumId);
   }
   render() {
     const { classes } = this.props;
@@ -85,8 +89,8 @@ class Cart extends Component {
     }}>
     {orders.length ? orders.map((order) => {
       const album = albums.filter((album) => album.id === order.albumId)
-      console.log('ORDER', order)
-      console.log('ALBUM', album);
+      // console.log('ORDER', order)
+      // console.log('ALBUM', album);
       return (
         <div className={classes.root}>
       <Paper className={classes.paper} style={{
@@ -113,7 +117,14 @@ class Cart extends Component {
               </Grid>
               <Grid item>
                 <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                  Remove
+                <Button
+                  size="small"
+                  color="primary"
+                  style={{
+                    color: '#F2F1E7',
+                    background: '#42240C',
+                  }}
+                  onClick={() => this.removeAlbum(album[0].id)}> Remove </Button>
                 </Typography>
               </Grid>
             </Grid>
@@ -154,8 +165,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadOrders: (token, id) => dispatch(cartChecker(token, id))
+    loadOrders: (token, id) => dispatch(cartChecker(token, id)),
+    remove: (userId, albumId) => dispatch(removeFromCart(userId, albumId))
   }
-}
+};
 
 export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Cart))

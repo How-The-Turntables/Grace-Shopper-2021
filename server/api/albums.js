@@ -8,7 +8,6 @@ albumsRouter.get('/', async (req, res, next) => {
       Album.findAll({
         limit: 10,
         offset: idx * 10,
-        order: [['title']],
         include: [Artist],
       }),
       Album.count(),

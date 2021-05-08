@@ -123,6 +123,37 @@ export const addToCart = (albumId, userId, body) => {
   };
 };
 
+
+const deleteAlbum = (album) => {
+  return {
+    type: types.REMOVE_FROM_CART,
+    album
+  }
+};
+
+export const removeFromCart = (userId, albumId) => {
+  return async (dispatch) => {
+    try {
+      // const token = localStorage.getItem('JWTtoken');
+      let { data: album } = await axios.delete(`/api/orders/${userId}/cart/${albumId}`
+      // , {
+      //     headers: {
+      //       authorization: token,
+      //     }}
+      );
+      dispatch(deleteAlbum(album));
+      const { data: cart } = await axios.get(`/api/orders/${userId}/cart`, {
+        headers: {
+          authorization: token,
+        }}
+      );
+      dispatch(loadCart(cart))
+    }
+    catch(error) {
+      console.log('ERROR DELETING ALBUM FROM CART IN THUNK ', error)
+    }
+  }
+};
 // export const guestCart = () => {
 //   return async (dispatch) => {
 //     try {

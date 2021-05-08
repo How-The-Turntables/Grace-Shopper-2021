@@ -155,13 +155,12 @@ ordersRouter.put('/:id/cart/:albumId', requireToken, async (req, res, next) => {
 });
 
 // user can delete current items
-ordersRouter.delete(
-  '/:id/cart/:albumId',
-  requireToken,
+ordersRouter.delete('/:id/cart/:albumId',
+  // requireToken,
   async (req, res, next) => {
     try {
-      const id = authId(req);
-      if (!id) res.status(401).send('you are not authorized');
+      // const id = authId(req);
+      // if (!id) res.status(401).send('you are not authorized');
       const albumToRemove = await Album.findByPk(req.params.albumId); // change to a findOne w/ where clause?
       const cartSession = await OrderDetail.findOne({
         // because they could already have a cart in session
