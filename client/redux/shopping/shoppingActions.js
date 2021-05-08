@@ -57,7 +57,6 @@ export const cartChecker = (token, userId) => {
         },
       });
       const guestCart = JSON.parse(localStorage.getItem('GuestCart'));
-      console.log('ALBUMS ', guestCart.albums)
       if (1 > 2) {
         console.log('ALBUMS',albums)
         guestCart.albums.map(async (album) => {
@@ -88,6 +87,8 @@ export const cartChecker = (token, userId) => {
     }
   };
 };
+
+
 
 export const addToCart = (albumId, userId, body) => {
   return async (dispatch) => {

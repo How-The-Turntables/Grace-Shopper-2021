@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Link from '@material-ui/core/Link';
 import { connect } from 'react-redux'
+import { cartChecker } from '../redux/shopping/shoppingActions'
 
 //STYLING IMPORTS
 import { Grid, Paper, Typography, ButtonBase, withStyles, Box } from '@material-ui/core';
@@ -36,14 +37,32 @@ const styles = theme => ({
 class Cart extends Component {
   constructor() {
     super()
+    this.state = {
+      orderItems: [],
+      albums: []
+    }
   }
+
   componentDidMount() {
     const user = JSON.parse(window.localStorage.getItem('UserCart'));
-    if ( user.id === 'guest')
-    this.props.loadOrders(user.id);
+    const token = window.localStorage.getItem('JWTtoken');
+    if(!this.props.orderItems) {
+      this.props.loadOrders(token, user.cart.userId);
+    }
+  }
+  componentDidUpdate(prevProps) {
+  if(!prevProps.orderItems && this.props.orderItems) {
+    this.setState({
+      orderItems: this.props.orderItems,
+      albums: this.props.albums
+    })
+}
+
   }
   render() {
-    const { classes, orders } = this.props
+    const { classes } = this.props;
+    const { orderItems, albums } = this.state;
+    const orders = orderItems;
   return (
     <div>
       <Background>
@@ -59,7 +78,9 @@ class Cart extends Component {
       height: '100vh',
       width: '100 vw',
     }}>
-    {orders.length ? orders.map((order) => (
+    {orders.length ? orders.map((order) => {
+      const album = albums.filter((album) => album.id === order.albumId)
+      return (
         <div className={classes.root}>
       <Paper className={classes.paper} style={{
         backgroundColor: '#F1F2E7',
@@ -77,13 +98,13 @@ class Cart extends Component {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  { order.albums[0].title }
+                  { album[0].title }
                 </Typography>
                 <Typography variant="body2" gutterBottom>
                   { console.log(order) }
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  { order.albums[0].description }
+                  { album[0].description }
                 </Typography>
               </Grid>
               <Grid item>
@@ -93,13 +114,13 @@ class Cart extends Component {
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">{ order.albums[0].price }</Typography>
+              <Typography variant="subtitle1">{ album[0].price }</Typography>
             </Grid>
           </Grid>
         </Grid>
       </Paper>
     </div>
-    )) : 'no orders yet'}
+    )}) : 'no orders yet'}
     </Box>
     </div>
   );
@@ -108,13 +129,14 @@ class Cart extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    orders: state.userOrders
+    orderItems: state.cart.orderItems,
+    albums: state.cart.cart.albums
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadOrders: (id) => dispatch(renderUserOrders(id))
+    loadOrders: (token, id) => dispatch(cartChecker(token, id))
   }
 }
 
