@@ -16,11 +16,13 @@ import {
   CardText,
 } from 'material-ui/Card';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
 import { withStyles } from '@material-ui/styles';
+import { Typography, Button } from '@material-ui/core';
 
 const styles =(theme)=>({
-
+  media: {
+    height: 275,
+  },
 })
 
 class SingleAlbum extends React.Component {
@@ -60,7 +62,7 @@ class SingleAlbum extends React.Component {
               <div>Sorry, this album is out of stock!</div>
             ) : (
               <div key={album.id}>
-                <CardHeader title={album.title} subtitle={album.artist.name} />
+                {/* <CardHeader title={album.title} subtitle={album.artist.name} /> */}
                 {/* <CardMedia
                   overlay={
                     <CardTitle
@@ -69,22 +71,64 @@ class SingleAlbum extends React.Component {
                     />
                   }
                 ></CardMedia> */}
-                <CardMedia>
-                <img src={album.photoUrl} />
-                </CardMedia>
-                <CardTitle title={album.title} subtitle={album.artist.name} />
-                <CardText>{album.description}</CardText>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  backgroundColor: '#a12222'
+                }}>
+                  <img src={album.photoUrl} style={{
+                  width: '265px',
+                  height: '250px'
+                }}/>
+                <Typography variant='h3' style={{
+                  color: '#F2F1E7',
+                  fontFamily: 'Special Elite, cursive',
+                  padding: '0.5rem',
+                }}>
+                {album.title}
+                </Typography>
+                <Typography variant='h5' style={{
+                  color: '#F2F1E7',
+                  fontFamily: 'Special Elite, cursive',
+                }}>
+                {album.artist.name}
+                </Typography>
+                <CardText style={{
+                  color: '#F2F1E7'
+                }}>{album.description}</CardText>
                 <CardActions>
-                  <FlatButton>
-                    <Link to={'/albums/0'}>Back to Albums List</Link>
-                  </FlatButton>
-                  <FlatButton
-                    label="Add To Cart"
-                    // onClick={this.addToCart.bind(this)}
-                  />
+                  <Button style={{
+                    backgroundColor: '#42240C'
+                  }}>
+                    <Link to={'/albums/0'} style={{
+                    textDecoration: 'none',
+                    color: '#F2F1E7'
+                  }}
+                  >Back to Albums List</Link>
+                  </Button>
+                  <Button style={{
+                    textDecoration: 'none',
+                    backgroundColor: '#42240C'
+                  }}
+                  >
+                    <Link to={'#'} style={{
+                    textDecoration: 'none',
+                    color: '#F2F1E7'
+                  }}
+                  >
+                    Add To Cart
+                    </Link>
+                  </Button>
+                  {/* onClick={this.addToCart.bind(this)} */}
                 </CardActions>
+                </div>
                 <MuiThemeProvider>
-                  <Card>
+                  <Card style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    backgroundColor: '#F2F1E7'
+                  }}>
                     <Reviews reviews={album.reviews}/>
                   </Card>
                 </MuiThemeProvider>
