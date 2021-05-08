@@ -41,7 +41,7 @@ class Nav extends Component {
     return (
       <div>
         <Box component="nav">
-          <AppBar position="static" style={{ background: '#F2F1E7' }}>
+          <AppBar position="static" style={{ background: '#F2F1E7', position: 'static' }}>
             <Toolbar
               style={{ display: 'flex', justifyContent: 'space-between' }}
             >

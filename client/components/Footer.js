@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 function Copyright() {
   return (
     <Typography variant="body2" style={{
-      color: '#42240C'
+      color: '#F2F1E7'
     }} align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
@@ -22,8 +22,10 @@ class Footer extends Component {
   render() {
     return (
       <div style={{
-        background: '#F2F1E7',
-        paddingBottom: '1rem'
+        background: '#42240C',
+        paddingBottom: '2rem',
+        bottom: '0',
+        width: '100%'
       }}>
         <Box pt={4}>
             <Copyright />
