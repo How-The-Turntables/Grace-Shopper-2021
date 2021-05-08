@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import connect from 'react-redux';
+import { connect } from 'react-redux';
+import { loginUser } from "../redux/user/userActions"
 
 class SignUpForm extends Component {
   constructor() {
@@ -21,7 +22,7 @@ class SignUpForm extends Component {
   onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await this.props.loginUser(this.state);
+      await this.props.user(this.state);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -62,16 +63,16 @@ class SignUpForm extends Component {
   };
 };
 
-// const mapStateToProps = (state, ownProps) => {
-//   return state
-// }
+const mapStateToProps = (state, ownProps) => {
+  return state
+}
 
-// const mapDistpatchToProps = (dispatch, { history }) => {
-//   return {
-//     user: (user) => dispatch(loginUser(user, history)),
-//   };
-// };
+const mapDistpatchToProps = (dispatch, { history }) => {
+  return {
+    user: (user) => dispatch(loginUser(user, history)), // needs to be on a post route
+  };
+};
 
-// export default connect(null, mapDistpatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDistpatchToProps)(SignUpForm);
 
-export default SignUpForm;
+// export default SignUpForm;
