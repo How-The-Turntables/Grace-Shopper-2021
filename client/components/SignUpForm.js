@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from "../redux/user/userActions"
+import { Grid, Paper, TextField, Button } from '@material-ui/core';
+import img from '../../server/public/img/unsplashRecord.png';
 
 class SignUpForm extends Component {
   constructor() {
@@ -30,35 +32,84 @@ class SignUpForm extends Component {
 
   render() {
     return (
-      <div>
+      <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundImage: `url(${img})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        height: '100vh',
+        width: '100vw',
+      }}>
+      <div
+      style={{
+        display: 'flex',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
+        marginTop: '300px',
+      }}>
         <form onSubmit={ this.onSubmit }>
-          <input
-            type="text"
-            name="email"
-            placeholder="email"
-            onChange={ this.onChange }
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            onChange={ this.onChange }
-          />
-          <input
-            type="text"
-            name="firstName"
-            placeholder="First Name"
-            onChange={ this.onChange }
-          />
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Last Name"
-            onChange={ this.onChange }
-          />
-          <button type="submit">Register</button>
+        <Grid
+            container
+            spacing={3}
+            style={{
+              backgroundColor: '#F2F1E7',
+              display: 'flex',
+              flexDirection: 'column',
+            }}>
+          <Grid item xs={12}>
+            <Grid
+              container
+              spacing={3}
+              style={{
+                display: 'flex',
+                marginTop: '10px',
+              }}>
+
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  type="email"
+                  name="email"
+                  placeholder="email"
+                  onChange={ this.onChange }/>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  onChange={ this.onChange }/>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  onChange={ this.onChange }/>
+
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  type="text"
+                  name="lastName"
+                  placeholder="Last Name"
+                  onChange={ this.onChange }/>
+              </Grid>
+              <Grid item xs={12}>
+                  <Button type="submit" fullWidth>
+                    Register</Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
         </form>
       </div>
+    </div>
     );
   };
 };
