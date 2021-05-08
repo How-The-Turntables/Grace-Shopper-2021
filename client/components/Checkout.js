@@ -31,7 +31,7 @@ const Checkout = (props) => {
   };
   return (
     <div>
-      <h1>Checkout View</h1>
+      <h1>Checkout</h1>
       <StripeCheckout
         stripeKey="pk_test_51InBnVLzJ6Ooq8ftXn86XLMdGlaDVmC4IaC9DW0nMNAtT1FEenak4ZzryEE9WgTtDp3Zz9TH11pCITeDNAXkWZjF00hFlaBdr2"
         // token fires a method
