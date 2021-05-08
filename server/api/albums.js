@@ -8,7 +8,7 @@ albumsRouter.get('/', async (req, res, next) => {
       Album.findAll({
         limit: 10,
         offset: idx * 10,
-        order: [['title']],
+        order: [['id']],
         include: [Artist],
       }),
       Album.count(),
@@ -83,7 +83,6 @@ albumsRouter.put('/:id', async (req, res, next) => {
   }
 });
 
-
 // ALBUM REVIEWS
 
 albumsRouter.post('/reviews', async (req, res, next) => {
@@ -104,6 +103,5 @@ albumsRouter.post('/reviews', async (req, res, next) => {
     next(error);
   }
 });
-
 
 module.exports = albumsRouter;
