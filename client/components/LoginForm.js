@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/user/userActions';
+import { Link } from 'react-router-dom';
 
 //STYLING IMPORTS
 import { Grid, Paper, TextField, Button } from '@material-ui/core';
@@ -31,23 +32,33 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div style={{
-        display: 'flex',
-        alignItems: 'baseline',
-        justifyContent: 'space-between',
-        marginTop: '300px',
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          marginTop: '300px',
+        }}
+      >
         <form onSubmit={this.onSubmit}>
-          <Grid container spacing={3} style={{
-            backgroundColor: '#F2F1E7',
-            display: 'flex',
-            flexDirection: 'column',
-          }}>
+          <Grid
+            container
+            spacing={3}
+            style={{
+              backgroundColor: '#F2F1E7',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <Grid item xs={12}>
-              <Grid container spacing={3} style={{
-                display: 'flex',
-                marginTop: '10px',
-              }}>
+              <Grid
+                container
+                spacing={3}
+                style={{
+                  display: 'flex',
+                  marginTop: '10px',
+                }}
+              >
                 <Grid item xs={12}>
                   <TextField
                     type="email"
@@ -67,10 +78,17 @@ class LoginForm extends Component {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Button type="submit" fullWidth>Login</Button>
+                  <Button type="submit" fullWidth>
+                    Login
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
+            <center>
+              <div>
+                New user? <Link to="/register">Sign up</Link>
+              </div>
+            </center>
           </Grid>
         </form>
       </div>
