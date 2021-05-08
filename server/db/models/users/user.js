@@ -45,10 +45,10 @@ User.init(
 
 User.afterCreate(async (user) => {
   await OrderDetail.create({
-      total: 0,
-      status: 'IN PROGRESS',
-      userId: user.id
-    });
+    total: 0,
+    status: 'IN PROGRESS',
+    userId: user.id,
+  });
 });
 
 User.addHook('beforeSave', async (user) => {

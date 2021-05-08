@@ -33,7 +33,6 @@ usersRouter.get('/admin', requireToken, async (req, res, next) => {
 //   }
 // })
 
-
 // -------- To access a user ID, you must be authenticated by passing a token into the get request, such as below: ---------
 /*
 
@@ -48,7 +47,6 @@ await axios.get(`/api/users/${id}`, {
 usersRouter.get('/:id', requireToken, async (req, res, next) => {
   try {
     const id = authId(req);
-    console.log('AUTHENTICATED ID GET ROUTE', req)
     if (!id) res.status(401).send('you are not authorized');
     else {
       const user = await User.findAll({
@@ -74,11 +72,10 @@ usersRouter.put('/:id', requireToken, async (req, res, next) => {
         firstName: req.body.firstName.trim(),
         lastName: req.body.lastName.trim(),
         email: req.body.email.trim(),
-        password: req.body.password
+        password: req.body.password,
       });
-    res.send(userUpdated);
+      res.send(userUpdated);
     }
-
   } catch (error) {
     console.log('Error editing user in PUT users/:id route: ', error);
     next(error);

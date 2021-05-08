@@ -9,7 +9,7 @@ export const loadOrders = (orders) => {
 };
 
 export const renderOrders = () => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     try {
       const token = window.localStorage.getItem('JWTtoken');
       console.log('TOKEN IN THUNKS ', token)
@@ -29,12 +29,12 @@ export const renderOrders = () => {
 const loadUsers = (users) => {
   return {
     type: types.LOAD_USERS,
-    users
-  }
+    users,
+  };
 };
 
 export const renderUsers = () => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     try {
       const token = window.localStorage.getItem('JWTtoken');
       const { data: userList } = await axios.get('/api/users/admin', {
@@ -53,17 +53,20 @@ export const renderUsers = () => {
 const loadSingleUser = (selectedUser) => {
   return {
     type: types.LOAD_USER,
-    selectedUser
-  }
+    selectedUser,
+  };
 };
 
 export const renderSelectedUser = (id) => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     try {
       const { data: user } = await axios.get(`/api/users/${id}`);
       dispatch(loadSingleUser(user));
     } catch (error) {
-      console.log('ERROR OCCURRING IN admin ACTIONS -- RENDER SINGLE USER: ', error);
+      console.log(
+        'ERROR OCCURRING IN admin ACTIONS -- RENDER SINGLE USER: ',
+        error
+      );
     }
   };
 };
@@ -72,21 +75,21 @@ export const renderSelectedUser = (id) => {
 const promoteUser = (promoteUser) => {
   return {
     type: types.PROMOTE_USER,
-    promoteUser
-  }
+    promoteUser,
+  };
 };
 
-
-export const renderPromoteUser = ( id, body, history ) => {
+export const renderPromoteUser = (id, body, history) => {
   return async (dispatch) => {
     try {
-      const { data: userToEdit } = await axios.put(`/api/users/${id}/admin`, body);
-      console.log(userToEdit)
-      dispatch(promoteUser( userToEdit ));
+      const { data: userToEdit } = await axios.put(
+        `/api/users/${id}/admin`,
+        body
+      );
+      dispatch(promoteUser(userToEdit));
       // history.push(`/users/${id}`);
-    }
-    catch (error) {
+    } catch (error) {
       console.log('Error promoting USER in admin thunk creator: ', error);
     }
-  }
+  };
 };
