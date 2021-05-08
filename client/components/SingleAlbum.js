@@ -5,6 +5,8 @@ import { renderSingleAlbum } from '../redux/albums/albumActions';
 import { renderReviews } from '../redux/reviews/reviewActions';
 import { AddReview } from './index';
 import Reviews from './ReviewViews/Reviews';
+
+//STYLES
 import {
   Card,
   CardActions,
@@ -15,7 +17,6 @@ import {
 } from 'material-ui/Card';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
-// import { makeStyles } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 
 const styles =(theme)=>({
@@ -68,7 +69,9 @@ class SingleAlbum extends React.Component {
                     />
                   }
                 ></CardMedia> */}
+                <CardMedia>
                 <img src={album.photoUrl} />
+                </CardMedia>
                 <CardTitle title={album.title} subtitle={album.artist.name} />
                 <CardText>{album.description}</CardText>
                 <CardActions>
