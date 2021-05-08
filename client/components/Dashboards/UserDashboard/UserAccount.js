@@ -15,6 +15,7 @@ import List from '@material-ui/core/List';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography'
 
 
 
@@ -62,6 +63,7 @@ const styles = (theme) => ({
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
+    backgroundColor: '#a12222',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -119,9 +121,14 @@ class UserAccount extends React.Component {
           <div className={classes.appBarSpacer} />
           <Container maxWidth="lg" className={classes.container}>
             <Grid container spacing={3}>
-              Account
+              <Typography variant="h2" style={{
+              color: '#42240C',
+              fontFamily: 'Special Elite, cursive'
+            }}>
+              Account Info
+              </Typography>
               <Grid item xs={12}>
-                <Paper className={classes.paper}>
+                <Paper className={classes.paper} style={{ backgroundColor: '#F2F1E7' }}>
                   {/* <Switch>
                     <Route component={Orders} path="/user/orders" />
                     <Route component={UserInfo} path="/user/account" />
