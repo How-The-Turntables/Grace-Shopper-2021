@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 //STYLING IMPORTS
 import { Grid, Paper, Typography, ButtonBase, withStyles, Box } from '@material-ui/core';
 import { Container, TitleBox, Background } from '../styles';
-import homeImage from '../../server/public/img/homePage.png';
 
 
 function preventDefault(event) {
@@ -57,12 +56,18 @@ class Cart extends Component {
     </Container>
     </Background>
     <Box style={{
-      maxHeight: '100%',
+      height: '100vh',
+      width: '100 vw',
     }}>
-    {/* {orders.length ? orders.map((order) => ( */}
+    {orders.length ? orders.map((order) => (
         <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <Grid container spacing={2}>
+      <Paper className={classes.paper} style={{
+        backgroundColor: '#F1F2E7',
+
+      }}>
+        <Grid container spacing={2} style={{
+
+        }}>
           <Grid item>
             <ButtonBase className={classes.image}>
               <img className={classes.img} alt="complex" src='https://i.imgur.com/UYThC20.png' />
@@ -72,13 +77,13 @@ class Cart extends Component {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  Album Name Here
+                  { order.albums[0].title }
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  Artist Name Here
+                  { console.log(order) }
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  Album Description Here
+                  { order.albums[0].description }
                 </Typography>
               </Grid>
               <Grid item>
@@ -88,13 +93,13 @@ class Cart extends Component {
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">$Free.99</Typography>
+              <Typography variant="subtitle1">{ order.albums[0].price }</Typography>
             </Grid>
           </Grid>
         </Grid>
       </Paper>
     </div>
-    {/* )) : 'no orders yet'} */}
+    )) : 'no orders yet'}
     </Box>
     </div>
   );
@@ -114,32 +119,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withStyles(styles, { withTheme: true })(connect(mapStateToProps, mapDispatchToProps)(Cart))
-
-//OG COMPONENT
-{/* <React.Fragment>
-<Table size="small">
-  <TableHead>
-    <TableRow>
-      <TableCell>Date</TableCell>
-      <TableCell>Status</TableCell>
-      <TableCell>Payment Method</TableCell>
-      <TableCell align="right">Sale Amount</TableCell>
-    </TableRow>
-  </TableHead>
-  <TableBody>
-    {orders.length ? orders.map((row) => (
-      <TableRow key={row.id}>
-        <TableCell>{row.createdAt}</TableCell>
-        <TableCell>{row.status}</TableCell>
-        <TableCell>{row.paymentMethod}</TableCell>
-        <TableCell align="right">{row.total}</TableCell>
-      </TableRow>
-    )) : 'no orders yet'}
-  </TableBody>
-</Table>
-<div className={classes.seeMore}>
-  <Link color="primary" href="#" onClick={preventDefault}>
-    See more orders
-  </Link>
-</div>
-</React.Fragment> */}
