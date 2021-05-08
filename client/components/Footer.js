@@ -15,6 +15,8 @@ function Copyright() {
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
+      <br/>
+      Mediocrity at it's finest
     </Typography>
   );
 }
@@ -29,6 +31,9 @@ class Footer extends Component {
       }}>
         <Box pt={4}>
             <Copyright />
+            <Typography>
+
+            </Typography>
           </Box>
       </div>
     );
