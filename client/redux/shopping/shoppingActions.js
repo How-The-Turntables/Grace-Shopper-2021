@@ -57,11 +57,13 @@ export const cartChecker = (token, userId) => {
         },
       });
       const guestCart = JSON.parse(localStorage.getItem('GuestCart'));
-      if (guestCart.albums.length > 0) {
+      console.log('ALBUMS ', guestCart.albums)
+      if (1 > 2) {
+        console.log('ALBUMS',albums)
         guestCart.albums.map(async (album) => {
           const data = {
             albumId: album.id,
-            order_deatil: cart.cart.id,
+            order_detail: cart.cart.id,
           };
           const { data: albumToAdd } = await axios.post('/api/items/', data);
         });
@@ -93,7 +95,6 @@ export const addToCart = (albumId, userId, body) => {
       // const cartData = JSON.parse(localStorage.getItem('UserCart'));
       // const userId = cartData.cart.user.id;
       const token = localStorage.getItem('JWTtoken');
-
       const order_item = await axios.put(
         `/api/orders/${userId}/cart/${albumId}`,
         body,
