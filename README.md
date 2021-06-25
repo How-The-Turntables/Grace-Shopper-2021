@@ -1,6 +1,7 @@
 Welcome to How the Turntables, bootleg records for your earholes! TM
 
 To run locally:
+
 Clone the repo: https://github.com/How-The-Turntables/Grace-Shopper-2021.git
 
 In the CLI: 
