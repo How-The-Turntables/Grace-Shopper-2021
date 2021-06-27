@@ -53,6 +53,7 @@ class SingleAlbum extends React.Component {
 
   render() {
     const { album, classes } = this.props;
+    // console.log('ALBUM', album)
     const { showHideReviewForm } = this.state;
     return (
       <div>
@@ -149,8 +150,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    loadSingle: (id) => dispatch(renderSingleAlbum(id)),
+	return {
+    loadSingle: (albumId) => dispatch( renderSingleAlbum(albumId) ),
     // add to cart
   };
 };

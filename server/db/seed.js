@@ -322,6 +322,13 @@ const syncAndSeed = async () => {
     //   status: 'IN PROGRESS',
     // });
 
+    const review = await Review.create({
+        comment: 'This album has all my favorite jams.',
+        stars: 5,
+        albumId: 2
+      });
+
+
     const order_detail2 = await OrderDetail.create({
       total: 1 * record3.price,
       status: 'COMPLETED',
@@ -362,10 +369,7 @@ const syncAndSeed = async () => {
     //   total: 19.99,
     //   status: 'IN PROGRESS',
     // });
-    // const review = await Review.create({
-    //   comment: 'This album has all my favorite jams.',
-    //   stars: 5,
-    // });
+    //
     // const user = await User.create({
     //   email: 'test@gmail.com',
     //   password: 'supersecret',
